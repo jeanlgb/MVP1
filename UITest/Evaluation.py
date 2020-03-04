@@ -173,7 +173,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
 
 
 
-        self.pushButton_demarrer.clicked.connect(self.popup)
+        #self.pushButton_demarrer.clicked.connect(self.popup)
         self.pushButton_demarrer.clicked.connect(self.transfert)
 
 
@@ -182,7 +182,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_glassman = "true"
         else:
-            print ("unchecked")
+            print("unchecked")
             self.state_glassman = "false"
 
     def checkBoxChangeAction_EVAC (self, state):
@@ -190,7 +190,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_EVAC = "true"
         else:
-            print ("unchecked")
+            print("unchecked")
             self.state_EVAC = "false"
 
     def checkBoxChangeAction_EVAL (self, state):
@@ -198,7 +198,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_EVAL = "true"
         else:
-            print ("unchecked")
+            print("unchecked")
             self.state_EVAL = "false"
 
     def checkBoxChangeAction_NDI (self, state):
@@ -206,7 +206,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_ndi = "true"
         else:
-            print ("unchecked")
+            print("unchecked")
             self.state_ndi = "false"
 
     def checkBoxChangeAction_MJOA (self, state):
@@ -214,7 +214,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_mjoa = "true"
         else:
-            print ("unchecked")
+            print("unchecked")
             self.state_mjoa = "false"
 
     def checkBoxChangeAction_Oswestry (self, state):
@@ -222,28 +222,32 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_oswestry = "true"
         else:
-            print ("unchecked")
+            print("unchecked")
             self.state_oswestry = "false"
 
 
     def transfert(self):
+        self.vider = ""
         self.identite = self.lineEdit_identite.text()
         self.numMagic = self.lineEdit_numeroMagic_2.text()
-        dictionnaire_données = dict()
-        dictionnaire_données = {'Nom et Prénom': self.identite, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
+
+        dictionnaire_donnees = {'Nom et Prénom': self.identite, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
                                 'scoreEVAL': self.state_EVAL, 'scoreNDI': self.state_ndi, 'scoreMJOA': self.state_mjoa , 'scoreOswestry': self.state_oswestry }
         f = open('C:/Users/Public/InPec/Donneestransferees.txt', 'w')
-        f.write(str(dictionnaire_données.get('Nom et Prénom')) + '\n' + str(
-            dictionnaire_données.get('scoreGlassman')) + '\n' + str(dictionnaire_données.get('scoreEVAC')) + '\n' + str(
-            dictionnaire_données.get('scoreEVAL')) + '\n' + str(dictionnaire_données.get('scoreNDI')) + '\n' + str(
-            dictionnaire_données.get('scoreMJOA')) + '\n' + str(dictionnaire_données.get('scoreOswestry')))
+        f.write(str(dictionnaire_donnees.get('Nom et Prénom')) + '\n' + str(
+            dictionnaire_donnees.get('scoreGlassman')) + '\n' + str(dictionnaire_donnees.get('scoreEVAC')) + '\n' + str(
+            dictionnaire_donnees.get('scoreEVAL')) + '\n' + str(dictionnaire_donnees.get('scoreNDI')) + '\n' + str(
+            dictionnaire_donnees.get('scoreMJOA')) + '\n' + str(dictionnaire_donnees.get('scoreOswestry')))
         f.close()
         os.system("C:/Users/Public/InPec/adb/adb push C:/Users/Public/InPec/Donneestransferees.txt sdcard/Documents/Donneestransferees.txt")
+        f.close()
+        f = open('C:/Users/Public/InPec/Donneestransferees.txt', 'w')
+        f.write(self.vider)
 
-        if os.path.getsize("C:/Users/Public/InPec/FichierDeTransfert.txt") == 0:
-            print("Vide")  # Récupération du fichier texte
-        else:
-            print("Rempli")
+        # if os.path.getsize("C:/Users/Public/InPec/Donneestransferees.txt") == 0:
+        #     print("Vide")  # Récupération du fichier texte
+        # else:
+        #     print("Rempli")
         self.switch_window.emit()
 
     def popup (self):

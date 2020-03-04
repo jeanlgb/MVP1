@@ -24,11 +24,14 @@ class Controller_Test:
         self.med = MainWindow_Acceuil()
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
+
         self.co.hide()
         self.med.show()
 
     def show_Medecin2(self):
         self.med2 = MainWindow_Acceuil()
+        self.med2.switch_window1.connect(self.show_CreationDP)
+        self.windowEvaluation.hide()
         self.med2.show()
 
     def show_Secretaire(self):
