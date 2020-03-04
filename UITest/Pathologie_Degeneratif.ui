@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>662</width>
-    <height>503</height>
+    <width>840</width>
+    <height>740</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="pushButton_valider">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>410</y>
+     <x>560</x>
+     <y>610</y>
      <width>130</width>
      <height>30</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="pushButton_annuler">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>30</y>
+     <x>710</x>
+     <y>10</y>
      <width>61</width>
      <height>30</height>
     </rect>
@@ -49,8 +49,8 @@
   <widget class="QPushButton" name="pushButton_ajouterIntervention">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>410</y>
+     <x>90</x>
+     <y>610</y>
      <width>130</width>
      <height>30</height>
     </rect>
@@ -63,7 +63,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>30</y>
+     <y>10</y>
      <width>61</width>
      <height>30</height>
     </rect>
@@ -79,458 +79,456 @@
     <string>Retour</string>
    </property>
   </widget>
-  <widget class="QToolBox" name="toolBox_etape3">
+  <widget class="QGroupBox" name="groupBox_finaliteNeurologique">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>90</y>
-     <width>611</width>
-     <height>281</height>
+     <x>30</x>
+     <y>50</y>
+     <width>751</width>
+     <height>91</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
+   <property name="title">
+    <string>1 - Finalité neurologique</string>
    </property>
-   <property name="currentIndex">
-    <number>1</number>
-   </property>
-   <widget class="QWidget" name="page_finalite">
+   <widget class="QCheckBox" name="checkBox_radicoMedullaire">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>611</width>
-      <height>146</height>
+      <x>50</x>
+      <y>60</y>
+      <width>301</width>
+      <height>30</height>
      </rect>
     </property>
-    <attribute name="label">
-     <string>Finalité neurologique</string>
-    </attribute>
-    <widget class="QCheckBox" name="checkBox_radiculaire">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>20</y>
-       <width>301</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Décompression radiculaire</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-     <property name="tristate">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="checkBox_medullaire">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>20</y>
-       <width>241</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Décompression médullaire</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="checkBox_radicoMedullaire">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>60</y>
-       <width>301</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Décompression radico-médullaire</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="checkBox_non">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>60</y>
-       <width>201</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Non</string>
-     </property>
-    </widget>
+    <property name="text">
+     <string>Décompression radico-médullaire</string>
+    </property>
    </widget>
-   <widget class="QWidget" name="page_niveau">
+   <widget class="QCheckBox" name="checkBox_non">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>611</width>
-      <height>146</height>
+      <x>480</x>
+      <y>60</y>
+      <width>201</width>
+      <height>30</height>
      </rect>
     </property>
-    <attribute name="label">
-     <string>Niveau(x)</string>
-    </attribute>
-    <widget class="QLabel" name="label_niveau">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>30</y>
-       <width>491</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Intervention de la vertèbre           à             .</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_niveauCalcul">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>90</y>
-       <width>111</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Espace vertèbre : </string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>90</y>
-       <width>60</width>
-       <height>20</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="spinBox_nombre1">
-     <property name="geometry">
-      <rect>
-       <x>320</x>
-       <y>30</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>1</number>
-     </property>
-     <property name="maximum">
-      <number>32</number>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="spinBox_nombre2">
-     <property name="geometry">
-      <rect>
-       <x>390</x>
-       <y>30</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>2</number>
-     </property>
-     <property name="maximum">
-      <number>33</number>
-     </property>
-    </widget>
+    <property name="text">
+     <string>Non</string>
+    </property>
    </widget>
-   <widget class="QWidget" name="page_recalibrage">
+   <widget class="QCheckBox" name="checkBox_medullaire">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>611</width>
-      <height>146</height>
+      <x>480</x>
+      <y>20</y>
+      <width>241</width>
+      <height>30</height>
      </rect>
     </property>
-    <attribute name="label">
-     <string>Recalibrage</string>
-    </attribute>
-    <widget class="QFrame" name="frame_recalibrage">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>591</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QRadioButton" name="radioButton_herniePure">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>30</y>
-        <width>281</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Hernie discale pure</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_recalibrageOui">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>30</y>
-        <width>71</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Oui</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_recalibrageSuivant">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>80</y>
-        <width>61</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Suivant</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_recalibrageNon">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>80</y>
-        <width>121</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Non</string>
-      </property>
-     </widget>
-    </widget>
+    <property name="text">
+     <string>Décompression médullaire</string>
+    </property>
    </widget>
-   <widget class="QWidget" name="page_cote">
+   <widget class="QCheckBox" name="checkBox_radiculaire">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>611</width>
-      <height>146</height>
+      <x>50</x>
+      <y>20</y>
+      <width>301</width>
+      <height>30</height>
      </rect>
     </property>
-    <attribute name="label">
-     <string>Côté</string>
-    </attribute>
-    <widget class="QFrame" name="frame_cote">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>591</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QRadioButton" name="radioButton_bilateral">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>70</y>
-        <width>261</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Bilatéral</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_gauche">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>20</y>
-        <width>141</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Gauche</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_Droit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>20</y>
-        <width>141</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Droit</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_bilateral">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>70</y>
-        <width>121</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Bilatéral :</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_unilateral">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>20</y>
-        <width>121</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Unilatéral :</string>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="page_arthrodese">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>611</width>
-      <height>146</height>
-     </rect>
+    <property name="text">
+     <string>Décompression radiculaire</string>
     </property>
-    <attribute name="label">
-     <string>Arthrodèse</string>
-    </attribute>
-    <widget class="QFrame" name="frame_arthrodese">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>591</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QPushButton" name="pushButton_arthrodeseSuivant">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>70</y>
-        <width>61</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Suivant</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_arthrodeseOui">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>20</y>
-        <width>101</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Oui</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_arthrodeseNon">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>70</y>
-        <width>121</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Non</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
    </widget>
   </widget>
+  <widget class="QGroupBox" name="groupBox_Niveau">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>160</y>
+     <width>751</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>2 - Niveau(x)</string>
+   </property>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>60</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_niveau">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>30</y>
+      <width>491</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Intervention de la vertèbre           à             .</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_niveauCalcul">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>60</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Espace vertèbre : </string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_nombre1">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>30</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>32</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_nombre2">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>30</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>2</number>
+    </property>
+    <property name="maximum">
+     <number>33</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_finaliteNeurologique_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>270</y>
+     <width>751</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>3 - Recalibrage</string>
+   </property>
+   <widget class="QPushButton" name="pushButton_recalibrageSuivant">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>50</y>
+      <width>61</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Suivant</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_herniePure">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>20</y>
+      <width>281</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hernie discale pure</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_recalibrageNon">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>60</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Non</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_recalibrageOui">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>71</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Oui</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_finaliteNeurologique_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>380</y>
+     <width>751</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>4 - Côté</string>
+   </property>
+   <widget class="QLabel" name="label_bilateral">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>50</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Bilatéral :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_unilateral">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Unilatéral :</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_bilateral">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>50</y>
+      <width>261</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bilatéral</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_gauche">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>10</y>
+      <width>141</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Gauche</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_Droit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>141</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Droit</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_finaliteNeurologique_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>490</y>
+     <width>751</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>5 - Arthrodèse</string>
+   </property>
+   <widget class="QRadioButton" name="radioButton_arthrodeseNon">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>50</y>
+      <width>121</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Non</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_arthrodeseOui">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>101</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Oui</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_arthrodeseSuivant">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>40</y>
+      <width>61</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Suivant</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>751</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>751</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>360</y>
+     <width>751</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>470</y>
+     <width>751</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <zorder>groupBox_finaliteNeurologique_3</zorder>
+  <zorder>groupBox_finaliteNeurologique_4</zorder>
+  <zorder>groupBox_finaliteNeurologique_2</zorder>
+  <zorder>groupBox_Niveau</zorder>
+  <zorder>groupBox_finaliteNeurologique</zorder>
+  <zorder>pushButton_valider</zorder>
+  <zorder>pushButton_annuler</zorder>
+  <zorder>pushButton_ajouterIntervention</zorder>
+  <zorder>pushButton_retour</zorder>
+  <zorder>line</zorder>
+  <zorder>line_2</zorder>
+  <zorder>line_3</zorder>
+  <zorder>line_4</zorder>
  </widget>
  <resources/>
  <connections/>
