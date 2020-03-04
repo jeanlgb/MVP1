@@ -209,9 +209,6 @@ class Ui_Frame_Degeneratif(object):
         self.radioButton_arthrodeseNon.setText(_translate("Frame", "Non"))
         self.radioButton_arthrodeseOui.setText(_translate("Frame", "Oui"))
         self.pushButton_arthrodeseSuivant.setText(_translate("Frame", "Suivant"))
-        self.radioButton_arthrodeseOui.setText(_translate("Frame", "Oui"))
-        self.radioButton_arthrodeseNon.setText(_translate("Frame", "Non"))
-        self.toolBox_etape3.setItemText(self.toolBox_etape3.indexOf(self.page_arthrodese), _translate("Frame", "Arthrodèse"))
 
 
 class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
@@ -234,7 +231,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         # # récupération nombre de vertèbres
         # self.nombre1 = self.spinBox_nombre1.valueChanged.connect(self.countVertebres)
         # self.nombre2 = self.spinBox_nombre2.valueChanged.connect(self.countVertebres)
-
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtape2)
@@ -273,7 +269,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
 
     def annulerCreationDP(self):
         self.switch_window2.emit()
-
     # def countVertebres(self):
     #     self.nombre1 = self.spinBox_nombre1.value()
     #     self.nombre2 = self.spinBox_nombre2.value()
