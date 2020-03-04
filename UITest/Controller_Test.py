@@ -8,6 +8,8 @@ from UITest.Evaluation import MainWindow_Evaluation
 from UITest.Accueil_Secretaire import MainWindow_Acceuil_Secretaire
 from UITest.Connexion import Login
 from UITest.CreationDP import *
+from UITest.Pathologie_Etape2 import MainWindow_Etape2
+from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
 
 class Controller_Test:
 
@@ -24,15 +26,8 @@ class Controller_Test:
         self.med = MainWindow_Acceuil()
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
-
         self.co.hide()
         self.med.show()
-
-    def show_Medecin2(self):
-        self.med2 = MainWindow_Acceuil()
-        self.med2.switch_window1.connect(self.show_CreationDP)
-        self.windowEvaluation.hide()
-        self.med2.show()
 
     def show_Secretaire(self):
         self.co = Login()
@@ -46,12 +41,19 @@ class Controller_Test:
     def show_CreationDP(self):
         self.sec = MainWindow_Acceuil_Secretaire()
         self.med = MainWindow_Acceuil()
+        self.etape2 = MainWindow_Etape2()
+        self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowCreationDP = MainWindow_CreationDP()
 
         #actions de chaque bouton en fct du window
-        self.windowCreationDP.switch_window.connect(self.show_Evaluation)
+        self.windowCreationDP.switch_window1.connect(self.show_Evaluation)
+        self.windowCreationDP.switch_window2.connect(self.show_Etape2)
+
         self.med.hide()
         self.sec.hide()
+        self.etape2.hide()
+        self.windowDegeneratif.hide()
+
         self.windowCreationDP.show()
 
     def show_Evaluation(self):
@@ -59,27 +61,57 @@ class Controller_Test:
         self.prenom = UITest.CreationDP.patient_prenom
         self.numMagic = UITest.CreationDP.patient_numMagic
         self.dateDeIntervention = UITest.CreationDP.patient_dateIntervention
+        self.dateDeNaissance = UITest.CreationDP.patient_dateNaissance
 
         self.windowEvaluation = MainWindow_Evaluation()
         self.windowCreationDP = MainWindow_CreationDP()
 
-
+        self.windowEvaluation.switch_window.connect(self.show_Medecin)
 
         self.windowEvaluation.lineEdit_identite.setText(self.nom + ' ' + self.prenom)
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(self.numMagic)
         self.windowEvaluation.lineEdit_dateIntervention.setText(self.dateDeIntervention)
+        self.windowEvaluation.label_recuperationDateDeNaissance.setText(self.dateDeNaissance)
 
-        self.windowEvaluation.switch_window.connect(self.show_Medecin2)
 
         self.windowCreationDP.hide()
         self.windowEvaluation.show()
 
+    def show_Etape2(self):
+        self.windowCreationDP = MainWindow_CreationDP()
+        self.windowDegeneratif = MainWindow_Degeneratif()
+        self.etape2 = MainWindow_Etape2()
 
+        #actions de chaque bouton en fct du window
+        self.etape2.switch_window1.connect(self.show_Degeneratif)
+        self.etape2.switch_window2.connect(self.show_Secretaire)
+        self.etape2.switch_window3.connect(self.show_CreationDP)
+
+        self.etape2.switch_window4.connect(self.show_CreationDP)
+
+        self.windowDegeneratif.hide()
+        self.etape2.show()
+
+    def show_Degeneratif(self):
+        self.windowCreationDP = MainWindow_CreationDP()
+        self.etape2 = MainWindow_Etape2()
+        self.windowDegeneratif = MainWindow_Degeneratif()
+
+        # actions de chaque bouton en fct du window
+        self.windowDegeneratif.switch_window1.connect(self.show_Etape2)
+        self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
+        self.windowDegeneratif.switch_window3.connect(self.show_CreationDP)
+        # self.windowDegeneratif.switch_window4.connect(self.show_Evaluation)
+        self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
+
+
+        self.etape2.hide()
+        self.windowDegeneratif.show()
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Connexion()
+    controller_INPEC2.show_Degeneratif()
     sys.exit(app.exec_())
 
 

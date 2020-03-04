@@ -296,6 +296,27 @@
     <string>Score EVA lombaire</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_recuperationDateDeNaissance">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>150</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>label_titre</zorder>
   <zorder>label_typeEvaluation</zorder>
   <zorder>checkBox_oswestry</zorder>
@@ -315,6 +336,7 @@
   <zorder>radioButton_preOp</zorder>
   <zorder>checkBox_mjoa</zorder>
   <zorder>checkBox_evaLombaire</zorder>
+  <zorder>label_recuperationDateDeNaissance</zorder>
  </widget>
  <resources/>
  <connections/>

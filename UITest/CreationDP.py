@@ -7,7 +7,9 @@ from PyQt5.QtWidgets import QCalendarWidget, QLineEdit
 patient_nom = ("NOM")
 patient_prenom = ("PRENOM")
 patient_numMagic = ("NUMERO MAGIC")
-patient_dateIntervention = ("Mer Dec 13 2000")
+patient_dateIntervention = ("13/12/2000")
+patient_dateNaissance = ("21/04/1997")
+patient_pathologie = ('Lombaire')
 
 
 class Ui_Frame_CreationDP(object):
@@ -101,19 +103,20 @@ class Ui_Frame_CreationDP(object):
         font.setWeight(75)
         self.label_numeroMagic.setFont(font)
         self.label_numeroMagic.setObjectName("label_numeroMagic")
-        self.comboBox = QtWidgets.QComboBox(Frame)
-        self.comboBox.setGeometry(QtCore.QRect(270, 350, 271, 22))
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+        self.comboBox_pathologie = QtWidgets.QComboBox(Frame)
+        self.comboBox_pathologie.setGeometry(QtCore.QRect(270, 350, 271, 22))
+        self.comboBox_pathologie.setObjectName("comboBox_pathologie")
+        self.comboBox_pathologie.addItem("")
+        self.comboBox_pathologie.addItem("")
+        self.comboBox_pathologie.addItem("")
+        self.comboBox_pathologie.addItem("")
         self.calendarWidget = QCalendarWidget(Frame)
         self.calendarWidget.setGeometry(QtCore.QRect(260, 470, 312, 183))
         self.calendarWidget.setLocale(QtCore.QLocale(QtCore.QLocale.French, QtCore.QLocale.France))
         self.calendarWidget.setObjectName("calendarWidget")
         self.calendarWidget.setGridVisible(True)
         self.lineEdit_dateIntervention = QLineEdit(Frame)
+        self.lineEdit_dateIntervention.setEnabled(False)
         self.lineEdit_dateIntervention.setGeometry(QtCore.QRect(610, 470, 141, 21))
         self.lineEdit_dateIntervention.setLocale(QtCore.QLocale(QtCore.QLocale.French, QtCore.QLocale.France))
         self.lineEdit_dateIntervention.setObjectName("lineEdit_dateIntervention")
@@ -184,10 +187,31 @@ class Ui_Frame_CreationDP(object):
         self.comboBox_mois.addItem("")
         self.comboBox_mois.addItem("")
         self.comboBox_mois.addItem("")
-        self.lineEdit_annee = QtWidgets.QLineEdit(Frame)
-        self.lineEdit_annee.setGeometry(QtCore.QRect(460, 245, 81, 22))
-        self.lineEdit_annee.setMaxLength(4)
-        self.lineEdit_annee.setObjectName("lineEdit_annee")
+        self.spinBox_annee = QtWidgets.QSpinBox(Frame)
+        self.spinBox_annee.setGeometry(QtCore.QRect(460, 245, 81, 22))
+        self.spinBox_annee.setMinimum(1900)
+        self.spinBox_annee.setMaximum(2050)
+        self.spinBox_annee.setProperty("value", 2000)
+        self.spinBox_annee.setObjectName("spinBox_annee")
+        self.label_recuperationDateDeNaissance = QtWidgets.QLabel(Frame)
+        self.label_recuperationDateDeNaissance.setEnabled(False)
+        self.label_recuperationDateDeNaissance.setGeometry(QtCore.QRect(550, 250, 4, 4))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.label_recuperationDateDeNaissance.setFont(font)
+        self.label_recuperationDateDeNaissance.setText("")
+        self.label_recuperationDateDeNaissance.setObjectName("label_recuperationDateDeNaissance")
+        self.pushButton_choix = QtWidgets.QPushButton(Frame)
+        self.pushButton_choix.setGeometry(QtCore.QRect(560, 350, 51, 23))
+        self.pushButton_choix.setObjectName("pushButton_choix")
+        self.label_recuperationPathologie = QtWidgets.QLabel(Frame)
+        self.label_recuperationPathologie.setEnabled(False)
+        self.label_recuperationPathologie.setGeometry(QtCore.QRect(270, 380, 2, 2))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.label_recuperationPathologie.setFont(font)
+        self.label_recuperationPathologie.setText("")
+        self.label_recuperationPathologie.setObjectName("label_recuperationPathologie")
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -205,10 +229,10 @@ class Ui_Frame_CreationDP(object):
         self.label_pathologie.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Pathologie* :</p></body></html>"))
         self.label_dateIntervention.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Date de l\'intervention* :</p></body></html>"))
         self.label_numeroMagic.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Numéro MagicMed :</p></body></html>"))
-        self.comboBox.setItemText(0, _translate("Frame", "Lombaire"))
-        self.comboBox.setItemText(1, _translate("Frame", "Cervicale"))
-        self.comboBox.setItemText(2, _translate("Frame", "Thoracique"))
-        self.comboBox.setItemText(3, _translate("Frame", "Sacrum"))
+        self.comboBox_pathologie.setItemText(0, _translate("Frame", "Lombaire"))
+        self.comboBox_pathologie.setItemText(1, _translate("Frame", "Cervicale"))
+        self.comboBox_pathologie.setItemText(2, _translate("Frame", "Thoracique"))
+        self.comboBox_pathologie.setItemText(3, _translate("Frame", "Sacrum"))
         self.label_2.setText(_translate("Frame", "/"))
         self.label_3.setText(_translate("Frame", "/"))
         self.comboBox_jour.setItemText(0, _translate("Frame", "1"))
@@ -254,11 +278,13 @@ class Ui_Frame_CreationDP(object):
         self.comboBox_mois.setItemText(9, _translate("Frame", "Octobre"))
         self.comboBox_mois.setItemText(10, _translate("Frame", "Novembre"))
         self.comboBox_mois.setItemText(11, _translate("Frame", "Décembre"))
-        self.lineEdit_annee.setText(_translate("Frame", "2000"))
-
+        self.spinBox_annee.setToolTip(_translate("Frame", "<html><head/><body><p>fhj</p></body></html>"))
+        self.pushButton_choix.setText(_translate("Frame", "Choix"))
 
 class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
-    switch_window = QtCore.pyqtSignal()
+    switch_window1 = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
+
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
@@ -268,9 +294,18 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.pushButton_evaluation.clicked.connect(self.evaluation)
         self.calendarWidget.clicked[QDate].connect(self.showDate)
 
-        self.date_Intervention = self.calendarWidget.selectedDate()
-        self.lineEdit_dateIntervention.setText(self.date_Intervention.toString())
+        # Date de naissance
+        self.jour = self.comboBox_jour.activated[str].connect(self.showDateNaissance)
+        self.mois = self.comboBox_mois.activated[str].connect(self.showDateNaissance)
+        self.annee = self.spinBox_annee.valueChanged.connect(self.showDateNaissance)
 
+        # pathologie
+        self.pathologie = self.comboBox_pathologie.activated[str].connect(self.choixDeLaPathologie)
+        self.pushButton_choix.clicked.connect(self.choixDeLaPathologie)
+
+        # Qcalendar date intervention
+        self.date_Intervention = self.calendarWidget.selectedDate()
+        self.lineEdit_dateIntervention.setText(self.date_Intervention.toString("dd/MM/yyyy"))
 
     def evaluation(self):
         global patient_nom
@@ -287,11 +322,32 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         patient_numMagic = self.numMagic
         # print('2' + patient_nom)
 
-        self.switch_window.emit()
+        self.switch_window1.emit()
 
     def showDate(self, date_Intervention):
         global patient_dateIntervention
 
-        self.dateDeIntervention = self.lineEdit_dateIntervention.setText(date_Intervention.toString())
+        self.dateDeIntervention = self.lineEdit_dateIntervention.setText(date_Intervention.toString("dd/MM/yyyy"))
         self.dateRecuperation = self.lineEdit_dateIntervention.text()
         patient_dateIntervention = self.dateRecuperation
+
+    def showDateNaissance (self):
+        global patient_dateNaissance
+
+        self.jour = self.comboBox_jour.currentText()
+        self.mois = self.comboBox_mois.currentText()
+        self.annee = self.spinBox_annee.value()
+
+        self.label_recuperationDateDeNaissance.setText(self.jour + ' / ' + self.mois + ' / ' + str(self.annee))
+        self.naissance = self.label_recuperationDateDeNaissance.text()
+        patient_dateNaissance = self.naissance
+
+    def choixDeLaPathologie (self):
+        global patient_pathologie
+
+        self.pathologie = self.comboBox_pathologie.currentText()
+        self.label_recuperationPathologie.setText(self.pathologie) #valeur du combobox stocker dans un label en attendant de l'ajouter à lineEdit_intervention
+        self.classePathologie = self.label_recuperationPathologie.text()
+        patient_pathologie = self.classePathologie
+
+        self.switch_window2.emit()
