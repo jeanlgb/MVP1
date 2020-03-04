@@ -232,15 +232,15 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         dictionnaire_données = dict()
         dictionnaire_données = {'Nom et Prénom': self.identite, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
                                 'scoreEVAL': self.state_EVAL, 'scoreNDI': self.state_ndi, 'scoreMJOA': self.state_mjoa , 'scoreOswestry': self.state_oswestry }
-        f = open('C:/Users/Public/Ecrire/Donneestransferees.txt', 'w')
+        f = open('C:/Users/Public/InPec/Donneestransferees.txt', 'w')
         f.write(str(dictionnaire_données.get('Nom et Prénom')) + '\n' + str(
             dictionnaire_données.get('scoreGlassman')) + '\n' + str(dictionnaire_données.get('scoreEVAC')) + '\n' + str(
             dictionnaire_données.get('scoreEVAL')) + '\n' + str(dictionnaire_données.get('scoreNDI')) + '\n' + str(
             dictionnaire_données.get('scoreMJOA')) + '\n' + str(dictionnaire_données.get('scoreOswestry')))
         f.close()
-        os.system("C:/Users/Jean-Loup/Desktop/PFE/adb/adb push C:/Users/Public/Ecrire/Donneestransferees.txt sdcard/Documents/Donneestransferees.txt")
+        os.system("C:/Users/Public/InPec/adb/adb push C:/Users/Public/InPec/Donneestransferees.txt sdcard/Documents/Donneestransferees.txt")
 
-        if os.path.getsize("C:/Users/Public/Ecrire/FichierDeTransfert.txt") == 0:
+        if os.path.getsize("C:/Users/Public/InPec/FichierDeTransfert.txt") == 0:
             print("Vide")  # Récupération du fichier texte
         else:
             print("Rempli")

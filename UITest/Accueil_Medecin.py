@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -53,9 +53,9 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
         self.switch_window1.emit()
 
     def tablette(self):
-        os.system("C:/Users/Jean-Loup/Desktop/PFE/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/Ecrire/DonneestransfereesAndroid.txt")
+        os.system("C:/Users/Public/InPec/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/InPec/DonneestransfereesAndroid.txt")
         liste = []
-        with open("C:/Users/Public/Ecrire/DonneestransfereesAndroid.txt", "r") as f:
+        with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
             for line in f.readlines():
                 # Traiter la ligne et ainsi de suite ...
                 ligne = line.strip()

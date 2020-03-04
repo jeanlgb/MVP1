@@ -27,6 +27,10 @@ class Controller_Test:
         self.co.hide()
         self.med.show()
 
+    def show_Medecin2(self):
+        self.med2 = MainWindow_Acceuil()
+        self.med2.show()
+
     def show_Secretaire(self):
         self.co = Login()
         self.sec = MainWindow_Acceuil_Secretaire()
@@ -56,12 +60,13 @@ class Controller_Test:
         self.windowEvaluation = MainWindow_Evaluation()
         self.windowCreationDP = MainWindow_CreationDP()
 
-        self.windowEvaluation.switch_window.connect(self.show_Medecin)
+
 
         self.windowEvaluation.lineEdit_identite.setText(self.nom + ' ' + self.prenom)
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(self.numMagic)
         self.windowEvaluation.lineEdit_dateIntervention.setText(self.dateDeIntervention)
 
+        self.windowEvaluation.switch_window.connect(self.show_Medecin2)
 
         self.windowCreationDP.hide()
         self.windowEvaluation.show()
@@ -71,7 +76,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_CreationDP()
+    controller_INPEC2.show_Connexion()
     sys.exit(app.exec_())
 
 
