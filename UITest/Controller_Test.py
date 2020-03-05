@@ -11,6 +11,7 @@ from UITest.CreationDP import *
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
+from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
 
 class Controller_Test:
 
@@ -101,12 +102,24 @@ class Controller_Test:
         # actions de chaque bouton en fct du window
         self.windowDegeneratif.switch_window1.connect(self.show_Etape2)
         self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
-        self.windowDegeneratif.switch_window3.connect(self.show_Artrhodese)
-        # self.windowDegeneratif.switch_window4.connect(self.show_Evaluation)
+        self.windowDegeneratif.switch_window3.connect(self.show_Recalibrage)
+        self.windowDegeneratif.switch_window4.connect(self.show_Artrhodese)
         self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
 
         self.etape2.hide()
         self.windowDegeneratif.show()
+
+    def show_Recalibrage(self):
+        self.windowCreationDP = MainWindow_CreationDP()
+        self.windowDegeneratif = MainWindow_Degeneratif()
+        self.windowRecalibrage = MainWindow_FormRecalibrage()
+
+        # actions de chaque bouton en fct du window
+        self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
+        self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
+        # self.windowArthrodese.switch_window3.connect(self.show_Etape2)
+
+        self.windowRecalibrage.show()
 
     def show_Artrhodese(self):
         self.windowCreationDP = MainWindow_CreationDP()
@@ -120,10 +133,11 @@ class Controller_Test:
 
         self.windowArthrodese.show()
 
+
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Degeneratif()
+    controller_INPEC2.show_Recalibrage()
     sys.exit(app.exec_())
 
 

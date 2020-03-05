@@ -10,7 +10,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Frame(object):
+class Ui_Frame_Recalibrage(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(651, 540)
@@ -52,6 +52,7 @@ class Ui_Frame(object):
         self.pushButton_annuler.setFont(font)
         self.pushButton_annuler.setObjectName("pushButton_annuler")
         self.frame_gauche = QtWidgets.QFrame(Frame)
+        self.frame_gauche.setEnabled(False)
         self.frame_gauche.setGeometry(QtCore.QRect(20, 150, 301, 231))
         self.frame_gauche.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_gauche.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -113,6 +114,7 @@ class Ui_Frame(object):
         self.radioButton_oui.setFont(font)
         self.radioButton_oui.setObjectName("radioButton_oui")
         self.frame_droite = QtWidgets.QFrame(Frame)
+        self.frame_droite.setEnabled(False)
         self.frame_droite.setGeometry(QtCore.QRect(329, 149, 311, 231))
         self.frame_droite.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_droite.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -189,11 +191,135 @@ class Ui_Frame(object):
         self.checkBox_corporectomie.setText(_translate("Frame", "Corporectomie"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
-    ui.setupUi(Frame)
-    Frame.show()
-    sys.exit(app.exec_())
+class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
+    switch_window1 = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
+
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
+        self.setupUi(self)
+
+        # récupération des valeurs des checkbox
+        self.checkBox_interlamaire.stateChanged.connect(self.checkBoxChangeAction_interlamaire)
+        self.checkBox_interEpineux.stateChanged.connect(self.checkBoxChangeAction_interEpineux)
+        self.checkBox_laminectomie.stateChanged.connect(self.checkBoxChangeAction_laminectomie)
+        self.checkBox_arthrectomie.stateChanged.connect(self.checkBoxChangeAction_arthrectomie)
+        self.checkBox_foraminotomie.stateChanged.connect(self.checkBoxChangeAction_foraminotomie)
+        self.checkBox_uncusectomie.stateChanged.connect(self.checkBoxChangeAction_uncusectomie)
+        self.checkBox_osteophytiques.stateChanged.connect(self.checkBoxChangeAction_osteophytiques)
+        self.checkBox_corporectomie.stateChanged.connect(self.checkBoxChangeAction_corporectomie)
+
+
+
+        # valeur des radiobuttons
+        self.radioButton_anterieure.toggled.connect(self.radiobtnFrame_Haut_anterieur)
+        self.radioButton_posterieure.toggled.connect(self.radiobtnFrame_Haut_posterieur)
+
+
+        self.radioButton_aucun.toggled.connect(self.radiobtnFrame_Gauche)
+        self.radioButton_aucun2.toggled.connect(self.radiobtnFrame_Droite)
+
+        self.radioButton_oui.toggled.connect(self.radiobtnFrame_BasOui)
+        self.radioButton_non.toggled.connect(self.radiobtnFrame_BasNon)
+
+        # controlleur pour les boutons
+        self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
+        self.pushButton_annuler.clicked.connect(self.annulerCreationDP)
+        self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
+
+    def retourEtapePrecedente(self):
+        self.switch_window1.emit()
+
+    def annulerCreationDP(self):
+        self.switch_window2.emit()
+
+    def radiobtnFrame_Haut_anterieur(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.frame_gauche.setEnabled(False)
+            self.frame_droite.setEnabled(True)
+
+    def radiobtnFrame_Haut_posterieur(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.frame_gauche.setEnabled(True)
+            self.frame_droite.setEnabled(False)
+
+    def radiobtnFrame_Gauche(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.checkBox_interlamaire.setChecked(False)
+            self.checkBox_interEpineux.setChecked(False)
+            self.checkBox_laminectomie.setChecked(False)
+            self.checkBox_arthrectomie.setChecked(False)
+
+    def radiobtnFrame_Droite(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.checkBox_foraminotomie.setChecked(False)
+            self.checkBox_uncusectomie.setChecked(False)
+            self.checkBox_osteophytiques.setChecked(False)
+            self.checkBox_corporectomie.setChecked(False)
+
+    def radiobtnFrame_BasOui(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("oui j'ai choisi le truc à droite!")
+
+    def radiobtnFrame_BasNon(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("oui j'ai choisi le truc à droite!")
+
+    def checkBoxChangeAction_interlamaire(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_interEpineux(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_laminectomie(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_arthrectomie(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_foraminotomie(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_uncusectomie(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_osteophytiques(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_corporectomie(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+
+    def suivant(self):
+        self.switch_window3.emit() #faute de mieux
