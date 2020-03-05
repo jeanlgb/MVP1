@@ -10,7 +10,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Frame(object):
+class Ui_Frame_Arthrodese(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(620, 601)
@@ -65,6 +65,7 @@ class Ui_Frame(object):
         self.pushButton_suivant.setFont(font)
         self.pushButton_suivant.setObjectName("pushButton_suivant")
         self.frame_gauche1 = QtWidgets.QFrame(Frame)
+        self.frame_gauche1.setEnabled(False)
         self.frame_gauche1.setGeometry(QtCore.QRect(20, 110, 291, 181))
         self.frame_gauche1.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_gauche1.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -81,12 +82,6 @@ class Ui_Frame(object):
         font.setPointSize(10)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
-        self.radioButton_plaque = QtWidgets.QRadioButton(self.frame_gauche1)
-        self.radioButton_plaque.setGeometry(QtCore.QRect(440, 150, 251, 30))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.radioButton_plaque.setFont(font)
-        self.radioButton_plaque.setObjectName("radioButton_plaque")
         self.radioButton_aucune = QtWidgets.QRadioButton(self.frame_gauche1)
         self.radioButton_aucune.setGeometry(QtCore.QRect(30, 140, 231, 30))
         font = QtGui.QFont()
@@ -106,6 +101,7 @@ class Ui_Frame(object):
         self.radioButton_polyaxiales.setFont(font)
         self.radioButton_polyaxiales.setObjectName("radioButton_polyaxiales")
         self.frame_droite1 = QtWidgets.QFrame(Frame)
+        self.frame_droite1.setEnabled(False)
         self.frame_droite1.setGeometry(QtCore.QRect(320, 110, 291, 181))
         self.frame_droite1.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_droite1.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -123,6 +119,7 @@ class Ui_Frame(object):
         self.radioButton_aucune2.setFont(font)
         self.radioButton_aucune2.setObjectName("radioButton_aucune2")
         self.frame_gauche2 = QtWidgets.QFrame(Frame)
+        self.frame_gauche2.setEnabled(False)
         self.frame_gauche2.setGeometry(QtCore.QRect(20, 310, 291, 231))
         self.frame_gauche2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_gauche2.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -158,6 +155,7 @@ class Ui_Frame(object):
         self.checkBox_tlif.setFont(font)
         self.checkBox_tlif.setObjectName("checkBox_tlif")
         self.frame_droite2 = QtWidgets.QFrame(Frame)
+        self.frame_droite2.setEnabled(False)
         self.frame_droite2.setGeometry(QtCore.QRect(320, 310, 291, 231))
         self.frame_droite2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_droite2.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -250,7 +248,6 @@ class Ui_Frame(object):
         self.pushButton_suivant.setText(_translate("Frame", "Suivant"))
         self.label_2.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Fixation</p></body></html>"))
         self.label_3.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Greffe</p></body></html>"))
-        self.radioButton_plaque.setText(_translate("Frame", "Plaque"))
         self.radioButton_aucune.setText(_translate("Frame", "Aucune"))
         self.radioButton_monoaxiales.setText(_translate("Frame", "Vis pédiculaires monoaxiales"))
         self.radioButton_polyaxiales.setText(_translate("Frame", "Vis pédiculaires polyaxiales"))
@@ -269,11 +266,134 @@ class Ui_Frame(object):
         self.label_4.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Fixation</p></body></html>"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
-    ui.setupUi(Frame)
-    Frame.show()
-    sys.exit(app.exec_())
+class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
+    switch_window1 = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
+
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
+        self.setupUi(self)
+
+        # récupération des valeurs des checkbox
+        self.checkBox_1plif.stateChanged.connect(self.checkBoxChangeAction_1Plif)
+        self.checkBox_2plif.stateChanged.connect(self.checkBoxChangeAction_2Plif)
+        self.checkBox_tlif.stateChanged.connect(self.checkBoxChangeAction_Tlif)
+        self.checkBox_os.stateChanged.connect(self.checkBoxChangeAction_Os1)
+        self.checkBox_intersomatique.stateChanged.connect(self.checkBoxChangeAction_intersomatique)
+        self.checkBox_corporectomie_2.stateChanged.connect(self.checkBoxChangeAction_corporectomie)
+        self.checkBox_os2.stateChanged.connect(self.checkBoxChangeAction_os2)
+
+
+
+        # valeur des radiobuttons
+        self.radioButton_anterieure.toggled.connect(self.radiobtnFrame_Haut_anterieur)
+        self.radioButton_posterieure.toggled.connect(self.radiobtnFrame_Haut_posterieur)
+
+        self.radioButton_monoaxiales.toggled.connect(self.radiobtnFrame_Gauche)
+        self.radioButton_polyaxiales.toggled.connect(self.radiobtnFrame_Gauche)
+        self.radioButton_aucune.toggled.connect(self.radiobtnFrame_Gauche)
+
+        self.radioButton_plaque_2.toggled.connect(self.radiobtnFrame_Droite)
+        self.radioButton_aucune2.toggled.connect(self.radiobtnFrame_Droite)
+
+        self.radioButton_aucuneGreffe.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
+        self.radioButton_aucuneGreffe2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
+
+        # controlleur pour les boutons
+        self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
+        self.pushButton_annuler.clicked.connect(self.annulerCreationDP)
+        self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
+
+    def retourEtapePrecedente(self):
+        self.switch_window1.emit()
+
+    def annulerCreationDP(self):
+        self.switch_window2.emit()
+
+    def radiobtnFrame_Haut_anterieur(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.frame_gauche1.setEnabled(False)
+            self.frame_gauche2.setEnabled(False)
+            self.frame_droite1.setEnabled(True)
+            self.frame_droite2.setEnabled(True)
+
+    def radiobtnFrame_Haut_posterieur(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.frame_gauche1.setEnabled(True)
+            self.frame_gauche2.setEnabled(True)
+            self.frame_droite1.setEnabled(False)
+            self.frame_droite2.setEnabled(False)
+
+    def radiobtnFrame_Gauche(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("oui j'ai choisi le truc à gauche!")
+
+    def radiobtnFrame_Droite(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("oui j'ai choisi le truc à droite!")
+
+    def radiobtnFrame_Gauche_Greffe(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.checkBox_1plif.setChecked(False)
+            self.checkBox_2plif.setChecked(False)
+            self.checkBox_tlif.setChecked(False)
+            self.checkBox_os.setChecked(False)
+
+    def radiobtnFrame_Droite_Greffe(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.checkBox_intersomatique.setChecked(False)
+            self.checkBox_corporectomie_2.setChecked(False)
+            self.checkBox_os2.setChecked(False)
+
+    def checkBoxChangeAction_1Plif(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_2Plif(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_Tlif(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_Os1(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_intersomatique(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_corporectomie(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_os2(self, state):
+        if (state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+
+    def suivant(self):
+        self.switch_window3.emit() #faute de mieux

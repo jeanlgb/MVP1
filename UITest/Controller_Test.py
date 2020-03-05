@@ -10,6 +10,7 @@ from UITest.Connexion import Login
 from UITest.CreationDP import *
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
+from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 
 class Controller_Test:
 
@@ -100,13 +101,24 @@ class Controller_Test:
         # actions de chaque bouton en fct du window
         self.windowDegeneratif.switch_window1.connect(self.show_Etape2)
         self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
-        self.windowDegeneratif.switch_window3.connect(self.show_CreationDP)
+        self.windowDegeneratif.switch_window3.connect(self.show_Artrhodese)
         # self.windowDegeneratif.switch_window4.connect(self.show_Evaluation)
         self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
 
-
         self.etape2.hide()
         self.windowDegeneratif.show()
+
+    def show_Artrhodese(self):
+        self.windowCreationDP = MainWindow_CreationDP()
+        self.windowDegeneratif = MainWindow_Degeneratif()
+        self.windowArthrodese = MainWindow_FormArthrodese()
+
+        # actions de chaque bouton en fct du window
+        self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
+        self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
+        # self.windowArthrodese.switch_window3.connect(self.show_Etape2)
+
+        self.windowArthrodese.show()
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
