@@ -10,6 +10,7 @@ from UITest.Connexion import Login
 from UITest.CreationDP import *
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
+from UITest.Pathologie_Oncologie import MainWindow_Oncologie
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
 
@@ -54,8 +55,9 @@ class Controller_Test:
         self.med.hide()
         self.sec.hide()
         self.etape2.hide()
-        self.windowDegeneratif.hide()
 
+        self.windowDegeneratif.hide()
+        self.windowOncologique.hide()
         self.windowCreationDP.show()
 
     def show_Evaluation(self):
@@ -87,11 +89,12 @@ class Controller_Test:
         #actions de chaque bouton en fct du window
         self.etape2.switch_window1.connect(self.show_Degeneratif)
         self.etape2.switch_window2.connect(self.show_Secretaire)
-        self.etape2.switch_window3.connect(self.show_CreationDP)
+        self.etape2.switch_window3.connect(self.show_Oncologique)
 
         self.etape2.switch_window4.connect(self.show_CreationDP)
 
         self.windowDegeneratif.hide()
+        self.windowOncologique.hide()
         self.etape2.show()
 
     def show_Degeneratif(self):
@@ -105,7 +108,7 @@ class Controller_Test:
         self.windowDegeneratif.switch_window1.connect(self.show_Etape2)
         self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
         self.windowDegeneratif.switch_window3.connect(self.show_Recalibrage)
-        self.windowDegeneratif.switch_window4.connect(self.show_Artrhodese)
+        self.windowDegeneratif.switch_window4.connect(self.show_Arthrodese)
         self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
         self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)
 
@@ -113,6 +116,26 @@ class Controller_Test:
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
         self.windowDegeneratif.show()
+
+    def show_Oncologique(self):
+        self.windowCreationDP = MainWindow_CreationDP()
+        self.etape2 = MainWindow_Etape2()
+        self.windowRecalibrage = MainWindow_FormRecalibrage()
+        self.windowArthrodese = MainWindow_FormArthrodese()
+        self.windowOncologique = MainWindow_Oncologie()
+
+        # actions de chaque bouton en fct du window
+        self.windowOncologique.switch_window1.connect(self.show_Etape2)
+        self.windowOncologique.switch_window2.connect(self.show_CreationDP)
+        self.windowOncologique.switch_window3.connect(self.show_Recalibrage)
+        self.windowOncologique.switch_window4.connect(self.show_Arthrodese)
+        self.windowOncologique.switch_window5.connect(self.show_Etape2)
+        self.windowOncologique.switch_window6.connect(self.show_CreationDP)
+
+        self.etape2.hide()
+        self.windowRecalibrage.hide()
+        self.windowArthrodese.hide()
+        self.windowOncologique.show()
 
     def show_Recalibrage(self):
         self.windowCreationDP = MainWindow_CreationDP()
@@ -126,7 +149,7 @@ class Controller_Test:
 
         self.windowRecalibrage.show()
 
-    def show_Artrhodese(self):
+    def show_Arthrodese(self):
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowArthrodese = MainWindow_FormArthrodese()
@@ -142,7 +165,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Connexion()
+    controller_INPEC2.show_Oncologique()
     sys.exit(app.exec_())
 
 
