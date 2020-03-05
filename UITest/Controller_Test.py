@@ -12,6 +12,7 @@ from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
 from UITest.Pathologie_Oncologie import MainWindow_Oncologie
 from UITest.Pathologie_Traumatologique import MainWindow_Traumatologie
+from UITest.Traumatologique_Niveaux import MainWindow_Niveau
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
 
@@ -151,23 +152,35 @@ class Controller_Test:
         self.etape2 = MainWindow_Etape2()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
         self.windowArthrodese = MainWindow_FormArthrodese()
+        self.windowNiveau = MainWindow_Niveau()
         self.windowTraumato = MainWindow_Traumatologie()
 
         # actions de chaque bouton en fct du window
         self.windowTraumato.switch_window1.connect(self.show_Etape2)
         self.windowTraumato.switch_window2.connect(self.show_CreationDP)
-        self.windowTraumato.switch_window3.connect(self.show_Recalibrage)
+        self.windowTraumato.switch_window3.connect(self.show_Niveau)
         self.windowTraumato.switch_window4.connect(self.show_Recalibrage)
         self.windowTraumato.switch_window5.connect(self.show_Arthrodese)
-        self.windowTraumato.switch_window6.connect(self.show_Recalibrage)
+        self.windowTraumato.switch_window6.connect(self.show_Niveau)
         self.windowTraumato.switch_window7.connect(self.show_Etape2)
         self.windowTraumato.switch_window8.connect(self.show_CreationDP)
 
         self.etape2.hide()
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
+        self.windowNiveau.hide()
 
         self.windowTraumato.show()
+
+    def show_Niveau(self):
+        self.windowTraumato = MainWindow_Traumatologie()
+        self.windowNiveau = MainWindow_Niveau()
+
+        # actions de chaque bouton en fct du window
+        self.windowNiveau.switch_window1.connect(self.show_Traumatologique)
+        self.windowNiveau.switch_window2.connect(self.show_Traumatologique)
+
+        self.windowNiveau.show()
 
     def show_Recalibrage(self):
         self.windowCreationDP = MainWindow_CreationDP()
