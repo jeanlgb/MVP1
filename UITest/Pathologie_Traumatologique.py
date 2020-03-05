@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'Pathologie_Traumatologique.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Frame(object):
+class Ui_Frame_Traumatologique(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(840, 681)
@@ -77,11 +70,13 @@ class Ui_Frame(object):
         self.label_niveauCalcul.setFont(font)
         self.label_niveauCalcul.setObjectName("label_niveauCalcul")
         self.spinBox_nombre1 = QtWidgets.QSpinBox(self.groupBox_Modalite)
+        self.spinBox_nombre1.setEnabled(False)
         self.spinBox_nombre1.setGeometry(QtCore.QRect(480, 10, 51, 21))
         self.spinBox_nombre1.setMinimum(1)
         self.spinBox_nombre1.setMaximum(32)
         self.spinBox_nombre1.setObjectName("spinBox_nombre1")
         self.spinBox_nombre2 = QtWidgets.QSpinBox(self.groupBox_Modalite)
+        self.spinBox_nombre2.setEnabled(False)
         self.spinBox_nombre2.setGeometry(QtCore.QRect(550, 10, 51, 21))
         self.spinBox_nombre2.setMinimum(2)
         self.spinBox_nombre2.setMaximum(33)
@@ -98,23 +93,25 @@ class Ui_Frame(object):
         self.line_5.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_5.setObjectName("line_5")
-        self.groupBox_finaliteNeurologique_2 = QtWidgets.QGroupBox(Frame)
-        self.groupBox_finaliteNeurologique_2.setGeometry(QtCore.QRect(410, 380, 371, 91))
-        self.groupBox_finaliteNeurologique_2.setObjectName("groupBox_finaliteNeurologique_2")
-        self.pushButton_recalibrageSuivant = QtWidgets.QPushButton(self.groupBox_finaliteNeurologique_2)
+        self.groupBox_recalibrage = QtWidgets.QGroupBox(Frame)
+        self.groupBox_recalibrage.setEnabled(False)
+        self.groupBox_recalibrage.setGeometry(QtCore.QRect(410, 380, 371, 91))
+        self.groupBox_recalibrage.setObjectName("groupBox_recalibrage")
+        self.pushButton_recalibrageSuivant = QtWidgets.QPushButton(self.groupBox_recalibrage)
         self.pushButton_recalibrageSuivant.setGeometry(QtCore.QRect(20, 30, 61, 30))
         self.pushButton_recalibrageSuivant.setObjectName("pushButton_recalibrageSuivant")
-        self.textEdit_resultatRecalibrage = QtWidgets.QTextEdit(self.groupBox_finaliteNeurologique_2)
+        self.textEdit_resultatRecalibrage = QtWidgets.QTextEdit(self.groupBox_recalibrage)
         self.textEdit_resultatRecalibrage.setEnabled(False)
         self.textEdit_resultatRecalibrage.setGeometry(QtCore.QRect(100, 30, 241, 31))
         self.textEdit_resultatRecalibrage.setObjectName("textEdit_resultatRecalibrage")
-        self.groupBox_finaliteNeurologique_4 = QtWidgets.QGroupBox(Frame)
-        self.groupBox_finaliteNeurologique_4.setGeometry(QtCore.QRect(410, 490, 371, 91))
-        self.groupBox_finaliteNeurologique_4.setObjectName("groupBox_finaliteNeurologique_4")
-        self.pushButton_arthrodeseSuivant = QtWidgets.QPushButton(self.groupBox_finaliteNeurologique_4)
+        self.groupBox_arthrodese = QtWidgets.QGroupBox(Frame)
+        self.groupBox_arthrodese.setEnabled(False)
+        self.groupBox_arthrodese.setGeometry(QtCore.QRect(410, 490, 371, 91))
+        self.groupBox_arthrodese.setObjectName("groupBox_arthrodese")
+        self.pushButton_arthrodeseSuivant = QtWidgets.QPushButton(self.groupBox_arthrodese)
         self.pushButton_arthrodeseSuivant.setGeometry(QtCore.QRect(20, 30, 61, 30))
         self.pushButton_arthrodeseSuivant.setObjectName("pushButton_arthrodeseSuivant")
-        self.textEdit_resultatArthrodese = QtWidgets.QTextEdit(self.groupBox_finaliteNeurologique_4)
+        self.textEdit_resultatArthrodese = QtWidgets.QTextEdit(self.groupBox_arthrodese)
         self.textEdit_resultatArthrodese.setEnabled(False)
         self.textEdit_resultatArthrodese.setGeometry(QtCore.QRect(100, 30, 241, 31))
         self.textEdit_resultatArthrodese.setObjectName("textEdit_resultatArthrodese")
@@ -163,9 +160,9 @@ class Ui_Frame(object):
         self.checkBox_vertebroplastie.setGeometry(QtCore.QRect(20, 20, 151, 30))
         self.checkBox_vertebroplastie.setChecked(True)
         self.checkBox_vertebroplastie.setObjectName("checkBox_vertebroplastie")
-        self.checkBox_radicoMedullaire_4 = QtWidgets.QCheckBox(self.groupBox_gesteCorpo)
-        self.checkBox_radicoMedullaire_4.setGeometry(QtCore.QRect(20, 50, 151, 30))
-        self.checkBox_radicoMedullaire_4.setObjectName("checkBox_radicoMedullaire_4")
+        self.checkBox_cyphoplastie = QtWidgets.QCheckBox(self.groupBox_gesteCorpo)
+        self.checkBox_cyphoplastie.setGeometry(QtCore.QRect(20, 50, 151, 30))
+        self.checkBox_cyphoplastie.setObjectName("checkBox_cyphoplastie")
         self.checkBox_corporealNon = QtWidgets.QCheckBox(self.groupBox_gesteCorpo)
         self.checkBox_corporealNon.setGeometry(QtCore.QRect(190, 20, 121, 30))
         self.checkBox_corporealNon.setObjectName("checkBox_corporealNon")
@@ -205,15 +202,15 @@ class Ui_Frame(object):
         self.line_8.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_8.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_8.setObjectName("line_8")
-        self.pushButton_recalibrageSuivant_2 = QtWidgets.QPushButton(self.groupBox_Niveau)
-        self.pushButton_recalibrageSuivant_2.setGeometry(QtCore.QRect(400, 30, 61, 30))
-        self.pushButton_recalibrageSuivant_2.setObjectName("pushButton_recalibrageSuivant_2")
+        self.pushButton_niveauSuivant = QtWidgets.QPushButton(self.groupBox_Niveau)
+        self.pushButton_niveauSuivant.setGeometry(QtCore.QRect(400, 30, 61, 30))
+        self.pushButton_niveauSuivant.setObjectName("pushButton_niveauSuivant")
         self.label = QtWidgets.QLabel(self.groupBox_Niveau)
         self.label.setGeometry(QtCore.QRect(40, 30, 241, 31))
         self.label.setObjectName("label")
         self.label_titre.raise_()
-        self.groupBox_finaliteNeurologique_4.raise_()
-        self.groupBox_finaliteNeurologique_2.raise_()
+        self.groupBox_arthrodese.raise_()
+        self.groupBox_recalibrage.raise_()
         self.groupBox_Modalite.raise_()
         self.groupBox_finaliteNeurologique.raise_()
         self.pushButton_valider.raise_()
@@ -251,14 +248,14 @@ class Ui_Frame(object):
         self.label_niveauCalcul.setText(_translate("Frame", "Espace vertèbre : "))
         self.radioButton_foyerOuvert.setText(_translate("Frame", "Foyer ouvert"))
         self.radioButton_percutanee.setText(_translate("Frame", "Percutanée"))
-        self.groupBox_finaliteNeurologique_2.setTitle(_translate("Frame", "3bis - Recalibrage"))
+        self.groupBox_recalibrage.setTitle(_translate("Frame", "3bis - Recalibrage"))
         self.pushButton_recalibrageSuivant.setText(_translate("Frame", "Suivant"))
-        self.groupBox_finaliteNeurologique_4.setTitle(_translate("Frame", "4bis - Arthrodèse"))
+        self.groupBox_arthrodese.setTitle(_translate("Frame", "4bis - Arthrodèse"))
         self.pushButton_arthrodeseSuivant.setText(_translate("Frame", "Suivant"))
         self.label_titre.setText(_translate("Frame", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Pathologie Traumatologique</span></p></body></html>"))
         self.groupBox_gesteCorpo.setTitle(_translate("Frame", "4 - Geste Corporéal"))
         self.checkBox_vertebroplastie.setText(_translate("Frame", "Vertébroplastie"))
-        self.checkBox_radicoMedullaire_4.setText(_translate("Frame", "Cyphoplastie"))
+        self.checkBox_cyphoplastie.setText(_translate("Frame", "Cyphoplastie"))
         self.checkBox_corporealNon.setText(_translate("Frame", "Non"))
         self.groupBox_osteosynthese.setTitle(_translate("Frame", "5 - Ostéosynthèse"))
         self.checkBox_visMonoaxiales.setText(_translate("Frame", "Vis monoaxiales"))
@@ -267,15 +264,166 @@ class Ui_Frame(object):
         self.pushButton_ajouterNiveau.setText(_translate("Frame", "Ajouter Niveau"))
         self.groupBox_Niveau.setTitle(_translate("Frame", "3 - Niveau(x)"))
         self.label_nombreVertebre.setText(_translate("Frame", "Nombre de vertèbres :"))
-        self.pushButton_recalibrageSuivant_2.setText(_translate("Frame", "Suivant"))
+        self.pushButton_niveauSuivant.setText(_translate("Frame", "Suivant"))
         self.label.setText(_translate("Frame", "Veuillez choisir les vertèbres considérées : "))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
-    ui.setupUi(Frame)
-    Frame.show()
-    sys.exit(app.exec_())
+class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
+    switch_window1 = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
+    switch_window4 = QtCore.pyqtSignal()
+    switch_window5 = QtCore.pyqtSignal()
+    switch_window6 = QtCore.pyqtSignal()
+    switch_window7 = QtCore.pyqtSignal()
+    switch_window8 = QtCore.pyqtSignal()
+
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
+        self.setupUi(self)
+
+        # récupération des valeurs des checkbox
+        self.checkBox_radiculaire.stateChanged.connect(self.checkBoxChangeAction_radiculaire)
+        self.checkBox_radicoMedullaire.stateChanged.connect(self.checkBoxChangeAction_radicoMedullaire)
+        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
+        self.checkBox_non.stateChanged.connect(self.checkBoxChangeAction_non)
+
+        self.checkBox_vertebroplastie.stateChanged.connect(self.checkBoxChangeAction_vertebroplastie)
+        self.checkBox_cyphoplastie.stateChanged.connect(self.checkBoxChangeAction_cyphoplastie)
+        self.checkBox_corporealNon.stateChanged.connect(self.checkBoxChangeAction_corporealNon)
+        self.checkBox_visMonoaxiales.stateChanged.connect(self.checkBoxChangeAction_monoaxiales)
+        self.checkBox_visPolyaxiales.stateChanged.connect(self.checkBoxChangeAction_polyaxiales)
+        self.checkBox_osteosyntheseNon.stateChanged.connect(self.checkBoxChangeAction_osteosyntheseNon)
+
+        # récupération nombre de vertèbres
+        self.nombre1 = self.spinBox_nombre1.valueChanged.connect(self.countVertebres)
+        self.nombre2 = self.spinBox_nombre2.valueChanged.connect(self.countVertebres)
+
+        # valeur des radiobuttons modalité
+        self.radioButton_percutanee.toggled.connect(self.radiobtnModalite)
+        self.radioButton_foyerOuvert.toggled.connect(self.radiobtnModalite_ouvert)
+
+        # controlleur pour les boutons
+        self.pushButton_retour.clicked.connect(self.retourEtape2)
+        self.pushButton_annuler.clicked.connect(self.annulerCreationDP)
+        self.pushButton_niveauSuivant.clicked.connect(self.suivantNiveau)
+        self.pushButton_recalibrageSuivant.clicked.connect(self.suivantRecalibrage)
+        self.pushButton_arthrodeseSuivant.clicked.connect(self.suivantArthrodese)
+        self.pushButton_ajouterNiveau.clicked.connect(self.ajouterNiveau)
+        self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
+        self.pushButton_valider.clicked.connect(self.valider)
+
+    def checkBoxChangeAction_radiculaire (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_radicoMedullaire (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_medullaire (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_non (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_vertebroplastie (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_cyphoplastie (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_corporealNon (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_monoaxiales (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_polyaxiales (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_osteosyntheseNon (self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+
+    def retourEtape2(self):
+        self.switch_window1.emit()
+
+    def annulerCreationDP(self):
+        self.switch_window2.emit()
+
+    def radiobtnModalite(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.spinBox_nombre1.setEnabled(False)
+            self.spinBox_nombre2.setEnabled(False)
+            self.groupBox_recalibrage.setEnabled(False)
+            self.groupBox_arthrodese.setEnabled(False)
+            self.groupBox_Niveau.setEnabled(True)
+            self.groupBox_gesteCorpo.setEnabled(True)
+            self.groupBox_osteosynthese.setEnabled(True)
+
+    def radiobtnModalite_ouvert(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.spinBox_nombre1.setEnabled(True)
+            self.spinBox_nombre2.setEnabled(True)
+            self.groupBox_recalibrage.setEnabled(True)
+            self.groupBox_arthrodese.setEnabled(True)
+            self.groupBox_Niveau.setEnabled(False)
+            self.groupBox_gesteCorpo.setEnabled(False)
+            self.groupBox_osteosynthese.setEnabled(False)
+
+    def countVertebres(self):
+        self.nombre1 = self.spinBox_nombre1.value()
+        self.nombre2 = self.spinBox_nombre2.value()
+        print(type(self.nombre2))
+        self.soustraction = int(self.nombre2) + int(-self.nombre1)
+        print(self.soustraction)
+        self.lineEdit.setText(str(self.soustraction))
+
+    def suivantNiveau(self):
+        self.switch_window3.emit()
+
+    def suivantRecalibrage(self):
+        self.switch_window4.emit()
+
+    def suivantArthrodese(self):
+        self.switch_window5.emit()
+
+    def ajouterNiveau(self):
+        self.switch_window6.emit()
+
+    def ajouterIntervention(self):
+        self.switch_window7.emit()
+
+    def valider(self):
+        self.switch_window8.emit() #faute de mieux

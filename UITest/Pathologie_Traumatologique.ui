@@ -290,7 +290,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_finaliteNeurologique_2">
+  <widget class="QGroupBox" name="groupBox_recalibrage">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -329,7 +329,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_finaliteNeurologique_4">
+  <widget class="QGroupBox" name="groupBox_arthrodese">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -675,8 +675,8 @@
    </widget>
   </widget>
   <zorder>label_titre</zorder>
-  <zorder>groupBox_finaliteNeurologique_4</zorder>
-  <zorder>groupBox_finaliteNeurologique_2</zorder>
+  <zorder>groupBox_arthrodese</zorder>
+  <zorder>groupBox_recalibrage</zorder>
   <zorder>groupBox_Modalite</zorder>
   <zorder>groupBox_finaliteNeurologique</zorder>
   <zorder>pushButton_valider</zorder>

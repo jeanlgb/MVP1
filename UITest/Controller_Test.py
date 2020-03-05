@@ -11,6 +11,7 @@ from UITest.CreationDP import *
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
 from UITest.Pathologie_Oncologie import MainWindow_Oncologie
+from UITest.Pathologie_Traumatologique import MainWindow_Traumatologie
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
 
@@ -46,6 +47,8 @@ class Controller_Test:
         self.med = MainWindow_Acceuil()
         self.etape2 = MainWindow_Etape2()
         self.windowDegeneratif = MainWindow_Degeneratif()
+        self.windowOncologique = MainWindow_Oncologie()
+        self.windowTraumato = MainWindow_Traumatologie()
         self.windowCreationDP = MainWindow_CreationDP()
 
         #actions de chaque bouton en fct du window
@@ -55,9 +58,10 @@ class Controller_Test:
         self.med.hide()
         self.sec.hide()
         self.etape2.hide()
-
         self.windowDegeneratif.hide()
         self.windowOncologique.hide()
+        self.windowTraumato.hide()
+
         self.windowCreationDP.show()
 
     def show_Evaluation(self):
@@ -84,17 +88,20 @@ class Controller_Test:
     def show_Etape2(self):
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
+        self.windowOncologique = MainWindow_Oncologie()
+        self.windowTraumato = MainWindow_Traumatologie()
         self.etape2 = MainWindow_Etape2()
 
         #actions de chaque bouton en fct du window
         self.etape2.switch_window1.connect(self.show_Degeneratif)
-        self.etape2.switch_window2.connect(self.show_Secretaire)
+        self.etape2.switch_window2.connect(self.show_Traumatologique)
         self.etape2.switch_window3.connect(self.show_Oncologique)
 
         self.etape2.switch_window4.connect(self.show_CreationDP)
 
         self.windowDegeneratif.hide()
         self.windowOncologique.hide()
+        self.windowTraumato.hide()
         self.etape2.show()
 
     def show_Degeneratif(self):
@@ -115,6 +122,7 @@ class Controller_Test:
         self.etape2.hide()
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
+
         self.windowDegeneratif.show()
 
     def show_Oncologique(self):
@@ -135,11 +143,37 @@ class Controller_Test:
         self.etape2.hide()
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
+
         self.windowOncologique.show()
+
+    def show_Traumatologique(self):
+        self.windowCreationDP = MainWindow_CreationDP()
+        self.etape2 = MainWindow_Etape2()
+        self.windowRecalibrage = MainWindow_FormRecalibrage()
+        self.windowArthrodese = MainWindow_FormArthrodese()
+        self.windowTraumato = MainWindow_Traumatologie()
+
+        # actions de chaque bouton en fct du window
+        self.windowTraumato.switch_window1.connect(self.show_Etape2)
+        self.windowTraumato.switch_window2.connect(self.show_CreationDP)
+        self.windowTraumato.switch_window3.connect(self.show_Recalibrage)
+        self.windowTraumato.switch_window4.connect(self.show_Recalibrage)
+        self.windowTraumato.switch_window5.connect(self.show_Arthrodese)
+        self.windowTraumato.switch_window6.connect(self.show_Recalibrage)
+        self.windowTraumato.switch_window7.connect(self.show_Etape2)
+        self.windowTraumato.switch_window8.connect(self.show_CreationDP)
+
+        self.etape2.hide()
+        self.windowRecalibrage.hide()
+        self.windowArthrodese.hide()
+
+        self.windowTraumato.show()
 
     def show_Recalibrage(self):
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
+        self.windowOncologique = MainWindow_Oncologie()
+        self.windowTraumato = MainWindow_Traumatologie()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
 
         # actions de chaque bouton en fct du window
@@ -152,6 +186,8 @@ class Controller_Test:
     def show_Arthrodese(self):
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
+        self.windowOncologique = MainWindow_Oncologie()
+        self.windowTraumato = MainWindow_Traumatologie()
         self.windowArthrodese = MainWindow_FormArthrodese()
 
         # actions de chaque bouton en fct du window
@@ -165,7 +201,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Oncologique()
+    controller_INPEC2.show_Traumatologique()
     sys.exit(app.exec_())
 
 
