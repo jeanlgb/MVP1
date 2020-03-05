@@ -303,7 +303,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
     def countVertebres(self):
         self.nombre1 = self.spinBox_nombre1.value()
         self.nombre2 = self.spinBox_nombre2.value()
-        print(type(self.nombre2))
         self.soustraction = int(self.nombre2) + int(-self.nombre1)
         print(self.soustraction)
         self.lineEdit.setText(str(self.soustraction))

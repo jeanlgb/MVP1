@@ -1,11 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+compteur = int(0)
+compteur_recuperation = "0"
 
 class Ui_Frame_Niveau(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(782, 467)
         self.pushButton_valider = QtWidgets.QPushButton(Frame)
+        self.pushButton_valider.setEnabled(False)
         self.pushButton_valider.setGeometry(QtCore.QRect(430, 420, 130, 30))
         self.pushButton_valider.setObjectName("pushButton_valider")
         self.pushButton_retour = QtWidgets.QPushButton(Frame)
@@ -37,10 +40,6 @@ class Ui_Frame_Niveau(object):
         self.checkBox_5 = QtWidgets.QCheckBox(self.frame_cervicale)
         self.checkBox_5.setGeometry(QtCore.QRect(60, 190, 70, 17))
         self.checkBox_5.setObjectName("checkBox_5")
-        self.lineEdit_cervicale = QtWidgets.QLineEdit(self.frame_cervicale)
-        self.lineEdit_cervicale.setEnabled(False)
-        self.lineEdit_cervicale.setGeometry(QtCore.QRect(50, 270, 51, 20))
-        self.lineEdit_cervicale.setObjectName("lineEdit_cervicale")
         self.frame_dorsale = QtWidgets.QFrame(Frame)
         self.frame_dorsale.setEnabled(False)
         self.frame_dorsale.setGeometry(QtCore.QRect(210, 100, 171, 291))
@@ -83,10 +82,6 @@ class Ui_Frame_Niveau(object):
         self.checkBox_17 = QtWidgets.QCheckBox(self.frame_dorsale)
         self.checkBox_17.setGeometry(QtCore.QRect(60, 210, 70, 17))
         self.checkBox_17.setObjectName("checkBox_17")
-        self.lineEdit_dorsale = QtWidgets.QLineEdit(self.frame_dorsale)
-        self.lineEdit_dorsale.setEnabled(False)
-        self.lineEdit_dorsale.setGeometry(QtCore.QRect(50, 270, 51, 20))
-        self.lineEdit_dorsale.setObjectName("lineEdit_dorsale")
         self.frame_lombaire = QtWidgets.QFrame(Frame)
         self.frame_lombaire.setEnabled(False)
         self.frame_lombaire.setGeometry(QtCore.QRect(400, 100, 171, 291))
@@ -108,10 +103,6 @@ class Ui_Frame_Niveau(object):
         self.checkBox_22 = QtWidgets.QCheckBox(self.frame_lombaire)
         self.checkBox_22.setGeometry(QtCore.QRect(60, 150, 70, 17))
         self.checkBox_22.setObjectName("checkBox_22")
-        self.lineEdit_lombaire = QtWidgets.QLineEdit(self.frame_lombaire)
-        self.lineEdit_lombaire.setEnabled(False)
-        self.lineEdit_lombaire.setGeometry(QtCore.QRect(60, 270, 51, 20))
-        self.lineEdit_lombaire.setObjectName("lineEdit_lombaire")
         self.frame_sacroCoccygiennes = QtWidgets.QFrame(Frame)
         self.frame_sacroCoccygiennes.setEnabled(False)
         self.frame_sacroCoccygiennes.setGeometry(QtCore.QRect(590, 100, 171, 291))
@@ -145,25 +136,6 @@ class Ui_Frame_Niveau(object):
         self.checkBox_31 = QtWidgets.QCheckBox(self.frame_sacroCoccygiennes)
         self.checkBox_31.setGeometry(QtCore.QRect(60, 220, 70, 17))
         self.checkBox_31.setObjectName("checkBox_31")
-        self.lineEdit_sacro = QtWidgets.QLineEdit(self.frame_sacroCoccygiennes)
-        self.lineEdit_sacro.setEnabled(False)
-        self.lineEdit_sacro.setGeometry(QtCore.QRect(50, 270, 51, 20))
-        self.lineEdit_sacro.setObjectName("lineEdit_sacro")
-        self.line = QtWidgets.QFrame(Frame)
-        self.line.setGeometry(QtCore.QRect(190, 80, 20, 311))
-        self.line.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
-        self.line_2 = QtWidgets.QFrame(Frame)
-        self.line_2.setGeometry(QtCore.QRect(380, 80, 20, 311))
-        self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_2.setObjectName("line_2")
-        self.line_3 = QtWidgets.QFrame(Frame)
-        self.line_3.setGeometry(QtCore.QRect(570, 80, 20, 311))
-        self.line_3.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_3.setObjectName("line_3")
         self.checkBox_lombaires = QtWidgets.QCheckBox(Frame)
         self.checkBox_lombaires.setGeometry(QtCore.QRect(410, 70, 131, 30))
         self.checkBox_lombaires.setObjectName("checkBox_lombaires")
@@ -180,9 +152,14 @@ class Ui_Frame_Niveau(object):
         self.lineEdit_compte.setEnabled(False)
         self.lineEdit_compte.setGeometry(QtCore.QRect(250, 420, 81, 20))
         self.lineEdit_compte.setObjectName("lineEdit_compte")
-        self.label = QtWidgets.QLabel(Frame)
-        self.label.setGeometry(QtCore.QRect(90, 410, 151, 31))
-        self.label.setObjectName("label")
+        self.pushButton_calcul = QtWidgets.QPushButton(Frame)
+        self.pushButton_calcul.setGeometry(QtCore.QRect(20, 410, 211, 30))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.pushButton_calcul.setFont(font)
+        self.pushButton_calcul.setObjectName("pushButton_calcul")
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -227,8 +204,7 @@ class Ui_Frame_Niveau(object):
         self.checkBox_sacroCoccygiennes.setText(_translate("Frame", "sacro-coccygiennes (5+4)"))
         self.checkBox_cervicales.setText(_translate("Frame", "Cervicales (5)"))
         self.checkBox_dorsales.setText(_translate("Frame", "Dorsales (12)"))
-        self.label.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Nombre vertèbres :</p></body></html>"))
-
+        self.pushButton_calcul.setText(_translate("Frame", "Calcul Nombre Vertèbres :"))
 
 class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
     switch_window1 = QtCore.pyqtSignal()
@@ -243,6 +219,7 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
         self.checkBox_dorsales.stateChanged.connect(self.checkBoxChangeAction_dorsale)
         self.checkBox_lombaires.stateChanged.connect(self.checkBoxChangeAction_lombaire)
         self.checkBox_sacroCoccygiennes.stateChanged.connect(self.checkBoxChangeAction_sacro)
+
 
         self.checkBox.stateChanged.connect(self.checkBoxChangeAction_1)
         self.checkBox_2.stateChanged.connect(self.checkBoxChangeAction_2)
@@ -279,217 +256,364 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourTraumato)
         self.pushButton_valider.clicked.connect(self.validerTraumato)
+        self.pushButton_calcul.clicked.connect(self.compteurVertebres)
 
     def checkBoxChangeAction_cervicale(self, state):
         if ( state == QtCore.Qt.Checked):
+            self.frame_cervicale.setEnabled(True)
             print("checked")
         else:
-            print ("unchecked")
+            self.frame_cervicale.setEnabled(False)
+            self.checkBox.setChecked(False)
+            self.checkBox_2.setChecked(False)
+            self.checkBox_3.setChecked(False)
+            self.checkBox_4.setChecked(False)
+            self.checkBox_5.setChecked(False)
+            print("unchecked")
 
     def checkBoxChangeAction_dorsale(self, state):
         if ( state == QtCore.Qt.Checked):
+            self.frame_dorsale.setEnabled(True)
             print("checked")
         else:
+            self.frame_dorsale.setEnabled(False)
+            self.checkBox_6.setChecked(False)
+            self.checkBox_7.setChecked(False)
+            self.checkBox_8.setChecked(False)
+            self.checkBox_9.setChecked(False)
+            self.checkBox_10.setChecked(False)
+            self.checkBox_11.setChecked(False)
+            self.checkBox_12.setChecked(False)
+            self.checkBox_13.setChecked(False)
+            self.checkBox_14.setChecked(False)
+            self.checkBox_15.setChecked(False)
+            self.checkBox_16.setChecked(False)
+            self.checkBox_17.setChecked(False)
             print ("unchecked")
 
     def checkBoxChangeAction_lombaire(self, state):
         if ( state == QtCore.Qt.Checked):
+            self.frame_lombaire.setEnabled(True)
             print("checked")
         else:
+            self.frame_lombaire.setEnabled(False)
+            self.checkBox_18.setChecked(False)
+            self.checkBox_19.setChecked(False)
+            self.checkBox_20.setChecked(False)
+            self.checkBox_21.setChecked(False)
+            self.checkBox_22.setChecked(False)
             print ("unchecked")
 
     def checkBoxChangeAction_sacro(self, state):
         if ( state == QtCore.Qt.Checked):
+            self.frame_sacroCoccygiennes.setEnabled(True)
             print("checked")
         else:
+            self.frame_sacroCoccygiennes.setEnabled(False)
+            self.checkBox_23.setChecked(False)
+            self.checkBox_24.setChecked(False)
+            self.checkBox_25.setChecked(False)
+            self.checkBox_26.setChecked(False)
+            self.checkBox_27.setChecked(False)
+            self.checkBox_28.setChecked(False)
+            self.checkBox_29.setChecked(False)
+            self.checkBox_30.setChecked(False)
+            self.checkBox_31.setChecked(False)
             print ("unchecked")
 
+
     def checkBoxChangeAction_1(self, state):
+        global compteur
         if ( state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print ("unchecked")
 
     def checkBoxChangeAction_2(self, state):
+        global compteur
         if ( state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print ("unchecked")
 
     def checkBoxChangeAction_3(self, state):
+        global compteur
         if ( state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print ("unchecked")
 
     def checkBoxChangeAction_4(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_5(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_6(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_7(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_8(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_9(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_10(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_11(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_12(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_13(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_14(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_15(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_16(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_17(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_18(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_19(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_20(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_21(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_22(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
     def checkBoxChangeAction_23(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_24(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_25(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_26(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_27(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_28(self, state):
+        global compteur
         if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
+            compteur = compteur - 1
             print("unchecked")
 
     def checkBoxChangeAction_29(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
+
 
     def checkBoxChangeAction_30(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
+
 
     def checkBoxChangeAction_31(self, state):
-        if ( state == QtCore.Qt.Checked):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
             print("checked")
         else:
-            print ("unchecked")
+            compteur = compteur - 1
+            print("unchecked")
 
+    def compteurVertebres(self):
+        global compteur
+        global compteur_recuperation
+
+        self.count = compteur
+        print(self.count)
+        self.lineEdit_compte.setText(str(self.count))
+        self.countRecuperation = self.lineEdit_compte.text()
+        compteur_recuperation = self.countRecuperation
+
+        self.pushButton_valider.setEnabled(True)
 
 
     def retourTraumato(self):

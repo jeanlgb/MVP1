@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="pushButton_valider">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>420</y>
+     <x>600</x>
+     <y>410</y>
      <width>130</width>
      <height>30</height>
     </rect>
@@ -681,17 +681,24 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QPushButton" name="pushButton_calcul">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>20</x>
      <y>410</y>
-     <width>151</width>
-     <height>31</height>
+     <width>211</width>
+     <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Nombre vertèbres :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Calcul Nombre Vertèbres :</string>
    </property>
   </widget>
  </widget>
