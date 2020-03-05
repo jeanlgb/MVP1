@@ -142,7 +142,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_CreationDP()
+    controller_INPEC2.show_Connexion()
     sys.exit(app.exec_())
 
 
