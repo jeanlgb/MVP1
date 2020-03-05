@@ -97,6 +97,8 @@ class Controller_Test:
     def show_Degeneratif(self):
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
+        self.windowRecalibrage = MainWindow_FormRecalibrage()
+        self.windowArthrodese = MainWindow_FormArthrodese()
         self.windowDegeneratif = MainWindow_Degeneratif()
 
         # actions de chaque bouton en fct du window
@@ -105,8 +107,11 @@ class Controller_Test:
         self.windowDegeneratif.switch_window3.connect(self.show_Recalibrage)
         self.windowDegeneratif.switch_window4.connect(self.show_Artrhodese)
         self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
+        self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)
 
         self.etape2.hide()
+        self.windowRecalibrage.hide()
+        self.windowArthrodese.hide()
         self.windowDegeneratif.show()
 
     def show_Recalibrage(self):
@@ -117,7 +122,7 @@ class Controller_Test:
         # actions de chaque bouton en fct du window
         self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
         self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
-        # self.windowArthrodese.switch_window3.connect(self.show_Etape2)
+        self.windowRecalibrage.switch_window3.connect(self.show_Degeneratif)
 
         self.windowRecalibrage.show()
 
@@ -129,7 +134,7 @@ class Controller_Test:
         # actions de chaque bouton en fct du window
         self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
         self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
-        # self.windowArthrodese.switch_window3.connect(self.show_Etape2)
+        self.windowArthrodese.switch_window3.connect(self.show_Degeneratif)
 
         self.windowArthrodese.show()
 
@@ -137,7 +142,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Recalibrage()
+    controller_INPEC2.show_CreationDP()
     sys.exit(app.exec_())
 
 

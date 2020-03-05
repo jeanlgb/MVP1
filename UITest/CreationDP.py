@@ -201,9 +201,6 @@ class Ui_Frame_CreationDP(object):
         self.label_recuperationDateDeNaissance.setFont(font)
         self.label_recuperationDateDeNaissance.setText("")
         self.label_recuperationDateDeNaissance.setObjectName("label_recuperationDateDeNaissance")
-        self.pushButton_choix = QtWidgets.QPushButton(Frame)
-        self.pushButton_choix.setGeometry(QtCore.QRect(560, 350, 51, 23))
-        self.pushButton_choix.setObjectName("pushButton_choix")
         self.label_recuperationPathologie = QtWidgets.QLabel(Frame)
         self.label_recuperationPathologie.setEnabled(False)
         self.label_recuperationPathologie.setGeometry(QtCore.QRect(270, 380, 2, 2))
@@ -279,7 +276,6 @@ class Ui_Frame_CreationDP(object):
         self.comboBox_mois.setItemText(10, _translate("Frame", "Novembre"))
         self.comboBox_mois.setItemText(11, _translate("Frame", "Décembre"))
         self.spinBox_annee.setToolTip(_translate("Frame", "<html><head/><body><p>fhj</p></body></html>"))
-        self.pushButton_choix.setText(_translate("Frame", "Choix"))
 
 class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
     switch_window1 = QtCore.pyqtSignal()
@@ -301,7 +297,6 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
 
         # pathologie
         self.pathologie = self.comboBox_pathologie.activated[str].connect(self.choixDeLaPathologie)
-        self.pushButton_choix.clicked.connect(self.choixDeLaPathologie)
 
         # Qcalendar date intervention
         self.date_Intervention = self.calendarWidget.selectedDate()
