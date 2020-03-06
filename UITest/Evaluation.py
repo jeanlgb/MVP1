@@ -12,9 +12,6 @@ class Ui_Frame_Evaluation(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(638, 620)
-        self.checkBox_oswestry = QtWidgets.QCheckBox(Frame)
-        self.checkBox_oswestry.setGeometry(QtCore.QRect(259, 420, 171, 25))
-        self.checkBox_oswestry.setObjectName("checkBox_oswestry")
         self.label_identite = QtWidgets.QLabel(Frame)
         self.label_identite.setGeometry(QtCore.QRect(0, 120, 151, 30))
         font = QtGui.QFont()
@@ -29,9 +26,6 @@ class Ui_Frame_Evaluation(object):
         self.label = QtWidgets.QLabel(Frame)
         self.label.setGeometry(QtCore.QRect(90, 330, 161, 20))
         self.label.setObjectName("label")
-        self.checkBox_glassman = QtWidgets.QCheckBox(Frame)
-        self.checkBox_glassman.setGeometry(QtCore.QRect(259, 390, 171, 25))
-        self.checkBox_glassman.setObjectName("checkBox_glassman")
         self.label_typeEvaluation = QtWidgets.QLabel(Frame)
         self.label_typeEvaluation.setGeometry(QtCore.QRect(0, 390, 271, 30))
         font = QtGui.QFont()
@@ -40,28 +34,49 @@ class Ui_Frame_Evaluation(object):
         font.setWeight(75)
         self.label_typeEvaluation.setFont(font)
         self.label_typeEvaluation.setObjectName("label_typeEvaluation")
-        self.pushButton_demarrer = QtWidgets.QPushButton(Frame)
-        self.pushButton_demarrer.setGeometry(QtCore.QRect(260, 510, 80, 30))
-        self.pushButton_demarrer.setObjectName("pushButton_demarrer")
-        self.lineEdit_calculPost = QtWidgets.QLineEdit(Frame)
-        self.lineEdit_calculPost.setEnabled(False)
-        self.lineEdit_calculPost.setGeometry(QtCore.QRect(260, 325, 50, 30))
-        self.lineEdit_calculPost.setObjectName("lineEdit_calculPost")
         self.lineEdit_numeroMagic_2 = QtWidgets.QLineEdit(Frame)
         self.lineEdit_numeroMagic_2.setGeometry(QtCore.QRect(430, 125, 160, 20))
         self.lineEdit_numeroMagic_2.setObjectName("lineEdit_numeroMagic_2")
         self.lineEdit_dateIntervention = QtWidgets.QLineEdit(Frame)
         self.lineEdit_dateIntervention.setGeometry(QtCore.QRect(260, 185, 162, 20))
         self.lineEdit_dateIntervention.setObjectName("dateEdit_dateIntervention")
-        self.checkBox_ndi = QtWidgets.QCheckBox(Frame)
-        self.checkBox_ndi.setGeometry(QtCore.QRect(440, 420, 171, 25))
-        self.checkBox_ndi.setObjectName("checkBox_ndi")
+        self.radioButton_preOp = QtWidgets.QRadioButton(Frame)
+        self.radioButton_preOp.setGeometry(QtCore.QRect(260, 240, 130, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.radioButton_preOp.setFont(font)
+        self.radioButton_preOp.setObjectName("radioButton_preOp")
         self.radioButton_postOp = QtWidgets.QRadioButton(Frame)
         self.radioButton_postOp.setGeometry(QtCore.QRect(260, 280, 130, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.radioButton_postOp.setFont(font)
         self.radioButton_postOp.setObjectName("radioButton_postOp")
+        self.lineEdit_calculPost = QtWidgets.QLineEdit(Frame)
+        self.lineEdit_calculPost.setEnabled(False)
+        self.lineEdit_calculPost.setGeometry(QtCore.QRect(260, 325, 50, 30))
+        self.lineEdit_calculPost.setObjectName("lineEdit_calculPost")
+        self.checkBox_glassman = QtWidgets.QCheckBox(Frame)
+        self.checkBox_glassman.setGeometry(QtCore.QRect(259, 390, 171, 25))
+        self.checkBox_glassman.setObjectName("checkBox_glassman")
+        self.checkBox_evaCervical = QtWidgets.QCheckBox(Frame)
+        self.checkBox_evaCervical.setGeometry(QtCore.QRect(440, 390, 171, 25))
+        self.checkBox_evaCervical.setObjectName("checkBox_evaCervical")
+        self.checkBox_oswestry = QtWidgets.QCheckBox(Frame)
+        self.checkBox_oswestry.setGeometry(QtCore.QRect(259, 420, 171, 25))
+        self.checkBox_oswestry.setObjectName("checkBox_oswestry")
+        self.checkBox_ndi = QtWidgets.QCheckBox(Frame)
+        self.checkBox_ndi.setGeometry(QtCore.QRect(440, 420, 171, 25))
+        self.checkBox_ndi.setObjectName("checkBox_ndi")
+        self.checkBox_evaLombaire = QtWidgets.QCheckBox(Frame)
+        self.checkBox_evaLombaire.setGeometry(QtCore.QRect(260, 450, 171, 25))
+        self.checkBox_evaLombaire.setObjectName("checkBox_evaLombaire")
+        self.checkBox_mjoa = QtWidgets.QCheckBox(Frame)
+        self.checkBox_mjoa.setGeometry(QtCore.QRect(440, 450, 171, 25))
+        self.checkBox_mjoa.setObjectName("checkBox_mjoa")
+        self.pushButton_demarrer = QtWidgets.QPushButton(Frame)
+        self.pushButton_demarrer.setGeometry(QtCore.QRect(260, 510, 80, 30))
+        self.pushButton_demarrer.setObjectName("pushButton_demarrer")
         self.label_tempsEvaluation = QtWidgets.QLabel(Frame)
         self.label_tempsEvaluation.setGeometry(QtCore.QRect(-1, 240, 261, 30))
         font = QtGui.QFont()
@@ -86,21 +101,14 @@ class Ui_Frame_Evaluation(object):
         font.setWeight(75)
         self.label_titre.setFont(font)
         self.label_titre.setObjectName("label_titre")
-        self.checkBox_evaCervical = QtWidgets.QCheckBox(Frame)
-        self.checkBox_evaCervical.setGeometry(QtCore.QRect(440, 390, 171, 25))
-        self.checkBox_evaCervical.setObjectName("checkBox_evaCervical")
-        self.radioButton_preOp = QtWidgets.QRadioButton(Frame)
-        self.radioButton_preOp.setGeometry(QtCore.QRect(260, 240, 130, 20))
+        self.label_recuperationDateDeNaissance = QtWidgets.QLabel(Frame)
+        self.label_recuperationDateDeNaissance.setEnabled(False)
+        self.label_recuperationDateDeNaissance.setGeometry(QtCore.QRect(150, 150, 271, 21))
         font = QtGui.QFont()
-        font.setPointSize(12)
-        self.radioButton_preOp.setFont(font)
-        self.radioButton_preOp.setObjectName("radioButton_preOp")
-        self.checkBox_mjoa = QtWidgets.QCheckBox(Frame)
-        self.checkBox_mjoa.setGeometry(QtCore.QRect(440, 450, 171, 25))
-        self.checkBox_mjoa.setObjectName("checkBox_mjoa")
-        self.checkBox_evaLombaire = QtWidgets.QCheckBox(Frame)
-        self.checkBox_evaLombaire.setGeometry(QtCore.QRect(260, 450, 171, 25))
-        self.checkBox_evaLombaire.setObjectName("checkBox_evaLombaire")
+        font.setPointSize(8)
+        self.label_recuperationDateDeNaissance.setFont(font)
+        self.label_recuperationDateDeNaissance.setText("")
+        self.label_recuperationDateDeNaissance.setObjectName("label_recuperationDateDeNaissance")
         self.label_titre.raise_()
         self.label_typeEvaluation.raise_()
         self.checkBox_oswestry.raise_()
@@ -120,6 +128,7 @@ class Ui_Frame_Evaluation(object):
         self.radioButton_preOp.raise_()
         self.checkBox_mjoa.raise_()
         self.checkBox_evaLombaire.raise_()
+        self.label_recuperationDateDeNaissance.raise_()
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -173,7 +182,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
 
 
 
-        #self.pushButton_demarrer.clicked.connect(self.popup)
+        self.pushButton_demarrer.clicked.connect(self.popup)
         self.pushButton_demarrer.clicked.connect(self.transfert)
 
 
@@ -182,7 +191,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_glassman = "true"
         else:
-            print("unchecked")
+            print ("unchecked")
             self.state_glassman = "false"
 
     def checkBoxChangeAction_EVAC (self, state):
@@ -190,7 +199,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_EVAC = "true"
         else:
-            print("unchecked")
+            print ("unchecked")
             self.state_EVAC = "false"
 
     def checkBoxChangeAction_EVAL (self, state):
@@ -198,7 +207,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_EVAL = "true"
         else:
-            print("unchecked")
+            print ("unchecked")
             self.state_EVAL = "false"
 
     def checkBoxChangeAction_NDI (self, state):
@@ -206,7 +215,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_ndi = "true"
         else:
-            print("unchecked")
+            print ("unchecked")
             self.state_ndi = "false"
 
     def checkBoxChangeAction_MJOA (self, state):
@@ -214,7 +223,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_mjoa = "true"
         else:
-            print("unchecked")
+            print ("unchecked")
             self.state_mjoa = "false"
 
     def checkBoxChangeAction_Oswestry (self, state):
@@ -222,32 +231,26 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print("checked")
             self.state_oswestry = "true"
         else:
-            print("unchecked")
+            print ("unchecked")
             self.state_oswestry = "false"
 
 
     def transfert(self):
-        self.vider = ""
-        self.identite = self.lineEdit_identite.text()
-        self.numMagic = self.lineEdit_numeroMagic_2.text()
-
-        dictionnaire_donnees = {'Nom et Prénom': self.identite, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
+        self.identite = self.lineEdit_identite.text()  # récupérer le texte dans le champ de texte
+        self.dateNaissance = self.label_recuperationDateDeNaissance.text()
+        dictionnaire_données = dict()
+        dictionnaire_données = {'Nom': self.identite, 'DateDeNaissance': self.dateNaissance, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
                                 'scoreEVAL': self.state_EVAL, 'scoreNDI': self.state_ndi, 'scoreMJOA': self.state_mjoa , 'scoreOswestry': self.state_oswestry }
-        f = open('C:/Users/Public/InPec/Donneestransferees.txt', 'w')
-        f.write(str(dictionnaire_donnees.get('Nom et Prénom')) + '\n' + str(
-            dictionnaire_donnees.get('scoreGlassman')) + '\n' + str(dictionnaire_donnees.get('scoreEVAC')) + '\n' + str(
-            dictionnaire_donnees.get('scoreEVAL')) + '\n' + str(dictionnaire_donnees.get('scoreNDI')) + '\n' + str(
-            dictionnaire_donnees.get('scoreMJOA')) + '\n' + str(dictionnaire_donnees.get('scoreOswestry')))
+        f = open('C:/Users/Public/Ecrire/FichierDeTransfert.txt', 'w')
+        f.write(str(dictionnaire_données.get('Nom')) + ' ' + str(dictionnaire_données.get('DateDeNaissance')) + ' ' + '\n' + str(
+            dictionnaire_données.get('scoreGlassman')) + '\n' + str(dictionnaire_données.get('scoreEVAC')) + '\n' + str(
+            dictionnaire_données.get('scoreEVAL')) + '\n' + str(dictionnaire_données.get('scoreNDI')) + '\n' + str(
+            dictionnaire_données.get('scoreMJOA')) + '\n' + str(dictionnaire_données.get('scoreOswestry')))
         f.close()
-        os.system("C:/Users/Public/InPec/adb/adb push C:/Users/Public/InPec/Donneestransferees.txt sdcard/Documents/Donneestransferees.txt")
-        f.close()
-        f = open('C:/Users/Public/InPec/Donneestransferees.txt', 'w')
-        f.write(self.vider)
-
-        # if os.path.getsize("C:/Users/Public/InPec/Donneestransferees.txt") == 0:
-        #     print("Vide")  # Récupération du fichier texte
-        # else:
-        #     print("Rempli")
+        if os.path.getsize("C:/Users/Public/Ecrire/FichierDeTransfert.txt") == 0:
+            print("Vide")  # Récupération du fichier texte
+        else:
+            print("Rempli")
         self.switch_window.emit()
 
     def popup (self):
