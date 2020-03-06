@@ -239,11 +239,12 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         self.vider = ""
         self.identite = self.lineEdit_identite.text()
         self.numMagic = self.lineEdit_numeroMagic_2.text()
+        self.dateNaissance = self.label_recuperationDateDeNaissance.text()
 
-        dictionnaire_donnees = {'Nom et Prénom': self.identite, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
+        dictionnaire_donnees = {'Nom et Prénom': self.identite, 'DateDeNaissance':self.dateNaissance,  'NumDossier': self.numMagic, 'scoreGlassman': self.state_glassman, 'scoreEVAC': self.state_EVAC,
                                 'scoreEVAL': self.state_EVAL, 'scoreNDI': self.state_ndi, 'scoreMJOA': self.state_mjoa , 'scoreOswestry': self.state_oswestry }
         f = open('C:/Users/Public/InPec/Donneestransferees.txt', 'w')
-        f.write(str(dictionnaire_donnees.get('Nom et Prénom')) + '\n' + str(
+        f.write(str(dictionnaire_donnees.get('Nom et Prénom')) + ' ' + str(dictionnaire_donnees.get('DateDeNaissance')) + ' ' + str(dictionnaire_donnees.get('NumDossier')) + '\n' + str(
             dictionnaire_donnees.get('scoreGlassman')) + '\n' + str(dictionnaire_donnees.get('scoreEVAC')) + '\n' + str(
             dictionnaire_donnees.get('scoreEVAL')) + '\n' + str(dictionnaire_donnees.get('scoreNDI')) + '\n' + str(
             dictionnaire_donnees.get('scoreMJOA')) + '\n' + str(dictionnaire_donnees.get('scoreOswestry')))
