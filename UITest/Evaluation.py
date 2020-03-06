@@ -11,7 +11,7 @@ class Ui_Frame_Evaluation(object):
 
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(638, 620)
+        Frame.setFixedSize(638, 620)
         self.label_identite = QtWidgets.QLabel(Frame)
         self.label_identite.setGeometry(QtCore.QRect(0, 120, 151, 30))
         font = QtGui.QFont()

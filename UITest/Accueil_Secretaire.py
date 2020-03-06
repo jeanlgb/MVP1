@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Secretaire(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(677, 587)
+        Frame.setFixedSize(677, 587)
         self.pushButton_creerDP = QtWidgets.QPushButton(Frame)
         self.pushButton_creerDP.setGeometry(QtCore.QRect(270, 230, 150, 30))
         self.pushButton_creerDP.setObjectName("pushButton_creerDP")

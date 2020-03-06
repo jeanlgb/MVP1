@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Arthrodese(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(620, 601)
+        Frame.setFixedSize(620, 601)
         self.frame_haut = QtWidgets.QFrame(Frame)
         self.frame_haut.setGeometry(QtCore.QRect(20, 20, 591, 81))
         self.frame_haut.setFrameShape(QtWidgets.QFrame.StyledPanel)

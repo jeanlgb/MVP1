@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Degeneratif(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(840, 740)
+        Frame.setFixedSize(840, 740)
         self.pushButton_valider = QtWidgets.QPushButton(Frame)
         self.pushButton_valider.setGeometry(QtCore.QRect(560, 610, 130, 30))
         self.pushButton_valider.setObjectName("pushButton_valider")

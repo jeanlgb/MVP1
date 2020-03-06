@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Recalibrage(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(651, 540)
+        Frame.setFixedSize(651, 540)
         self.frame_haut = QtWidgets.QFrame(Frame)
         self.frame_haut.setGeometry(QtCore.QRect(20, 10, 621, 131))
         self.frame_haut.setFrameShape(QtWidgets.QFrame.StyledPanel)

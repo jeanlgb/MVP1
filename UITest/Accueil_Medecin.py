@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Medecin(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(573, 348)
+        Frame.setFixedSize(573, 348)
         self.pushButton_creerDP = QtWidgets.QPushButton(Frame)
         self.pushButton_creerDP.setGeometry(QtCore.QRect(180, 160, 150, 30))
         self.pushButton_creerDP.setObjectName("pushButton_creerDP")

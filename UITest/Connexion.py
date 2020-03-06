@@ -8,7 +8,9 @@ class Ui_Frame_Connexion(object):
 
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(626, 545)
+        Frame.setFixedSize(626, 545)
+        self.gridLayout = QtWidgets.QGridLayout(Frame)
+        self.gridLayout.setObjectName("gridLayout")
         self.label_logo = QtWidgets.QLabel(Frame)
         self.label_logo.setEnabled(True)
         self.label_logo.setGeometry(QtCore.QRect(0, 90, 621, 151))

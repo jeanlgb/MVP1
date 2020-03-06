@@ -665,6 +665,52 @@
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_annuler">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>40</y>
+     <width>61</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </widget>
+  <zorder>label_titre</zorder>
+  <zorder>label_nom</zorder>
+  <zorder>lineEdit_prenom</zorder>
+  <zorder>label_nomIntervention</zorder>
+  <zorder>pushButton_evaluation</zorder>
+  <zorder>label_prenom</zorder>
+  <zorder>lineEdit_numeroMagic</zorder>
+  <zorder>lineEdit_nom</zorder>
+  <zorder>label</zorder>
+  <zorder>label_dateDeNaissance</zorder>
+  <zorder>label_pathologie</zorder>
+  <zorder>label_dateIntervention</zorder>
+  <zorder>label_numeroMagic</zorder>
+  <zorder>comboBox</zorder>
+  <zorder>calendarWidget</zorder>
+  <zorder>lineEdit_dateIntervention</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>comboBox_jour</zorder>
+  <zorder>comboBox_mois</zorder>
+  <zorder>spinBox_annee</zorder>
+  <zorder>label_recuperationDateDeNaissance</zorder>
+  <zorder>pushButton_choix</zorder>
+  <zorder>label_recuperationPathologie</zorder>
+  <zorder>textEdit</zorder>
+  <zorder>pushButton_annuler</zorder>
  </widget>
  <resources/>
  <connections/>

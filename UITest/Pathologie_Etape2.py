@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Etape2(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(532, 207)
+        Frame.setFixedSize(532, 207)
         self.pushButton_oncologie = QtWidgets.QPushButton(Frame)
         self.pushButton_oncologie.setGeometry(QtCore.QRect(365, 130, 150, 40))
         font = QtGui.QFont()

@@ -6,7 +6,7 @@ compteur_recuperation = "0"
 class Ui_Frame_Niveau(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(782, 467)
+        Frame.setFixedSize(782, 467)
         self.pushButton_valider = QtWidgets.QPushButton(Frame)
         self.pushButton_valider.setEnabled(False)
         self.pushButton_valider.setGeometry(QtCore.QRect(430, 420, 130, 30))

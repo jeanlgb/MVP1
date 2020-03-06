@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Oncologie(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(840, 893)
+        Frame.setFixedSize(840, 893)
         self.gridLayout = QtWidgets.QGridLayout(Frame)
         self.gridLayout.setObjectName("gridLayout")
         self.pushButton_retour = QtWidgets.QPushButton(Frame)

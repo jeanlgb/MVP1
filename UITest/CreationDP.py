@@ -15,7 +15,7 @@ patient_pathologie = ('Lombaire')
 class Ui_Frame_CreationDP(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(781, 719)
+        Frame.setFixedSize(781, 719)
         self.label_nom = QtWidgets.QLabel(Frame)
         self.label_nom.setGeometry(QtCore.QRect(130, 140, 141, 30))
         font = QtGui.QFont()
@@ -164,6 +164,7 @@ class Ui_Frame_CreationDP(object):
         self.label_numeroMagic.setFont(font)
         self.label_numeroMagic.setObjectName("label_numeroMagic")
         self.calendarWidget = QCalendarWidget(Frame)
+        self.calendarWidget.setFixedSize(312, 183)
         self.calendarWidget.setGeometry(QtCore.QRect(260, 470, 312, 183))
         self.calendarWidget.setLocale(QtCore.QLocale(QtCore.QLocale.French, QtCore.QLocale.France))
         self.calendarWidget.setObjectName("calendarWidget")
