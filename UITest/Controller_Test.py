@@ -4,15 +4,16 @@ import sys
 
 from UITest.Accueil_Medecin import MainWindow_Acceuil
 from UITest.CreationDP import MainWindow_CreationDP
+from UITest.CreationDP import *
 from UITest.Evaluation import MainWindow_Evaluation
 from UITest.Accueil_Secretaire import MainWindow_Acceuil_Secretaire
 from UITest.Connexion import Login
-from UITest.CreationDP import *
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
 from UITest.Pathologie_Oncologie import MainWindow_Oncologie
 from UITest.Pathologie_Traumatologique import MainWindow_Traumatologie
 from UITest.Traumatologique_Niveaux import MainWindow_Niveau
+from UITest.Traumatologique_Niveaux import *
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
 
@@ -29,16 +30,23 @@ class Controller_Test:
 
     def show_Medecin(self):
         self.med = MainWindow_Acceuil()
+        self.windowEvaluation = MainWindow_Evaluation()
+
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
+
+        self.windowEvaluation.hide()
         self.co.hide()
         self.med.show()
 
     def show_Secretaire(self):
         self.co = Login()
         self.sec = MainWindow_Acceuil_Secretaire()
+        self.windowEvaluation = MainWindow_Evaluation()
+
         self.sec.switch_window1.connect(self.show_CreationDP)
         # self.sec.switch_window2.connect(self.show_)
+        self.windowEvaluation.hide()
         self.co.hide()
         self.sec.show()
 
@@ -155,6 +163,9 @@ class Controller_Test:
         self.windowNiveau = MainWindow_Niveau()
         self.windowTraumato = MainWindow_Traumatologie()
 
+        self.nbVertebre = UITest.Traumatologique_Niveaux.compteur_recuperation
+        self.windowTraumato.lineEdit_nombreVertebre.setText(self.nbVertebre)
+
         # actions de chaque bouton en fct du window
         self.windowTraumato.switch_window1.connect(self.show_Etape2)
         self.windowTraumato.switch_window2.connect(self.show_CreationDP)
@@ -214,7 +225,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Traumatologique()
+    controller_INPEC2.show_Connexion()
     sys.exit(app.exec_())
 
 

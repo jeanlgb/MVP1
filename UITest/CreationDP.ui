@@ -46,16 +46,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>410</y>
-     <width>271</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_nomIntervention">
    <property name="geometry">
     <rect>
@@ -663,6 +653,16 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>400</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
    </property>
   </widget>
  </widget>

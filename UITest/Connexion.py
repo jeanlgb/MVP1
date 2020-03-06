@@ -1,5 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
+
 from Utilisateur import *
+import keyboard
 
 class Ui_Frame_Connexion(object):
 
@@ -32,6 +35,10 @@ class Ui_Frame_Connexion(object):
         font.setWeight(75)
         self.label_mdp.setFont(font)
         self.label_mdp.setObjectName("label_mdp")
+        self.lineEdit_mdp = QtWidgets.QLineEdit(Frame)
+        self.lineEdit_mdp.setGeometry(QtCore.QRect(280, 340, 170, 20))
+        self.lineEdit_mdp.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.lineEdit_mdp.setObjectName("lineEdit_mdp")
         self.pushButton_connexion = QtWidgets.QPushButton(Frame)
         self.pushButton_connexion.setGeometry(QtCore.QRect(480, 400, 75, 30))
         self.pushButton_connexion.setObjectName("pushButton_connexion")
@@ -43,10 +50,6 @@ class Ui_Frame_Connexion(object):
         font.setPointSize(7)
         self.pushButton_mdpOublie.setFont(font)
         self.pushButton_mdpOublie.setObjectName("pushButton_mdpOublie")
-        self.lineEdit_mdp = QtWidgets.QLineEdit(Frame)
-        self.lineEdit_mdp.setGeometry(QtCore.QRect(280, 340, 170, 20))
-        self.lineEdit_mdp.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.lineEdit_mdp.setObjectName("lineEdit_mdp")
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -69,8 +72,12 @@ class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
+        self.setFocusPolicy(QtCore.Qt.StrongFocus)
 
         self.pushButton_connexion.clicked.connect(self.seConnecter)
+
+    def keyPressEvent(self, QKeyEvent):
+        self.seConnecter()
 
     def seConnecter(self):
         self.nom = self.lineEdit_utilisateur.text()

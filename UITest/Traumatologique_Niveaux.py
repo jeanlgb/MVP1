@@ -214,6 +214,9 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+        global compteur
+        compteur = int(0)
+
         # récupération des valeurs des checkbox
         self.checkBox_cervicales.stateChanged.connect(self.checkBoxChangeAction_cervicale)
         self.checkBox_dorsales.stateChanged.connect(self.checkBoxChangeAction_dorsale)

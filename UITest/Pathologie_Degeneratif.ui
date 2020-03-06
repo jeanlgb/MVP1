@@ -247,6 +247,27 @@
      <number>33</number>
     </property>
    </widget>
+   <widget class="QLabel" name="label_recuperationFNetNiveau">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>60</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>1</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_finaliteNeurologique_2">
    <property name="geometry">
