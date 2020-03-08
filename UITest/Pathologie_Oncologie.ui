@@ -63,36 +63,33 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QCheckBox" name="checkBox_radiculaire">
+       <widget class="QRadioButton" name="radioButton_radiculaire">
         <property name="text">
          <string>Décompression radiculaire</string>
         </property>
         <property name="checked">
          <bool>true</bool>
         </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="checkBox_medullaire">
-        <property name="text">
-         <string>Décompression médullaire</string>
-        </property>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="checkBox_radicoMedullaire">
+       <widget class="QRadioButton" name="radioButton_radicoMedullaire">
         <property name="text">
          <string>Décompression radico-médullaire</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QCheckBox" name="checkBox_non">
+       <widget class="QRadioButton" name="radioButton_non">
         <property name="text">
          <string>Non</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QRadioButton" name="radioButton_medullaire">
+        <property name="text">
+         <string>Décompression médullaire</string>
         </property>
        </widget>
       </item>
