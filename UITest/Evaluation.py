@@ -299,4 +299,4 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         x = msg.exec_()
 
     def annuler(self):
-        self.switch_window3.emit()
+        self.switch_window2.emit()

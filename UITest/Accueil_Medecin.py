@@ -8,6 +8,8 @@
 
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
 
 
 class Ui_Frame_Medecin(object):
@@ -60,6 +62,7 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
     switch_window4 = QtCore.pyqtSignal()
+    switch_window5 = QtCore.pyqtSignal()
 
 
 
@@ -68,9 +71,11 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+
         #controlleur pour les boutons
         self.pushButton_creerDP.clicked.connect(self.creation)
         self.pushButton_notification.clicked.connect(self.tablette)
+        self.pushButton_deconnexion.clicked.connect(self.deconnexion)
 
 
     #les actions de chaque bouton
@@ -86,3 +91,10 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
                 ligne = line.strip()
                 liste.append(ligne)
             print(liste)
+
+    def deconnexion(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Attention")
+        msg.setText("Etes-vous sûr de vouloir vous déconnecter? ")
+        x = msg.exec_()
+        self.switch_window5.emit()

@@ -3,6 +3,8 @@ from PyQt5.QtCore import Qt
 
 from Utilisateur import *
 import keyboard
+signal_medecin = True
+signal_secretaire = True
 
 class Ui_Frame_Connexion(object):
 
@@ -75,13 +77,15 @@ class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
-
         self.pushButton_connexion.clicked.connect(self.seConnecter)
 
     def keyPressEvent(self, QKeyEvent):
         self.seConnecter()
 
     def seConnecter(self):
+        global signal_secretaire
+        global signal_medecin
+
         self.nom = self.lineEdit_utilisateur.text()
         self.mdp = self.lineEdit_mdp.text()
         self.medecin = QtWidgets.QMainWindow()
@@ -89,10 +93,13 @@ class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
         for i in listeUtilisateurs:
            if self.nom == Utilisateur.get_nom(i) and self.mdp == Utilisateur.get_mdp(i) and Utilisateur.get_type(
                    i) == 'Medecin':
+               signal_medecin = True
+               signal_secretaire = False
                self.switch_window1.emit()
 
            if self.nom == Utilisateur.get_nom(i) and self.mdp == Utilisateur.get_mdp(i) and Utilisateur.get_type(
                    i) == 'Secretaire':
-
+                signal_medecin = False
+                signal_secretaire = True
                 self.switch_window2.emit()
 

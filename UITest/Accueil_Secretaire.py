@@ -8,6 +8,7 @@
 
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Ui_Frame_Secretaire(object):
@@ -53,6 +54,7 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
     #creer les var pour chaque bouton
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
 
 
 
@@ -63,6 +65,7 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
         #controlleur pour les boutons
         self.pushButton_creerDP.clicked.connect(self.creation)
         self.pushButton_notification.clicked.connect(self.tablette)
+        self.pushButton_deconnexion.clicked.connect(self.deconnexion)
 
 
     #les actions de chaque bouton
@@ -79,3 +82,10 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
                 ligne = line.strip()
                 liste.append(ligne)
             print(liste)
+
+    def deconnexion(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Attention")
+        msg.setText("Etes-vous sûr de vouloir vous déconnecter? ")
+        x = msg.exec_()
+        self.switch_window3.emit()

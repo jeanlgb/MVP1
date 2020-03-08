@@ -234,28 +234,28 @@ class Ui_Frame_Traumatologique(object):
         self.groupBox_cote.setEnabled(False)
         self.groupBox_cote.setGeometry(QtCore.QRect(450, 380, 511, 91))
         self.groupBox_cote.setObjectName("groupBox")
-        self.label_unilateral = QtWidgets.QLabel(self.groupBox)
+        self.label_unilateral = QtWidgets.QLabel(self.groupBox_cote)
         self.label_unilateral.setGeometry(QtCore.QRect(20, 20, 121, 30))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
         self.label_unilateral.setFont(font)
         self.label_unilateral.setObjectName("label_unilateral")
-        self.label_bilateral = QtWidgets.QLabel(self.groupBox)
+        self.label_bilateral = QtWidgets.QLabel(self.groupBox_cote)
         self.label_bilateral.setGeometry(QtCore.QRect(20, 60, 121, 30))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
         self.label_bilateral.setFont(font)
         self.label_bilateral.setObjectName("label_bilateral")
-        self.radioButton_bilateral = QtWidgets.QRadioButton(self.groupBox)
+        self.radioButton_bilateral = QtWidgets.QRadioButton(self.groupBox_cote)
         self.radioButton_bilateral.setGeometry(QtCore.QRect(150, 60, 261, 30))
         self.radioButton_bilateral.setObjectName("radioButton_bilateral")
-        self.radioButton_Droit = QtWidgets.QRadioButton(self.groupBox)
+        self.radioButton_Droit = QtWidgets.QRadioButton(self.groupBox_cote)
         self.radioButton_Droit.setEnabled(True)
         self.radioButton_Droit.setGeometry(QtCore.QRect(150, 20, 141, 30))
         self.radioButton_Droit.setObjectName("radioButton_Droit")
-        self.radioButton_gauche = QtWidgets.QRadioButton(self.groupBox)
+        self.radioButton_gauche = QtWidgets.QRadioButton(self.groupBox_cote)
         self.radioButton_gauche.setGeometry(QtCore.QRect(290, 20, 141, 30))
         self.radioButton_gauche.setObjectName("radioButton_gauche")
         self.label_titre.raise_()
@@ -345,11 +345,11 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
-        # récupération des valeurs des checkbox
-        self.checkBox_radiculaire.stateChanged.connect(self.checkBoxChangeAction_radiculaire)
-        self.checkBox_radicoMedullaire.stateChanged.connect(self.checkBoxChangeAction_radicoMedullaire)
-        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
-        self.checkBox_non.stateChanged.connect(self.checkBoxChangeAction_non)
+        # valeur des radiobuttons finalité neuro
+        self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_medullaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_non.toggled.connect(self.radiobtn_FN)
 
         self.checkBox_vertebroplastie.stateChanged.connect(self.checkBoxChangeAction_vertebroplastie)
         self.checkBox_cyphoplastie.stateChanged.connect(self.checkBoxChangeAction_cyphoplastie)
@@ -376,29 +376,10 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
         self.pushButton_valider.clicked.connect(self.valider)
 
-    def checkBoxChangeAction_radiculaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_radicoMedullaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_medullaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_non (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
+    def radiobtn_FN(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("FN choix fait")
 
     def checkBoxChangeAction_vertebroplastie (self, state):
         if ( state == QtCore.Qt.Checked):
@@ -449,6 +430,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             self.spinBox_nombre1.setEnabled(False)
             self.spinBox_nombre2.setEnabled(False)
             self.groupBox_recalibrage.setEnabled(False)
+            self.groupBox_cote.setEnabled(False)
             self.groupBox_arthrodese.setEnabled(False)
             self.groupBox_Niveau.setEnabled(True)
             self.groupBox_gesteCorpo.setEnabled(True)
@@ -460,6 +442,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             self.spinBox_nombre1.setEnabled(True)
             self.spinBox_nombre2.setEnabled(True)
             self.groupBox_recalibrage.setEnabled(True)
+            self.groupBox_cote.setEnabled(True)
             self.groupBox_arthrodese.setEnabled(True)
             self.groupBox_Niveau.setEnabled(False)
             self.groupBox_gesteCorpo.setEnabled(False)

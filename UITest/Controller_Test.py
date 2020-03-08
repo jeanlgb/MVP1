@@ -23,9 +23,15 @@ class Controller_Test:
         pass
 
     def show_Connexion(self):
+        self.med = MainWindow_Acceuil()
+        self.sec = MainWindow_Acceuil_Secretaire()
         self.co = Login()
+
         self.co.switch_window1.connect(self.show_Medecin)
         self.co.switch_window2.connect(self.show_Secretaire)
+
+        self.med.hide()
+        self.sec.hide()
         self.co.show()
 
     def show_Medecin(self):
@@ -36,6 +42,7 @@ class Controller_Test:
 
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
+        self.med.switch_window5.connect(self.show_Connexion)
 
         self.windowEvaluation.hide()
         self.windowCreationDP.hide()
@@ -45,16 +52,23 @@ class Controller_Test:
     def show_Secretaire(self):
         self.co = Login()
         self.sec = MainWindow_Acceuil_Secretaire()
+        self.windowCreationDP = MainWindow_CreationDP()
         self.windowEvaluation = MainWindow_Evaluation()
 
         self.sec.switch_window1.connect(self.show_CreationDP)
         # self.sec.switch_window2.connect(self.show_)
+        self.sec.switch_window3.connect(self.show_Connexion)
+
         self.windowEvaluation.hide()
         self.co.hide()
+        self.windowCreationDP.hide()
         self.sec.show()
 
 
     def show_CreationDP(self):
+        self.signal_med = UITest.Connexion.signal_medecin
+        self.signal_sec = UITest.Connexion.signal_secretaire
+
         self.sec = MainWindow_Acceuil_Secretaire()
         self.med = MainWindow_Acceuil()
         self.etape2 = MainWindow_Etape2()
@@ -66,7 +80,11 @@ class Controller_Test:
         #actions de chaque bouton en fct du window
         self.windowCreationDP.switch_window1.connect(self.show_Evaluation)
         self.windowCreationDP.switch_window2.connect(self.show_Etape2)
-        self.windowCreationDP.switch_window3.connect(self.show_Medecin)
+
+        if self.signal_med == True:
+            self.windowCreationDP.switch_window3.connect(self.show_Medecin)
+        elif self.signal_sec == True:
+            self.windowCreationDP.switch_window3.connect(self.show_Secretaire)
 
         self.med.hide()
         self.sec.hide()

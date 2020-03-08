@@ -2,6 +2,7 @@ from PyQt5.QtCore import QDate
 
 import UITest as UITest
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Utilisateur import *
 from PyQt5.QtWidgets import QCalendarWidget, QLineEdit
 
 patient_nom = ("NOM")
