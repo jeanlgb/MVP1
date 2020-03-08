@@ -13,16 +13,27 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Secretaire(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.setFixedSize(677, 587)
+        Frame.setFixedSize(575, 471)
         self.pushButton_creerDP = QtWidgets.QPushButton(Frame)
-        self.pushButton_creerDP.setGeometry(QtCore.QRect(270, 230, 150, 30))
+        self.pushButton_creerDP.setGeometry(QtCore.QRect(130, 220, 281, 30))
         self.pushButton_creerDP.setObjectName("pushButton_creerDP")
-        self.pushButton_selectionnerDP = QtWidgets.QPushButton(Frame)
-        self.pushButton_selectionnerDP.setGeometry(QtCore.QRect(270, 330, 150, 30))
-        self.pushButton_selectionnerDP.setObjectName("pushButton_selectionnerDP")
         self.label_titre = QtWidgets.QLabel(Frame)
         self.label_titre.setGeometry(QtCore.QRect(30, 20, 161, 51))
         self.label_titre.setObjectName("label_titre")
+        self.pushButton_notification = QtWidgets.QPushButton(Frame)
+        self.pushButton_notification.setGeometry(QtCore.QRect(90, 90, 31, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_notification.setFont(font)
+        self.pushButton_notification.setObjectName("pushButton_notification")
+        self.pushButton_selectionnerDP = QtWidgets.QPushButton(Frame)
+        self.pushButton_selectionnerDP.setGeometry(QtCore.QRect(129, 310, 281, 30))
+        self.pushButton_selectionnerDP.setObjectName("pushButton_selectionnerDP")
+        self.pushButton_deconnexion = QtWidgets.QPushButton(Frame)
+        self.pushButton_deconnexion.setGeometry(QtCore.QRect(360, 90, 121, 30))
+        self.pushButton_deconnexion.setObjectName("pushButton_deconnexion")
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -30,9 +41,11 @@ class Ui_Frame_Secretaire(object):
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.pushButton_creerDP.setText(_translate("Frame", "Créer DP"))
-        self.pushButton_selectionnerDP.setText(_translate("Frame", "Récupérer tablette"))
+        self.pushButton_creerDP.setText(_translate("Frame", "Créer Dossier Patient"))
         self.label_titre.setText(_translate("Frame", "Accueil Secrétaire"))
+        self.pushButton_notification.setText(_translate("Frame", "!"))
+        self.pushButton_selectionnerDP.setText(_translate("Frame", "Sélectionner Dossier Patient déjà existant"))
+        self.pushButton_deconnexion.setText(_translate("Frame", "Déconnexion"))
 
 
 class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
@@ -49,7 +62,7 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
 
         #controlleur pour les boutons
         self.pushButton_creerDP.clicked.connect(self.creation)
-        self.pushButton_selectionnerDP.clicked.connect(self.tablette)
+        self.pushButton_notification.clicked.connect(self.tablette)
 
 
     #les actions de chaque bouton

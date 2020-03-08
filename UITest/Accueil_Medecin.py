@@ -13,13 +13,30 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame_Medecin(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.setFixedSize(573, 348)
+        Frame.setFixedSize(527, 545)
         self.pushButton_creerDP = QtWidgets.QPushButton(Frame)
-        self.pushButton_creerDP.setGeometry(QtCore.QRect(180, 160, 150, 30))
+        self.pushButton_creerDP.setGeometry(QtCore.QRect(89, 160, 321, 30))
         self.pushButton_creerDP.setObjectName("pushButton_creerDP")
-        self.pushButton_recuperer = QtWidgets.QPushButton(Frame)
-        self.pushButton_recuperer.setGeometry(QtCore.QRect(180, 220, 150, 30))
-        self.pushButton_recuperer.setObjectName("pushButton_recuperer")
+        self.pushButton_deconnexion = QtWidgets.QPushButton(Frame)
+        self.pushButton_deconnexion.setGeometry(QtCore.QRect(350, 60, 150, 30))
+        self.pushButton_deconnexion.setObjectName("pushButton_deconnexion")
+        self.pushButton_notification = QtWidgets.QPushButton(Frame)
+        self.pushButton_notification.setGeometry(QtCore.QRect(30, 60, 31, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_notification.setFont(font)
+        self.pushButton_notification.setObjectName("pushButton_notification")
+        self.pushButton_excel = QtWidgets.QPushButton(Frame)
+        self.pushButton_excel.setGeometry(QtCore.QRect(90, 340, 321, 30))
+        self.pushButton_excel.setObjectName("pushButton_excel")
+        self.pushButton_selectionnerDP = QtWidgets.QPushButton(Frame)
+        self.pushButton_selectionnerDP.setGeometry(QtCore.QRect(90, 220, 321, 30))
+        self.pushButton_selectionnerDP.setObjectName("pushButton_selectionnerDP")
+        self.pushButton_modifierVariables = QtWidgets.QPushButton(Frame)
+        self.pushButton_modifierVariables.setGeometry(QtCore.QRect(90, 280, 321, 30))
+        self.pushButton_modifierVariables.setObjectName("pushButton_modifierVariables")
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -27,8 +44,12 @@ class Ui_Frame_Medecin(object):
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.pushButton_creerDP.setText(_translate("Frame", "Créer DP"))
-        self.pushButton_recuperer.setText(_translate("Frame", "Récupérer tablette"))
+        self.pushButton_creerDP.setText(_translate("Frame", "Créer Dossier Patient"))
+        self.pushButton_deconnexion.setText(_translate("Frame", "Déconnexion"))
+        self.pushButton_notification.setText(_translate("Frame", "!"))
+        self.pushButton_excel.setText(_translate("Frame", "Excel"))
+        self.pushButton_selectionnerDP.setText(_translate("Frame", "Sélectionner Dossier Patient déjà existant"))
+        self.pushButton_modifierVariables.setText(_translate("Frame", "Modifier Variables"))
 
 
 class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
@@ -36,6 +57,9 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
     #creer les var pour chaque bouton
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
+    switch_window4 = QtCore.pyqtSignal()
+
 
 
 
@@ -45,7 +69,7 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
 
         #controlleur pour les boutons
         self.pushButton_creerDP.clicked.connect(self.creation)
-        self.pushButton_recuperer.clicked.connect(self.tablette)
+        self.pushButton_notification.clicked.connect(self.tablette)
 
 
     #les actions de chaque bouton
@@ -61,5 +85,3 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
                 ligne = line.strip()
                 liste.append(ligne)
             print(liste)
-
-
