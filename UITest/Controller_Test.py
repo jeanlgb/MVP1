@@ -75,6 +75,8 @@ class Controller_Test:
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowOncologique = MainWindow_Oncologie()
         self.windowTraumato = MainWindow_Traumatologie()
+        self.windowArthrodese = MainWindow_FormArthrodese()
+        self.windowRecalibrage = MainWindow_FormRecalibrage()
         self.windowCreationDP = MainWindow_CreationDP()
 
         #actions de chaque bouton en fct du window
@@ -89,6 +91,8 @@ class Controller_Test:
         self.med.hide()
         self.sec.hide()
         self.etape2.hide()
+        self.windowArthrodese.hide()
+        self.windowRecalibrage.hide()
         self.windowDegeneratif.hide()
         self.windowOncologique.hide()
         self.windowTraumato.hide()
@@ -219,30 +223,60 @@ class Controller_Test:
         self.windowNiveau.show()
 
     def show_Recalibrage(self):
+        self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
+        self.signal_trauma = UITest.Pathologie_Etape2.signal_traumatologique
+        self.signal_onco = UITest.Pathologie_Etape2.signal_oncologie
+
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowOncologique = MainWindow_Oncologie()
         self.windowTraumato = MainWindow_Traumatologie()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
 
+        if self.signal_degene == True:
+            self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
+            self.windowRecalibrage.switch_window3.connect(self.show_Degeneratif)
+
+        elif self.signal_trauma == True:
+            self.windowRecalibrage.switch_window1.connect(self.show_Traumatologique)
+            self.windowRecalibrage.switch_window3.connect(self.show_Traumatologique)
+
+        elif self.signal_onco == True:
+            self.windowRecalibrage.switch_window1.connect(self.show_Oncologique)
+            self.windowRecalibrage.switch_window3.connect(self.show_Oncologique)
+
         # actions de chaque bouton en fct du window
-        self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
         self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
-        self.windowRecalibrage.switch_window3.connect(self.show_Degeneratif)
+
 
         self.windowRecalibrage.show()
 
     def show_Arthrodese(self):
+        self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
+        self.signal_trauma = UITest.Pathologie_Etape2.signal_traumatologique
+        self.signal_onco = UITest.Pathologie_Etape2.signal_oncologie
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowOncologique = MainWindow_Oncologie()
         self.windowTraumato = MainWindow_Traumatologie()
         self.windowArthrodese = MainWindow_FormArthrodese()
 
+        if self.signal_degene == True:
+            self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
+            self.windowArthrodese.switch_window3.connect(self.show_Degeneratif)
+
+        elif self.signal_trauma == True:
+            self.windowArthrodese.switch_window1.connect(self.show_Traumatologique)
+            self.windowArthrodese.switch_window3.connect(self.show_Traumatologique)
+
+        elif self.signal_onco == True:
+            self.windowArthrodese.switch_window1.connect(self.show_Oncologique)
+            self.windowArthrodese.switch_window3.connect(self.show_Oncologique)
+
         # actions de chaque bouton en fct du window
-        self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
         self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
-        self.windowArthrodese.switch_window3.connect(self.show_Degeneratif)
 
         self.windowArthrodese.show()
 
@@ -250,7 +284,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Connexion()
+    controller_INPEC2.show_Etape2()
     sys.exit(app.exec_())
 
 

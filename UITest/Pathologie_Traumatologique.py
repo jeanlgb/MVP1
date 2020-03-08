@@ -3,6 +3,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_Frame_Traumatologique(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -366,6 +367,13 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.radioButton_percutanee.toggled.connect(self.radiobtnModalite)
         self.radioButton_foyerOuvert.toggled.connect(self.radiobtnModalite_ouvert)
 
+        # valeur des radiobuttons recalibrage et arthrodèse
+        self.radioButton_herniePure.toggled.connect(self.radiobtnRecalibrage)
+        self.radioButton_recalibrageNon.toggled.connect(self.radiobtnRecalibrage_suivant)
+        self.radioButton_recalibrageOui.toggled.connect(self.radiobtnRecalibrage)
+        self.radioButton_arthrodeseNon.toggled.connect(self.radiobtnArthrodese)
+        self.radioButton_arthrodeseOui.toggled.connect(self.radiobtnArthrodese_suivant)
+
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtape2)
         self.pushButton_annuler.clicked.connect(self.annulerCreationDP)
@@ -459,8 +467,30 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
     def suivantNiveau(self):
         self.switch_window3.emit()
 
+    def radiobtnRecalibrage(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.pushButton_recalibrageSuivant.setEnabled(True)
+            self.groupBox_cote.setEnabled(True)
+
+    def radiobtnRecalibrage_suivant(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.pushButton_recalibrageSuivant.setEnabled(False)
+            self.groupBox_cote.setEnabled(False)
+
     def suivantRecalibrage(self):
         self.switch_window4.emit()
+
+    def radiobtnArthrodese(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.pushButton_arthrodeseSuivant.setEnabled(False)
+
+    def radiobtnArthrodese_suivant(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.pushButton_arthrodeseSuivant.setEnabled(True)
 
     def suivantArthrodese(self):
         self.switch_window5.emit()

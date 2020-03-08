@@ -1,6 +1,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+signal_degeneratif = False
+signal_traumatologique = False
+signal_oncologie = False
 
 class Ui_Frame_Etape2(object):
     def setupUi(self, Frame):
@@ -147,12 +150,36 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
             print ("unchecked")
 
     def degeneratif(self):
+        global signal_degeneratif
+        global signal_traumatologique
+        global signal_oncologie
+
+        signal_degeneratif = True
+        signal_traumatologique = False
+        signal_oncologie = False
+
         self.switch_window1.emit()
 
     def traumato(self):
+        global signal_degeneratif
+        global signal_traumatologique
+        global signal_oncologie
+
+        signal_degeneratif = False
+        signal_traumatologique = True
+        signal_oncologie = False
+
         self.switch_window2.emit()
 
     def oncologie(self):
+        global signal_degeneratif
+        global signal_traumatologique
+        global signal_oncologie
+
+        signal_degeneratif = False
+        signal_traumatologique = False
+        signal_oncologie = True
+
         self.switch_window3.emit()
 
     def retour(self):

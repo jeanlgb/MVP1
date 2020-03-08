@@ -316,6 +316,8 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+
+
         # valeur des radiobuttons finalité neuro
         self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN)
         self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN)
