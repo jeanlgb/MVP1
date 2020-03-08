@@ -30,12 +30,15 @@ class Controller_Test:
 
     def show_Medecin(self):
         self.med = MainWindow_Acceuil()
+        self.co = Login()
+        self.windowCreationDP = MainWindow_CreationDP()
         self.windowEvaluation = MainWindow_Evaluation()
 
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
 
         self.windowEvaluation.hide()
+        self.windowCreationDP.hide()
         self.co.hide()
         self.med.show()
 
@@ -63,6 +66,7 @@ class Controller_Test:
         #actions de chaque bouton en fct du window
         self.windowCreationDP.switch_window1.connect(self.show_Evaluation)
         self.windowCreationDP.switch_window2.connect(self.show_Etape2)
+        self.windowCreationDP.switch_window3.connect(self.show_Medecin)
 
         self.med.hide()
         self.sec.hide()
@@ -82,8 +86,10 @@ class Controller_Test:
 
         self.windowEvaluation = MainWindow_Evaluation()
         self.windowCreationDP = MainWindow_CreationDP()
+        self.med = MainWindow_Acceuil()
 
         self.windowEvaluation.switch_window.connect(self.show_Medecin)
+        self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
 
         self.windowEvaluation.lineEdit_identite.setText(self.nom + ' ' + self.prenom)
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(self.numMagic)
@@ -92,6 +98,7 @@ class Controller_Test:
 
 
         self.windowCreationDP.hide()
+        self.med.hide()
         self.windowEvaluation.show()
 
     def show_Etape2(self):

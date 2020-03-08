@@ -212,9 +212,9 @@ class Ui_Frame_Degeneratif(object):
         self.pushButton_retour.setText(_translate("Frame", "Retour"))
         self.groupBox_finaliteNeurologique.setTitle(_translate("Frame", "1 - Finalité neurologique"))
         self.radioButton_radicoMedullaire.setText(_translate("Frame", "Décompression radico-médullaire"))
-        self.radioButton_radicoMedullaire_non.setText(_translate("Frame", "Non"))
-        self.radioButton_radicoMedullaire_medullaire.setText(_translate("Frame", "Décompression médullaire"))
-        self.radioButton_radicoMedullaire_radiculaire.setText(_translate("Frame", "Décompression radiculaire"))
+        self.radioButton_non.setText(_translate("Frame", "Non"))
+        self.radioButton_medullaire.setText(_translate("Frame", "Décompression médullaire"))
+        self.radioButton_radiculaire.setText(_translate("Frame", "Décompression radiculaire"))
         self.groupBox_Niveau.setTitle(_translate("Frame", "2 - Niveau(x)"))
         self.label_niveau.setText(_translate("Frame", "Intervention de la vertèbre           à             ."))
         self.label_niveauCalcul.setText(_translate("Frame", "Espace vertèbre : "))
@@ -248,11 +248,11 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
-        # récupération des valeurs des checkbox
-        self.checkBox_radiculaire.stateChanged.connect(self.checkBoxChangeAction_radiculaire)
-        self.checkBox_radicoMedullaire.stateChanged.connect(self.checkBoxChangeAction_radicoMedullaire)
-        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
-        self.checkBox_non.stateChanged.connect(self.checkBoxChangeAction_non)
+        # valeur des radiobuttons finalité neuro
+        self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_medullaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_non.toggled.connect(self.radiobtn_FN)
 
         # récupération nombre de vertèbres
         self.nombre1 = self.spinBox_nombre1.valueChanged.connect(self.countVertebres)
@@ -278,29 +278,10 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
         self.pushButton_valider.clicked.connect(self.valider) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
-    def checkBoxChangeAction_radiculaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_radicoMedullaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_medullaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_non (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
+    def radiobtn_FN(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("FN choix fait")
 
     def retourEtape2(self):
         self.switch_window1.emit()

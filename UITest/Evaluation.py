@@ -183,6 +183,7 @@ class Ui_Frame_Evaluation(object):
 class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
 
     switch_window = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
 
     def __init__(self):
 
@@ -208,6 +209,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
 
         #self.pushButton_demarrer.clicked.connect(self.popup)
         self.pushButton_demarrer.clicked.connect(self.transfert)
+        self.pushButton_annuler.clicked.connect(self.annuler)
 
 
     def checkBoxChangeAction_glassman (self, state):
@@ -295,3 +297,6 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         msg.setWindowTitle("Attention")
         msg.setText("Les données n'ont pas encore été récupées")
         x = msg.exec_()
+
+    def annuler(self):
+        self.switch_window3.emit()

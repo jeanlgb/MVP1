@@ -316,17 +316,17 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
-        # récupération des valeurs des checkbox
-        self.checkBox_radiculaire.stateChanged.connect(self.checkBoxChangeAction_radiculaire)
-        self.checkBox_radicoMedullaire.stateChanged.connect(self.checkBoxChangeAction_radicoMedullaire)
-        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
-        self.checkBox_non.stateChanged.connect(self.checkBoxChangeAction_non)
+        # valeur des radiobuttons finalité neuro
+        self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_medullaire.toggled.connect(self.radiobtn_FN)
+        self.radioButton_non.toggled.connect(self.radiobtn_FN)
 
         self.checkBox_epidurale.stateChanged.connect(self.checkBoxChangeAction_epidurale)
         self.checkBox_osseuseTopographie.stateChanged.connect(self.checkBoxChangeAction_topographieOsseuse)
         self.checkBox_intraDurale.stateChanged.connect(self.checkBoxChangeAction_intraDurale)
         self.checkBox_intraMedullaire.stateChanged.connect(self.checkBoxChangeAction_intraMedullaire)
-        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_sablier)
+        self.checkBox_enSablier.stateChanged.connect(self.checkBoxChangeAction_sablier)
         self.checkBox_autreTopographie.stateChanged.connect(self.checkBoxChangeAction_topographieAutre)
 
         self.checkBox_origineRadiculaire.stateChanged.connect(self.checkBoxChangeAction_origineRadiculaire)
@@ -360,29 +360,10 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
         self.pushButton_valider.clicked.connect(self.valider) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
-    def checkBoxChangeAction_radiculaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_radicoMedullaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_medullaire (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
-
-    def checkBoxChangeAction_non (self, state):
-        if ( state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print ("unchecked")
+    def radiobtn_FN(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            print("FN choix fait")
 
     def checkBoxChangeAction_epidurale (self, state):
         if ( state == QtCore.Qt.Checked):

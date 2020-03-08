@@ -282,15 +282,6 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
-        # récupération des valeurs des checkbox
-        self.checkBox_1plif.stateChanged.connect(self.checkBoxChangeAction_1Plif)
-        self.checkBox_2plif.stateChanged.connect(self.checkBoxChangeAction_2Plif)
-        self.checkBox_tlif.stateChanged.connect(self.checkBoxChangeAction_Tlif)
-        self.checkBox_os.stateChanged.connect(self.checkBoxChangeAction_Os1)
-        self.checkBox_intersomatique.stateChanged.connect(self.checkBoxChangeAction_intersomatique)
-        self.checkBox_corporectomie_2.stateChanged.connect(self.checkBoxChangeAction_corporectomie)
-        self.checkBox_os2.stateChanged.connect(self.checkBoxChangeAction_os2)
-
 
 
         # valeur des radiobuttons
@@ -305,7 +296,14 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.radioButton_aucune2.toggled.connect(self.radiobtnFrame_Droite)
 
         self.radioButton_aucuneGreffe.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
+        self.radioButton_1plif.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
+        self.radioButton_2plif.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
+        self.radioButton_tlif.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
+        self.radioButton_os.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
         self.radioButton_aucuneGreffe2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
+        self.radioButton_intersomatique.toggled.connect(self.radiobtnFrame_Droite_Greffe)
+        self.radioButton_corporectomie_2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
+        self.radioButton_os2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
@@ -347,59 +345,14 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
     def radiobtnFrame_Gauche_Greffe(self):
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            self.checkBox_1plif.setChecked(False)
-            self.checkBox_2plif.setChecked(False)
-            self.checkBox_tlif.setChecked(False)
-            self.checkBox_os.setChecked(False)
+            print("oui j'ai choisi le truc à gauche!")
 
     def radiobtnFrame_Droite_Greffe(self):
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            self.checkBox_intersomatique.setChecked(False)
-            self.checkBox_corporectomie_2.setChecked(False)
-            self.checkBox_os2.setChecked(False)
+            print("oui j'ai choisi le truc à droite!")
 
-    def checkBoxChangeAction_1Plif(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
 
-    def checkBoxChangeAction_2Plif(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
-
-    def checkBoxChangeAction_Tlif(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
-
-    def checkBoxChangeAction_Os1(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
-
-    def checkBoxChangeAction_intersomatique(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
-
-    def checkBoxChangeAction_corporectomie(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
-
-    def checkBoxChangeAction_os2(self, state):
-        if (state == QtCore.Qt.Checked):
-            print("checked")
-        else:
-            print("unchecked")
 
 
     def suivant(self):

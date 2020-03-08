@@ -108,6 +108,44 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         self.pushButton_oncologie.clicked.connect(self.oncologie)
         self.pushButton_retour.clicked.connect(self.retour)
 
+        # récupération des valeurs des checkbox
+        self.checkBox_cervicale.stateChanged.connect(self.checkBoxChangeAction_cervicale)
+        self.checkBox_dorsale.stateChanged.connect(self.checkBoxChangeAction_dorsale)
+        self.checkBox_lombaire.stateChanged.connect(self.checkBoxChangeAction_lombaire)
+        self.checkBox_sacro.stateChanged.connect(self.checkBoxChangeAction_sacro)
+
+    def checkBoxChangeAction_cervicale(self, state):
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_degeneratif.setEnabled(True)
+            self.pushButton_traumatologique.setEnabled(True)
+            self.pushButton_oncologie.setEnabled(True)
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_dorsale(self, state):
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_degeneratif.setEnabled(True)
+            self.pushButton_traumatologique.setEnabled(True)
+            self.pushButton_oncologie.setEnabled(True)
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_lombaire(self, state):
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_degeneratif.setEnabled(True)
+            self.pushButton_traumatologique.setEnabled(True)
+            self.pushButton_oncologie.setEnabled(True)
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_sacro(self, state):
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_degeneratif.setEnabled(True)
+            self.pushButton_traumatologique.setEnabled(True)
+            self.pushButton_oncologie.setEnabled(True)
+        else:
+            print ("unchecked")
+
     def degeneratif(self):
         self.switch_window1.emit()
 

@@ -9,7 +9,7 @@ patient_prenom = ("PRENOM")
 patient_numMagic = ("NUMERO MAGIC")
 patient_dateIntervention = ("13/12/2000")
 patient_dateNaissance = ("21/04/1997")
-patient_pathologie = ('Lombaire')
+# patient_pathologie = ('médullaire')
 
 
 class Ui_Frame_CreationDP(object):
@@ -333,13 +333,14 @@ class Ui_Frame_CreationDP(object):
         self.pushButton_annuler.setText(_translate("Frame", "Annuler"))
         self.checkBox_autre.setText(_translate("Frame", "Autre"))
         self.checkBox_medullaire.setText(_translate("Frame", "Médullaire"))
-        self.checkBox_cervicalRadiculaire.setText(_translate("Frame", "Cervical Radiculaire"))
+        self.checkBox_cervicalRadiculaire.setText(_translate("Frame", "Cervicale Radiculaire"))
         self.checkBox_thoracoLombaire.setText(_translate("Frame", "Thoraco-lombaire"))
 
 
 class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
 
 
     def __init__(self):
@@ -349,14 +350,21 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         # controlleur pour les boutons
         self.pushButton_evaluation.clicked.connect(self.evaluation)
         self.calendarWidget.clicked[QDate].connect(self.showDate)
+        self.pushButton_ok.clicked.connect(self.etape2)
+        self.pushButton_annuler.clicked.connect(self.annuler)
 
         # Date de naissance
         self.jour = self.comboBox_jour.activated[str].connect(self.showDateNaissance)
         self.mois = self.comboBox_mois.activated[str].connect(self.showDateNaissance)
         self.annee = self.spinBox_annee.valueChanged.connect(self.showDateNaissance)
 
-        # pathologie
-        # self.pathologie = self.comboBox_pathologie.activated[str].connect(self.choixDeLaPathologie)
+        # récupération des valeurs des checkbox
+        self.checkBox_cervicalRadiculaire.stateChanged.connect(self.checkBoxChangeAction_cervicale)
+        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
+        self.checkBox_thoracoLombaire.stateChanged.connect(self.checkBoxChangeAction_lombaire)
+        self.checkBox_autre.stateChanged.connect(self.checkBoxChangeAction_autre)
+
+
 
         # Qcalendar date intervention
         self.date_Intervention = self.calendarWidget.selectedDate()
@@ -397,12 +405,39 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.naissance = self.label_recuperationDateDeNaissance.text()
         patient_dateNaissance = self.naissance
 
-    # def choixDeLaPathologie (self):
-    #     global patient_pathologie
-    #
-    #     self.pathologie = self.comboBox_pathologie.currentText()
-    #     self.label_recuperationPathologie.setText(self.pathologie) #valeur du combobox stocker dans un label en attendant de l'ajouter à lineEdit_intervention
-    #     self.classePathologie = self.label_recuperationPathologie.text()
-    #     patient_pathologie = self.classePathologie
-    #
-    #     self.switch_window2.emit()
+    def checkBoxChangeAction_cervicale(self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print("unchecked")
+
+    def checkBoxChangeAction_medullaire(self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_lombaire(self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def checkBoxChangeAction_autre(self, state):
+        if ( state == QtCore.Qt.Checked):
+            print("checked")
+        else:
+            print ("unchecked")
+
+    def etape2 (self):
+        # global patient_pathologie
+
+        # self.pathologie = self.comboBox_pathologie.currentText()
+        # self.label_recuperationPathologie.setText(self.pathologie) #valeur du combobox stocker dans un label en attendant de l'ajouter à lineEdit_intervention
+        # self.classePathologie = self.label_recuperationPathologie.text()
+        # patient_pathologie = self.classePathologie
+
+        self.switch_window2.emit()
+
+    def annuler(self):
+        self.switch_window3.emit()
