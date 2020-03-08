@@ -74,7 +74,7 @@ class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
-        self.setFocusPolicy(QtCore.Qt.StrongFocus)
+
 
         self.pushButton_connexion.clicked.connect(self.seConnecter)
 

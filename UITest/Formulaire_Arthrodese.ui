@@ -354,7 +354,7 @@
      <string>Aucune</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_1plif">
+   <widget class="QRadioButton" name="radioButton_1plif">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -372,7 +372,7 @@
      <string>1 cage intersomatique PLIF</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_os">
+   <widget class="QRadioButton" name="radioButton_os">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -390,7 +390,7 @@
      <string>Os seulement</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2plif">
+   <widget class="QRadioButton" name="radioButton_2plif">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -408,7 +408,7 @@
      <string>2 cages intersomatiques PLIF</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_tlif">
+   <widget class="QRadioButton" name="radioButton_tlif">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -442,7 +442,7 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QCheckBox" name="checkBox_os2">
+   <widget class="QRadioButton" name="radioButton_os2">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -478,7 +478,7 @@
      <string>Aucune</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_intersomatique">
+   <widget class="QRadioButton" name="radioButton_intersomatique">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -496,7 +496,7 @@
      <string>Cage intersomatique</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_corporectomie_2">
+   <widget class="QRadioButton" name="radioButton_corporectomie_2">
     <property name="geometry">
      <rect>
       <x>10</x>
