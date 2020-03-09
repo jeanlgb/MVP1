@@ -63,16 +63,12 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
         self.setupUi(self)
 
         #controlleur pour les boutons
-        self.pushButton_creerDP.clicked.connect(self.creation)
-        self.pushButton_notification.clicked.connect(self.tablette)
+        self.pushButton_creerDP.clicked.connect(self.tablette_et_creationDP)
         self.pushButton_deconnexion.clicked.connect(self.deconnexion)
 
 
     #les actions de chaque bouton
-    def creation(self):
-        self.switch_window1.emit()
-
-    def tablette(self):
+    def tablette_et_creationDP(self):
         os.system(
             "C:/Users/Public/InPec/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/InPec/DonneestransfereesAndroid.txt")
         liste = []
@@ -82,6 +78,8 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
                 ligne = line.strip()
                 liste.append(ligne)
             print(liste)
+
+        self.switch_window1.emit()
 
     def deconnexion(self):
         msg = QMessageBox()

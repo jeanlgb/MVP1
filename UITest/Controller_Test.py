@@ -17,6 +17,19 @@ from UITest.Traumatologique_Niveaux import *
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
 
+controlleur_nom = ""
+controlleur_prenom = ""
+controlleur_numMagic = ""
+controlleur_dateDeIntervention = ""
+controlleur_dateNaissance = ""
+controlleur_jour = ""
+controlleur_mois = ""
+controlleur_annee = ""
+controlleur_cbox_cervicaleRadiculaire = ""
+controlleur_cbox_medullaire = ""
+controlleur_cbox_thoracoLombaire = ""
+controlleur_cbox_autre = ""
+
 class Controller_Test:
 
     def __init__(self):
@@ -35,6 +48,14 @@ class Controller_Test:
         self.co.show()
 
     def show_Medecin(self):
+        global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
+        global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+
+        controlleur_nom = ""
+        controlleur_prenom = ""
+        controlleur_numMagic = ""
+        controlleur_dateDeIntervention = ""
+
         self.med = MainWindow_Acceuil()
         self.co = Login()
         self.windowCreationDP = MainWindow_CreationDP()
@@ -43,6 +64,7 @@ class Controller_Test:
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
         self.med.switch_window5.connect(self.show_Connexion)
+
 
         self.windowEvaluation.hide()
         self.windowCreationDP.hide()
@@ -66,9 +88,21 @@ class Controller_Test:
 
 
     def show_CreationDP(self):
+        global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
+        global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+
+        controlleur_jour = UITest.CreationDP.patient_jour
+        controlleur_mois = UITest.CreationDP.patient_mois
+        controlleur_annee = UITest.CreationDP.patient_anneeControlleur
+        controlleur_cbox_cervicaleRadiculaire = UITest.CreationDP.valeur_cb_cervicale_radiculaire
+        controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
+        controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
+        controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
+
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
 
+        self.windowEvaluation = MainWindow_Evaluation()
         self.sec = MainWindow_Acceuil_Secretaire()
         self.med = MainWindow_Acceuil()
         self.etape2 = MainWindow_Etape2()
@@ -83,6 +117,19 @@ class Controller_Test:
         self.windowCreationDP.switch_window1.connect(self.show_Evaluation)
         self.windowCreationDP.switch_window2.connect(self.show_Etape2)
 
+        self.windowCreationDP.lineEdit_nom.setText(controlleur_nom)
+        self.windowCreationDP.lineEdit_prenom.setText(controlleur_prenom)
+        self.windowCreationDP.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
+        self.windowCreationDP.lineEdit_numeroMagic.setText(controlleur_numMagic)
+        self.windowCreationDP.comboBox_jour.setCurrentText(controlleur_jour)
+        self.windowCreationDP.comboBox_mois.setCurrentText(controlleur_mois)
+        self.windowCreationDP.spinBox_annee.setValue(controlleur_annee)
+        self.windowCreationDP.checkBox_cervicalRadiculaire.setChecked(controlleur_cbox_cervicaleRadiculaire)
+        self.windowCreationDP.checkBox_medullaire.setChecked(controlleur_cbox_medullaire)
+        self.windowCreationDP.checkBox_thoracoLombaire.setChecked(controlleur_cbox_thoracoLombaire)
+        self.windowCreationDP.checkBox_autre.setChecked(controlleur_cbox_autre)
+
+
         if self.signal_med == True:
             self.windowCreationDP.switch_window3.connect(self.show_Medecin)
         elif self.signal_sec == True:
@@ -91,6 +138,7 @@ class Controller_Test:
         self.med.hide()
         self.sec.hide()
         self.etape2.hide()
+        self.windowEvaluation.hide()
         self.windowArthrodese.hide()
         self.windowRecalibrage.hide()
         self.windowDegeneratif.hide()
@@ -100,11 +148,19 @@ class Controller_Test:
         self.windowCreationDP.show()
 
     def show_Evaluation(self):
-        self.nom = UITest.CreationDP.patient_nom
-        self.prenom = UITest.CreationDP.patient_prenom
-        self.numMagic = UITest.CreationDP.patient_numMagic
-        self.dateDeIntervention = UITest.CreationDP.patient_dateIntervention
-        self.dateDeNaissance = UITest.CreationDP.patient_dateNaissance
+        global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
+        global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+
+
+        controlleur_nom = UITest.CreationDP.patient_nom
+        controlleur_prenom = UITest.CreationDP.patient_prenom
+        controlleur_dateNaissance = UITest.CreationDP.patient_dateNaissance
+        controlleur_numMagic = UITest.CreationDP.patient_numMagic
+        controlleur_dateDeIntervention = UITest.CreationDP.patient_dateIntervention
+        controlleur_cbox_cervicaleRadiculaire = UITest.CreationDP.valeur_cb_cervicale_radiculaire
+        controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
+        controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
+        controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
 
         self.windowEvaluation = MainWindow_Evaluation()
         self.windowCreationDP = MainWindow_CreationDP()
@@ -113,10 +169,36 @@ class Controller_Test:
         self.windowEvaluation.switch_window.connect(self.show_Medecin)
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
 
-        self.windowEvaluation.lineEdit_identite.setText(self.nom + ' ' + self.prenom)
-        self.windowEvaluation.lineEdit_numeroMagic_2.setText(self.numMagic)
-        self.windowEvaluation.lineEdit_dateIntervention.setText(self.dateDeIntervention)
-        self.windowEvaluation.label_recuperationDateDeNaissance.setText(self.dateDeNaissance)
+        self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
+        self.windowEvaluation.lineEdit_numeroMagic_2.setText(controlleur_numMagic)
+        self.windowEvaluation.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
+        self.windowEvaluation.label_recuperationDateDeNaissance.setText(controlleur_dateNaissance)
+
+        # coche automatiquement les checkbox des scores
+        if controlleur_cbox_cervicaleRadiculaire == True:
+            self.windowEvaluation.checkBox_ndi.setChecked(True)
+            self.windowEvaluation.checkBox_evaCervical.setChecked(True)
+            self.windowEvaluation.checkBox_glassman.setChecked(True)
+
+
+        elif controlleur_cbox_medullaire == True:
+            self.windowEvaluation.checkBox_mjoa.setChecked(True)
+            self.windowEvaluation.checkBox_glassman.setChecked(True)
+
+
+        elif controlleur_cbox_thoracoLombaire == True:
+            self.windowEvaluation.checkBox_oswestry.setChecked(True)
+            self.windowEvaluation.checkBox_evaLombaire.setChecked(True)
+            self.windowEvaluation.checkBox_glassman.setChecked(True)
+
+
+        elif controlleur_cbox_autre == True:
+            self.windowEvaluation.checkBox_oswestry.setChecked(False)
+            self.windowEvaluation.checkBox_evaLombaire.setChecked(False)
+            self.windowEvaluation.checkBox_glassman.setChecked(False)
+            self.windowEvaluation.checkBox_mjoa.setChecked(False)
+            self.windowEvaluation.checkBox_evaCervical.setChecked(False)
+            self.windowEvaluation.checkBox_ndi.setChecked(False)
 
 
         self.windowCreationDP.hide()
@@ -124,6 +206,15 @@ class Controller_Test:
         self.windowEvaluation.show()
 
     def show_Etape2(self):
+        global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
+        controlleur_nom = UITest.CreationDP.patient_nom
+        controlleur_prenom = UITest.CreationDP.patient_prenom
+        controlleur_jour = UITest.CreationDP.patient_jour
+        controlleur_mois = UITest.CreationDP.patient_mois
+        controlleur_annee = UITest.CreationDP.patient_anneeControlleur
+        controlleur_numMagic = UITest.CreationDP.patient_numMagic
+        controlleur_dateDeIntervention = UITest.CreationDP.patient_dateIntervention
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowOncologique = MainWindow_Oncologie()
@@ -284,7 +375,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Etape2()
+    controller_INPEC2.show_CreationDP()
     sys.exit(app.exec_())
 
 

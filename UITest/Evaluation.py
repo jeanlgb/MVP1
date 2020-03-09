@@ -41,13 +41,13 @@ class Ui_Frame_Evaluation(object):
         self.lineEdit_dateIntervention.setGeometry(QtCore.QRect(260, 185, 162, 20))
         self.lineEdit_dateIntervention.setObjectName("dateEdit_dateIntervention")
         self.radioButton_preOp = QtWidgets.QRadioButton(Frame)
-        self.radioButton_preOp.setGeometry(QtCore.QRect(260, 240, 130, 20))
+        self.radioButton_preOp.setGeometry(QtCore.QRect(260, 240, 170, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.radioButton_preOp.setFont(font)
         self.radioButton_preOp.setObjectName("radioButton_preOp")
         self.radioButton_postOp = QtWidgets.QRadioButton(Frame)
-        self.radioButton_postOp.setGeometry(QtCore.QRect(260, 280, 130, 20))
+        self.radioButton_postOp.setGeometry(QtCore.QRect(260, 280, 170, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.radioButton_postOp.setFont(font)
@@ -75,6 +75,7 @@ class Ui_Frame_Evaluation(object):
         self.checkBox_mjoa.setGeometry(QtCore.QRect(440, 450, 171, 25))
         self.checkBox_mjoa.setObjectName("checkBox_mjoa")
         self.pushButton_demarrer = QtWidgets.QPushButton(Frame)
+        self.pushButton_demarrer.setEnabled(False)
         self.pushButton_demarrer.setGeometry(QtCore.QRect(260, 510, 80, 30))
         self.pushButton_demarrer.setObjectName("pushButton_demarrer")
         self.label_tempsEvaluation = QtWidgets.QLabel(Frame)
@@ -119,16 +120,6 @@ class Ui_Frame_Evaluation(object):
         self.pushButton_information.setObjectName("pushButton_information")
         self.pushButton_annuler = QtWidgets.QPushButton(Frame)
         self.pushButton_annuler.setGeometry(QtCore.QRect(30, 20, 61, 30))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_annuler.sizePolicy().hasHeightForWidth())
-        self.pushButton_annuler.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setWeight(50)
-        self.pushButton_annuler.setFont(font)
         self.pushButton_annuler.setObjectName("pushButton_annuler")
         self.label_titre.raise_()
         self.label_typeEvaluation.raise_()
@@ -176,7 +167,7 @@ class Ui_Frame_Evaluation(object):
         self.checkBox_mjoa.setText(_translate("Frame", "Score mJOA"))
         self.checkBox_evaLombaire.setText(_translate("Frame", "Score EVA lombaire"))
         self.pushButton_information.setText(_translate("Frame", "?"))
-        self.pushButton_annuler.setText(_translate("Frame", "Annuler"))
+        self.pushButton_annuler.setText(_translate("Frame", "Retour"))
         # self.lineEdit_identite.setText(_translate("Frame", self.nom + " " + self.prenom))
 
 
@@ -190,6 +181,9 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+        # valeur des radiobuttons finalité neuro
+        self.radioButton_postOp.toggled.connect(self.radiobtn_tpsEval)
+        self.radioButton_preOp.toggled.connect(self.radiobtn_tpsEval)
 
         # récupération des valeurs des checkbox
         self.checkBox_glassman.stateChanged.connect(self.checkBoxChangeAction_glassman)
@@ -211,6 +205,10 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         self.pushButton_demarrer.clicked.connect(self.transfert)
         self.pushButton_annuler.clicked.connect(self.annuler)
 
+    def radiobtn_tpsEval(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.pushButton_demarrer.setEnabled(True)
 
     def checkBoxChangeAction_glassman (self, state):
         if ( state == QtCore.Qt.Checked):

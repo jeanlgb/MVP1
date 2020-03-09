@@ -8,16 +8,25 @@ from PyQt5.QtWidgets import QCalendarWidget, QLineEdit
 patient_nom = ("NOM")
 patient_prenom = ("PRENOM")
 patient_numMagic = ("NUMERO MAGIC")
-patient_dateIntervention = ("13/12/2000")
+patient_dateIntervention = ("")
+patient_jour = ("1")
+patient_mois = ("Janvier")
+patient_annee = ("2000")
+patient_anneeControlleur = int(2000)
 patient_dateNaissance = ("21/04/1997")
-# patient_pathologie = ('médullaire')
+valeur_cb_cervicale_radiculaire = False
+valeur_cb_medullaire = False
+valeur_cb_thoraco_lombaire = False
+valeur_cb_autre = False
+nomPathologieCR = "CR"
+
 
 
 class Ui_Frame_CreationDP(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setEnabled(True)
-        Frame.setFixedSize(781, 719)
+        Frame.setFixedSize(900, 800)
         self.label_nom = QtWidgets.QLabel(Frame)
         self.label_nom.setGeometry(QtCore.QRect(130, 140, 141, 30))
         font = QtGui.QFont()
@@ -114,25 +123,20 @@ class Ui_Frame_CreationDP(object):
         self.textEdit_interventionModifiable.setGeometry(QtCore.QRect(270, 460, 271, 21))
         self.textEdit_interventionModifiable.setObjectName("textEdit_interventionModifiable")
         self.calendarWidget = QtWidgets.QCalendarWidget(Frame)
-        self.calendarWidget.setFixedSize(312, 183)
-        self.calendarWidget.setGeometry(QtCore.QRect(270, 510, 312, 183))
+        self.calendarWidget.setFixedSize(400, 200)
+        self.calendarWidget.setGeometry(QtCore.QRect(270, 510, 400, 200))
         self.calendarWidget.setLocale(QtCore.QLocale(QtCore.QLocale.French, QtCore.QLocale.France))
         self.calendarWidget.setObjectName("calendarWidget")
         self.calendarWidget.setGridVisible(True)
         self.lineEdit_dateIntervention = QtWidgets.QLineEdit(Frame)
-        self.lineEdit_dateIntervention.setGeometry(QtCore.QRect(610, 510, 141, 21))
+        self.lineEdit_dateIntervention.setGeometry(QtCore.QRect(710, 510, 141, 21))
         self.lineEdit_dateIntervention.setLocale(QtCore.QLocale(QtCore.QLocale.French, QtCore.QLocale.France))
         self.lineEdit_dateIntervention.setObjectName("lineEdit_dateIntervention")
         self.pushButton_evaluation = QtWidgets.QPushButton(Frame)
-        self.pushButton_evaluation.setGeometry(QtCore.QRect(650, 670, 80, 30))
+        self.pushButton_evaluation.setGeometry(QtCore.QRect(700, 670, 80, 30))
         self.pushButton_evaluation.setObjectName("pushButton_evaluation")
         self.pushButton_annuler = QtWidgets.QPushButton(Frame)
         self.pushButton_annuler.setGeometry(QtCore.QRect(50, 40, 61, 30))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(False)
-        font.setWeight(50)
-        self.pushButton_annuler.setFont(font)
         self.pushButton_annuler.setObjectName("pushButton_annuler")
         self.label_nomIntervention = QtWidgets.QLabel(Frame)
         self.label_nomIntervention.setGeometry(QtCore.QRect(20, 410, 251, 30))
@@ -331,7 +335,7 @@ class Ui_Frame_CreationDP(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.pushButton_annuler.setText(_translate("Frame", "Annuler"))
+        self.pushButton_annuler.setText(_translate("Frame", "Retour"))
         self.checkBox_autre.setText(_translate("Frame", "Autre"))
         self.checkBox_medullaire.setText(_translate("Frame", "Médullaire"))
         self.checkBox_cervicalRadiculaire.setText(_translate("Frame", "Cervicale Radiculaire"))
@@ -366,7 +370,6 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.checkBox_autre.stateChanged.connect(self.checkBoxChangeAction_autre)
 
 
-
         # Qcalendar date intervention
         self.date_Intervention = self.calendarWidget.selectedDate()
         self.lineEdit_dateIntervention.setText(self.date_Intervention.toString("dd/MM/yyyy"))
@@ -396,41 +399,97 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         patient_dateIntervention = self.dateRecuperation
 
     def showDateNaissance (self):
-        global patient_dateNaissance
+        global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur
 
         self.jour = self.comboBox_jour.currentText()
         self.mois = self.comboBox_mois.currentText()
         self.annee = self.spinBox_annee.value()
+
+        patient_jour = self.jour
+        patient_mois = self.mois
+        patient_annee = str(self.annee)
+        patient_anneeControlleur = self.annee
 
         self.label_recuperationDateDeNaissance.setText(self.jour + ' / ' + self.mois + ' / ' + str(self.annee))
         self.naissance = self.label_recuperationDateDeNaissance.text()
         patient_dateNaissance = self.naissance
 
     def checkBoxChangeAction_cervicale(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+        global nomPathologieCR
+
         if ( state == QtCore.Qt.Checked):
-            print("checked")
+            valeur_cb_cervicale_radiculaire = True
+            valeur_cb_medullaire = False
+            valeur_cb_thoraco_lombaire = False
+            valeur_cb_autre = False
+            # self.textEdit_interventionNonModifiable.setText("Cervicale Radiculaire")
+            # self.pathoCR = self.textEdit_interventionNonModifiable.text()
+            # nomPathologieCR = self.pathoCR
+            # print(nomPathologieCR)
         else:
             print("unchecked")
 
     def checkBoxChangeAction_medullaire(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+
         if ( state == QtCore.Qt.Checked):
+            valeur_cb_medullaire = True
+            valeur_cb_cervicale_radiculaire = False
+            valeur_cb_thoraco_lombaire = False
+            valeur_cb_autre = False
             print("checked")
         else:
             print ("unchecked")
 
     def checkBoxChangeAction_lombaire(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+
         if ( state == QtCore.Qt.Checked):
+            valeur_cb_thoraco_lombaire = True
+            valeur_cb_medullaire = False
+            valeur_cb_cervicale_radiculaire = False
+            valeur_cb_autre = False
             print("checked")
         else:
             print ("unchecked")
 
     def checkBoxChangeAction_autre(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
         if ( state == QtCore.Qt.Checked):
+            valeur_cb_autre = True
+            valeur_cb_thoraco_lombaire = False
+            valeur_cb_medullaire = False
+            valeur_cb_cervicale_radiculaire = False
             print("checked")
         else:
             print ("unchecked")
 
     def etape2 (self):
+        global patient_nom, patient_prenom, patient_dateIntervention, patient_numMagic
+        global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee
+
+        patient_nom = self.lineEdit_nom.text()
+        patient_prenom = self.lineEdit_prenom.text()
+        patient_numMagic = self.lineEdit_numeroMagic.text()
+        patient_dateIntervention = self.lineEdit_dateIntervention.text()
+        patient_jour = self.comboBox_jour.currentText()
+        patient_mois = self.comboBox_mois.currentText()
+        patient_annee = self.comboBox_jour.currentText()
+
+
         # global patient_pathologie
 
         # self.pathologie = self.comboBox_pathologie.currentText()
@@ -441,4 +500,15 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.switch_window2.emit()
 
     def annuler(self):
+        global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur
+        global valeur_cb_cervicale_radiculaire, valeur_cb_medullaire, valeur_cb_thoraco_lombaire, valeur_cb_autre
+        patient_jour = ("1")
+        patient_mois = ("Janvier")
+        patient_annee = ("2000")
+        patient_anneeControlleur = int(2000)
+        patient_dateNaissance = ("21/04/1997")
+        valeur_cb_cervicale_radiculaire = False
+        valeur_cb_medullaire = False
+        valeur_cb_thoraco_lombaire = False
+        valeur_cb_autre = False
         self.switch_window3.emit()
