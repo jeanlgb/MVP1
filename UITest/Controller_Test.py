@@ -338,6 +338,7 @@ class Controller_Test:
             self.windowRecalibrage.switch_window3.connect(self.show_Oncologique)
 
         # actions de chaque bouton en fct du window
+        self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
         self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
 
 
@@ -367,7 +368,9 @@ class Controller_Test:
             self.windowArthrodese.switch_window3.connect(self.show_Oncologique)
 
         # actions de chaque bouton en fct du window
+        self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
         self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
+        self.windowArthrodese.switch_window3.connect(self.show_Degeneratif)
 
         self.windowArthrodese.show()
 
@@ -375,7 +378,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_CreationDP()
+    controller_INPEC2.show_Connexion()
     sys.exit(app.exec_())
 
 
