@@ -151,6 +151,8 @@ class Controller_Test:
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
 
+        self.signal_med = UITest.Connexion.signal_medecin
+        self.signal_sec = UITest.Connexion.signal_secretaire
 
         controlleur_nom = UITest.CreationDP.patient_nom
         controlleur_prenom = UITest.CreationDP.patient_prenom
@@ -166,13 +168,17 @@ class Controller_Test:
         self.windowCreationDP = MainWindow_CreationDP()
         self.med = MainWindow_Acceuil()
 
-        self.windowEvaluation.switch_window.connect(self.show_Medecin)
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
 
         self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(controlleur_numMagic)
         self.windowEvaluation.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
         self.windowEvaluation.label_recuperationDateDeNaissance.setText(controlleur_dateNaissance)
+
+        if self.signal_med == True:
+            self.windowEvaluation.switch_window.connect(self.show_Medecin)
+        elif self.signal_sec == True:
+            self.windowEvaluation.switch_window.connect(self.show_Secretaire)
 
         # coche automatiquement les checkbox des scores
         if controlleur_cbox_cervicaleRadiculaire == True:
