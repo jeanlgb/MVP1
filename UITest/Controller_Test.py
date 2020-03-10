@@ -182,14 +182,14 @@ class Controller_Test:
 
 
         elif controlleur_cbox_medullaire == True:
-            self.windowEvaluation.checkBox_mjoa.setChecked(True)
-            self.windowEvaluation.checkBox_glassman.setChecked(True)
+            self.windowEvaluation.checkBox_oswestry.setChecked(True)
 
 
         elif controlleur_cbox_thoracoLombaire == True:
-            self.windowEvaluation.checkBox_oswestry.setChecked(True)
-            self.windowEvaluation.checkBox_evaLombaire.setChecked(True)
+            self.windowEvaluation.checkBox_mjoa.setChecked(True)
             self.windowEvaluation.checkBox_glassman.setChecked(True)
+            self.windowEvaluation.checkBox_evaLombaire.setChecked(True)
+
 
 
         elif controlleur_cbox_autre == True:
