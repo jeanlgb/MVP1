@@ -282,6 +282,15 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         #     print("Vide")  # Récupération du fichier texte
         # else:
         #     print("Rempli")
+        os.system(
+            "C:/Users/Public/InPec/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/InPec/DonneestransfereesAndroid.txt")
+        liste = []
+        with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+            for line in f.readlines():
+                # Traiter la ligne et ainsi de suite ...
+                ligne = line.strip()
+                liste.append(ligne)
+            print(liste)
         self.switch_window.emit()
 
     def popup (self):

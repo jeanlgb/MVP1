@@ -79,14 +79,14 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
 
     #les actions de chaque bouton
     def tablette_et_creationDP(self):
-        os.system("C:/Users/Public/InPec/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/InPec/DonneestransfereesAndroid.txt")
-        liste = []
-        with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
-            for line in f.readlines():
-                # Traiter la ligne et ainsi de suite ...
-                ligne = line.strip()
-                liste.append(ligne)
-            print(liste)
+        # os.system("C:/Users/Public/InPec/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/InPec/DonneestransfereesAndroid.txt")
+        # liste = []
+        # with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+        #     for line in f.readlines():
+        #         # Traiter la ligne et ainsi de suite ...
+        #         ligne = line.strip()
+        #         liste.append(ligne)
+        #     print(liste)
         self.switch_window1.emit()
 
     def deconnexion(self):
