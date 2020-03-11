@@ -4,6 +4,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 signal_degeneratif = False
 signal_traumatologique = False
 signal_oncologie = False
+signal_cervicale = False
+signal_dorsale = False
+signal_lombaire = False
+signal_sacro = False
 
 class Ui_Frame_Etape2(object):
     def setupUi(self, Frame):
@@ -90,7 +94,7 @@ class Ui_Frame_Etape2(object):
         self.checkBox_cervicale.setText(_translate("Frame", "Cervicale"))
         self.checkBox_dorsale.setText(_translate("Frame", "Dorsale"))
         self.checkBox_lombaire.setText(_translate("Frame", "Lombaire"))
-        self.checkBox_sacro.setText(_translate("Frame", "sacro-coccygienne"))
+        self.checkBox_sacro.setText(_translate("Frame", "Sacro-coccygienne"))
 
 class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
     switch_window1 = QtCore.pyqtSignal()
@@ -115,35 +119,48 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         self.checkBox_sacro.stateChanged.connect(self.checkBoxChangeAction_sacro)
 
     def checkBoxChangeAction_cervicale(self, state):
+        global signal_cervicale
         if ( state == QtCore.Qt.Checked):
+            signal_cervicale = True
             self.pushButton_degeneratif.setEnabled(True)
             self.pushButton_traumatologique.setEnabled(True)
             self.pushButton_oncologie.setEnabled(True)
+            print("2")
         else:
+            signal_cervicale = False
             print("unchecked")
 
     def checkBoxChangeAction_dorsale(self, state):
+        global signal_dorsale
         if ( state == QtCore.Qt.Checked):
+            signal_dorsale = True
             self.pushButton_degeneratif.setEnabled(True)
             self.pushButton_traumatologique.setEnabled(True)
             self.pushButton_oncologie.setEnabled(True)
         else:
+            signal_dorsale = False
             print ("unchecked")
 
     def checkBoxChangeAction_lombaire(self, state):
+        global signal_lombaire
         if ( state == QtCore.Qt.Checked):
+            signal_lombaire = True
             self.pushButton_degeneratif.setEnabled(True)
             self.pushButton_traumatologique.setEnabled(True)
             self.pushButton_oncologie.setEnabled(True)
         else:
+            signal_lombaire = False
             print ("unchecked")
 
     def checkBoxChangeAction_sacro(self, state):
+        global signal_sacro
         if ( state == QtCore.Qt.Checked):
+            signal_sacro = True
             self.pushButton_degeneratif.setEnabled(True)
             self.pushButton_traumatologique.setEnabled(True)
             self.pushButton_oncologie.setEnabled(True)
         else:
+            signal_sacro = False
             print ("unchecked")
 
     def degeneratif(self):
@@ -152,6 +169,7 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         global signal_oncologie
 
         signal_degeneratif = True
+        print("3")
         signal_traumatologique = False
         signal_oncologie = False
 

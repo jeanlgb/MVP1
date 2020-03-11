@@ -265,6 +265,22 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_patho">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_finaliteNeurologique_2">
    <property name="geometry">

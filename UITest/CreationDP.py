@@ -114,6 +114,7 @@ class Ui_Frame_CreationDP(object):
         self.checkBox_autre.setObjectName("checkBox_autre")
         self.textEdit_interventionNonModifiable = QtWidgets.QTextEdit(Frame)
         self.pushButton_ok = QtWidgets.QPushButton(Frame)
+        self.pushButton_ok.setEnabled(False)
         self.pushButton_ok.setGeometry(QtCore.QRect(690, 350, 51, 23))
         self.pushButton_ok.setObjectName("pushButton_ok")
         self.textEdit_interventionNonModifiable.setEnabled(False)
@@ -422,6 +423,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global nomPathologieCR
 
         if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
             valeur_cb_cervicale_radiculaire = True
             valeur_cb_medullaire = False
             valeur_cb_thoraco_lombaire = False
@@ -440,11 +442,12 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_autre
 
         if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
             valeur_cb_medullaire = True
             valeur_cb_cervicale_radiculaire = False
             valeur_cb_thoraco_lombaire = False
             valeur_cb_autre = False
-            print("checked")
+            print("1")
         else:
             print ("unchecked")
 
@@ -455,6 +458,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_autre
 
         if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
             valeur_cb_thoraco_lombaire = True
             valeur_cb_medullaire = False
             valeur_cb_cervicale_radiculaire = False
@@ -469,6 +473,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_thoraco_lombaire
         global valeur_cb_autre
         if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
             valeur_cb_autre = True
             valeur_cb_thoraco_lombaire = False
             valeur_cb_medullaire = False

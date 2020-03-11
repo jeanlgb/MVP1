@@ -6,6 +6,7 @@ from UITest.Accueil_Medecin import MainWindow_Acceuil
 from UITest.CreationDP import MainWindow_CreationDP
 from UITest.CreationDP import *
 from UITest.Evaluation import MainWindow_Evaluation
+from UITest.Evaluation import *
 from UITest.Accueil_Secretaire import MainWindow_Acceuil_Secretaire
 from UITest.Connexion import Login
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
@@ -177,6 +178,7 @@ class Controller_Test:
 
         if self.signal_med == True:
             self.windowEvaluation.switch_window.connect(self.show_Medecin)
+
         elif self.signal_sec == True:
             self.windowEvaluation.switch_window.connect(self.show_Secretaire)
 
@@ -384,7 +386,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_Connexion()
+    controller_INPEC2.show_CreationDP()
     sys.exit(app.exec_())
 
 
