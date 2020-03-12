@@ -6,17 +6,18 @@ from UITest.Accueil_Medecin import MainWindow_Acceuil
 from UITest.CreationDP import MainWindow_CreationDP
 from UITest.CreationDP import *
 from UITest.Evaluation import MainWindow_Evaluation
-from UITest.Evaluation import *
 from UITest.Accueil_Secretaire import MainWindow_Acceuil_Secretaire
 from UITest.Connexion import Login
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
 from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
+from UITest.Pathologie_Degeneratif import *
 from UITest.Pathologie_Oncologie import MainWindow_Oncologie
 from UITest.Pathologie_Traumatologique import MainWindow_Traumatologie
 from UITest.Traumatologique_Niveaux import MainWindow_Niveau
 from UITest.Traumatologique_Niveaux import *
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
 from UITest.Formulaire_Recalibrage import MainWindow_FormRecalibrage
+from UITest.Formulaire_Recalibrage import *
 
 controlleur_nom = ""
 controlleur_prenom = ""
@@ -30,6 +31,27 @@ controlleur_cbox_cervicaleRadiculaire = ""
 controlleur_cbox_medullaire = ""
 controlleur_cbox_thoracoLombaire = ""
 controlleur_cbox_autre = ""
+
+controlleur_zoneCervicale = False
+controlleur_zoneDorsale = False
+controlleur_zoneLombaire = False
+controlleur_zoneSacro = False
+
+controlleur_FN_radiculaire = False
+controlleur_FN_radicoMedullaire = False
+controlleur_FN_medullaire = False
+controlleur_FN_non = False
+controlleur_vertebre1 = int(1)
+controlleur_vertebre2 = int(2)
+controlleur_recalibrage_oui = False
+controlleur_recalibrage_hernie = False
+controlleur_recalibrage_non = False
+controlleur_cote_droit = False
+controlleur_cote_gauche = False
+controlleur_cote_bilateral = False
+controlleur_arthrodese_oui = False
+controlleur_arthrodese_non = False
+
 
 class Controller_Test:
 
@@ -229,6 +251,7 @@ class Controller_Test:
         self.windowTraumato = MainWindow_Traumatologie()
         self.etape2 = MainWindow_Etape2()
 
+
         #actions de chaque bouton en fct du window
         self.etape2.switch_window1.connect(self.show_Degeneratif)
         self.etape2.switch_window2.connect(self.show_Traumatologique)
@@ -242,6 +265,34 @@ class Controller_Test:
         self.etape2.show()
 
     def show_Degeneratif(self):
+        global controlleur_zoneCervicale, controlleur_zoneDorsale, controlleur_zoneLombaire, controlleur_zoneSacro
+        global controlleur_FN_radicoMedullaire, controlleur_FN_radiculaire, controlleur_FN_medullaire, controlleur_FN_non
+        global controlleur_vertebre1, controlleur_vertebre2
+        global controlleur_recalibrage_hernie, controlleur_recalibrage_non, controlleur_recalibrage_oui
+        global controlleur_cote_bilateral, controlleur_cote_droit, controlleur_cote_gauche
+        global controlleur_arthrodese_non, controlleur_arthrodese_oui
+
+        controlleur_zoneCervicale = UITest.Pathologie_Etape2.signal_cervicale
+        controlleur_zoneDorsale = UITest.Pathologie_Etape2.signal_dorsale
+        controlleur_zoneLombaire = UITest.Pathologie_Etape2.signal_lombaire
+        controlleur_zoneSacro = UITest.Pathologie_Etape2.signal_sacro
+
+        controlleur_FN_radicoMedullaire = UITest.Pathologie_Degeneratif.glb_dege_FN_radicoMedullaire
+        controlleur_FN_radiculaire = UITest.Pathologie_Degeneratif.glb_dege_FN_radiculaire
+        controlleur_FN_medullaire = UITest.Pathologie_Degeneratif.glb_dege_FN_medullaire
+        controlleur_FN_non = UITest.Pathologie_Degeneratif.glb_dege_FN_non
+        controlleur_vertebre1 = UITest.Pathologie_Degeneratif.dege_vertebre1
+        controlleur_vertebre2 = UITest.Pathologie_Degeneratif.dege_vertebre2
+        controlleur_recalibrage_hernie = UITest.Pathologie_Degeneratif.dege_recalibrage_hernie
+        controlleur_recalibrage_non = UITest.Pathologie_Degeneratif.dege_recalibrage_non
+        controlleur_recalibrage_oui = UITest.Pathologie_Degeneratif.dege_recalibrage_oui
+
+        controlleur_cote_bilateral = UITest.Pathologie_Degeneratif.glb_dege_cote_bilateral
+        controlleur_cote_gauche = UITest.Pathologie_Degeneratif.glb_dege_cote_gauche
+        controlleur_cote_droit = UITest.Pathologie_Degeneratif.glb_dege_cote_droit
+        controlleur_arthrodese_non = UITest.Pathologie_Degeneratif.dege_arthrodese_non
+        controlleur_arthrodese_oui = UITest.Pathologie_Degeneratif.dege_arthrodese_oui
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
@@ -255,6 +306,37 @@ class Controller_Test:
         self.windowDegeneratif.switch_window4.connect(self.show_Arthrodese)
         self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
         self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)
+
+        self.windowDegeneratif.spinBox_nombre1.setValue(controlleur_vertebre1)
+        self.windowDegeneratif.spinBox_nombre2.setValue(controlleur_vertebre2)
+        self.windowDegeneratif.radioButton_medullaire.setChecked(controlleur_FN_medullaire)
+        self.windowDegeneratif.radioButton_radicoMedullaire.setChecked(controlleur_FN_radicoMedullaire)
+        self.windowDegeneratif.radioButton_non.setChecked(controlleur_FN_non)
+        self.windowDegeneratif.radioButton_radiculaire.setChecked(controlleur_FN_radiculaire)
+        self.windowDegeneratif.radioButton_recalibrageNon.setChecked(controlleur_recalibrage_non)
+        self.windowDegeneratif.radioButton_recalibrageOui.setChecked(controlleur_recalibrage_oui)
+        self.windowDegeneratif.radioButton_herniePure.setChecked(controlleur_recalibrage_hernie)
+        self.windowDegeneratif.radioButton_Droit.setChecked(controlleur_cote_droit)
+        self.windowDegeneratif.radioButton_gauche.setChecked(controlleur_cote_gauche)
+        self.windowDegeneratif.radioButton_bilateral.setChecked(controlleur_cote_bilateral)
+        self.windowDegeneratif.radioButton_arthrodeseOui.setChecked(controlleur_arthrodese_oui)
+        self.windowDegeneratif.radioButton_recalibrageNon.setChecked(controlleur_arthrodese_non)
+
+        if (controlleur_zoneCervicale == True):
+            self.windowDegeneratif.label_patho.setText("Cervicale")
+        if (controlleur_zoneDorsale == True):
+            self.windowDegeneratif.label_patho.setText("Dorsale")
+        if (controlleur_zoneLombaire == True):
+            self.windowDegeneratif.label_patho.setText("Lombaire")
+        if (controlleur_zoneSacro == True):
+            self.windowDegeneratif.label_patho.setText("Sacro-coccygienne")
+
+        if (controlleur_zoneCervicale == True and controlleur_zoneDorsale == True):
+            self.windowDegeneratif.label_patho.setText("Cervicale + Dorsale")
+        if (controlleur_zoneDorsale == True and controlleur_zoneLombaire == True):
+            self.windowDegeneratif.label_patho.setText("Dorsale + Lombaire")
+        if (controlleur_zoneLombaire == True and controlleur_zoneSacro == True):
+            self.windowDegeneratif.label_patho.setText("Lombaire + Sacro-coccygienne")
 
         self.etape2.hide()
         self.windowRecalibrage.hide()
@@ -322,10 +404,13 @@ class Controller_Test:
         self.windowNiveau.show()
 
     def show_Recalibrage(self):
+        global controlleur_vertebre1, controlleur_vertebre2
+
         self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
         self.signal_trauma = UITest.Pathologie_Etape2.signal_traumatologique
         self.signal_onco = UITest.Pathologie_Etape2.signal_oncologie
-
+        controlleur_vertebre1 = UITest.Pathologie_Degeneratif.dege_vertebre1
+        controlleur_vertebre2 = UITest.Pathologie_Degeneratif.dege_vertebre2
 
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
@@ -353,9 +438,13 @@ class Controller_Test:
         self.windowRecalibrage.show()
 
     def show_Arthrodese(self):
+        global controlleur_vertebre1, controlleur_vertebre2
+
         self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
         self.signal_trauma = UITest.Pathologie_Etape2.signal_traumatologique
         self.signal_onco = UITest.Pathologie_Etape2.signal_oncologie
+        controlleur_vertebre1 = UITest.Pathologie_Degeneratif.dege_vertebre1
+        controlleur_vertebre2 = UITest.Pathologie_Degeneratif.dege_vertebre2
 
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()

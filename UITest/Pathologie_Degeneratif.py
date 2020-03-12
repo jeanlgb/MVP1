@@ -9,6 +9,21 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+glb_dege_FN_radiculaire = True
+glb_dege_FN_radicoMedullaire = False
+glb_dege_FN_medullaire = False
+glb_dege_FN_non = False
+dege_vertebre1 = int(1)
+dege_vertebre2 =int(2)
+dege_recalibrage_oui = False
+dege_recalibrage_hernie = True
+dege_recalibrage_non = False
+glb_dege_cote_gauche = False
+glb_dege_cote_droit = False
+glb_dege_cote_bilateral = False
+dege_arthrodese_oui = False
+dege_arthrodese_non = True
+
 class Ui_Frame_Degeneratif(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -74,14 +89,6 @@ class Ui_Frame_Degeneratif(object):
         self.spinBox_nombre2.setMinimum(2)
         self.spinBox_nombre2.setMaximum(33)
         self.spinBox_nombre2.setObjectName("spinBox_nombre2")
-        self.label_recuperationFNetNiveau = QtWidgets.QLabel(self.groupBox_Niveau)
-        self.label_recuperationFNetNiveau.setEnabled(False)
-        self.label_recuperationFNetNiveau.setGeometry(QtCore.QRect(620, 60, 20, 20))
-        font = QtGui.QFont()
-        font.setPointSize(1)
-        self.label_recuperationFNetNiveau.setFont(font)
-        self.label_recuperationFNetNiveau.setText("")
-        self.label_recuperationFNetNiveau.setObjectName("label_recuperationFNetNiveau")
         self.label_patho = QtWidgets.QLabel(self.groupBox_Niveau)
         self.label_patho.setEnabled(False)
         self.label_patho.setGeometry(QtCore.QRect(10, 20, 121, 16))
@@ -103,10 +110,6 @@ class Ui_Frame_Degeneratif(object):
         self.radioButton_recalibrageOui = QtWidgets.QRadioButton(self.groupBox_recalibrage)
         self.radioButton_recalibrageOui.setGeometry(QtCore.QRect(100, 20, 71, 30))
         self.radioButton_recalibrageOui.setObjectName("radioButton_recalibrageOui")
-        self.textEdit_resultatRecalibrage = QtWidgets.QTextEdit(self.groupBox_recalibrage)
-        self.textEdit_resultatRecalibrage.setEnabled(False)
-        self.textEdit_resultatRecalibrage.setGeometry(QtCore.QRect(380, 10, 361, 31))
-        self.textEdit_resultatRecalibrage.setObjectName("textEdit_resultatRecalibrage")
         self.groupBox_cote = QtWidgets.QGroupBox(Frame)
         self.groupBox_cote.setGeometry(QtCore.QRect(30, 380, 751, 91))
         self.groupBox_cote.setObjectName("groupBox_cote")
@@ -148,10 +151,6 @@ class Ui_Frame_Degeneratif(object):
         self.pushButton_arthrodeseSuivant.setEnabled(False)
         self.pushButton_arthrodeseSuivant.setGeometry(QtCore.QRect(530, 50, 61, 30))
         self.pushButton_arthrodeseSuivant.setObjectName("pushButton_arthrodeseSuivant")
-        self.textEdit_resultatArthrodese = QtWidgets.QTextEdit(self.groupBox_arthrodese)
-        self.textEdit_resultatArthrodese.setEnabled(False)
-        self.textEdit_resultatArthrodese.setGeometry(QtCore.QRect(380, 10, 361, 31))
-        self.textEdit_resultatArthrodese.setObjectName("textEdit_resultatArthrodese")
         self.line = QtWidgets.QFrame(Frame)
         self.line.setGeometry(QtCore.QRect(30, 140, 751, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
@@ -213,7 +212,6 @@ class Ui_Frame_Degeneratif(object):
         self.groupBox_Niveau.setTitle(_translate("Frame", "2 - Niveau(x)"))
         self.label_niveau.setText(_translate("Frame", "Intervention de la vertèbre           à             ."))
         self.label_niveauCalcul.setText(_translate("Frame", "Espace vertèbre : "))
-        self.label_recuperationFNetNiveau.setText(_translate("Frame", "TextLabel"))
         self.groupBox_recalibrage.setTitle(_translate("Frame", "3 - Recalibrage"))
         self.pushButton_recalibrageSuivant.setText(_translate("Frame", "Suivant"))
         self.radioButton_herniePure.setText(_translate("Frame", "Hernie discale pure"))
@@ -245,26 +243,26 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
 
 
         # valeur des radiobuttons finalité neuro
-        self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN)
-        self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN)
-        self.radioButton_medullaire.toggled.connect(self.radiobtn_FN)
-        self.radioButton_non.toggled.connect(self.radiobtn_FN)
+        self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN_radiculaire)
+        self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN_radicoMedullaire)
+        self.radioButton_medullaire.toggled.connect(self.radiobtn_FN_medullaire)
+        self.radioButton_non.toggled.connect(self.radiobtn_FN_non)
 
         # récupération nombre de vertèbres
         self.nombre1 = self.spinBox_nombre1.valueChanged.connect(self.countVertebres)
         self.nombre2 = self.spinBox_nombre2.valueChanged.connect(self.countVertebres)
 
         # valeur des radiobuttons recalibrage et arthrodèse
-        self.radioButton_herniePure.toggled.connect(self.radiobtnRecalibrage)
-        self.radioButton_recalibrageNon.toggled.connect(self.radiobtnRecalibrage_suivant)
-        self.radioButton_recalibrageOui.toggled.connect(self.radiobtnRecalibrage)
-        self.radioButton_arthrodeseNon.toggled.connect(self.radiobtnArthrodese)
-        self.radioButton_arthrodeseOui.toggled.connect(self.radiobtnArthrodese_suivant)
+        self.radioButton_herniePure.toggled.connect(self.radiobtnRecalibrage_hernie)
+        self.radioButton_recalibrageNon.toggled.connect(self.radiobtnRecalibrage_non)
+        self.radioButton_recalibrageOui.toggled.connect(self.radiobtnRecalibrage_oui)
+        self.radioButton_arthrodeseNon.toggled.connect(self.radiobtnArthrodese_non)
+        self.radioButton_arthrodeseOui.toggled.connect(self.radiobtnArthrodese_oui)
 
         # valeur des radiobuttons côté
-        self.radioButton_bilateral.toggled.connect(self.radiobtnCote)
-        self.radioButton_Droit.toggled.connect(self.radiobtnCote)
-        self.radioButton_gauche.toggled.connect(self.radiobtnCote)
+        self.radioButton_bilateral.toggled.connect(self.radiobtnCote_bilateral)
+        self.radioButton_Droit.toggled.connect(self.radiobtnCote_droit)
+        self.radioButton_gauche.toggled.connect(self.radiobtnCote_gauche)
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtape2)
@@ -274,52 +272,169 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
         self.pushButton_valider.clicked.connect(self.valider) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
-    def radiobtn_FN(self):
+    def radiobtn_FN_radiculaire(self):
+        global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_dege_FN_radiculaire = True
+            glb_dege_FN_radicoMedullaire = False
+            glb_dege_FN_medullaire = False
+            glb_dege_FN_non = False
+
+    def radiobtn_FN_radicoMedullaire(self):
+        global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_dege_FN_radiculaire = False
+            glb_dege_FN_radicoMedullaire = True
+            glb_dege_FN_medullaire = False
+            glb_dege_FN_non = False
+            print("4")
+
+    def radiobtn_FN_medullaire(self):
+        global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_dege_FN_radiculaire = False
+            glb_dege_FN_radicoMedullaire = False
+            glb_dege_FN_medullaire = True
+            glb_dege_FN_non = False
             print("FN choix fait")
 
+    def radiobtn_FN_non(self):
+        global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_dege_FN_radiculaire = False
+            glb_dege_FN_radicoMedullaire = False
+            glb_dege_FN_medullaire = False
+            glb_dege_FN_non = True
+            print("FN choix fait")
+
+    def countVertebres(self):
+        global dege_vertebre1, dege_vertebre2
+
+        dege_vertebre1 = self.spinBox_nombre1.value()
+        dege_vertebre2 = self.spinBox_nombre2.value()
+        print("5")
+        self.soustraction = int(dege_vertebre2) + int(-dege_vertebre1)
+        self.lineEdit.setText(str(self.soustraction))
+
     def retourEtape2(self):
+        global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
+        global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
+
+        glb_dege_FN_radiculaire = True
+        glb_dege_FN_radicoMedullaire = False
+        glb_dege_FN_medullaire = False
+        glb_dege_FN_non = False
+        dege_vertebre1 = int(1)
+        dege_vertebre2 = int(2)
+        dege_recalibrage_oui = False
+        dege_recalibrage_hernie = True
+        dege_recalibrage_non = False
+        glb_dege_cote_gauche = False
+        glb_dege_cote_droit = False
+        glb_dege_cote_bilateral = False
+        dege_arthrodese_oui = False
+        dege_arthrodese_non = True
+
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
+        global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
+        global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
+
+        glb_dege_FN_radiculaire = True
+        glb_dege_FN_radicoMedullaire = False
+        glb_dege_FN_medullaire = False
+        glb_dege_FN_non = False
+        dege_vertebre1 = int(1)
+        dege_vertebre2 = int(2)
+        dege_recalibrage_oui = False
+        dege_recalibrage_hernie = True
+        dege_recalibrage_non = False
+        glb_dege_cote_gauche = False
+        glb_dege_cote_droit = False
+        glb_dege_cote_bilateral = False
+        dege_arthrodese_oui = False
+        dege_arthrodese_non = True
         self.switch_window2.emit()
 
-    def countVertebres(self):
-        self.nombre1 = self.spinBox_nombre1.value()
-        self.nombre2 = self.spinBox_nombre2.value()
-        self.soustraction = int(self.nombre2) + int(-self.nombre1)
-        print(self.soustraction)
-        self.lineEdit.setText(str(self.soustraction))
-
-    def radiobtnRecalibrage(self):
+    def radiobtnRecalibrage_oui(self):
+        global dege_recalibrage_oui, dege_recalibrage_hernie, dege_recalibrage_non
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            dege_recalibrage_oui = True
+            dege_recalibrage_hernie = False
+            dege_recalibrage_non = False
+            print("6")
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
 
-    def radiobtnRecalibrage_suivant(self):
+    def radiobtnRecalibrage_hernie(self):
+        global dege_recalibrage_oui, dege_recalibrage_hernie, dege_recalibrage_non
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            dege_recalibrage_oui = False
+            dege_recalibrage_hernie = True
+            dege_recalibrage_non = False
+            self.pushButton_recalibrageSuivant.setEnabled(True)
+            self.groupBox_cote.setEnabled(True)
+
+    def radiobtnRecalibrage_non(self):
+        global dege_recalibrage_oui, dege_recalibrage_hernie, dege_recalibrage_non
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            dege_recalibrage_oui = False
+            dege_recalibrage_hernie = False
+            dege_recalibrage_non = True
             self.pushButton_recalibrageSuivant.setEnabled(False)
             self.groupBox_cote.setEnabled(False)
 
     def suivantRecalibrage(self):
         self.switch_window3.emit()
 
-    def radiobtnCote(self):
+    def radiobtnCote_bilateral(self):
+        global glb_dege_cote_bilateral, glb_dege_cote_droit, glb_dege_cote_gauche
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            print("oui j'ai choisi le côté!")
+            glb_dege_cote_droit = False
+            glb_dege_cote_gauche = False
+            glb_dege_cote_bilateral = True
+            print("7")
 
-    def radiobtnArthrodese(self):
+    def radiobtnCote_droit(self):
+        global glb_dege_cote_bilateral, glb_dege_cote_droit, glb_dege_cote_gauche
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_dege_cote_droit = True
+            glb_dege_cote_gauche = False
+            glb_dege_cote_bilateral = False
+
+    def radiobtnCote_gauche(self):
+        global glb_dege_cote_bilateral, glb_dege_cote_droit, glb_dege_cote_gauche
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_dege_cote_droit = False
+            glb_dege_cote_gauche = True
+            glb_dege_cote_bilateral = False
+
+    def radiobtnArthrodese_non(self):
+        global dege_arthrodese_non, dege_arthrodese_oui
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            dege_arthrodese_non = True
+            dege_arthrodese_oui = False
             self.pushButton_arthrodeseSuivant.setEnabled(False)
 
-    def radiobtnArthrodese_suivant(self):
+    def radiobtnArthrodese_oui(self):
+        global dege_arthrodese_non, dege_arthrodese_oui
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            dege_arthrodese_oui = True
+            dege_arthrodese_non = False
+            print("8")
             self.pushButton_arthrodeseSuivant.setEnabled(True)
 
     def suivantArthrodese(self):
@@ -330,4 +445,5 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.switch_window5.emit()
 
     def valider(self):
+        print("9")
         self.switch_window6.emit() #faute de mieux

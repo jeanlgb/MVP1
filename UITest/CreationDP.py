@@ -493,15 +493,6 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         patient_jour = self.comboBox_jour.currentText()
         patient_mois = self.comboBox_mois.currentText()
         patient_annee = self.comboBox_jour.currentText()
-
-
-        # global patient_pathologie
-
-        # self.pathologie = self.comboBox_pathologie.currentText()
-        # self.label_recuperationPathologie.setText(self.pathologie) #valeur du combobox stocker dans un label en attendant de l'ajouter à lineEdit_intervention
-        # self.classePathologie = self.label_recuperationPathologie.text()
-        # patient_pathologie = self.classePathologie
-
         self.switch_window2.emit()
 
     def annuler(self):

@@ -106,6 +106,12 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+        global signal_cervicale, signal_lombaire, signal_dorsale, signal_sacro
+        signal_cervicale = False
+        signal_lombaire = False
+        signal_dorsale = False
+        signal_sacro = False
+
         # controlleur pour les boutons
         self.pushButton_degeneratif.clicked.connect(self.degeneratif)
         self.pushButton_traumatologique.clicked.connect(self.traumato)
