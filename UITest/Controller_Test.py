@@ -1,11 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-
+from Connexion_BD import *
 
 from UITest.Accueil_Medecin import MainWindow_Acceuil
 from UITest.CreationDP import MainWindow_CreationDP
 from UITest.CreationDP import *
 from UITest.Evaluation import MainWindow_Evaluation
+from UITest.Evaluation import *
 from UITest.Accueil_Secretaire import MainWindow_Acceuil_Secretaire
 from UITest.Connexion import Login
 from UITest.Pathologie_Etape2 import MainWindow_Etape2
@@ -31,6 +32,7 @@ controlleur_cbox_cervicaleRadiculaire = ""
 controlleur_cbox_medullaire = ""
 controlleur_cbox_thoracoLombaire = ""
 controlleur_cbox_autre = ""
+controlleur_cursor = ""
 
 controlleur_zoneCervicale = False
 controlleur_zoneDorsale = False
@@ -73,6 +75,7 @@ class Controller_Test:
     def show_Medecin(self):
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+        global BD
 
         controlleur_nom = ""
         controlleur_prenom = ""
@@ -83,6 +86,11 @@ class Controller_Test:
         self.co = Login()
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowEvaluation = MainWindow_Evaluation()
+
+        BD = Connexion_DB()
+        BD.connexion_DB()
+
+
 
         self.med.switch_window1.connect(self.show_CreationDP)
         # self.med.switch_window2.connect(self.show_)
@@ -95,10 +103,22 @@ class Controller_Test:
         self.med.show()
 
     def show_Secretaire(self):
+        global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
+        global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+
+        controlleur_nom = ""
+        controlleur_prenom = ""
+        controlleur_numMagic = ""
+        controlleur_dateDeIntervention = ""
+
+
         self.co = Login()
         self.sec = MainWindow_Acceuil_Secretaire()
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowEvaluation = MainWindow_Evaluation()
+
+        self.BD = Connexion_DB()
+        self.BD.connexion_DB()
 
         self.sec.switch_window1.connect(self.show_CreationDP)
         # self.sec.switch_window2.connect(self.show_)
@@ -173,7 +193,9 @@ class Controller_Test:
     def show_Evaluation(self):
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+        global controlleur_cursor
 
+        controlleur_cursor = ""
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
 
@@ -190,6 +212,13 @@ class Controller_Test:
         self.windowEvaluation = MainWindow_Evaluation()
         self.windowCreationDP = MainWindow_CreationDP()
         self.med = MainWindow_Acceuil()
+
+        # controlleur_cursor = Connexion_DB.cursor
+        #
+        # self.BD = Connexion_DB
+        #
+        res = UITest.Evaluation.resultat
+        BD.ajouter_score_oswestry(res)
 
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
 

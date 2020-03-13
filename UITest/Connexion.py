@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 
+
 from Utilisateur import *
 import keyboard
 signal_medecin = True
@@ -96,11 +97,14 @@ class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
                    i) == 'Medecin':
                signal_medecin = True
                signal_secretaire = False
+
+
                self.switch_window1.emit()
 
            if self.nom == Utilisateur.get_nom(i) and self.mdp == Utilisateur.get_mdp(i) and Utilisateur.get_type(
                    i) == 'Secretaire':
                 signal_medecin = False
                 signal_secretaire = True
+
                 self.switch_window2.emit()
 
