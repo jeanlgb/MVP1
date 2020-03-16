@@ -105,6 +105,7 @@ class Controller_Test:
     def show_Secretaire(self):
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+        global BD
 
         controlleur_nom = ""
         controlleur_prenom = ""
@@ -193,7 +194,8 @@ class Controller_Test:
     def show_Evaluation(self):
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
-        global controlleur_cursor
+        global res
+        
 
         controlleur_cursor = ""
         self.signal_med = UITest.Connexion.signal_medecin
@@ -217,7 +219,12 @@ class Controller_Test:
         #
         # self.BD = Connexion_DB
         #
-        res = UITest.Evaluation.resultat
+        res = ""
+        with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+            for line in f.readlines():
+                # Traiter la ligne et ainsi de suite ...
+                res = line.strip()
+
         BD.ajouter_score_oswestry(res)
 
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
@@ -504,7 +511,7 @@ class Controller_Test:
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller_INPEC2 = Controller_Test()
-    controller_INPEC2.show_CreationDP()
+    controller_INPEC2.show_Connexion()
     sys.exit(app.exec_())
 
 

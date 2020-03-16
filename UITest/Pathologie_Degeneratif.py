@@ -105,6 +105,7 @@ class Ui_Frame_Degeneratif(object):
         self.radioButton_herniePure.setChecked(True)
         self.radioButton_herniePure.setObjectName("radioButton_herniePure")
         self.radioButton_recalibrageNon = QtWidgets.QRadioButton(self.groupBox_recalibrage)
+        self.radioButton_recalibrageNon.setChecked(False)
         self.radioButton_recalibrageNon.setGeometry(QtCore.QRect(100, 60, 121, 30))
         self.radioButton_recalibrageNon.setObjectName("radioButton_recalibrageNon")
         self.radioButton_recalibrageOui = QtWidgets.QRadioButton(self.groupBox_recalibrage)
