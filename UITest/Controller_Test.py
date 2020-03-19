@@ -53,9 +53,13 @@ controlleur_cote_gauche = False
 controlleur_cote_bilateral = False
 controlleur_arthrodese_oui = False
 controlleur_arthrodese_non = False
+creerPat = False
 
 
 class Controller_Test:
+
+
+
 
     def __init__(self):
         pass
@@ -76,6 +80,7 @@ class Controller_Test:
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global BD
+        global creerPat
 
         controlleur_nom = ""
         controlleur_prenom = ""
@@ -87,9 +92,23 @@ class Controller_Test:
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowEvaluation = MainWindow_Evaluation()
 
+
+
+
         BD = Connexion_DB()
         BD.connexion_DB()
 
+        if creerPat == True:
+            controlleur_nom = UITest.CreationDP.patient_nom
+            controlleur_prenom = UITest.CreationDP.patient_prenom
+            controlleur_dateNaissance = UITest.CreationDP.patient_dateNaissance
+            controlleur_numMagic = UITest.CreationDP.patient_numMagic
+            BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
+            creerPat = False
+            controlleur_nom = ""
+            controlleur_prenom = ""
+            controlleur_numMagic = ""
+            controlleur_dateDeIntervention = ""
 
 
         self.med.switch_window1.connect(self.show_CreationDP)
@@ -195,11 +214,14 @@ class Controller_Test:
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global res
+        global creerPat
+
         
 
         controlleur_cursor = ""
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
+        self.signal_eval = UITest.CreationDP.signal_eval
 
         controlleur_nom = UITest.CreationDP.patient_nom
         controlleur_prenom = UITest.CreationDP.patient_prenom
@@ -226,7 +248,7 @@ class Controller_Test:
                 res = line.strip()
 
         BD.ajouter_score_oswestry(res)
-        BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
+
 
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
 
@@ -236,7 +258,9 @@ class Controller_Test:
         self.windowEvaluation.label_recuperationDateDeNaissance.setText(controlleur_dateNaissance)
 
         if self.signal_med == True:
-            self.windowEvaluation.switch_window.connect(self.show_Medecin)
+
+            if self.windowEvaluation.switch_window.connect(self.show_Medecin):
+                creerPat = True
 
         elif self.signal_sec == True:
             self.windowEvaluation.switch_window.connect(self.show_Secretaire)

@@ -19,6 +19,7 @@ valeur_cb_medullaire = False
 valeur_cb_thoraco_lombaire = False
 valeur_cb_autre = False
 nomPathologieCR = "CR"
+signal_eval = False
 
 
 
@@ -379,6 +380,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global patient_nom
         global patient_prenom
         global patient_numMagic
+        global signal_eval
 
         self.nom = self.lineEdit_nom.text()  # récupérer le texte dans le champ de texte
         self.prenom = self.lineEdit_prenom.text()  # récupérer le texte dans le champ de texte
@@ -389,7 +391,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         patient_prenom = self.prenom
         patient_numMagic = self.numMagic
         # print('2' + patient_nom)
-
+        signal_eval = True
         self.switch_window1.emit()
 
     def showDate(self, date_Intervention):
