@@ -55,6 +55,8 @@ controlleur_arthrodese_oui = False
 controlleur_arthrodese_non = False
 creerPat = False
 
+controlleur_postOp = False
+controlleur_preOp = False
 
 class Controller_Test:
 
@@ -220,6 +222,7 @@ class Controller_Test:
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global res
         global creerPat
+        global controlleur_postOp, controlleur_preOp
 
 
 
@@ -237,6 +240,8 @@ class Controller_Test:
         controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
         controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
         controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
+        controlleur_postOp = UITest.Evaluation.glb_postOp
+        controlleur_preOp = UITest.Evaluation.glb_preOp
 
         self.windowEvaluation = MainWindow_Evaluation()
         self.windowCreationDP = MainWindow_CreationDP()

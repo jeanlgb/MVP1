@@ -6,6 +6,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QCheckBox
 from PyQt5.QtCore import Qt
 import time
+
+glb_preOp = False
+glb_postOp = False
 class Ui_Frame_Evaluation(object):
 
     def setupUi(self, Frame):
@@ -205,14 +208,20 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         self.pushButton_annuler.clicked.connect(self.annuler)
 
     def radiobtn_tpsEval_post(self):
+        global glb_preOp, glb_postOp
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_postOp = True
+            glb_preOp = False
             self.checkBox_glassman.setChecked(True)
             self.pushButton_demarrer.setEnabled(True)
 
     def radiobtn_tpsEval_pre(self):
+        global glb_preOp, glb_postOp
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_postOp = False
+            glb_preOp = True
             self.checkBox_glassman.setChecked(False)
             self.pushButton_demarrer.setEnabled(True)
 
