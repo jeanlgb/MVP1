@@ -10,10 +10,10 @@ class Connexion_DB:
         cursor = conn.cursor()
 
     def creation_patient(self, numero, nom, prenom, genre): #rajouter les dates et numéro de dossier Magic. Vérifier que le patient n'existe déja pas
-        patient = {"numero_patient" : numero, "nom" : nom, "prenom" : prenom, "genre" : genre}
-        cursor.execute("""INSERT INTO donnees_administratives (Numéro_patient,Nom, Prénom, Genre) VALUES(%(
-        numero_patient)s, %(nom)s, %(prenom)s), %(genre)s)""", patient)
+        patient = {"numero_pat": numero, "nom": nom, "prenom": prenom, "genre": genre}
+        cursor.execute("""INSERT INTO donnees_administratives (Numéro_patient, Nom, Prénom, Genre) VALUES(%(numero_pat)s, %(nom)s, %(prenom)s, %(genre)s)""", patient)
         conn.commit()
+
 
     def verification_patient_pas_dans_bd(self,nom, prenom): #Finir le where
         patient = {"nom": nom, "prenom" : prenom}

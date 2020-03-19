@@ -226,6 +226,7 @@ class Controller_Test:
                 res = line.strip()
 
         BD.ajouter_score_oswestry(res)
+        BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
 
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
 
