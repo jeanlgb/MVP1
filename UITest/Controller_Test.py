@@ -54,6 +54,7 @@ controlleur_cote_bilateral = False
 controlleur_arthrodese_oui = False
 controlleur_arthrodese_non = False
 creerPat = False
+BD = Connexion_DB()
 
 
 class Controller_Test:
@@ -125,6 +126,7 @@ class Controller_Test:
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global BD
+        global creerPat
 
         controlleur_nom = ""
         controlleur_prenom = ""
@@ -139,6 +141,18 @@ class Controller_Test:
 
         self.BD = Connexion_DB()
         self.BD.connexion_DB()
+
+        if creerPat == True:
+            controlleur_nom = UITest.CreationDP.patient_nom
+            controlleur_prenom = UITest.CreationDP.patient_prenom
+            controlleur_dateNaissance = UITest.CreationDP.patient_dateNaissance
+            controlleur_numMagic = UITest.CreationDP.patient_numMagic
+            BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
+            creerPat = False
+            controlleur_nom = ""
+            controlleur_prenom = ""
+            controlleur_numMagic = ""
+            controlleur_dateDeIntervention = ""
 
         self.sec.switch_window1.connect(self.show_CreationDP)
         # self.sec.switch_window2.connect(self.show_)
@@ -263,7 +277,8 @@ class Controller_Test:
                 creerPat = True
 
         elif self.signal_sec == True:
-            self.windowEvaluation.switch_window.connect(self.show_Secretaire)
+            if self.windowEvaluation.switch_window.connect(self.show_Secretaire):
+                creerPat = True
 
         # coche automatiquement les checkbox des scores
         if controlleur_cbox_cervicaleRadiculaire == True:
