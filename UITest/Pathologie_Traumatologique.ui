@@ -146,6 +146,22 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_FN">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>30</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_Modalite">
    <property name="geometry">
@@ -286,6 +302,22 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
+   <widget class="QLabel" name="label__modalite_massacre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>40</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_recalibrage">
    <property name="geometry">
@@ -310,19 +342,6 @@
     </property>
     <property name="text">
      <string>Suivant</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit_resultatRecalibrage">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>10</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_recalibrageNon">
@@ -367,6 +386,22 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_reca_massacre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>20</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_arthrodese">
    <property name="geometry">
@@ -396,19 +431,6 @@
      <string>Suivant</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_resultatArthrodese">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>10</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QRadioButton" name="radioButton_arthrodeseOui">
     <property name="geometry">
      <rect>
@@ -436,6 +458,22 @@
     </property>
     <property name="checked">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_arthro_massacre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>20</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -591,6 +629,22 @@
      <string>Non</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_corpo">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>70</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_osteosynthese">
    <property name="geometry">
@@ -644,6 +698,22 @@
     </property>
     <property name="checked">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_osteo">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>60</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -742,6 +812,22 @@
     </property>
     <property name="text">
      <string>Veuillez choisir les vertèbres considérées : </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Niveau_massacre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>70</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -848,6 +934,22 @@
     </property>
     <property name="text">
      <string>Gauche</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_cote_massacre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>30</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

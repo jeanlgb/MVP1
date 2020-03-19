@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
+    <width>998</width>
     <height>893</height>
    </rect>
   </property>
@@ -61,39 +61,77 @@
      <property name="title">
       <string>1 - Finalité neurologique</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QRadioButton" name="radioButton_radiculaire">
-        <property name="text">
-         <string>Décompression radiculaire</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButton_radicoMedullaire">
-        <property name="text">
-         <string>Décompression radico-médullaire</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QRadioButton" name="radioButton_non">
-        <property name="text">
-         <string>Non</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QRadioButton" name="radioButton_medullaire">
-        <property name="text">
-         <string>Décompression médullaire</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QRadioButton" name="radioButton_radiculaire">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>33</y>
+        <width>361</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Décompression radiculaire</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_radicoMedullaire">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>66</y>
+        <width>371</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Décompression radico-médullaire</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_non">
+      <property name="geometry">
+       <rect>
+        <x>493</x>
+        <y>66</y>
+        <width>311</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Non</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_medullaire">
+      <property name="geometry">
+       <rect>
+        <x>493</x>
+        <y>33</y>
+        <width>311</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Décompression médullaire</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FN">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>890</x>
+        <y>20</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item row="2" column="0" colspan="4">
@@ -108,56 +146,103 @@
      <property name="title">
       <string>2 - Topographie</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="checkBox_epidurale">
-        <property name="text">
-         <string>Epidurale</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="checkBox_intraDurale">
-        <property name="text">
-         <string>Intra-durale</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QCheckBox" name="checkBox_enSablier">
-        <property name="text">
-         <string>En sablier</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="checkBox_osseuseTopographie">
-        <property name="text">
-         <string>Osseuse</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="checkBox_intraMedullaire">
-        <property name="text">
-         <string>Intra-médullaire</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QCheckBox" name="checkBox_autreTopographie">
-        <property name="text">
-         <string>Autre</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QCheckBox" name="checkBox_epidurale">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>33</y>
+        <width>201</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Epidurale</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_intraDurale">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>33</y>
+        <width>221</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Intra-durale</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_enSablier">
+      <property name="geometry">
+       <rect>
+        <x>654</x>
+        <y>33</y>
+        <width>211</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>En sablier</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_osseuseTopographie">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>66</y>
+        <width>221</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Osseuse</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_intraMedullaire">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>66</y>
+        <width>261</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Intra-médullaire</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_autreTopographie">
+      <property name="geometry">
+       <rect>
+        <x>654</x>
+        <y>66</y>
+        <width>211</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Autre</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_topo_massacre">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>20</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item row="4" column="0" colspan="4">
@@ -172,56 +257,106 @@
      <property name="title">
       <string>3 - Origine</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="checkBox_origineRadiculaire">
-        <property name="text">
-         <string>Radiculaire</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="checkBox_origineOsseuse">
-        <property name="text">
-         <string>Osseuse</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QCheckBox" name="checkBox_origineMedullaire">
-        <property name="text">
-         <string>Médullaire</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="checkBox_meningee">
-        <property name="text">
-         <string>Méningée</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="checkBox_secondaire">
-        <property name="text">
-         <string>Secondaire</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QCheckBox" name="checkBox_origineAutre">
-        <property name="text">
-         <string>Autre</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QCheckBox" name="checkBox_origineRadiculaire">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>33</y>
+        <width>231</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Radiculaire</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_origineOsseuse">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>33</y>
+        <width>231</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Osseuse</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_origineMedullaire">
+      <property name="geometry">
+       <rect>
+        <x>654</x>
+        <y>33</y>
+        <width>241</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Médullaire</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_meningee">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>66</y>
+        <width>201</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Méningée</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_secondaire">
+      <property name="geometry">
+       <rect>
+        <x>332</x>
+        <y>66</y>
+        <width>211</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Secondaire</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_origineAutre">
+      <property name="geometry">
+       <rect>
+        <x>654</x>
+        <y>66</y>
+        <width>241</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Autre</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_origine_massacre">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>20</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item row="6" column="0" colspan="4">
@@ -321,6 +456,22 @@
        <number>33</number>
       </property>
      </widget>
+     <widget class="QLabel" name="label_nivea_massacre">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item row="8" column="0" colspan="4">
@@ -388,6 +539,19 @@
       </property>
       <property name="text">
        <string>Oui</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_reca_massacre">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -487,6 +651,22 @@
        <string>Droit</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_cote_massacre">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item row="12" column="0" colspan="4">
@@ -541,6 +721,22 @@
       </property>
       <property name="text">
        <string>Suivant</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_arthro_massacre">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>2</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

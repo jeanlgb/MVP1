@@ -146,6 +146,22 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_FN">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>60</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_Niveau">
    <property name="geometry">
@@ -281,6 +297,22 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_Niveau_massacre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>70</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_finaliteNeurologique_2">
    <property name="geometry">
@@ -349,17 +381,20 @@
      <string>Oui</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_resultatRecalibrage">
+   <widget class="QLabel" name="label_recalibrage_massacre">
     <property name="enabled">
      <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>10</y>
-      <width>361</width>
-      <height>31</height>
+      <x>710</x>
+      <y>50</y>
+      <width>2</width>
+      <height>2</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -458,6 +493,22 @@
      <string>Droit</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_cote">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>30</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_finaliteNeurologique_4">
    <property name="geometry">
@@ -513,17 +564,17 @@
      <string>Suivant</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_resultatArthrodese">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QLabel" name="label_athro_massacre">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>10</y>
-      <width>361</width>
-      <height>31</height>
+      <x>670</x>
+      <y>40</y>
+      <width>2</width>
+      <height>2</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
