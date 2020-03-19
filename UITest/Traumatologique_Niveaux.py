@@ -278,6 +278,8 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
         self.checkBox_29.stateChanged.connect(self.checkBoxChangeAction_29)
         self.checkBox_30.stateChanged.connect(self.checkBoxChangeAction_30)
         self.checkBox_31.stateChanged.connect(self.checkBoxChangeAction_31)
+        self.checkBox_C6.stateChanged.connect(self.checkBoxChangeAction_C6)
+        self.checkBox_C7.stateChanged.connect(self.checkBoxChangeAction_C7)
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourTraumato)
@@ -295,6 +297,8 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
             self.checkBox_3.setChecked(False)
             self.checkBox_4.setChecked(False)
             self.checkBox_5.setChecked(False)
+            self.checkBox_C6.setChecked(False)
+            self.checkBox_C7.setChecked(False)
             print("unchecked")
 
     def checkBoxChangeAction_dorsale(self, state):
@@ -621,6 +625,24 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
 
 
     def checkBoxChangeAction_31(self, state):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
+            print("checked")
+        else:
+            compteur = compteur - 1
+            print("unchecked")
+
+    def checkBoxChangeAction_C6(self, state):
+        global compteur
+        if (state == QtCore.Qt.Checked):
+            compteur = compteur + 1
+            print("checked")
+        else:
+            compteur = compteur - 1
+            print("unchecked")
+
+    def checkBoxChangeAction_C7(self, state):
         global compteur
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1

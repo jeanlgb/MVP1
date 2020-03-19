@@ -390,19 +390,6 @@
        <string>Oui</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit_resultatRecalibrage">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>10</y>
-        <width>361</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
    </item>
    <item row="10" column="0" colspan="4">
@@ -554,19 +541,6 @@
       </property>
       <property name="text">
        <string>Suivant</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="textEdit_resultatArthrodese">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>10</y>
-        <width>361</width>
-        <height>31</height>
-       </rect>
       </property>
      </widget>
     </widget>

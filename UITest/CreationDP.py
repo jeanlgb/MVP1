@@ -148,6 +148,14 @@ class Ui_Frame_CreationDP(object):
         font.setWeight(75)
         self.label_nomIntervention.setFont(font)
         self.label_nomIntervention.setObjectName("label_nomIntervention")
+        self.label_commentaire = QtWidgets.QLabel(Frame)
+        self.label_commentaire.setGeometry(QtCore.QRect(20, 460, 251, 30))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_commentaire.setFont(font)
+        self.label_commentaire.setObjectName("label_commentaire")
         self.label_prenom = QtWidgets.QLabel(Frame)
         self.label_prenom.setGeometry(QtCore.QRect(94, 190, 181, 30))
         font = QtGui.QFont()
@@ -242,6 +250,7 @@ class Ui_Frame_CreationDP(object):
         self.label_nom.raise_()
         self.lineEdit_prenom.raise_()
         self.label_nomIntervention.raise_()
+        self.label_commentaire.raise_()
         self.pushButton_evaluation.raise_()
         self.label_prenom.raise_()
         self.lineEdit_numeroMagic.raise_()
@@ -277,6 +286,7 @@ class Ui_Frame_CreationDP(object):
         Frame.setWindowTitle(_translate("Frame", "Frame"))
         self.label_nom.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Nom :</p></body></html>"))
         self.label_nomIntervention.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Nom de l\'intervention :</p></body></html>"))
+        self.label_commentaire.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Commentaire :</p></body></html>"))
         self.pushButton_evaluation.setText(_translate("Frame", "Evaluation"))
         self.label_prenom.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Prénom :</p></body></html>"))
         self.label_titre.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Création d\'un dossier patient</p></body></html>"))
@@ -430,12 +440,9 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_medullaire = False
             valeur_cb_thoraco_lombaire = False
             valeur_cb_autre = False
-            # self.textEdit_interventionNonModifiable.setText("Cervicale Radiculaire")
-            # self.pathoCR = self.textEdit_interventionNonModifiable.text()
-            # nomPathologieCR = self.pathoCR
-            # print(nomPathologieCR)
+            self.textEdit_interventionNonModifiable.setText("Cervicale Radiculaire")
         else:
-            print("unchecked")
+            self.textEdit_interventionNonModifiable.setText("")
 
     def checkBoxChangeAction_medullaire(self, state):
         global valeur_cb_cervicale_radiculaire
@@ -449,9 +456,9 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_cervicale_radiculaire = False
             valeur_cb_thoraco_lombaire = False
             valeur_cb_autre = False
-            print("1")
+            self.textEdit_interventionNonModifiable.setText("Médullaire")
         else:
-            print ("unchecked")
+            self.textEdit_interventionNonModifiable.setText("")
 
     def checkBoxChangeAction_lombaire(self, state):
         global valeur_cb_cervicale_radiculaire
@@ -465,9 +472,9 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_medullaire = False
             valeur_cb_cervicale_radiculaire = False
             valeur_cb_autre = False
-            print("checked")
+            self.textEdit_interventionNonModifiable.setText("Thoraco-Lombaire")
         else:
-            print ("unchecked")
+            self.textEdit_interventionNonModifiable.setText("")
 
     def checkBoxChangeAction_autre(self, state):
         global valeur_cb_cervicale_radiculaire
@@ -480,9 +487,9 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_thoraco_lombaire = False
             valeur_cb_medullaire = False
             valeur_cb_cervicale_radiculaire = False
-            print("checked")
+            self.textEdit_interventionNonModifiable.setText("Pathologie de type Autre")
         else:
-            print ("unchecked")
+            self.textEdit_interventionNonModifiable.setText("")
 
     def etape2 (self):
         global patient_nom, patient_prenom, patient_dateIntervention, patient_numMagic

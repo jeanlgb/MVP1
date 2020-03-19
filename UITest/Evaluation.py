@@ -6,7 +6,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QCheckBox
 from PyQt5.QtCore import Qt
 import time
-
 class Ui_Frame_Evaluation(object):
 
     def setupUi(self, Frame):
@@ -182,8 +181,8 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         self.setupUi(self)
 
         # valeur des radiobuttons finalité neuro
-        self.radioButton_postOp.toggled.connect(self.radiobtn_tpsEval)
-        self.radioButton_preOp.toggled.connect(self.radiobtn_tpsEval)
+        self.radioButton_postOp.toggled.connect(self.radiobtn_tpsEval_post)
+        self.radioButton_preOp.toggled.connect(self.radiobtn_tpsEval_pre)
 
         # récupération des valeurs des checkbox
         self.checkBox_glassman.stateChanged.connect(self.checkBoxChangeAction_glassman)
@@ -205,9 +204,16 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         self.pushButton_demarrer.clicked.connect(self.transfert)
         self.pushButton_annuler.clicked.connect(self.annuler)
 
-    def radiobtn_tpsEval(self):
+    def radiobtn_tpsEval_post(self):
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            self.checkBox_glassman.setChecked(True)
+            self.pushButton_demarrer.setEnabled(True)
+
+    def radiobtn_tpsEval_pre(self):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            self.checkBox_glassman.setChecked(False)
             self.pushButton_demarrer.setEnabled(True)
 
     def checkBoxChangeAction_glassman (self, state):
@@ -306,4 +312,5 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         x = msg.exec_()
 
     def annuler(self):
+
         self.switch_window2.emit()
