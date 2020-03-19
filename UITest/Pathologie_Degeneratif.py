@@ -1,14 +1,6 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'Pathologie_Degeneratif.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from Connexion_BD import *
 glb_dege_FN_radiculaire = True
 glb_dege_FN_radicoMedullaire = False
 glb_dege_FN_medullaire = False
@@ -24,6 +16,7 @@ glb_dege_cote_bilateral = False
 dege_arthrodese_oui = False
 dege_arthrodese_non = True
 
+signal_patho_degene = False
 class Ui_Frame_Degeneratif(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -105,7 +98,6 @@ class Ui_Frame_Degeneratif(object):
         self.radioButton_herniePure.setChecked(True)
         self.radioButton_herniePure.setObjectName("radioButton_herniePure")
         self.radioButton_recalibrageNon = QtWidgets.QRadioButton(self.groupBox_recalibrage)
-        self.radioButton_recalibrageNon.setChecked(False)
         self.radioButton_recalibrageNon.setGeometry(QtCore.QRect(100, 60, 121, 30))
         self.radioButton_recalibrageNon.setObjectName("radioButton_recalibrageNon")
         self.radioButton_recalibrageOui = QtWidgets.QRadioButton(self.groupBox_recalibrage)
@@ -339,7 +331,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         glb_dege_cote_bilateral = False
         dege_arthrodese_oui = False
         dege_arthrodese_non = True
-
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
@@ -369,7 +360,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_oui = True
             dege_recalibrage_hernie = False
             dege_recalibrage_non = False
-            print("6")
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
 
@@ -446,5 +436,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.switch_window5.emit()
 
     def valider(self):
-        print("9")
+        # global signal_patho_degene
+        # signal_patho_degene = True
         self.switch_window6.emit() #faute de mieux

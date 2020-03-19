@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 signal_degeneratif = False
 signal_traumatologique = False
 signal_oncologie = False
+
 signal_cervicale = False
 signal_dorsale = False
 signal_lombaire = False
@@ -175,7 +176,7 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         global signal_oncologie
 
         signal_degeneratif = True
-        print("3")
+        print(signal_degeneratif)
         signal_traumatologique = False
         signal_oncologie = False
 
@@ -188,6 +189,7 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
 
         signal_degeneratif = False
         signal_traumatologique = True
+        print(signal_traumatologique)
         signal_oncologie = False
 
         self.switch_window2.emit()

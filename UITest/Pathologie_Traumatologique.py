@@ -15,7 +15,7 @@ class Ui_Frame_Traumatologique(object):
         self.pushButton_annuler.setGeometry(QtCore.QRect(900, 10, 61, 30))
         self.pushButton_annuler.setObjectName("pushButton_annuler")
         self.pushButton_ajouterIntervention = QtWidgets.QPushButton(Frame)
-        self.pushButton_ajouterIntervention.setGeometry(QtCore.QRect(430, 610, 130, 30))
+        self.pushButton_ajouterIntervention.setGeometry(QtCore.QRect(180, 610, 130, 30))
         self.pushButton_ajouterIntervention.setObjectName("pushButton_ajouterIntervention")
         self.pushButton_retour = QtWidgets.QPushButton(Frame)
         self.pushButton_retour.setGeometry(QtCore.QRect(30, 10, 61, 30))
@@ -179,9 +179,6 @@ class Ui_Frame_Traumatologique(object):
         self.checkBox_osteosyntheseNon.setGeometry(QtCore.QRect(190, 20, 131, 30))
         self.checkBox_osteosyntheseNon.setChecked(True)
         self.checkBox_osteosyntheseNon.setObjectName("checkBox_osteosyntheseNon")
-        self.pushButton_ajouterNiveau = QtWidgets.QPushButton(Frame)
-        self.pushButton_ajouterNiveau.setGeometry(QtCore.QRect(180, 610, 130, 30))
-        self.pushButton_ajouterNiveau.setObjectName("pushButton_ajouterNiveau")
         self.groupBox_Niveau = QtWidgets.QGroupBox(Frame)
         self.groupBox_Niveau.setGeometry(QtCore.QRect(30, 270, 401, 91))
         self.groupBox_Niveau.setObjectName("groupBox_Niveau")
@@ -258,7 +255,6 @@ class Ui_Frame_Traumatologique(object):
         self.line_7.raise_()
         self.groupBox_gesteCorpo.raise_()
         self.groupBox_osteosynthese.raise_()
-        self.pushButton_ajouterNiveau.raise_()
         self.groupBox_Niveau.raise_()
         self.line_9.raise_()
         self.groupBox_cote.raise_()
@@ -301,7 +297,6 @@ class Ui_Frame_Traumatologique(object):
         self.checkBox_visMonoaxiales.setText(_translate("Frame", "Vis monoaxiales"))
         self.checkBox_visPolyaxiales.setText(_translate("Frame", "Vis polyaxiales"))
         self.checkBox_osteosyntheseNon.setText(_translate("Frame", "Non"))
-        self.pushButton_ajouterNiveau.setText(_translate("Frame", "Ajouter Niveau"))
         self.groupBox_Niveau.setTitle(_translate("Frame", "3 - Niveau(x)"))
         self.label_nombreVertebre.setText(_translate("Frame", "Nombre de vertèbres :"))
         self.pushButton_niveauSuivant.setText(_translate("Frame", "Suivant"))
@@ -320,7 +315,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
     switch_window3 = QtCore.pyqtSignal()
     switch_window4 = QtCore.pyqtSignal()
     switch_window5 = QtCore.pyqtSignal()
-    switch_window6 = QtCore.pyqtSignal()
     switch_window7 = QtCore.pyqtSignal()
     switch_window8 = QtCore.pyqtSignal()
 
@@ -362,7 +356,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.pushButton_niveauSuivant.clicked.connect(self.suivantNiveau)
         self.pushButton_recalibrageSuivant.clicked.connect(self.suivantRecalibrage)
         self.pushButton_arthrodeseSuivant.clicked.connect(self.suivantArthrodese)
-        self.pushButton_ajouterNiveau.clicked.connect(self.ajouterNiveau)
         self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
         self.pushButton_valider.clicked.connect(self.valider)
 
@@ -476,9 +469,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
 
     def suivantArthrodese(self):
         self.switch_window5.emit()
-
-    def ajouterNiveau(self):
-        self.switch_window6.emit()
 
     def ajouterIntervention(self):
         self.switch_window7.emit()

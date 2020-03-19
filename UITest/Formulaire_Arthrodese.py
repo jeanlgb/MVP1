@@ -9,6 +9,22 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+glb_arthrodese_posterieur = False
+glb_arthrodese_anterieur = False
+glb_arthrodese_polyaxiales = False
+glb_arthrodese_monoaxiales = False
+glb_arthrodese_plaque = False
+glb_arthrodese_fixationAucune = False
+glb_arthrodese_fixationAucune2 = False
+glb_arthrodese_2PLIF = False
+glb_arthrodese_PLIF = False
+glb_arthrodese_TLIF = False
+glb_arthrodese_OsSeulement = False
+glb_arthrodese_greffeAucune = False
+glb_arthrodese_intersomatique = False
+glb_arthrodese_corporectomie = False
+glb_arthrodese_OsSeulement2 = False
+glb_arthrodese_greffeAucune2 = False
 
 class Ui_Frame_Arthrodese(object):
     def setupUi(self, Frame):
@@ -273,22 +289,23 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.radioButton_anterieure.toggled.connect(self.radiobtnFrame_Haut_anterieur)
         self.radioButton_posterieure.toggled.connect(self.radiobtnFrame_Haut_posterieur)
 
-        self.radioButton_monoaxiales.toggled.connect(self.radiobtnFrame_Gauche)
-        self.radioButton_polyaxiales.toggled.connect(self.radiobtnFrame_Gauche)
-        self.radioButton_aucune.toggled.connect(self.radiobtnFrame_Gauche)
+        self.radioButton_monoaxiales.toggled.connect(self.radiobtn_polyaxiales)
+        self.radioButton_polyaxiales.toggled.connect(self.radiobtn_monoaxiales)
+        self.radioButton_aucune.toggled.connect(self.radiobtn_fixationAucune)
 
-        self.radioButton_plaque_2.toggled.connect(self.radiobtnFrame_Droite)
-        self.radioButton_aucune2.toggled.connect(self.radiobtnFrame_Droite)
+        self.radioButton_plaque_2.toggled.connect(self.radiobtn_plaque)
+        self.radioButton_aucune2.toggled.connect(self.radiobtn_fixationAucunes2)
 
-        self.radioButton_aucuneGreffe.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
-        self.radioButton_1plif.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
-        self.radioButton_2plif.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
-        self.radioButton_tlif.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
-        self.radioButton_os.toggled.connect(self.radiobtnFrame_Gauche_Greffe)
-        self.radioButton_aucuneGreffe2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
-        self.radioButton_intersomatique.toggled.connect(self.radiobtnFrame_Droite_Greffe)
-        self.radioButton_corporectomie_2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
-        self.radioButton_os2.toggled.connect(self.radiobtnFrame_Droite_Greffe)
+        self.radioButton_aucuneGreffe.toggled.connect(self.radiobtn_2PLIF)
+        self.radioButton_1plif.toggled.connect(self.radiobtn_1PLIF)
+        self.radioButton_2plif.toggled.connect(self.radiobtn_TLIF)
+        self.radioButton_tlif.toggled.connect(self.radiobtn_OsSeulement)
+        self.radioButton_os.toggled.connect(self.radiobtn_greffeAucune)
+
+        self.radioButton_aucuneGreffe2.toggled.connect(self.radiobtn_intersomatique)
+        self.radioButton_intersomatique.toggled.connect(self.radiobtn_corporectomie)
+        self.radioButton_corporectomie_2.toggled.connect(self.radiobtn_OsSeulement2)
+        self.radioButton_os2.toggled.connect(self.radiobtn_greffeAucune2)
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
@@ -302,42 +319,152 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.switch_window2.emit()
 
     def radiobtnFrame_Haut_anterieur(self):
+        global glb_arthrodese_posterieur, glb_arthrodese_anterieur
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_arthrodese_posterieur = False
+            glb_arthrodese_anterieur = True
             self.frame_gauche1.setEnabled(False)
             self.frame_gauche2.setEnabled(False)
             self.frame_droite1.setEnabled(True)
             self.frame_droite2.setEnabled(True)
 
     def radiobtnFrame_Haut_posterieur(self):
+        global glb_arthrodese_posterieur, glb_arthrodese_anterieur
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_arthrodese_posterieur = True
+            glb_arthrodese_anterieur = False
             self.frame_gauche1.setEnabled(True)
             self.frame_gauche2.setEnabled(True)
             self.frame_droite1.setEnabled(False)
             self.frame_droite2.setEnabled(False)
 
-    def radiobtnFrame_Gauche(self):
+    def radiobtn_polyaxiales(self):
+        global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            print("oui j'ai choisi le truc à gauche!")
+            glb_arthrodese_polyaxiales = True
+            glb_arthrodese_monoaxiales = False
+            glb_arthrodese_fixationAucune = False
 
-    def radiobtnFrame_Droite(self):
+    def radiobtn_monoaxiales(self):
+        global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            print("oui j'ai choisi le truc à droite!")
+            glb_arthrodese_polyaxiales = False
+            glb_arthrodese_monoaxiales = True
+            glb_arthrodese_fixationAucune = False
 
-    def radiobtnFrame_Gauche_Greffe(self):
+
+    def radiobtn_fixationAucune(self):
+        global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            print("oui j'ai choisi le truc à gauche!")
+            glb_arthrodese_polyaxiales = False
+            glb_arthrodese_monoaxiales = False
+            glb_arthrodese_fixationAucune = True
 
-    def radiobtnFrame_Droite_Greffe(self):
+
+    def radiobtn_plaque(self):
+        global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
-            print("oui j'ai choisi le truc à droite!")
+           glb_arthrodese_plaque = True
+        glb_arthrodese_fixationAucune2 = False
 
+    def radiobtn_fixationAucunes2(self):
+        global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_plaque = False
+            glb_arthrodese_fixationAucune2 = True
 
+    def radiobtn_2PLIF(self):
+        global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_2PLIF = True
+            glb_arthrodese_PLIF = False
+            glb_arthrodese_TLIF = False
+            glb_arthrodese_OsSeulement = False
+            glb_arthrodese_greffeAucune = False
+
+    def radiobtn_1PLIF(self):
+        global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_2PLIF = False
+            glb_arthrodese_PLIF = True
+            glb_arthrodese_TLIF = False
+            glb_arthrodese_OsSeulement = False
+            glb_arthrodese_greffeAucune = False
+
+    def radiobtn_TLIF(self):
+        global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_2PLIF = False
+            glb_arthrodese_PLIF = False
+            glb_arthrodese_TLIF = True
+            glb_arthrodese_OsSeulement = False
+            glb_arthrodese_greffeAucune = False
+
+    def radiobtn_OsSeulement(self):
+        global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_2PLIF = False
+            glb_arthrodese_PLIF = False
+            glb_arthrodese_TLIF = False
+            glb_arthrodese_OsSeulement = True
+            glb_arthrodese_greffeAucune = False
+
+    def radiobtn_greffeAucune(self):
+        global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_2PLIF = False
+            glb_arthrodese_PLIF = False
+            glb_arthrodese_TLIF = False
+            glb_arthrodese_OsSeulement = False
+            glb_arthrodese_greffeAucune = True
+
+    def radiobtn_intersomatique(self):
+        global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_intersomatique = True
+            glb_arthrodese_corporectomie = False
+            glb_arthrodese_OsSeulement2 = False
+            glb_arthrodese_greffeAucune2 = False
+
+    def radiobtn_corporectomie(self):
+        global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_intersomatique = False
+            glb_arthrodese_corporectomie = True
+            glb_arthrodese_OsSeulement2 = False
+            glb_arthrodese_greffeAucune2 = False
+
+    def radiobtn_OsSeulement2(self):
+        global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_intersomatique = False
+            glb_arthrodese_corporectomie = False
+            glb_arthrodese_OsSeulement2 = True
+            glb_arthrodese_greffeAucune2 = False
+
+    def radiobtn_greffeAucune2(self):
+        global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
+            glb_arthrodese_intersomatique = False
+            glb_arthrodese_corporectomie = False
+            glb_arthrodese_OsSeulement2 = False
+            glb_arthrodese_greffeAucune2 = True
 
 
     def suivant(self):

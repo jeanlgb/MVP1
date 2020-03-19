@@ -154,6 +154,8 @@ class Controller_Test:
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
 
+
+
         controlleur_jour = UITest.CreationDP.patient_jour
         controlleur_mois = UITest.CreationDP.patient_mois
         controlleur_annee = UITest.CreationDP.patient_anneeControlleur
@@ -164,6 +166,7 @@ class Controller_Test:
 
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
+        self.signal_patho_degene = UITest.Pathologie_Degeneratif.signal_patho_degene
 
         self.windowEvaluation = MainWindow_Evaluation()
         self.sec = MainWindow_Acceuil_Secretaire()
@@ -179,6 +182,8 @@ class Controller_Test:
         #actions de chaque bouton en fct du window
         self.windowCreationDP.switch_window1.connect(self.show_Evaluation)
         self.windowCreationDP.switch_window2.connect(self.show_Etape2)
+
+
 
         self.windowCreationDP.lineEdit_nom.setText(controlleur_nom)
         self.windowCreationDP.lineEdit_prenom.setText(controlleur_prenom)
@@ -216,7 +221,7 @@ class Controller_Test:
         global res
         global creerPat
 
-        
+
 
         controlleur_cursor = ""
         self.signal_med = UITest.Connexion.signal_medecin
@@ -269,18 +274,20 @@ class Controller_Test:
         if controlleur_cbox_cervicaleRadiculaire == True:
             self.windowEvaluation.checkBox_ndi.setChecked(True)
             self.windowEvaluation.checkBox_evaCervical.setChecked(True)
-            self.windowEvaluation.checkBox_glassman.setChecked(True)
-
+            self.windowEvaluation.checkBox_oswestry.setChecked(True)
+            controlleur_cbox_cervicaleRadiculaire = "Cervicale Radiculaire"
 
         elif controlleur_cbox_medullaire == True:
             self.windowEvaluation.checkBox_oswestry.setChecked(True)
-
+            self.windowEvaluation.checkBox_mjoa.setChecked(True)
+            self.windowEvaluation.checkBox_evaLombaire.setChecked(True)
+            controlleur_cbox_medullaire = "Médullaire"
 
         elif controlleur_cbox_thoracoLombaire == True:
             self.windowEvaluation.checkBox_mjoa.setChecked(True)
-            self.windowEvaluation.checkBox_glassman.setChecked(True)
+            self.windowEvaluation.checkBox_oswestry.setChecked(True)
             self.windowEvaluation.checkBox_evaLombaire.setChecked(True)
-
+            controlleur_cbox_thoracoLombaire = "Thoraco Lombaire"
 
 
         elif controlleur_cbox_autre == True:
@@ -290,7 +297,7 @@ class Controller_Test:
             self.windowEvaluation.checkBox_mjoa.setChecked(False)
             self.windowEvaluation.checkBox_evaCervical.setChecked(False)
             self.windowEvaluation.checkBox_ndi.setChecked(False)
-
+            controlleur_cbox_autre = "Pathologie type Autre"
 
         self.windowCreationDP.hide()
         self.med.hide()
@@ -298,6 +305,7 @@ class Controller_Test:
 
     def show_Etape2(self):
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
+
         controlleur_nom = UITest.CreationDP.patient_nom
         controlleur_prenom = UITest.CreationDP.patient_prenom
         controlleur_jour = UITest.CreationDP.patient_jour
@@ -311,6 +319,7 @@ class Controller_Test:
         self.windowOncologique = MainWindow_Oncologie()
         self.windowTraumato = MainWindow_Traumatologie()
         self.etape2 = MainWindow_Etape2()
+
 
 
         #actions de chaque bouton en fct du window
@@ -327,12 +336,17 @@ class Controller_Test:
 
     def show_Degeneratif(self):
         global controlleur_zoneCervicale, controlleur_zoneDorsale, controlleur_zoneLombaire, controlleur_zoneSacro
+        global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global controlleur_FN_radicoMedullaire, controlleur_FN_radiculaire, controlleur_FN_medullaire, controlleur_FN_non
         global controlleur_vertebre1, controlleur_vertebre2
         global controlleur_recalibrage_hernie, controlleur_recalibrage_non, controlleur_recalibrage_oui
         global controlleur_cote_bilateral, controlleur_cote_droit, controlleur_cote_gauche
         global controlleur_arthrodese_non, controlleur_arthrodese_oui
 
+        controlleur_cbox_cervicaleRadiculaire = UITest.CreationDP.valeur_cb_cervicale_radiculaire
+        controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
+        controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
+        controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
         controlleur_zoneCervicale = UITest.Pathologie_Etape2.signal_cervicale
         controlleur_zoneDorsale = UITest.Pathologie_Etape2.signal_dorsale
         controlleur_zoneLombaire = UITest.Pathologie_Etape2.signal_lombaire
@@ -354,6 +368,7 @@ class Controller_Test:
         controlleur_arthrodese_non = UITest.Pathologie_Degeneratif.dege_arthrodese_non
         controlleur_arthrodese_oui = UITest.Pathologie_Degeneratif.dege_arthrodese_oui
 
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
@@ -366,7 +381,9 @@ class Controller_Test:
         self.windowDegeneratif.switch_window3.connect(self.show_Recalibrage)
         self.windowDegeneratif.switch_window4.connect(self.show_Arthrodese)
         self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
+
         self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)
+
 
         self.windowDegeneratif.spinBox_nombre1.setValue(controlleur_vertebre1)
         self.windowDegeneratif.spinBox_nombre2.setValue(controlleur_vertebre2)
@@ -381,23 +398,73 @@ class Controller_Test:
         self.windowDegeneratif.radioButton_gauche.setChecked(controlleur_cote_gauche)
         self.windowDegeneratif.radioButton_bilateral.setChecked(controlleur_cote_bilateral)
         self.windowDegeneratif.radioButton_arthrodeseOui.setChecked(controlleur_arthrodese_oui)
-        self.windowDegeneratif.radioButton_recalibrageNon.setChecked(controlleur_arthrodese_non)
+        self.windowDegeneratif.radioButton_arthrodeseNon.setChecked(controlleur_arthrodese_non)
 
         if (controlleur_zoneCervicale == True):
-            self.windowDegeneratif.label_patho.setText("Cervicale")
+            nom_cervicale = "zone Cervicale"
+            self.windowDegeneratif.label_patho.setText(nom_cervicale)
         if (controlleur_zoneDorsale == True):
-            self.windowDegeneratif.label_patho.setText("Dorsale")
+            nom_dorsale = "zone Dorsale"
+            self.windowDegeneratif.label_patho.setText(nom_dorsale)
         if (controlleur_zoneLombaire == True):
-            self.windowDegeneratif.label_patho.setText("Lombaire")
+            nom_lombaire = "zone Lombaire"
+            self.windowDegeneratif.label_patho.setText(nom_lombaire)
         if (controlleur_zoneSacro == True):
-            self.windowDegeneratif.label_patho.setText("Sacro-coccygienne")
+            nom_sacro = "zone Sacro-coccygienne"
+            self.windowDegeneratif.label_patho.setText(nom_sacro)
 
         if (controlleur_zoneCervicale == True and controlleur_zoneDorsale == True):
-            self.windowDegeneratif.label_patho.setText("Cervicale + Dorsale")
+            nom_mixte1 = "zones Cervicale et Dorsale"
+            self.windowDegeneratif.label_patho.setText(nom_mixte1)
         if (controlleur_zoneDorsale == True and controlleur_zoneLombaire == True):
-            self.windowDegeneratif.label_patho.setText("Dorsale + Lombaire")
+            nom_mixte2 = "zones Dorsale et Lombaire"
+            self.windowDegeneratif.label_patho.setText(nom_mixte2)
         if (controlleur_zoneLombaire == True and controlleur_zoneSacro == True):
-            self.windowDegeneratif.label_patho.setText("Lombaire + Sacro-coccygienne")
+            nom_mixte3 = "zones Lombaire et Sacro-coccygienne"
+            self.windowDegeneratif.label_patho.setText(nom_mixte3)
+
+
+        if controlleur_cbox_cervicaleRadiculaire == True:
+            nom_cbox_CR = "Cervicale Radiculaire"
+            BD.ajouter_pathologie(controlleur_numMagic, nom_cbox_CR, self.windowDegeneratif.label_patho.text())
+        if controlleur_cbox_autre == True:
+            nom_cbox_autre = "Pathologie de type Autre"
+            BD.ajouter_pathologie(controlleur_numMagic, nom_cbox_autre, self.windowDegeneratif.label_patho.text())
+        if controlleur_cbox_medullaire == True:
+            nom_cbox_medullaire = "Médullaire"
+            BD.ajouter_pathologie(controlleur_numMagic, nom_cbox_medullaire, self.windowDegeneratif.label_patho.text())
+        if controlleur_cbox_thoracoLombaire == True:
+            nom_cbox_thoracoLombaire = "Thoraco-Lombaire"
+            BD.ajouter_pathologie(controlleur_numMagic, nom_cbox_thoracoLombaire, self.windowDegeneratif.label_patho.text())
+
+        # # attribuer un nom à la finalité neurologique
+        # if controlleur_FN_radiculaire == True:
+        #     FN_radi = "Décompression radiculaire"
+        # if controlleur_FN_medullaire == True:
+        #     FN_medu = "Décompression médullaire"
+        # if controlleur_FN_radiculaire == True:
+        #     FN_radi_medu = "Décompression radico-médullaire"
+        # if controlleur_FN_medullaire == True:
+        #     FN_non = ""
+        #
+        # if controlleur_recalibrage_hernie == True:
+        #     reca_hernie = "Recalibrage car Hernie Discale Pure"
+        # if controlleur_recalibrage_oui == True:
+        #     reca_oui = "Recalibrage"
+        # if controlleur_recalibrage_hernie == True:
+        #     reca_non = ""
+        #
+        # if controlleur_cote_droit == True:
+        #     cote_droit = "sur le côté droit"
+        # if controlleur_cote_gauche == True:
+        #     cote_gauche = "sur le côté gauche"
+        # if controlleur_cote_bilateral == True:
+        #     cote_bila = "en bilatéral"
+        #
+        # if controlleur_arthrodese_oui == True:
+        #     arthro_oui = "Arthrodèse"
+        # if controlleur_recalibrage_hernie == True:
+        #     arthro_non = ""
 
         self.etape2.hide()
         self.windowRecalibrage.hide()
@@ -492,7 +559,6 @@ class Controller_Test:
             self.windowRecalibrage.switch_window3.connect(self.show_Oncologique)
 
         # actions de chaque bouton en fct du window
-        self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
         self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
 
 
@@ -526,9 +592,7 @@ class Controller_Test:
             self.windowArthrodese.switch_window3.connect(self.show_Oncologique)
 
         # actions de chaque bouton en fct du window
-        self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
         self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
-        self.windowArthrodese.switch_window3.connect(self.show_Degeneratif)
 
         self.windowArthrodese.show()
 

@@ -92,6 +92,11 @@ class MainWindow_Acceuil(QtWidgets.QWidget, Ui_Frame_Medecin):
     def deconnexion(self):
         msg = QMessageBox()
         msg.setWindowTitle("Attention")
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.Ok)
         msg.setText("Etes-vous sûr de vouloir vous déconnecter? ")
+        msg.buttonClicked.connect(self.popup_clicked)
         x = msg.exec_()
+
+    def popup_clicked(self):
         self.switch_window5.emit()
