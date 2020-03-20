@@ -72,6 +72,8 @@ ctr_reca_hernie = ""
 ctr_arthro_postAnt = ""
 ctr_arthro_fixation = ""
 ctr_arthro_greffe = ""
+concatenation_recalibrage = ""
+concatenation_arthrodese = ""
 
 controlleur_postOp = False
 controlleur_preOp = False
@@ -246,7 +248,7 @@ class Controller_Test:
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global ctl_glb_label_patho, ctl_glb_label_FN, ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote, ctl_glb_label_arthro, ctl_glb_textEdit_intervention, ctr_signal_contexte
-        global creerDegene
+        global creerDegene, concatenation_arthrodese, concatenation_recalibrage
         global BD
 
         BD = Connexion_DB()
@@ -309,8 +311,9 @@ class Controller_Test:
                                                   ctl_glb_label_arthro)
             nom_intervention = (ctl_glb_textEdit_intervention  + " " + ctl_glb_label_patho + " " +
                                                                      ctr_signal_contexte + " " + ctl_glb_label_FN + " " +
-                                                                     ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + ctl_glb_label_cote + " " +
-                                                                     ctl_glb_label_arthro)
+                                                                     ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
+                                                                     ctl_glb_label_arthro + " " + concatenation_arthrodese)
+
             self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention)
             creerDegene = False
 
@@ -322,6 +325,7 @@ class Controller_Test:
             ctl_glb_label_reca = ""
             ctl_glb_label_cote = ""
             ctl_glb_label_arthro = ""
+
         else:
             self.windowCreationDP.textEdit_interventionNonModifiable.setText("")
 
@@ -512,7 +516,7 @@ class Controller_Test:
         global controlleur_cote_bilateral, controlleur_cote_droit, controlleur_cote_gauche
         global controlleur_arthrodese_non, controlleur_arthrodese_oui
         global ctl_glb_label_patho
-        global creerDegene, creerRecalibrage, creerArthrodese
+        global creerDegene, creerRecalibrage, creerArthrodese, concatenation_arthrodese, concatenation_recalibrage
         global ctr_reca_postAnt,  ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
 
         BD = Connexion_DB()
@@ -582,10 +586,14 @@ class Controller_Test:
 
         ctl_glb_label_patho = self.windowDegeneratif.label_patho.text()
 
+        concatenation_arthrodese = " "
+        concatenation_recalibrage = " "
         if creerRecalibrage == True:
             ctr_reca_postAnt = UITest.Formulaire_Recalibrage.glb_reca_postAnt
             ctr_reca_hernie = UITest.Formulaire_Recalibrage.glb_reca_hernie_associer
             ctr_reca_infos = UITest.Formulaire_Recalibrage.glb_reca_infos
+
+            concatenation_recalibrage = ctr_reca_postAnt + " " + ctr_reca_infos + " " + ctr_reca_hernie
 
             BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt,ctr_reca_infos,ctr_reca_hernie)
             creerRecalibrage = False
@@ -597,6 +605,8 @@ class Controller_Test:
             ctr_arthro_postAnt = UITest.Formulaire_Arthrodese.glb_arthro_postAnt
             ctr_arthro_fixation = UITest.Formulaire_Arthrodese.glb_arthro_fixation
             ctr_arthro_greffe = UITest.Formulaire_Arthrodese.glb_arthro_greffe
+
+            concatenation_arthrodese = ctr_arthro_postAnt + " " + ctr_arthro_fixation + " " + ctr_arthro_greffe
 
             BD.ajouter_formuaire_arthrodese(controlleur_numMagic, ctr_arthro_postAnt, ctr_arthro_fixation, ctr_arthro_greffe)
             creerArthrodese = False
