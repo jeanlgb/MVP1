@@ -24,6 +24,10 @@ glb_recalibrage_aucun2 = False
 glb_recalibrage_hernie_oui = False
 glb_recalibrage_hernie_non = False
 
+glb_reca_postAnt = ""
+glb_reca_infos = ""
+glb_reca_hernie_associer = ""
+
 class Ui_Frame_Recalibrage(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -255,24 +259,29 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
 
     def radiobtnFrame_Haut_anterieur(self):
         global glb_recalibrage_anterieur, glb_recalibrage_posterieur
+        global glb_reca_postAnt
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_recalibrage_anterieur = True
             glb_recalibrage_posterieur = False
             self.frame_gauche.setEnabled(False)
             self.frame_droite.setEnabled(True)
+            glb_reca_postAnt = " Recalibrage voie antérieure"
 
     def radiobtnFrame_Haut_posterieur(self):
         global glb_recalibrage_anterieur, glb_recalibrage_posterieur
+        global glb_reca_postAnt
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_recalibrage_anterieur = False
             glb_recalibrage_posterieur = True
             self.frame_gauche.setEnabled(True)
             self.frame_droite.setEnabled(False)
+            glb_reca_postAnt = " Recalibrage voie postérieure"
 
     def radiobtnFrame_Gauche(self):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
+        global glb_reca_infos
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_recalibrage_aucun = True
@@ -284,9 +293,11 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.checkBox_interEpineux.setChecked(False)
             self.checkBox_laminectomie.setChecked(False)
             self.checkBox_arthrectomie.setChecked(False)
+            glb_reca_infos = ""
 
     def radiobtnFrame_Droite(self):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
+        global glb_reca_infos
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_recalibrage_aucun2 = True
@@ -298,25 +309,29 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.checkBox_uncusectomie.setChecked(False)
             self.checkBox_osteophytiques.setChecked(False)
             self.checkBox_corporectomie.setChecked(False)
+            glb_reca_infos = ""
 
     def radiobtnFrame_BasOui(self):
         global glb_recalibrage_hernie_non, glb_recalibrage_hernie_oui
+        global glb_reca_hernie_associer
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_recalibrage_hernie_non = False
             glb_recalibrage_hernie_oui = True
-            print("oui j'ai choisi le truc à droite!")
+            glb_reca_hernie_associer = "Avec hernie discale associée"
 
     def radiobtnFrame_BasNon(self):
         global glb_recalibrage_hernie_non, glb_recalibrage_hernie_oui
+        global glb_reca_hernie_associer
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_recalibrage_hernie_non = True
             glb_recalibrage_hernie_oui = False
-            print("oui j'ai choisi le truc à droite!")
+            glb_reca_hernie_associer = ""
 
     def checkBoxChangeAction_interlamaire(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun = False
             glb_recalibrage_laminectomie = False
@@ -324,25 +339,27 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_interlamaire = True
             glb_recalibrage_arthrectomie = False
             self.radioButton_aucun.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par abord interlamaire"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
     def checkBoxChangeAction_interEpineux(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun = False
             glb_recalibrage_laminectomie = False
             glb_recalibrage_interEpineux = True
             glb_recalibrage_interlamaire = False
             glb_recalibrage_arthrectomie = False
-            print("checked")
             self.radioButton_aucun.setChecked(False)
+            glb_reca_infos = "par abord inter-épineux"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
     def checkBoxChangeAction_laminectomie(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun = False
             glb_recalibrage_laminectomie = True
@@ -350,12 +367,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_interlamaire = False
             glb_recalibrage_arthrectomie = False
             self.radioButton_aucun.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par laminectomie"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
     def checkBoxChangeAction_arthrectomie(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun = False
             glb_recalibrage_laminectomie = False
@@ -363,12 +381,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_interlamaire = False
             glb_recalibrage_arthrectomie = True
             self.radioButton_aucun.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par arthrectomie"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
     def checkBoxChangeAction_foraminotomie(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun2 = False
             glb_recalibrage_foraminotomie = True
@@ -376,12 +395,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_osteophytique = False
             glb_recalibrage_corporectomie = False
             self.radioButton_aucun2.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par foraminotomie"
         else:
             print("unchecked")
 
     def checkBoxChangeAction_uncusectomie(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun2 = False
             glb_recalibrage_foraminotomie = False
@@ -389,12 +409,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_osteophytique = False
             glb_recalibrage_corporectomie = False
             self.radioButton_aucun2.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par uncusectomie"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
     def checkBoxChangeAction_osteophytiques(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun2 = False
             glb_recalibrage_foraminotomie = False
@@ -402,12 +423,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_osteophytique = True
             glb_recalibrage_corporectomie = False
             self.radioButton_aucun2.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par résection des barres ostéophytiques"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
     def checkBoxChangeAction_corporectomie(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
+        global glb_reca_infos
         if (state == QtCore.Qt.Checked):
             glb_recalibrage_aucun2 = False
             glb_recalibrage_foraminotomie = False
@@ -415,9 +437,9 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_osteophytique = False
             glb_recalibrage_corporectomie = True
             self.radioButton_aucun2.setChecked(False)
-            print("checked")
+            glb_reca_infos = "par corporectomie"
         else:
-            print("unchecked")
+            glb_reca_infos = ""
 
 
     def suivant(self):

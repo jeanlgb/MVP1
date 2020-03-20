@@ -503,8 +503,41 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
 
 
     def ajouterIntervention(self):
+        global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
+        global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
+
+        glb_dege_FN_radiculaire = True
+        glb_dege_FN_radicoMedullaire = False
+        glb_dege_FN_medullaire = False
+        glb_dege_FN_non = False
+        dege_vertebre1 = int(1)
+        dege_vertebre2 = int(2)
+        dege_recalibrage_oui = False
+        dege_recalibrage_hernie = True
+        dege_recalibrage_non = False
+        glb_dege_cote_gauche = False
+        glb_dege_cote_droit = False
+        glb_dege_cote_bilateral = False
+        dege_arthrodese_oui = False
+        dege_arthrodese_non = True
         self.switch_window5.emit()
 
     def valider(self):
+        global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
+        global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
 
+        glb_dege_FN_radiculaire = True
+        glb_dege_FN_radicoMedullaire = False
+        glb_dege_FN_medullaire = False
+        glb_dege_FN_non = False
+        dege_vertebre1 = int(1)
+        dege_vertebre2 = int(2)
+        dege_recalibrage_oui = False
+        dege_recalibrage_hernie = True
+        dege_recalibrage_non = False
+        glb_dege_cote_gauche = False
+        glb_dege_cote_droit = False
+        glb_dege_cote_bilateral = False
+        dege_arthrodese_oui = False
+        dege_arthrodese_non = True
         self.switch_window6.emit() #faute de mieux
