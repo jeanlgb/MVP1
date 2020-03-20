@@ -16,7 +16,13 @@ glb_dege_cote_bilateral = False
 dege_arthrodese_oui = False
 dege_arthrodese_non = True
 
-signal_patho_degene = False
+glb_label_FN = "Décompression radiculaire"
+glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+glb_label_recalibrage = "Recalibrage par Hernie Discale Pure"
+glb_label_cote = ""
+glb_label_arthrodese = ""
+glb_label_patho = ""
+
 class Ui_Frame_Degeneratif(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -258,6 +264,9 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+        global glb_label_patho
+        self.label_patho.setText(glb_label_patho)
+
 
         # valeur des radiobuttons finalité neuro
         self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN_radiculaire)
@@ -287,53 +296,66 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.pushButton_recalibrageSuivant.clicked.connect(self.suivantRecalibrage)
         self.pushButton_arthrodeseSuivant.clicked.connect(self.suivantArthrodese)
         self.pushButton_ajouterIntervention.clicked.connect(self.ajouterIntervention)
-        self.pushButton_valider.clicked.connect(self.valider) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
+        self.pushButton_valider.clicked.connect(self.valider)
 
     def radiobtn_FN_radiculaire(self):
         global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        global glb_label_FN
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_FN_radiculaire = True
             glb_dege_FN_radicoMedullaire = False
             glb_dege_FN_medullaire = False
             glb_dege_FN_non = False
+            glb_label_FN = "Décompression radiculaire"
+            self.label_FN.setText(glb_label_FN)
+
 
     def radiobtn_FN_radicoMedullaire(self):
         global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        global glb_label_FN
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_FN_radiculaire = False
             glb_dege_FN_radicoMedullaire = True
             glb_dege_FN_medullaire = False
             glb_dege_FN_non = False
-            print("4")
+            glb_label_FN = "Décompression radico-médullaire"
+            self.label_FN.setText(glb_label_FN)
 
     def radiobtn_FN_medullaire(self):
         global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        global glb_label_FN
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_FN_radiculaire = False
             glb_dege_FN_radicoMedullaire = False
             glb_dege_FN_medullaire = True
             glb_dege_FN_non = False
-            print("FN choix fait")
+            glb_label_FN = "Décompression médullaire"
+            self.label_FN.setText(glb_label_FN)
 
     def radiobtn_FN_non(self):
         global glb_dege_FN_medullaire, glb_dege_FN_non,glb_dege_FN_radicoMedullaire,glb_dege_FN_radiculaire
+        global glb_label_FN
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_FN_radiculaire = False
             glb_dege_FN_radicoMedullaire = False
             glb_dege_FN_medullaire = False
             glb_dege_FN_non = True
-            print("FN choix fait")
+            glb_label_FN = ""
+            self.label_FN.setText(glb_label_FN)
 
     def countVertebres(self):
         global dege_vertebre1, dege_vertebre2
+        global glb_label_Niveau
 
         dege_vertebre1 = self.spinBox_nombre1.value()
         dege_vertebre2 = self.spinBox_nombre2.value()
-        print("5")
+
+        glb_label_Niveau = "intervention entre les vertèbres : " + str(dege_vertebre1) + " et " + str(dege_vertebre2)
+        self.label_Niveau_massacre.setText(glb_label_Niveau)
         self.soustraction = int(dege_vertebre2) + int(-dege_vertebre1)
         self.lineEdit.setText(str(self.soustraction))
 
@@ -379,6 +401,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
 
     def radiobtnRecalibrage_oui(self):
         global dege_recalibrage_oui, dege_recalibrage_hernie, dege_recalibrage_non
+        global glb_label_recalibrage
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             dege_recalibrage_oui = True
@@ -386,9 +409,12 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
+            glb_label_recalibrage = "Recalibrage car Hernie Discale Pure"
+            self.label_recalibrage_massacre.setText(glb_label_recalibrage)
 
     def radiobtnRecalibrage_hernie(self):
         global dege_recalibrage_oui, dege_recalibrage_hernie, dege_recalibrage_non
+        global glb_label_recalibrage
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             dege_recalibrage_oui = False
@@ -396,9 +422,12 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
+            glb_label_recalibrage = "Recalibrage"
+            self.label_recalibrage_massacre.setText(glb_label_recalibrage)
 
     def radiobtnRecalibrage_non(self):
         global dege_recalibrage_oui, dege_recalibrage_hernie, dege_recalibrage_non
+        global glb_label_recalibrage
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             dege_recalibrage_oui = False
@@ -406,44 +435,59 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_non = True
             self.pushButton_recalibrageSuivant.setEnabled(False)
             self.groupBox_cote.setEnabled(False)
+            glb_label_recalibrage = ""
+            self.label_recalibrage_massacre.setText(glb_label_recalibrage)
 
     def suivantRecalibrage(self):
         self.switch_window3.emit()
 
     def radiobtnCote_bilateral(self):
         global glb_dege_cote_bilateral, glb_dege_cote_droit, glb_dege_cote_gauche
+        global glb_label_cote
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_cote_droit = False
             glb_dege_cote_gauche = False
             glb_dege_cote_bilateral = True
-            print("7")
+            glb_label_cote = "en bilatéral"
+            self.label_recalibrage_massacre.setText(glb_label_cote)
 
     def radiobtnCote_droit(self):
         global glb_dege_cote_bilateral, glb_dege_cote_droit, glb_dege_cote_gauche
+        global glb_label_cote
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_cote_droit = True
             glb_dege_cote_gauche = False
             glb_dege_cote_bilateral = False
+            glb_label_cote = "sur le côté droit"
+            self.label_recalibrage_massacre.setText(glb_label_cote)
 
     def radiobtnCote_gauche(self):
         global glb_dege_cote_bilateral, glb_dege_cote_droit, glb_dege_cote_gauche
+        global glb_label_cote
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_dege_cote_droit = False
             glb_dege_cote_gauche = True
             glb_dege_cote_bilateral = False
+            glb_label_cote = "sur le côté gauche"
+            self.label_recalibrage_massacre.setText(glb_label_cote)
 
     def radiobtnArthrodese_non(self):
+        global glb_label_arthrodese
         global dege_arthrodese_non, dege_arthrodese_oui
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             dege_arthrodese_non = True
             dege_arthrodese_oui = False
             self.pushButton_arthrodeseSuivant.setEnabled(False)
+            glb_label_arthrodese = ""
+            self.label_athro_massacre.setText(glb_label_arthrodese)
+
 
     def radiobtnArthrodese_oui(self):
+        global glb_label_arthrodese
         global dege_arthrodese_non, dege_arthrodese_oui
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
@@ -451,6 +495,8 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_arthrodese_non = False
             print("8")
             self.pushButton_arthrodeseSuivant.setEnabled(True)
+            glb_label_arthrodese = "Arthrodèse"
+            self.label_athro_massacre.setText(glb_label_arthrodese)
 
     def suivantArthrodese(self):
         self.switch_window4.emit()
@@ -460,6 +506,5 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.switch_window5.emit()
 
     def valider(self):
-        # global signal_patho_degene
-        # signal_patho_degene = True
+
         self.switch_window6.emit() #faute de mieux

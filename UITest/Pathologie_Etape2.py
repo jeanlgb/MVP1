@@ -10,6 +10,8 @@ signal_dorsale = False
 signal_lombaire = False
 signal_sacro = False
 
+glb_nom_contexte = ""
+
 class Ui_Frame_Etape2(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -174,11 +176,12 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         global signal_degeneratif
         global signal_traumatologique
         global signal_oncologie
+        global glb_nom_contexte
 
         signal_degeneratif = True
-        print(signal_degeneratif)
         signal_traumatologique = False
         signal_oncologie = False
+        glb_nom_contexte = "Dégénératif"
 
         self.switch_window1.emit()
 
@@ -186,11 +189,13 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         global signal_degeneratif
         global signal_traumatologique
         global signal_oncologie
+        global glb_nom_contexte
 
         signal_degeneratif = False
         signal_traumatologique = True
         print(signal_traumatologique)
         signal_oncologie = False
+        glb_nom_contexte = "Traumatologique"
 
         self.switch_window2.emit()
 
@@ -198,10 +203,12 @@ class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
         global signal_degeneratif
         global signal_traumatologique
         global signal_oncologie
+        global glb_nom_contexte
 
         signal_degeneratif = False
         signal_traumatologique = False
         signal_oncologie = True
+        glb_nom_contexte = "Oncologie"
 
         self.switch_window3.emit()
 

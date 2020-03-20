@@ -21,6 +21,7 @@ valeur_cb_autre = False
 nomPathologieCR = "CR"
 signal_eval = False
 
+glb_textEdit_intervention = ""
 
 
 class Ui_Frame_CreationDP(object):
@@ -118,7 +119,6 @@ class Ui_Frame_CreationDP(object):
         self.pushButton_ok.setEnabled(False)
         self.pushButton_ok.setGeometry(QtCore.QRect(690, 350, 51, 23))
         self.pushButton_ok.setObjectName("pushButton_ok")
-        self.textEdit_interventionNonModifiable.setEnabled(False)
         self.textEdit_interventionNonModifiable.setGeometry(QtCore.QRect(270, 420, 271, 21))
         self.textEdit_interventionNonModifiable.setObjectName("textEdit_interventionNonModifiable")
         self.textEdit_interventionModifiable = QtWidgets.QTextEdit(Frame)
@@ -433,6 +433,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_thoraco_lombaire
         global valeur_cb_autre
         global nomPathologieCR
+        global glb_textEdit_intervention
 
         if ( state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
@@ -440,7 +441,8 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_medullaire = False
             valeur_cb_thoraco_lombaire = False
             valeur_cb_autre = False
-            self.textEdit_interventionNonModifiable.setText("Cervicale Radiculaire")
+            glb_textEdit_intervention = "Cervicale Radiculaire"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
@@ -449,6 +451,8 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_medullaire
         global valeur_cb_thoraco_lombaire
         global valeur_cb_autre
+        global glb_textEdit_intervention
+
 
         if ( state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
@@ -456,7 +460,8 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_cervicale_radiculaire = False
             valeur_cb_thoraco_lombaire = False
             valeur_cb_autre = False
-            self.textEdit_interventionNonModifiable.setText("Médullaire")
+            glb_textEdit_intervention = "Médullaire"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
@@ -465,6 +470,8 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_medullaire
         global valeur_cb_thoraco_lombaire
         global valeur_cb_autre
+        global glb_textEdit_intervention
+
 
         if ( state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
@@ -472,7 +479,8 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             valeur_cb_medullaire = False
             valeur_cb_cervicale_radiculaire = False
             valeur_cb_autre = False
-            self.textEdit_interventionNonModifiable.setText("Thoraco-Lombaire")
+            glb_textEdit_intervention = "Thoraco-Lombaire"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
@@ -481,13 +489,16 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_medullaire
         global valeur_cb_thoraco_lombaire
         global valeur_cb_autre
+        global glb_textEdit_intervention
+
         if ( state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
             valeur_cb_autre = True
             valeur_cb_thoraco_lombaire = False
             valeur_cb_medullaire = False
             valeur_cb_cervicale_radiculaire = False
-            self.textEdit_interventionNonModifiable.setText("Pathologie de type Autre")
+            glb_textEdit_intervention = "Pathologie de type Autre"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
