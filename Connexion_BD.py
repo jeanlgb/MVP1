@@ -1,32 +1,37 @@
 import mysql.connector
 
 cursor = None
+
+
 class Connexion_DB:
 
     def connexion_DB(self):
         global conn
         global cursor
-        conn = mysql.connector.connect(host="localhost",user="root",password="", database="in-pecbd")
+        conn = mysql.connector.connect(host="localhost", user="root", password="", database="in-pecbd")
         cursor = conn.cursor()
 
-    def creation_patient(self, numero, nom, prenom, genre): #rajouter les dates et numéro de dossier Magic. Vérifier que le patient n'existe déja pas
+    def creation_patient(self, numero, nom, prenom,
+                         genre):  # rajouter les dates et numéro de dossier Magic. Vérifier que le patient n'existe déja pas
         patient = {"numero_pat": numero, "nom": nom, "prenom": prenom, "genre": genre}
-        cursor.execute("""INSERT INTO donnees_administratives (Numéro_patient, Nom, Prénom, Genre) VALUES(%(numero_pat)s, %(nom)s, %(prenom)s, %(genre)s)""", patient)
+        cursor.execute(
+            """INSERT INTO donnees_administratives (Numéro_patient, Nom, Prénom, Genre) VALUES(%(numero_pat)s, %(nom)s, %(prenom)s, %(genre)s)""",
+            patient)
         conn.commit()
 
-
-    def verification_patient_pas_dans_bd(self,nom, prenom): #Finir le where
-        patient = {"nom": nom, "prenom" : prenom}
-        cursor.execute("""SELECT Numéro_patient, FROM donnees_administratives WHERE Prénom = prenom AND Nom = nom""", patient)
+    def verification_patient_pas_dans_bd(self, nom, prenom):  # Finir le where
+        patient = {"nom": nom, "prenom": prenom}
+        cursor.execute("""SELECT Numéro_patient, FROM donnees_administratives WHERE Prénom = prenom AND Nom = nom""",
+                       patient)
         rows = cursor.fetchall()
         conn.commit()
         if rows is None:
             return True
-        else :
+        else:
             return False
 
     def selectionner_patient(self, nom, prenom):
-        patient = {"nom": nom, "prenom" : prenom}
+        patient = {"nom": nom, "prenom": prenom}
         cursor.execute("""SELECT Numéro_patient FROM consultation WHERE Prénom = prenom AND Nom = nom""", patient)
         rows = cursor.fetchall()
         conn.commit()
@@ -39,8 +44,8 @@ class Connexion_DB:
         conn.commit()
         return rows
 
-    #On récupére le numéro de la consultation
-    def recuperer_numero_consultation(self, nom, prenom): #select numéro patient puis numéro consultation
+    # On récupére le numéro de la consultation
+    def recuperer_numero_consultation(self, nom, prenom):  # select numéro patient puis numéro consultation
         cursor.execute("""SELECT Numéro_patient FROM consultation WHERE Prénom = prenom AND Nom = nom""")
         conn.commit()
         rows = cursor.fetchall()
@@ -67,12 +72,14 @@ class Connexion_DB:
 
     def ajouter_score_mjoa(self, numero, score):
         score_mjoa = {"numero": numero, "score": score}
-        cursor.execute("""INSERT INTO score mjoa (Numéro_score, Résultat_MJOA) VALUES(%(numero)s, %(score)s)""", score_mjoa)
+        cursor.execute("""INSERT INTO score mjoa (Numéro_score, Résultat_MJOA) VALUES(%(numero)s, %(score)s)""",
+                       score_mjoa)
         conn.commit()
 
     def ajouter_score_ndi(self, numero, score):
         score_ndi = {"numero": numero, "score": score}
-        cursor.execute("""INSERT INTO score ndi (Numéro_score, Résultat_NDI) VALUES(%(numero)s, %(score)s)""", score_ndi)
+        cursor.execute("""INSERT INTO score ndi (Numéro_score, Résultat_NDI) VALUES(%(numero)s, %(score)s)""",
+                       score_ndi)
         conn.commit()
 
     def ajouter_score_oswestry(self, score):
@@ -90,13 +97,30 @@ class Connexion_DB:
         res = res + 1
         return res
 
-    def ajouter_pathologie(self, numero_Patient, numero_Pathologie, numero_Zone, contexte, finalite, niveaux, recalibrage, cote_Lateralite, cote_GD, arthrodese):
+    def ajouter_pathologie(self, numero_Patient, numero_Pathologie, numero_Zone, contexte, finalite, niveaux,
+                           recalibrage, cote_Lateralite, cote_GD, arthrodese):
 
-        pathologie = {"numero_patient": numero_Patient, "numero_pathologie": numero_Pathologie, "numero_zone": numero_Zone, "contexte":contexte, "finalite":finalite, "niveaux":niveaux, "recalibrage":recalibrage, "cote_lateralite": cote_Lateralite, "cote_GD":cote_GD, "arthrodese": arthrodese}
+        pathologie = {"numero_patient": numero_Patient, "numero_pathologie": numero_Pathologie,
+                      "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "niveaux": niveaux,
+                      "recalibrage": recalibrage, "cote_lateralite": cote_Lateralite, "cote_GD": cote_GD,
+                      "arthrodese": arthrodese}
         cursor.execute("""INSERT INTO pathologie (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Niveaux, recalibrage, Coté_latéralité, Coté_GD, Arthrodèse) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s
-        %(contexte)s, %(finalite)s), %(niveaux)s, %(recalibrage)s, %(cote_lateralite)s, %(cote_GD)s, %(arthrodese)s)""", pathologie)
+        %(contexte)s, %(finalite)s), %(niveaux)s, %(recalibrage)s, %(cote_lateralite)s, %(cote_GD)s, %(arthrodese)s)""",
+                       pathologie)
         conn.commit()
 
+    # Créer la consultatio
+    def creation_consultation(self, numero_patient, type):  # rajouter les dates et numéro de dossier Magic. Vérifier que le patient n'existe déja pas
+        numero_consultation = self.generer_numero("consultation")
+        consultation = {"Numéro_consultation": numero_consultation, "Numéro_patient": numero_patient, "type": type}
+        cursor.execute(
+            """INSERT INTO consultation (Numéro_consultation, Numéro_patient, Type_consultation) VALUES(%(Numéro_consultation)s, %(Numéro_patient)s, %(type)s)""",
+            consultation)
+        conn.commit()
 
-
-
+    # Ajoute les scores. Elle regarde, pour un numéro patient donné, si il existe une consultation pour laquelle les scores ont TOUS la valeur null. Si oui, elle les remplit.
+    def ajouter_scores(self, numeroMagic, glassman, evac, eval, ndi, mjoa, oswestry):
+        cursor.execute(
+            """UPDATE consultation SET Numéro_score_glassman = %s, Numéro_score_eva_cervical = %s, Numéro_score_eva_lombaire = %s, Numéro_score_ndi = %s, Numéro_score_mjoa = %s, Numéro_score_oswestry = %s WHERE Numéro_patient=%s AND Numéro_score_glassman IS NULL AND Numéro_score_eva_cervical IS NULL AND Numéro_score_eva_lombaire IS NULL AND Numéro_score_ndi IS NULL AND Numéro_score_mjoa IS NULL AND Numéro_score_oswestry IS NULL""",
+            (glassman, evac, eval, ndi, mjoa, oswestry, numeroMagic))
+        conn.commit()

@@ -84,6 +84,7 @@ class Controller_Test:
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global BD
         global creerPat
+        global controlleur_postOp, controlleur_preOp
 
         controlleur_nom = ""
         controlleur_prenom = ""
@@ -94,6 +95,9 @@ class Controller_Test:
         self.co = Login()
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowEvaluation = MainWindow_Evaluation()
+
+        controlleur_postOp = UITest.Evaluation.glb_postOp
+        controlleur_preOp = UITest.Evaluation.glb_preOp
 
 
 
@@ -107,6 +111,25 @@ class Controller_Test:
             controlleur_dateNaissance = UITest.CreationDP.patient_dateNaissance
             controlleur_numMagic = UITest.CreationDP.patient_numMagic
             BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
+            if controlleur_postOp:
+                BD.creation_consultation(controlleur_numMagic, "POST")
+
+            if controlleur_preOp:
+                BD.creation_consultation(controlleur_numMagic, "PRE")
+
+            liste = []
+            with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+                for line in f.readlines():
+                    # Traiter la ligne et ainsi de suite ...
+                    ligne = line.strip()
+                    liste.append(ligne)
+                # print(liste)
+            if not liste:
+                print("liste vide")
+            elif liste[1] == None:
+                print("pas de score")
+
+                #BD.ajouter_scores(controlleur_numMagic, liste[1], liste[2], liste[3], liste[4], liste[5], liste[6])
             creerPat = False
             controlleur_nom = ""
             controlleur_prenom = ""
@@ -265,13 +288,13 @@ class Controller_Test:
         #
         # self.BD = Connexion_DB
         #
-        res = ""
-        with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
-            for line in f.readlines():
-                # Traiter la ligne et ainsi de suite ...
-                res = line.strip()
-
-        BD.ajouter_score_oswestry(res)
+        # res = ""
+        # with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+        #     for line in f.readlines():
+        #         # Traiter la ligne et ainsi de suite ...
+        #         res = line.strip()
+        #
+        # BD.ajouter_score_oswestry(res)
 
 
         self.windowEvaluation.switch_window2.connect(self.show_CreationDP)

@@ -305,7 +305,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
                 # Traiter la ligne et ainsi de suite ...
                 ligne = line.strip()
                 liste.append(ligne)
-            print(liste)
+            # print(liste)
         self.switch_window.emit()
 
     def popup (self):
