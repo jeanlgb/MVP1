@@ -9,8 +9,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+patient_nom = ("NOM")
+patient_prenom = ("PRENOM")
+patient_numMagic = ("NUMERO MAGIC")
 
-class Ui_Frame(object):
+class Ui_Frame_SelectionnerDP(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(722, 501)
@@ -81,11 +84,32 @@ class Ui_Frame(object):
         self.pushButton_recherche.setText(_translate("Frame", "Suivant"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
-    ui.setupUi(Frame)
-    Frame.show()
-    sys.exit(app.exec_())
+class MainWindow_SelectionnerDP(QtWidgets.QWidget, Ui_Frame_SelectionnerDP):
+    switch_window1 = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
+
+
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
+        self.setupUi(self)
+
+        # controlleur pour les boutons
+        self.pushButton_recherche.clicked.connect(self.recherche)
+        self.pushButton_annuler.clicked.connect(self.annuler)
+
+    def recherche(self):
+        global patient_nom_existant
+        global patient_prenom_existant
+        global patient_numMagic_existant
+
+        self.nom = self.lineEdit_nom.text()  # récupérer le texte dans le champ de texte
+        self.prenom = self.lineEdit_prenom.text()  # récupérer le texte dans le champ de texte
+        self.numMagic = self.lineEdit_numeroMagic.text()
+
+        patient_nom_existant = self.nom
+        patient_prenom_existant = self.prenom
+        patient_numMagic_existant = self.numMagic
+        self.switch_window1.emit()
+
+    def annuler(self):
+        self.switch_window2.emit()

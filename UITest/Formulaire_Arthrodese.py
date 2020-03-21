@@ -307,23 +307,23 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.radioButton_anterieure.toggled.connect(self.radiobtnFrame_Haut_anterieur)
         self.radioButton_posterieure.toggled.connect(self.radiobtnFrame_Haut_posterieur)
 
-        self.radioButton_monoaxiales.toggled.connect(self.radiobtn_polyaxiales)
-        self.radioButton_polyaxiales.toggled.connect(self.radiobtn_monoaxiales)
+        self.radioButton_monoaxiales.toggled.connect(self.radiobtn_monoaxiales)
+        self.radioButton_polyaxiales.toggled.connect(self.radiobtn_polyaxiales)
         self.radioButton_aucune.toggled.connect(self.radiobtn_fixationAucune)
 
         self.radioButton_plaque_2.toggled.connect(self.radiobtn_plaque)
         self.radioButton_aucune2.toggled.connect(self.radiobtn_fixationAucunes2)
 
-        self.radioButton_aucuneGreffe.toggled.connect(self.radiobtn_2PLIF)
+        self.radioButton_aucuneGreffe.toggled.connect(self.radiobtn_greffeAucune)
         self.radioButton_1plif.toggled.connect(self.radiobtn_1PLIF)
-        self.radioButton_2plif.toggled.connect(self.radiobtn_TLIF)
-        self.radioButton_tlif.toggled.connect(self.radiobtn_OsSeulement)
-        self.radioButton_os.toggled.connect(self.radiobtn_greffeAucune)
+        self.radioButton_2plif.toggled.connect(self.radiobtn_2PLIF)
+        self.radioButton_tlif.toggled.connect(self.radiobtn_TLIF)
+        self.radioButton_os.toggled.connect(self.radiobtn_OsSeulement)
 
-        self.radioButton_aucuneGreffe2.toggled.connect(self.radiobtn_intersomatique)
-        self.radioButton_intersomatique.toggled.connect(self.radiobtn_corporectomie)
-        self.radioButton_corporectomie_2.toggled.connect(self.radiobtn_OsSeulement2)
-        self.radioButton_os2.toggled.connect(self.radiobtn_greffeAucune2)
+        self.radioButton_intersomatique.toggled.connect(self.radiobtn_intersomatique)
+        self.radioButton_corporectomie_2.toggled.connect(self.radiobtn_corporectomie)
+        self.radioButton_os2.toggled.connect(self.radiobtn_OsSeulement2)
+        self.radioButton_aucuneGreffe2.toggled.connect(self.radiobtn_greffeAucune2)
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)

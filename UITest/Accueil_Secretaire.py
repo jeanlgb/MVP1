@@ -10,6 +10,8 @@ import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
+signal_sec_selectionDP = False
+signal_sec_creationDP = False
 
 class Ui_Frame_Secretaire(object):
     def setupUi(self, Frame):
@@ -64,6 +66,7 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
 
         #controlleur pour les boutons
         self.pushButton_creerDP.clicked.connect(self.tablette_et_creationDP)
+        self.pushButton_selectionnerDP.clicked.connect(self.selectionnerDP)
         self.pushButton_deconnexion.clicked.connect(self.deconnexion)
 
 
@@ -78,8 +81,16 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
         #         ligne = line.strip()
         #         liste.append(ligne)
         #     print(liste)
-
+        global signal_sec_creationDP, signal_sec_selectionDP
+        signal_sec_creationDP = False
+        signal_sec_selectionDP = True
         self.switch_window1.emit()
+
+    def selectionnerDP(self):
+        global signal_sec_creationDP, signal_sec_selectionDP
+        signal_sec_creationDP = False
+        signal_sec_selectionDP = True
+        self.switch_window2.emit()
 
     def deconnexion(self):
         msg = QMessageBox()

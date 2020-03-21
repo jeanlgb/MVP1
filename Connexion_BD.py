@@ -104,6 +104,13 @@ class Connexion_DB:
         %(contexte)s, %(finalite)s, %(niveaux)s, %(recalibrage)s, %(cote_lateralite)s, %(arthrodese)s)""", pathologie)
         conn.commit()
 
+    def ajouter_pathologie_oncologie(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, topographie, origine, niveaux, recalibrage, cote, arthrodese):
+        numero_Pathologie = self.generer_numero("pathologie_oncologie")
+        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "topographie": topographie, "origine": origine, "niveaux": niveaux, "recalibrage": recalibrage, "cote": cote, "arthrodese": arthrodese}
+        cursor.execute("""INSERT INTO pathologie_oncologie (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Topographie, Origine, Niveaux, Recalibrage, Coté, Arthrodèse) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
+        %(contexte)s, %(finalite)s, %(topographie)s, %(origine)s, %(niveaux)s, %(recalibrage)s, %(cote)s, %(arthrodese)s)""", pathologie)
+        conn.commit()
+
     # permet d'ajouter une resuête dans la bd
     def ajouter_pathologie(self, numero, famille, zone):
         pathologie = {"numero": numero, "famille": famille, "zone": zone}

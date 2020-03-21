@@ -23,6 +23,7 @@ glb_label_cote = ""
 glb_label_arthrodese = ""
 glb_label_patho = ""
 
+
 class Ui_Frame_Degeneratif(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -145,7 +146,7 @@ class Ui_Frame_Degeneratif(object):
         self.radioButton_bilateral.setGeometry(QtCore.QRect(230, 50, 261, 30))
         self.radioButton_bilateral.setObjectName("radioButton_bilateral")
         self.radioButton_gauche = QtWidgets.QRadioButton(self.groupBox_cote)
-        self.radioButton_gauche.setGeometry(QtCore.QRect(350, 10, 141, 30))
+        self.radioButton_gauche.setGeometry(QtCore.QRect(400, 10, 141, 30))
         self.radioButton_gauche.setObjectName("radioButton_gauche")
         self.radioButton_Droit = QtWidgets.QRadioButton(self.groupBox_cote)
         self.radioButton_Droit.setEnabled(True)
@@ -268,6 +269,8 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         self.label_patho.setText(glb_label_patho)
 
 
+
+
         # valeur des radiobuttons finalité neuro
         self.radioButton_radiculaire.toggled.connect(self.radiobtn_FN_radiculaire)
         self.radioButton_radicoMedullaire.toggled.connect(self.radiobtn_FN_radicoMedullaire)
@@ -309,6 +312,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             glb_dege_FN_non = False
             glb_label_FN = "Décompression radiculaire"
             self.label_FN.setText(glb_label_FN)
+
 
 
     def radiobtn_FN_radicoMedullaire(self):
@@ -540,4 +544,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         glb_dege_cote_bilateral = False
         dege_arthrodese_oui = False
         dege_arthrodese_non = True
+
+
         self.switch_window6.emit() #faute de mieux

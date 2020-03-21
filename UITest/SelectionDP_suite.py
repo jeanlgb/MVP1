@@ -1,16 +1,17 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'SelectionnerDP_suite.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QDate
 
+patient_dateNaissance = ("21/04/1997")
+valeur_cb_cervicale_radiculaire = False
+valeur_cb_medullaire = False
+valeur_cb_thoraco_lombaire = False
+valeur_cb_autre = False
+signal_eval = False
 
-class Ui_Frame(object):
+glb_textEdit_intervention = ""
+
+class Ui_Frame_SelectionnerDP_suite(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setEnabled(True)
@@ -121,9 +122,11 @@ class Ui_Frame(object):
         self.label_recuperationDateDeNaissance_2.setText("")
         self.label_recuperationDateDeNaissance_2.setObjectName("label_recuperationDateDeNaissance_2")
         self.lineEdit_identite = QtWidgets.QLineEdit(Frame)
+        self.lineEdit_identite.setEnabled(False)
         self.lineEdit_identite.setGeometry(QtCore.QRect(260, 115, 271, 20))
         self.lineEdit_identite.setObjectName("lineEdit_identite")
         self.lineEdit_numeroMagic = QtWidgets.QLineEdit(Frame)
+        self.lineEdit_numeroMagic.setEnabled(False)
         self.lineEdit_numeroMagic.setGeometry(QtCore.QRect(540, 115, 160, 20))
         self.lineEdit_numeroMagic.setObjectName("lineEdit_numeroMagic")
 
@@ -152,11 +155,133 @@ class Ui_Frame(object):
         self.label_identite.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Identité :</p></body></html>"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
-    ui.setupUi(Frame)
-    Frame.show()
-    sys.exit(app.exec_())
+class MainWindow_SelectionnerDP_suite(QtWidgets.QWidget, Ui_Frame_SelectionnerDP_suite):
+    switch_window1 = QtCore.pyqtSignal()
+    switch_window2 = QtCore.pyqtSignal()
+    switch_window3 = QtCore.pyqtSignal()
+
+
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
+        self.setupUi(self)
+
+        # controlleur pour les boutons
+        self.pushButton_evaluation.clicked.connect(self.evaluation)
+        self.calendarWidget.clicked[QDate].connect(self.showDate)
+        self.pushButton_ok.clicked.connect(self.etape2)
+        self.pushButton_annuler.clicked.connect(self.annuler)
+
+
+        # récupération des valeurs des checkbox
+        self.checkBox_cervicalRadiculaire.stateChanged.connect(self.checkBoxChangeAction_cervicale)
+        self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
+        self.checkBox_thoracoLombaire.stateChanged.connect(self.checkBoxChangeAction_lombaire)
+        self.checkBox_autre.stateChanged.connect(self.checkBoxChangeAction_autre)
+
+
+        # Qcalendar date intervention
+        self.date_Intervention = self.calendarWidget.selectedDate()
+        self.lineEdit_dateIntervention.setText(self.date_Intervention.toString("dd/MM/yyyy"))
+
+    def evaluation(self):
+        global signal_eval
+        signal_eval = True
+        self.switch_window1.emit()
+
+    def showDate(self, date_Intervention):
+        global patient_dateIntervention
+
+        self.dateDeIntervention = self.lineEdit_dateIntervention.setText(date_Intervention.toString("dd/MM/yyyy"))
+        self.dateRecuperation = self.lineEdit_dateIntervention.text()
+        patient_dateIntervention = self.dateRecuperation
+
+    def checkBoxChangeAction_cervicale(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+        global nomPathologieCR
+        global glb_textEdit_intervention
+
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
+            valeur_cb_cervicale_radiculaire = True
+            valeur_cb_medullaire = False
+            valeur_cb_thoraco_lombaire = False
+            valeur_cb_autre = False
+            glb_textEdit_intervention = "Cervicale Radiculaire"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
+        else:
+            self.textEdit_interventionNonModifiable.setText("")
+
+    def checkBoxChangeAction_medullaire(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+        global glb_textEdit_intervention
+
+
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
+            valeur_cb_medullaire = True
+            valeur_cb_cervicale_radiculaire = False
+            valeur_cb_thoraco_lombaire = False
+            valeur_cb_autre = False
+            glb_textEdit_intervention = "Médullaire"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
+        else:
+            self.textEdit_interventionNonModifiable.setText("")
+
+    def checkBoxChangeAction_lombaire(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+        global glb_textEdit_intervention
+
+
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
+            valeur_cb_thoraco_lombaire = True
+            valeur_cb_medullaire = False
+            valeur_cb_cervicale_radiculaire = False
+            valeur_cb_autre = False
+            glb_textEdit_intervention = "Thoraco-Lombaire"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
+        else:
+            self.textEdit_interventionNonModifiable.setText("")
+
+    def checkBoxChangeAction_autre(self, state):
+        global valeur_cb_cervicale_radiculaire
+        global valeur_cb_medullaire
+        global valeur_cb_thoraco_lombaire
+        global valeur_cb_autre
+        global glb_textEdit_intervention
+
+        if ( state == QtCore.Qt.Checked):
+            self.pushButton_ok.setEnabled(True)
+            valeur_cb_autre = True
+            valeur_cb_thoraco_lombaire = False
+            valeur_cb_medullaire = False
+            valeur_cb_cervicale_radiculaire = False
+            glb_textEdit_intervention = "Pathologie de type Autre"
+            self.textEdit_interventionNonModifiable.setText(glb_textEdit_intervention)
+        else:
+            self.textEdit_interventionNonModifiable.setText("")
+
+    def etape2 (self):
+        global patient_dateIntervention
+        patient_dateIntervention = self.lineEdit_dateIntervention.text()
+
+        self.switch_window2.emit()
+
+    def annuler(self):
+        global patient_dateNaissance
+        global valeur_cb_cervicale_radiculaire, valeur_cb_medullaire, valeur_cb_thoraco_lombaire, valeur_cb_autre
+        patient_dateNaissance = ("21/04/1997")
+        valeur_cb_cervicale_radiculaire = False
+        valeur_cb_medullaire = False
+        valeur_cb_thoraco_lombaire = False
+        valeur_cb_autre = False
+        self.switch_window3.emit()

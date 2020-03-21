@@ -18,8 +18,9 @@ valeur_cb_cervicale_radiculaire = False
 valeur_cb_medullaire = False
 valeur_cb_thoraco_lombaire = False
 valeur_cb_autre = False
-nomPathologieCR = "CR"
 signal_eval = False
+nomPathologieCR = "CR"
+
 
 glb_textEdit_intervention = ""
 
