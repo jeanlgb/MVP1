@@ -102,6 +102,10 @@ creerOnco = False
 creerRecalibrage = False
 creerArthrodese = False
 
+control_med_creaDP = False
+control_med_selecDP = False
+control_sec_creaDP = False
+control_sec_selecDP = False
 
 
 class Controller_Test:
@@ -201,6 +205,7 @@ class Controller_Test:
 
         self.med.switch_window1.connect(self.show_CreationDP)
         self.med.switch_window2.connect(self.show_SelectionnerDP)
+
         self.med.switch_window5.connect(self.show_Connexion)
 
 
@@ -491,13 +496,18 @@ class Controller_Test:
         global res
         global creerPat
         global controlleur_postOp, controlleur_preOp
-
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
 
         controlleur_cursor = ""
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
         self.signal_eval = UITest.CreationDP.signal_eval
+
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
         controlleur_nom = UITest.CreationDP.patient_nom
         controlleur_prenom = UITest.CreationDP.patient_prenom
@@ -530,9 +540,6 @@ class Controller_Test:
         # BD.ajouter_score_oswestry(res)
 
 
-
-        self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
-
         self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(controlleur_numMagic)
         self.windowEvaluation.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
@@ -545,6 +552,16 @@ class Controller_Test:
         elif self.signal_sec == True:
             if self.windowEvaluation.switch_window.connect(self.show_Secretaire):
                 creerPat = True
+
+        if control_med_creaDP == True:
+            self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
+        elif control_med_selecDP   == True:
+            self.windowEvaluation.switch_window2.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP   == True:
+            self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
+        elif control_sec_selecDP   == True:
+            self.windowEvaluation.switch_window2.connect(self.show_SelectionnerDP_suite)
+
 
         # coche automatiquement les checkbox des scores
         if controlleur_cbox_cervicaleRadiculaire == True:
@@ -585,6 +602,7 @@ class Controller_Test:
         global ctl_glb_label_patho, ctl_glb_label_FN, ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote, ctl_glb_label_arthro, ctl_glb_textEdit_intervention, ctr_signal_contexte
         global creerDegene
         global BD
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         BD = Connexion_DB()
         BD.connexion_DB()
@@ -604,7 +622,10 @@ class Controller_Test:
         self.etape2 = MainWindow_Etape2()
         self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
 
-
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
 
         #actions de chaque bouton en fct du window
@@ -612,9 +633,14 @@ class Controller_Test:
         self.etape2.switch_window2.connect(self.show_Traumatologique)
         self.etape2.switch_window3.connect(self.show_Oncologique)
 
-        self.etape2.switch_window4.connect(self.show_CreationDP)
-
-
+        if control_med_creaDP == True:
+            self.etape2.switch_window4.connect(self.show_CreationDP)
+        elif control_med_selecDP == True:
+            self.etape2.switch_window4.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP == True:
+            self.etape2.switch_window4.connect(self.show_CreationDP)
+        elif control_sec_selecDP == True:
+            self.etape2.switch_window4.connect(self.show_SelectionnerDP_suite)
 
         self.windowDegeneratif.hide()
         self.windowOncologique.hide()
@@ -633,6 +659,7 @@ class Controller_Test:
         global ctl_glb_label_patho
         global creerDegene, creerRecalibrage, creerArthrodese, concatenation_arthrodese, concatenation_recalibrage
         global ctr_reca_postAnt,  ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         BD = Connexion_DB()
         BD.connexion_DB()
@@ -645,6 +672,11 @@ class Controller_Test:
         controlleur_zoneDorsale = UITest.Pathologie_Etape2.signal_dorsale
         controlleur_zoneLombaire = UITest.Pathologie_Etape2.signal_lombaire
         controlleur_zoneSacro = UITest.Pathologie_Etape2.signal_sacro
+
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
         controlleur_FN_radicoMedullaire = UITest.Pathologie_Degeneratif.glb_dege_FN_radicoMedullaire
         controlleur_FN_radiculaire = UITest.Pathologie_Degeneratif.glb_dege_FN_radiculaire
@@ -673,9 +705,21 @@ class Controller_Test:
 
         # actions de chaque bouton en fct du window
         self.windowDegeneratif.switch_window1.connect(self.show_Etape2)
-        self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
         self.windowDegeneratif.switch_window3.connect(self.show_Recalibrage)
         self.windowDegeneratif.switch_window4.connect(self.show_Arthrodese)
+
+        if control_med_creaDP == True:
+            self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
+            self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)
+        elif control_med_selecDP == True:
+            self.windowDegeneratif.switch_window2.connect(self.show_SelectionnerDP_suite)
+            self.windowDegeneratif.switch_window6.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP == True:
+            self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
+            self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)
+        elif control_sec_selecDP == True:
+            self.windowDegeneratif.switch_window2.connect(self.show_SelectionnerDP_suite)
+            self.windowDegeneratif.switch_window6.connect(self.show_SelectionnerDP_suite)
 
 
         if (controlleur_zoneCervicale == True):
@@ -755,6 +799,7 @@ class Controller_Test:
         self.etape2.hide()
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
+        self.windowsSelectionnerDP_suite.hide()
 
         self.windowDegeneratif.show()
 
@@ -771,6 +816,7 @@ class Controller_Test:
         global ctl_glb_label_patho
         global creerOnco, creerRecalibrage, creerArthrodese, concatenation_arthrodese, concatenation_recalibrage
         global ctr_reca_postAnt, ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         BD = Connexion_DB()
         BD.connexion_DB()
@@ -793,6 +839,11 @@ class Controller_Test:
         controlleur_recalibrage_hernie = UITest.Pathologie_Oncologie.onco_recalibrage_hernie
         controlleur_recalibrage_non = UITest.Pathologie_Oncologie.onco_recalibrage_non
         controlleur_recalibrage_oui = UITest.Pathologie_Oncologie.onco_recalibrage_oui
+
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
         controlleur_cote_bilateral = UITest.Pathologie_Oncologie.glb_onco_cote_bilateral
         controlleur_cote_gauche = UITest.Pathologie_Oncologie.glb_onco_cote_gauche
@@ -819,14 +870,28 @@ class Controller_Test:
         self.windowRecalibrage = MainWindow_FormRecalibrage()
         self.windowArthrodese = MainWindow_FormArthrodese()
         self.windowOncologique = MainWindow_Oncologie()
+        self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
+
 
         # actions de chaque bouton en fct du window
         self.windowOncologique.switch_window1.connect(self.show_Etape2)
-        self.windowOncologique.switch_window2.connect(self.show_CreationDP)
         self.windowOncologique.switch_window3.connect(self.show_Recalibrage)
         self.windowOncologique.switch_window4.connect(self.show_Arthrodese)
         self.windowOncologique.switch_window5.connect(self.show_Etape2)
-        self.windowOncologique.switch_window6.connect(self.show_CreationDP)
+
+
+        if control_med_creaDP == True:
+            self.windowOncologique.switch_window2.connect(self.show_CreationDP)
+            self.windowOncologique.switch_window6.connect(self.show_CreationDP)
+        elif control_med_selecDP == True:
+            self.windowOncologique.switch_window2.connect(self.show_SelectionnerDP_suite)
+            self.windowOncologique.switch_window6.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP == True:
+            self.windowOncologique.switch_window2.connect(self.show_CreationDP)
+            self.windowOncologique.switch_window6.connect(self.show_CreationDP)
+        elif control_sec_selecDP == True:
+            self.windowDegeneratif.switch_window2.connect(self.show_SelectionnerDP_suite)
+            self.windowOncologique.switch_window6.connect(self.show_SelectionnerDP_suite)
 
         if (controlleur_zoneCervicale == True):
             nom_cervicale = "zone Cervicale"
@@ -916,29 +981,50 @@ class Controller_Test:
         self.etape2.hide()
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
+        self.windowsSelectionnerDP_suite.hide()
 
         self.windowOncologique.show()
 
     def show_Traumatologique(self):
+
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
         self.windowArthrodese = MainWindow_FormArthrodese()
         self.windowNiveau = MainWindow_Niveau()
+        self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
         self.windowTraumato = MainWindow_Traumatologie()
+
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
         self.nbVertebre = UITest.Traumatologique_Niveaux.compteur_recuperation
         self.windowTraumato.lineEdit_nombreVertebre.setText(self.nbVertebre)
 
         # actions de chaque bouton en fct du window
         self.windowTraumato.switch_window1.connect(self.show_Etape2)
-        self.windowTraumato.switch_window2.connect(self.show_CreationDP)
         self.windowTraumato.switch_window3.connect(self.show_Niveau)
         self.windowTraumato.switch_window4.connect(self.show_Recalibrage)
         self.windowTraumato.switch_window5.connect(self.show_Arthrodese)
-        self.windowTraumato.switch_window6.connect(self.show_Niveau)
         self.windowTraumato.switch_window7.connect(self.show_Etape2)
-        self.windowTraumato.switch_window8.connect(self.show_CreationDP)
+
+
+        if control_med_creaDP == True:
+            self.windowTraumato.switch_window2.connect(self.show_CreationDP)
+            self.windowTraumato.switch_window8.connect(self.show_CreationDP)
+        elif control_med_selecDP == True:
+            self.windowTraumato.switch_window2.connect(self.show_SelectionnerDP_suite)
+            self.windowTraumato.switch_window8.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP == True:
+            self.windowTraumato.switch_window2.connect(self.show_CreationDP)
+            self.windowTraumato.switch_window8.connect(self.show_CreationDP)
+        elif control_sec_selecDP == True:
+            self.windowTraumato.switch_window2.connect(self.show_SelectionnerDP_suite)
+            self.windowTraumato.switch_window8.connect(self.show_SelectionnerDP_suite)
 
         self.etape2.hide()
         self.windowRecalibrage.hide()
@@ -961,6 +1047,7 @@ class Controller_Test:
         global controlleur_vertebre1, controlleur_vertebre2
         global ctr_signal_dege, ctr_signal_trauma, ctr_signal_onco
         global creerRecalibrage
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
         self.signal_trauma = UITest.Pathologie_Etape2.signal_traumatologique
@@ -968,12 +1055,26 @@ class Controller_Test:
         controlleur_vertebre1 = UITest.Pathologie_Degeneratif.dege_vertebre1
         controlleur_vertebre2 = UITest.Pathologie_Degeneratif.dege_vertebre2
 
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowOncologique = MainWindow_Oncologie()
         self.windowTraumato = MainWindow_Traumatologie()
+        self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
 
+        if control_med_creaDP == True:
+            self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
+        elif control_med_selecDP == True:
+            self.windowRecalibrage.switch_window2.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP == True:
+            self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
+        elif control_sec_selecDP == True:
+            self.windowRecalibrage.switch_window2.connect(self.show_SelectionnerDP_suite)
 
         if self.signal_degene == True:
             self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
@@ -993,8 +1094,6 @@ class Controller_Test:
                 creerRecalibrage = True
             ctr_signal_onco = "Oncologie"
 
-        # actions de chaque bouton en fct du window
-        self.windowRecalibrage.switch_window2.connect(self.show_CreationDP)
 
 
         self.windowRecalibrage.show()
@@ -1002,6 +1101,7 @@ class Controller_Test:
     def show_Arthrodese(self):
         global controlleur_vertebre1, controlleur_vertebre2
         global creerArthrodese
+        global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
         self.signal_trauma = UITest.Pathologie_Etape2.signal_traumatologique
@@ -1009,11 +1109,26 @@ class Controller_Test:
         controlleur_vertebre1 = UITest.Pathologie_Degeneratif.dege_vertebre1
         controlleur_vertebre2 = UITest.Pathologie_Degeneratif.dege_vertebre2
 
+        control_med_creaDP = UITest.Accueil_Medecin.signal_med_creationDP
+        control_med_selecDP = UITest.Accueil_Medecin.signal_med_selectionDP
+        control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
+        control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowOncologique = MainWindow_Oncologie()
         self.windowTraumato = MainWindow_Traumatologie()
+        self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
         self.windowArthrodese = MainWindow_FormArthrodese()
+
+        if control_med_creaDP == True:
+            self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
+        elif control_med_selecDP == True:
+            self.windowArthrodese.switch_window2.connect(self.show_SelectionnerDP_suite)
+        elif control_sec_creaDP == True:
+            self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
+        elif control_sec_selecDP == True:
+            self.windowArthrodese.switch_window2.connect(self.show_SelectionnerDP_suite)
 
         if self.signal_degene == True:
             self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
@@ -1029,11 +1144,6 @@ class Controller_Test:
             self.windowArthrodese.switch_window1.connect(self.show_Oncologique)
             if (self.windowArthrodese.switch_window3.connect(self.show_Oncologique)):
                 creerArthrodese = True
-
-
-        # actions de chaque bouton en fct du window
-        self.windowArthrodese.switch_window2.connect(self.show_CreationDP)
-
 
 
         self.windowArthrodese.show()
