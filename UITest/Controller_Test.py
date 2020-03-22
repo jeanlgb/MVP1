@@ -168,23 +168,62 @@ class Controller_Test:
             controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
             controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
             BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
-            # if controlleur_postOp:
-            #     BD.creation_consultation(controlleur_numMagic, "POST")
-            #
-            # if controlleur_preOp:
-            #     BD.creation_consultation(controlleur_numMagic, "PRE")
-            #
-            # liste = []
-            # with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
-            #     for line in f.readlines():
-            #         # Traiter la ligne et ainsi de suite ...
-            #         ligne = line.strip()
-            #         liste.append(ligne)
-            #     # print(liste)
-            # if not liste:
-            #     print("liste vide")
-            # elif liste[1] == None:
-            #     print("pas de score")
+            if controlleur_postOp:
+                BD.creation_consultation(controlleur_numMagic, "POST")
+
+            if controlleur_preOp:
+                BD.creation_consultation(controlleur_numMagic, "PRE")
+
+            liste = []
+            with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+                for line in f.readlines():
+                    # Traiter la ligne et ainsi de suite ...
+                    ligne = line.strip()
+                    liste.append(ligne)
+                print(liste)
+
+            if liste[0] != "X":
+                numeroM = liste[0]
+
+            else:
+                numeroM = ""
+
+            if liste[1] != "X":
+                glassman = liste[1]
+
+            else:
+                glassman = ""
+
+            if liste[2] != "X":
+                evacer = liste[2]
+
+            else:
+                evacer = ""
+
+            if liste[3] != "X":
+                evalom = liste[3]
+            else:
+                evalom = ""
+            if liste[4] != "X":
+                ndi = liste[4]
+            else:
+                ndi = ""
+            if liste[5] != "X":
+                mjoa = liste[5]
+            else:
+                mjoa = ""
+            if liste[6] != "X":
+                oswestry = liste[6]
+            else:
+                oswestry = ""
+            if not liste:
+                print("liste vide")
+            else:
+
+                #decommenter ca et remplacer la ligne en dessous !!! -> BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+
+
+                BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
 
                 #BD.ajouter_scores(controlleur_numMagic, liste[1], liste[2], liste[3], liste[4], liste[5], liste[6])
             creerPat = False
@@ -249,6 +288,62 @@ class Controller_Test:
             controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
             controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
             BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
+            if controlleur_postOp:
+                BD.creation_consultation(controlleur_numMagic, "POST")
+
+            if controlleur_preOp:
+                BD.creation_consultation(controlleur_numMagic, "PRE")
+
+            liste = []
+            with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
+                for line in f.readlines():
+                    # Traiter la ligne et ainsi de suite ...
+                    ligne = line.strip()
+                    liste.append(ligne)
+                print(liste)
+
+            if liste[0] != "X":
+                numeroM = liste[0]
+
+            else:
+                numeroM = ""
+
+            if liste[1] != "X":
+                glassman = liste[1]
+
+            else:
+                glassman = ""
+
+            if liste[2] != "X":
+                evacer = liste[2]
+
+            else:
+                evacer = ""
+
+            if liste[3] != "X":
+                evalom = liste[3]
+            else:
+                evalom = ""
+            if liste[4] != "X":
+                ndi = liste[4]
+            else:
+                ndi = ""
+            if liste[5] != "X":
+                mjoa = liste[5]
+            else:
+                mjoa = ""
+            if liste[6] != "X":
+                oswestry = liste[6]
+            else:
+                oswestry = ""
+            if not liste:
+                print("liste vide")
+            else:
+
+                #decommenter ca et remplacer la ligne en dessous !!! -> BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+
+
+                BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
             creerPat = False
             controlleur_nom = ""
             controlleur_prenom = ""
@@ -280,9 +375,9 @@ class Controller_Test:
         global ctr_glb_label_origine, ctr_glb_label_topo
         global creerDegene, concatenation_arthrodese, concatenation_recalibrage, creerOnco
         global BD
+        global valider
 
-        BD = Connexion_DB()
-        BD.connexion_DB()
+
 
         controlleur_jour = UITest.CreationDP.patient_jour
         controlleur_mois = UITest.CreationDP.patient_mois
@@ -291,6 +386,8 @@ class Controller_Test:
         controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
         controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
         controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
+
+        valider = UITest.Pathologie_Degeneratif.valider
 
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
@@ -312,6 +409,7 @@ class Controller_Test:
         self.windowCreationDP.switch_window2.connect(self.show_Etape2)
 
 
+
         self.windowCreationDP.lineEdit_nom.setText(controlleur_nom)
         self.windowCreationDP.lineEdit_prenom.setText(controlleur_prenom)
         self.windowCreationDP.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
@@ -324,7 +422,7 @@ class Controller_Test:
         self.windowCreationDP.checkBox_thoracoLombaire.setChecked(controlleur_cbox_thoracoLombaire)
         self.windowCreationDP.checkBox_autre.setChecked(controlleur_cbox_autre)
 
-        if creerDegene == True:
+        if valider == True:
             controlleur_numMagic = UITest.CreationDP.patient_numMagic
             ctl_glb_textEdit_intervention = UITest.CreationDP.glb_textEdit_intervention
             ctr_signal_contexte = UITest.Pathologie_Etape2.glb_nom_contexte
@@ -346,7 +444,7 @@ class Controller_Test:
                                                                      ctl_glb_label_arthro + " " + concatenation_arthrodese)
 
             self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention)
-            creerDegene = False
+            valider = False
 
             ctl_glb_label_patho = ""
             ctl_glb_label_FN = ""
@@ -604,8 +702,7 @@ class Controller_Test:
         global BD
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
-        BD = Connexion_DB()
-        BD.connexion_DB()
+
 
         controlleur_nom = UITest.CreationDP.patient_nom
         controlleur_prenom = UITest.CreationDP.patient_prenom
@@ -661,8 +758,7 @@ class Controller_Test:
         global ctr_reca_postAnt,  ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
-        BD = Connexion_DB()
-        BD.connexion_DB()
+
 
         controlleur_cbox_cervicaleRadiculaire = UITest.CreationDP.valeur_cb_cervicale_radiculaire
         controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
@@ -753,6 +849,7 @@ class Controller_Test:
             ctr_reca_postAnt = UITest.Formulaire_Recalibrage.glb_reca_postAnt
             ctr_reca_hernie = UITest.Formulaire_Recalibrage.glb_reca_hernie_associer
             ctr_reca_infos = UITest.Formulaire_Recalibrage.glb_reca_infos
+
             concatenation_recalibrage = ctr_reca_postAnt + " " + ctr_reca_infos + " " + ctr_reca_hernie
 
             BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt,ctr_reca_infos,ctr_reca_hernie)
@@ -774,11 +871,8 @@ class Controller_Test:
             ctr_arthro_fixation = ""
             ctr_arthro_greffe = ""
 
-        if (self.windowDegeneratif.switch_window6.connect(self.show_CreationDP)) or (self.windowDegeneratif.switch_window5.connect(self.show_Etape2)):
-            creerDegene = True
-
-        else:
-            creerDegene = False
+        self.windowDegeneratif.switch_window6.connect(self.show_CreationDP) # or (self.windowDegeneratif.switch_window5.connect(self.show_Etape2)):
+            #creerDegene = True
 
 
         self.windowDegeneratif.spinBox_nombre1.setValue(controlleur_vertebre1)
@@ -875,6 +969,7 @@ class Controller_Test:
 
         # actions de chaque bouton en fct du window
         self.windowOncologique.switch_window1.connect(self.show_Etape2)
+        self.windowOncologique.switch_window2.connect(self.show_CreationDP)
         self.windowOncologique.switch_window3.connect(self.show_Recalibrage)
         self.windowOncologique.switch_window4.connect(self.show_Arthrodese)
         self.windowOncologique.switch_window5.connect(self.show_Etape2)
@@ -1007,9 +1102,11 @@ class Controller_Test:
 
         # actions de chaque bouton en fct du window
         self.windowTraumato.switch_window1.connect(self.show_Etape2)
+        self.windowTraumato.switch_window2.connect(self.show_CreationDP)
         self.windowTraumato.switch_window3.connect(self.show_Niveau)
         self.windowTraumato.switch_window4.connect(self.show_Recalibrage)
         self.windowTraumato.switch_window5.connect(self.show_Arthrodese)
+        self.windowTraumato.switch_window6.connect(self.show_Niveau)
         self.windowTraumato.switch_window7.connect(self.show_Etape2)
 
 
