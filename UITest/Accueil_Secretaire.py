@@ -82,8 +82,8 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
         #         liste.append(ligne)
         #     print(liste)
         global signal_sec_creationDP, signal_sec_selectionDP
-        signal_sec_creationDP = False
-        signal_sec_selectionDP = True
+        signal_sec_creationDP = True
+        signal_sec_selectionDP = False
         self.switch_window1.emit()
 
     def selectionnerDP(self):

@@ -38,6 +38,8 @@ glb_label_cote = ""
 glb_label_arthrodese = ""
 glb_label_patho = ""
 
+validerOnco = False
+
 class Ui_Frame_Oncologie(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -625,6 +627,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
+        global validerOnco
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -653,7 +656,8 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         glb_onco_cote_bilateral = False
         onco_arthrodese_oui = False
         onco_arthrodese_non = True
-        
+
+        validerOnco = False
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
@@ -662,6 +666,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
+        global validerOnco
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -690,6 +695,9 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         glb_onco_cote_bilateral = False
         onco_arthrodese_oui = False
         onco_arthrodese_non = True
+
+        validerOnco = False
+
         self.switch_window2.emit()
 
     def countVertebres(self):
@@ -803,6 +811,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
+        global validerOnco
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -832,6 +841,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         onco_arthrodese_oui = False
         onco_arthrodese_non = True
 
+        validerOnco = True
         self.switch_window5.emit()
 
     def valider(self):
@@ -840,6 +850,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
+        global validerOnco
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -869,4 +880,5 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         onco_arthrodese_oui = False
         onco_arthrodese_non = True
 
+        validerOnco = True
         self.switch_window6.emit() #faute de mieux

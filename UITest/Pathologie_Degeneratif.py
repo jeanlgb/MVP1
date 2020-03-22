@@ -367,6 +367,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
     def retourEtape2(self):
         global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
         global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
+        global valider
 
         glb_dege_FN_radiculaire = True
         glb_dege_FN_radicoMedullaire = False
@@ -382,6 +383,9 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         glb_dege_cote_bilateral = False
         dege_arthrodese_oui = False
         dege_arthrodese_non = True
+
+        valider = False
+
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
@@ -514,6 +518,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
     def ajouterIntervention(self):
         global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
         global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
+        global valider
 
         glb_dege_FN_radiculaire = True
         glb_dege_FN_radicoMedullaire = False
@@ -529,6 +534,9 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         glb_dege_cote_bilateral = False
         dege_arthrodese_oui = False
         dege_arthrodese_non = True
+
+        valider = True
+
         self.switch_window5.emit()
 
     def valider(self):
