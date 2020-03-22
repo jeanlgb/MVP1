@@ -168,4 +168,10 @@ class Connexion_DB:
             %(voie)s, %(fixation)s, %(greffe)s)""", pathologie)
         conn.commit()
 
+    def ajouter_traumato_niveaux(self, numero, zone, cervicales, dorsales, lombaires, sacro):
+        pathologie = {"numero": numero, "zone": zone, "cervicales": cervicales, "dorsales": dorsales, "lombaires": lombaires, "sacro": sacro}
+        cursor.execute("""INSERT INTO nb_vertebre_traumato (Numéro_patient, Zone, Cervicales, Dorsales, Lombaires, Sacro) VALUES(%(numero)s, 
+            %(zone)s, %(cervicales)s, %(dorsales)s, %(lombaires)s, %(sacro)s)""", pathologie)
+        conn.commit()
+
 

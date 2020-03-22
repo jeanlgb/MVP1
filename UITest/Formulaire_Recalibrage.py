@@ -28,6 +28,7 @@ glb_reca_postAnt = ""
 glb_reca_infos = ""
 glb_reca_hernie_associer = ""
 
+validerRecalibrage = False
 class Ui_Frame_Recalibrage(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -252,9 +253,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
     def retourEtapePrecedente(self):
+        global validerRecalibrage
+        validerRecalibrage= False
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
+        global validerRecalibrage
+        validerRecalibrage = False
         self.switch_window2.emit()
 
     def radiobtnFrame_Haut_anterieur(self):
@@ -443,4 +448,6 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
 
 
     def suivant(self):
+        global validerRecalibrage
+        validerRecalibrage = True
         self.switch_window3.emit() #faute de mieux
