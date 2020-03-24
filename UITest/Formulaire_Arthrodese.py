@@ -30,6 +30,8 @@ glb_arthro_postAnt = ""
 glb_arthro_fixation = ""
 glb_arthro_greffe = ""
 
+validerArthrodese = False
+
 class Ui_Frame_Arthrodese(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -331,9 +333,13 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
     def retourEtapePrecedente(self):
+        global validerArthrodese
+        validerArthrodese = False
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
+        global validerArthrodese
+        validerArthrodese = False
         self.switch_window2.emit()
 
     def radiobtnFrame_Haut_anterieur(self):
@@ -518,4 +524,6 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
 
 
     def suivant(self):
+        global validerArthrodese
+        validerArthrodese = True
         self.switch_window3.emit() #faute de mieux

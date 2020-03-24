@@ -14,6 +14,7 @@ from UITest.Pathologie_Degeneratif import MainWindow_Degeneratif
 from UITest.Pathologie_Degeneratif import *
 from UITest.Pathologie_Oncologie import MainWindow_Oncologie
 from UITest.Pathologie_Traumatologique import MainWindow_Traumatologie
+from UITest.Pathologie_Traumatologique import  *
 from UITest.Traumatologique_Niveaux import MainWindow_Niveau
 from UITest.Traumatologique_Niveaux import *
 from UITest.Formulaire_Arthrodese import MainWindow_FormArthrodese
@@ -74,8 +75,20 @@ controlleur_origine_secondaire = False
 controlleur_origine_medullaire = False
 controlleur_origine_autre = False
 
+controlleur_percutanee = False
+controlleur_foyer = False
+controlleur_corpo_vertebro = False
+controlleur_corpo_cypho = False
+controlleur_corpo_non = False
+controlleur_osteo_mono = False
+controlleur_osteo_poly = False
+controlleur_osteo_non = False
+
 ctr_glb_label_topo = ""
 ctr_glb_label_origine = ""
+ctr_glb_label_corpo = ""
+ctr_glb_label_osteo = ""
+ctr_glb_label_modalite = ""
 ctl_glb_label_patho = ""
 ctl_glb_label_FN = ""
 ctl_glb_label_niveau = ""
@@ -94,19 +107,28 @@ ctr_arthro_fixation = ""
 ctr_arthro_greffe = ""
 concatenation_recalibrage = ""
 concatenation_arthrodese = ""
+concatenation_traumato_niveau = ""
 
 controlleur_postOp = False
 controlleur_preOp = False
-
-creerDegene = False
-creerOnco = False
-creerRecalibrage = False
-creerArthrodese = False
 
 control_med_creaDP = False
 control_med_selecDP = False
 control_sec_creaDP = False
 control_sec_selecDP = False
+
+valider = False
+validerTraumato = False
+validerOnco = False
+validerRecalibrage = False
+validerArthrodese = False
+validerNiveaux = False
+
+ctr_niveaux_CDLS = ""
+ctr_niveaux_zoneC = ""
+ctr_niveaux_zoneD = ""
+ctr_niveaux_zoneL = ""
+ctr_niveaux_zoneS = ""
 
 
 class Controller_Test:
@@ -137,7 +159,6 @@ class Controller_Test:
         controlleur_prenom = ""
         controlleur_numMagic = ""
         controlleur_dateDeIntervention = ""
-
 
         self.med = MainWindow_Acceuil()
         self.co = Login()
@@ -237,10 +258,14 @@ class Controller_Test:
             UITest.CreationDP.valeur_cb_autre = False
             UITest.CreationDP.valeur_cb_thoraco_lombaire = False
 
+
+
+
         self.med.switch_window1.connect(self.show_CreationDP)
         self.med.switch_window2.connect(self.show_SelectionnerDP)
 
         self.med.switch_window5.connect(self.show_Connexion)
+
 
         self.windowEvaluation.hide()
         self.windowSelectionnerDP.hide()
@@ -258,6 +283,7 @@ class Controller_Test:
         controlleur_prenom = ""
         controlleur_numMagic = ""
         controlleur_dateDeIntervention = ""
+
 
         self.co = Login()
         self.sec = MainWindow_Acceuil_Secretaire()
@@ -333,7 +359,8 @@ class Controller_Test:
                 print("liste vide")
             else:
 
-                # decommenter ca et remplacer la ligne en dessous !!! -> BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+                #decommenter ca et remplacer la ligne en dessous !!! -> BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+
 
                 BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
             creerPat = False
@@ -359,14 +386,18 @@ class Controller_Test:
         self.windowCreationDP.hide()
         self.sec.show()
 
+
     def show_CreationDP(self):
         global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_jour, controlleur_mois, controlleur_annee
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global ctl_glb_label_patho, ctl_glb_label_FN, ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote, ctl_glb_label_arthro, ctl_glb_textEdit_intervention, ctr_signal_contexte
         global ctr_glb_label_origine, ctr_glb_label_topo
-        global creerDegene, concatenation_arthrodese, concatenation_recalibrage, creerOnco
+        global ctr_glb_label_corpo, ctr_glb_label_osteo, ctr_glb_label_modalite
+        global concatenation_arthrodese, concatenation_recalibrage, concatenation_traumato_niveau
         global BD
-        global valider
+        global valider, validerOnco, validerTraumato
+
+
 
         controlleur_jour = UITest.CreationDP.patient_jour
         controlleur_mois = UITest.CreationDP.patient_mois
@@ -377,9 +408,12 @@ class Controller_Test:
         controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
 
         valider = UITest.Pathologie_Degeneratif.valider
+        validerTraumato = UITest.Pathologie_Traumatologique.validerTraumato
+        validerOnco = UITest.Pathologie_Oncologie.validerOnco
 
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
+
 
         self.windowEvaluation = MainWindow_Evaluation()
         self.sec = MainWindow_Acceuil_Secretaire()
@@ -396,17 +430,19 @@ class Controller_Test:
         self.windowCreationDP.switch_window1.connect(self.show_Evaluation)
         self.windowCreationDP.switch_window2.connect(self.show_Etape2)
 
-        # self.windowCreationDP.lineEdit_nom.setText(controlleur_nom)
-        # self.windowCreationDP.lineEdit_prenom.setText(controlleur_prenom)
-        # self.windowCreationDP.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
-        # self.windowCreationDP.lineEdit_numeroMagic.setText(controlleur_numMagic)
-        # self.windowCreationDP.comboBox_jour.setCurrentText(controlleur_jour)
-        # self.windowCreationDP.comboBox_mois.setCurrentText(controlleur_mois)
-        # self.windowCreationDP.spinBox_annee.setValue(controlleur_annee)
-        # self.windowCreationDP.checkBox_cervicalRadiculaire.setChecked(controlleur_cbox_cervicaleRadiculaire)
-        # self.windowCreationDP.checkBox_medullaire.setChecked(controlleur_cbox_medullaire)
-        # self.windowCreationDP.checkBox_thoracoLombaire.setChecked(controlleur_cbox_thoracoLombaire)
-        # self.windowCreationDP.checkBox_autre.setChecked(controlleur_cbox_autre)
+
+
+        self.windowCreationDP.lineEdit_nom.setText(controlleur_nom)
+        self.windowCreationDP.lineEdit_prenom.setText(controlleur_prenom)
+        self.windowCreationDP.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
+        self.windowCreationDP.lineEdit_numeroMagic.setText(controlleur_numMagic)
+        self.windowCreationDP.comboBox_jour.setCurrentText(controlleur_jour)
+        self.windowCreationDP.comboBox_mois.setCurrentText(controlleur_mois)
+        self.windowCreationDP.spinBox_annee.setValue(controlleur_annee)
+        self.windowCreationDP.checkBox_cervicalRadiculaire.setChecked(controlleur_cbox_cervicaleRadiculaire)
+        self.windowCreationDP.checkBox_medullaire.setChecked(controlleur_cbox_medullaire)
+        self.windowCreationDP.checkBox_thoracoLombaire.setChecked(controlleur_cbox_thoracoLombaire)
+        self.windowCreationDP.checkBox_autre.setChecked(controlleur_cbox_autre)
 
         if valider == True:
             controlleur_numMagic = UITest.CreationDP.patient_numMagic
@@ -419,15 +455,15 @@ class Controller_Test:
             ctl_glb_label_cote = UITest.Pathologie_Degeneratif.glb_label_cote
             ctl_glb_label_arthro = UITest.Pathologie_Degeneratif.glb_label_arthrodese
 
-            # BD.ajouter_pathologie_degeneratif("", controlleur_numMagic, ctl_glb_label_patho,
-            #                                       ctr_signal_contexte, ctl_glb_label_FN,
-            #                                       ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote,
-            #                                       ctl_glb_label_arthro)
+            BD.ajouter_pathologie_degeneratif("", controlleur_numMagic, ctl_glb_label_patho,
+                                                  ctr_signal_contexte, ctl_glb_label_FN,
+                                                  ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote,
+                                                  ctl_glb_label_arthro)
 
             nom_intervention = (ctl_glb_textEdit_intervention + " " + ctl_glb_label_patho + " " +
-                                ctr_signal_contexte + " " + ctl_glb_label_FN + " " +
-                                ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
-                                ctl_glb_label_arthro + " " + concatenation_arthrodese)
+                                                                     ctr_signal_contexte + " " + ctl_glb_label_FN + " " +
+                                                                     ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
+                                                                     ctl_glb_label_arthro + " " + concatenation_arthrodese)
 
             self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention)
             valider = False
@@ -442,43 +478,84 @@ class Controller_Test:
             ctl_glb_label_arthro = ""
 
 
-        elif creerOnco == True:
-            controlleur_numMagic = UITest.CreationDP.patient_numMagic
-            ctl_glb_textEdit_intervention = UITest.CreationDP.glb_textEdit_intervention
-            ctr_signal_contexte = UITest.Pathologie_Etape2.glb_nom_contexte
-            # ctl_glb_label_patho = self.windowDegeneratif.label_patho.text()
-            ctr_glb_label_origine = UITest.Pathologie_Oncologie.glb_label_origine
-            ctr_glb_label_topo = UITest.Pathologie_Oncologie.glb_label_topo
-            ctl_glb_label_FN = UITest.Pathologie_Oncologie.glb_label_FN
-            ctl_glb_label_niveau = UITest.Pathologie_Oncologie.glb_label_Niveau
-            ctl_glb_label_reca = UITest.Pathologie_Oncologie.glb_label_recalibrage
-            ctl_glb_label_cote = UITest.Pathologie_Oncologie.glb_label_cote
-            ctl_glb_label_arthro = UITest.Pathologie_Oncologie.glb_label_arthrodese
+        elif validerOnco == True:
+                controlleur_numMagic = UITest.CreationDP.patient_numMagic
+                ctl_glb_textEdit_intervention = UITest.CreationDP.glb_textEdit_intervention
+                ctr_signal_contexte = UITest.Pathologie_Etape2.glb_nom_contexte
+                # ctl_glb_label_patho = self.windowDegeneratif.label_patho.text()
+                ctr_glb_label_origine = UITest.Pathologie_Oncologie.glb_label_origine
+                ctr_glb_label_topo = UITest.Pathologie_Oncologie.glb_label_topo
+                ctl_glb_label_FN = UITest.Pathologie_Oncologie.glb_label_FN
+                ctl_glb_label_niveau = UITest.Pathologie_Oncologie.glb_label_Niveau
+                ctl_glb_label_reca = UITest.Pathologie_Oncologie.glb_label_recalibrage
+                ctl_glb_label_cote = UITest.Pathologie_Oncologie.glb_label_cote
+                ctl_glb_label_arthro = UITest.Pathologie_Oncologie.glb_label_arthrodese
 
-            BD.ajouter_pathologie_oncologie("", controlleur_numMagic, ctl_glb_label_patho,
-                                            ctr_signal_contexte, ctl_glb_label_FN, ctr_glb_label_topo,
-                                            ctr_glb_label_origine,
-                                            ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote,
-                                            ctl_glb_label_arthro)
+                BD.ajouter_pathologie_oncologie("", controlleur_numMagic, ctl_glb_label_patho,
+                                                      ctr_signal_contexte, ctl_glb_label_FN, ctr_glb_label_topo, ctr_glb_label_origine,
+                                                      ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote,
+                                                      ctl_glb_label_arthro)
 
-            nom_intervention = (ctl_glb_textEdit_intervention + " " + ctl_glb_label_patho + " " +
-                                ctr_signal_contexte + " " + ctl_glb_label_FN + " " + ctr_glb_label_topo + " " + ctr_glb_label_origine + " " +
-                                ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
-                                ctl_glb_label_arthro + " " + concatenation_arthrodese)
-            print(nom_intervention)
-            self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention)
-            creerOnco = False
+                nom_intervention_2 = (ctl_glb_textEdit_intervention + " " + ctl_glb_label_patho + " " +
+                                    ctr_signal_contexte + " " + ctl_glb_label_FN + " " + ctr_glb_label_topo + " " + ctr_glb_label_origine + " " +
+                                    ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
+                                    ctl_glb_label_arthro + " " + concatenation_arthrodese)
+                print(nom_intervention_2)
+                self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention_2)
+                validerOnco = False
 
-            ctr_glb_label_origine = ""
-            ctr_glb_label_topo = ""
-            ctl_glb_label_patho = ""
-            ctl_glb_label_FN = ""
-            ctr_signal_contexte = ""
-            ctl_glb_textEdit_intervention = ""
-            ctl_glb_label_niveau = ""
-            ctl_glb_label_reca = ""
-            ctl_glb_label_cote = ""
-            ctl_glb_label_arthro = ""
+                ctr_glb_label_origine = ""
+                ctr_glb_label_topo = ""
+                ctl_glb_label_patho = ""
+                ctl_glb_label_FN = ""
+                ctr_signal_contexte = ""
+                ctl_glb_textEdit_intervention = ""
+                ctl_glb_label_niveau = ""
+                ctl_glb_label_reca = ""
+                ctl_glb_label_cote = ""
+                ctl_glb_label_arthro = ""
+
+        elif validerTraumato == True:
+                controlleur_numMagic = UITest.CreationDP.patient_numMagic
+                ctl_glb_textEdit_intervention = UITest.CreationDP.glb_textEdit_intervention
+                ctr_signal_contexte = UITest.Pathologie_Etape2.glb_nom_contexte
+                # ctl_glb_label_patho = self.windowDegeneratif.label_patho.text()
+                ctr_glb_label_corpo = UITest.Pathologie_Traumatologique.glb_label_corpo
+                ctr_glb_label_osteo = UITest.Pathologie_Traumatologique.glb_label_osteo
+                ctr_glb_label_modalite = UITest.Pathologie_Traumatologique.glb_label_modalite
+                ctl_glb_label_FN = UITest.Pathologie_Traumatologique.glb_label_FN
+                ctl_glb_label_niveau = UITest.Pathologie_Traumatologique.glb_label_Niveau
+                ctl_glb_label_reca = UITest.Pathologie_Traumatologique.glb_label_recalibrage
+                ctl_glb_label_cote = UITest.Pathologie_Traumatologique.glb_label_cote
+                ctl_glb_label_arthro = UITest.Pathologie_Traumatologique.glb_label_arthrodese
+
+                BD.ajouter_pathologie_traumatologique("", controlleur_numMagic, ctl_glb_label_patho,
+                                                      ctr_signal_contexte, ctl_glb_label_FN, ctr_glb_label_modalite, "c", ctr_glb_label_corpo, ctr_glb_label_osteo,
+                                                      ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote,
+                                                      ctl_glb_label_arthro)
+
+                nom_intervention_3 = (ctl_glb_textEdit_intervention + " " + ctl_glb_label_patho + " " +
+                                    ctr_signal_contexte + " " + ctl_glb_label_FN + " " + concatenation_traumato_niveau + " " + ctr_glb_label_corpo + " " + ctr_glb_label_osteo + " " + ctr_glb_label_modalite + " " +
+                                    ctl_glb_label_niveau + " " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
+                                    ctl_glb_label_arthro + " " + concatenation_arthrodese)
+
+                print(nom_intervention_3)
+                self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention_3)
+                validerTraumato = False
+
+                ctr_glb_label_corpo = ""
+                ctr_glb_label_osteo = ""
+                ctr_glb_label_modalite = ""
+                ctl_glb_label_patho = ""
+                ctl_glb_label_FN = ""
+                ctr_signal_contexte = ""
+                ctl_glb_textEdit_intervention = ""
+                ctl_glb_label_niveau = ""
+                ctl_glb_label_reca = ""
+                ctl_glb_label_cote = ""
+                ctl_glb_label_arthro = ""
+
+
 
         if self.signal_med == True:
             self.windowCreationDP.switch_window3.connect(self.show_Medecin)
@@ -498,6 +575,7 @@ class Controller_Test:
         self.windowCreationDP.show()
 
     def show_SelectionnerDP(self):
+        global controlleur_nom, controlleur_prenom, controlleur_numMagic
 
         self.signal_med = UITest.Connexion.signal_medecin
         self.signal_sec = UITest.Connexion.signal_secretaire
@@ -527,10 +605,11 @@ class Controller_Test:
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre, controlleur_dateDeIntervention
         global ctl_glb_label_patho, ctl_glb_label_FN, ctl_glb_label_niveau, ctl_glb_label_reca, ctl_glb_label_cote, ctl_glb_label_arthro, ctl_glb_textEdit_intervention, ctr_signal_contexte
         global ctr_glb_label_origine, ctr_glb_label_topo
-        global creerDegene, concatenation_arthrodese, concatenation_recalibrage, creerOnco
+        global concatenation_arthrodese, concatenation_recalibrage
         global BD
 
-
+        BD = Connexion_DB()
+        BD.connexion_DB()
 
         controlleur_cbox_cervicaleRadiculaire = UITest.SelectionDP_suite.valeur_cb_cervicale_radiculaire
         controlleur_cbox_medullaire = UITest.SelectionDP_suite.valeur_cb_medullaire
@@ -580,6 +659,7 @@ class Controller_Test:
         self.windowSelectionnerDP.hide()
         self.etape2.hide()
 
+
         self.windowsSelectionnerDP_suite.show()
 
     def show_Evaluation(self):
@@ -589,6 +669,7 @@ class Controller_Test:
         global creerPat
         global controlleur_postOp, controlleur_preOp
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
+
 
         controlleur_cursor = ""
         self.signal_med = UITest.Connexion.signal_medecin
@@ -617,6 +698,7 @@ class Controller_Test:
         self.med = MainWindow_Acceuil()
         self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
 
+
         # controlleur_cursor = Connexion_DB.cursor
         #
         # self.BD = Connexion_DB
@@ -628,6 +710,7 @@ class Controller_Test:
         #         res = line.strip()
         #
         # BD.ajouter_score_oswestry(res)
+
 
         self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(controlleur_numMagic)
@@ -644,12 +727,13 @@ class Controller_Test:
 
         if control_med_creaDP == True:
             self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
-        elif control_med_selecDP == True:
+        elif control_med_selecDP   == True:
             self.windowEvaluation.switch_window2.connect(self.show_SelectionnerDP_suite)
-        elif control_sec_creaDP == True:
+        elif control_sec_creaDP   == True:
             self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
-        elif control_sec_selecDP == True:
+        elif control_sec_selecDP   == True:
             self.windowEvaluation.switch_window2.connect(self.show_SelectionnerDP_suite)
+
 
         # coche automatiquement les checkbox des scores
         if controlleur_cbox_cervicaleRadiculaire == True:
@@ -692,6 +776,8 @@ class Controller_Test:
         global BD
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
+
+
         controlleur_nom = UITest.CreationDP.patient_nom
         controlleur_prenom = UITest.CreationDP.patient_prenom
         controlleur_jour = UITest.CreationDP.patient_jour
@@ -712,7 +798,8 @@ class Controller_Test:
         control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
         control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
-        # actions de chaque bouton en fct du window
+
+        #actions de chaque bouton en fct du window
         self.etape2.switch_window1.connect(self.show_Degeneratif)
         self.etape2.switch_window2.connect(self.show_Traumatologique)
         self.etape2.switch_window3.connect(self.show_Oncologique)
@@ -741,9 +828,11 @@ class Controller_Test:
         global controlleur_cote_bilateral, controlleur_cote_droit, controlleur_cote_gauche
         global controlleur_arthrodese_non, controlleur_arthrodese_oui
         global ctl_glb_label_patho
-        global creerDegene, creerRecalibrage, creerArthrodese, concatenation_arthrodese, concatenation_recalibrage
-        global ctr_reca_postAnt, ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
+        global validerRecalibrage, validerArthrodese, concatenation_arthrodese, concatenation_recalibrage
+        global ctr_reca_postAnt,  ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
+
+
 
         controlleur_cbox_cervicaleRadiculaire = UITest.CreationDP.valeur_cb_cervicale_radiculaire
         controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
@@ -775,6 +864,9 @@ class Controller_Test:
         controlleur_arthrodese_non = UITest.Pathologie_Degeneratif.dege_arthrodese_non
         controlleur_arthrodese_oui = UITest.Pathologie_Degeneratif.dege_arthrodese_oui
 
+        validerArthrodese = UITest.Formulaire_Arthrodese.validerArthrodese
+        validerRecalibrage = UITest.Formulaire_Recalibrage.validerRecalibrage
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
@@ -782,10 +874,12 @@ class Controller_Test:
         self.windowDegeneratif = MainWindow_Degeneratif()
         self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
 
+
         # actions de chaque bouton en fct du window
         self.windowDegeneratif.switch_window1.connect(self.show_Etape2)
         self.windowDegeneratif.switch_window3.connect(self.show_Recalibrage)
         self.windowDegeneratif.switch_window4.connect(self.show_Arthrodese)
+        self.windowDegeneratif.switch_window5.connect(self.show_Etape2)
 
         if control_med_creaDP == True:
             self.windowDegeneratif.switch_window2.connect(self.show_CreationDP)
@@ -799,6 +893,7 @@ class Controller_Test:
         elif control_sec_selecDP == True:
             self.windowDegeneratif.switch_window2.connect(self.show_SelectionnerDP_suite)
             self.windowDegeneratif.switch_window6.connect(self.show_SelectionnerDP_suite)
+
 
         if (controlleur_zoneCervicale == True):
             nom_cervicale = "zone Cervicale"
@@ -827,36 +922,33 @@ class Controller_Test:
 
         concatenation_arthrodese = " "
         concatenation_recalibrage = " "
-        if creerRecalibrage == True:
+        if validerRecalibrage == True:
             ctr_reca_postAnt = UITest.Formulaire_Recalibrage.glb_reca_postAnt
             ctr_reca_hernie = UITest.Formulaire_Recalibrage.glb_reca_hernie_associer
             ctr_reca_infos = UITest.Formulaire_Recalibrage.glb_reca_infos
 
             concatenation_recalibrage = ctr_reca_postAnt + " " + ctr_reca_infos + " " + ctr_reca_hernie
 
-            BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt, ctr_reca_infos, ctr_reca_hernie)
-            creerRecalibrage = False
+            BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt,ctr_reca_infos,ctr_reca_hernie)
+            validerRecalibrage = False
             ctr_reca_postAnt = ""
             ctr_reca_hernie = ""
             ctr_reca_infos = ""
 
-        if creerArthrodese == True:
+        if validerArthrodese == True:
             ctr_arthro_postAnt = UITest.Formulaire_Arthrodese.glb_arthro_postAnt
             ctr_arthro_fixation = UITest.Formulaire_Arthrodese.glb_arthro_fixation
             ctr_arthro_greffe = UITest.Formulaire_Arthrodese.glb_arthro_greffe
 
             concatenation_arthrodese = ctr_arthro_postAnt + " " + ctr_arthro_fixation + " " + ctr_arthro_greffe
 
-            BD.ajouter_formuaire_arthrodese(controlleur_numMagic, ctr_arthro_postAnt, ctr_arthro_fixation,
-                                            ctr_arthro_greffe)
-            creerArthrodese = False
+            BD.ajouter_formuaire_arthrodese(controlleur_numMagic, ctr_arthro_postAnt, ctr_arthro_fixation, ctr_arthro_greffe)
+            validerArthrodese = False
             ctr_arthro_postAnt = ""
             ctr_arthro_fixation = ""
             ctr_arthro_greffe = ""
 
-        self.windowDegeneratif.switch_window6.connect(
-            self.show_CreationDP)  # or (self.windowDegeneratif.switch_window5.connect(self.show_Etape2)):
-        # creerDegene = True
+
 
         self.windowDegeneratif.spinBox_nombre1.setValue(controlleur_vertebre1)
         self.windowDegeneratif.spinBox_nombre2.setValue(controlleur_vertebre2)
@@ -891,7 +983,7 @@ class Controller_Test:
         global controlleur_origine_radiculaire, controlleur_origine_meningee, controlleur_origine_osseuse, controlleur_origine_secondaire, controlleur_origine_medullaire, controlleur_origine_autre
         global controlleur_arthrodese_non, controlleur_arthrodese_oui
         global ctl_glb_label_patho
-        global creerOnco, creerRecalibrage, creerArthrodese, concatenation_arthrodese, concatenation_recalibrage
+        global validerRecalibrage, validerArthrodese, concatenation_arthrodese, concatenation_recalibrage
         global ctr_reca_postAnt, ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
@@ -942,6 +1034,9 @@ class Controller_Test:
         controlleur_topo_enSablier = UITest.Pathologie_Oncologie.glb_onco_topo_enSablier
         controlleur_topo_osseuse = UITest.Pathologie_Oncologie.glb_onco_topo_osseuse
 
+        validerArthrodese = UITest.Formulaire_Arthrodese.validerArthrodese
+        validerRecalibrage = UITest.Formulaire_Recalibrage.validerRecalibrage
+
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
         self.windowRecalibrage = MainWindow_FormRecalibrage()
@@ -949,12 +1044,14 @@ class Controller_Test:
         self.windowOncologique = MainWindow_Oncologie()
         self.windowsSelectionnerDP_suite = MainWindow_SelectionnerDP_suite()
 
+
         # actions de chaque bouton en fct du window
         self.windowOncologique.switch_window1.connect(self.show_Etape2)
         self.windowOncologique.switch_window2.connect(self.show_CreationDP)
         self.windowOncologique.switch_window3.connect(self.show_Recalibrage)
         self.windowOncologique.switch_window4.connect(self.show_Arthrodese)
         self.windowOncologique.switch_window5.connect(self.show_Etape2)
+
 
         if control_med_creaDP == True:
             self.windowOncologique.switch_window2.connect(self.show_CreationDP)
@@ -996,38 +1093,31 @@ class Controller_Test:
 
         concatenation_arthrodese = " "
         concatenation_recalibrage = " "
-        if creerRecalibrage == True:
+        if validerRecalibrage == True:
             ctr_reca_postAnt = UITest.Formulaire_Recalibrage.glb_reca_postAnt
             ctr_reca_hernie = UITest.Formulaire_Recalibrage.glb_reca_hernie_associer
             ctr_reca_infos = UITest.Formulaire_Recalibrage.glb_reca_infos
             concatenation_recalibrage = ctr_reca_postAnt + " " + ctr_reca_infos + " " + ctr_reca_hernie
 
-            BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt, ctr_reca_infos, ctr_reca_hernie)
-            creerRecalibrage = False
+            BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt,ctr_reca_infos,ctr_reca_hernie)
+            validerRecalibrage = False
             ctr_reca_postAnt = ""
             ctr_reca_hernie = ""
             ctr_reca_infos = ""
 
-        if creerArthrodese == True:
+        if validerArthrodese == True:
             ctr_arthro_postAnt = UITest.Formulaire_Arthrodese.glb_arthro_postAnt
             ctr_arthro_fixation = UITest.Formulaire_Arthrodese.glb_arthro_fixation
             ctr_arthro_greffe = UITest.Formulaire_Arthrodese.glb_arthro_greffe
 
             concatenation_arthrodese = ctr_arthro_postAnt + " " + ctr_arthro_fixation + " " + ctr_arthro_greffe
 
-            BD.ajouter_formuaire_arthrodese(controlleur_numMagic, ctr_arthro_postAnt, ctr_arthro_fixation,
-                                            ctr_arthro_greffe)
-            creerArthrodese = False
+            BD.ajouter_formuaire_arthrodese(controlleur_numMagic, ctr_arthro_postAnt, ctr_arthro_fixation, ctr_arthro_greffe)
+            validerArthrodese = False
             ctr_arthro_postAnt = ""
             ctr_arthro_fixation = ""
             ctr_arthro_greffe = ""
 
-        if (self.windowOncologique.switch_window6.connect(self.show_CreationDP)) or (
-        self.windowOncologique.switch_window5.connect(self.show_Etape2)):
-            creerOnco = True
-
-        else:
-            creerOnco = False
 
         self.windowOncologique.spinBox_nombre1.setValue(controlleur_vertebre1)
         self.windowOncologique.spinBox_nombre2.setValue(controlleur_vertebre2)
@@ -1064,8 +1154,32 @@ class Controller_Test:
         self.windowOncologique.show()
 
     def show_Traumatologique(self):
+        global controlleur_zoneCervicale, controlleur_zoneDorsale, controlleur_zoneLombaire, controlleur_zoneSacro
+        global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
+        global controlleur_FN_radicoMedullaire, controlleur_FN_radiculaire, controlleur_FN_medullaire, controlleur_FN_non
+        global controlleur_vertebre1, controlleur_vertebre2
+        global controlleur_recalibrage_hernie, controlleur_recalibrage_non, controlleur_recalibrage_oui
+        global controlleur_cote_bilateral, controlleur_cote_droit, controlleur_cote_gauche
 
+        global controlleur_percutanee , controlleur_foyer , controlleur_corpo_vertebro , controlleur_corpo_cypho , controlleur_corpo_non , controlleur_osteo_mono, controlleur_osteo_poly ,controlleur_osteo_non
+        global controlleur_arthrodese_non, controlleur_arthrodese_oui
+        global ctl_glb_label_patho
+        global validerRecalibrage, validerArthrodese, concatenation_arthrodese, concatenation_recalibrage, validerNiveaux, concatenation_traumato_niveau
+        global ctr_reca_postAnt, ctr_reca_infos, ctr_reca_hernie, ctr_arthro_postAnt, ctr_arthro_greffe, ctr_arthro_fixation, BD
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
+        global ctr_niveaux_zoneC, ctr_niveaux_CDLS, ctr_niveaux_zoneD, ctr_niveaux_zoneL, ctr_niveaux_zoneS
+
+        BD = Connexion_DB()
+        BD.connexion_DB()
+
+        controlleur_cbox_cervicaleRadiculaire = UITest.CreationDP.valeur_cb_cervicale_radiculaire
+        controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
+        controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
+        controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
+        controlleur_zoneCervicale = UITest.Pathologie_Etape2.signal_cervicale
+        controlleur_zoneDorsale = UITest.Pathologie_Etape2.signal_dorsale
+        controlleur_zoneLombaire = UITest.Pathologie_Etape2.signal_lombaire
+        controlleur_zoneSacro = UITest.Pathologie_Etape2.signal_sacro
 
         self.windowCreationDP = MainWindow_CreationDP()
         self.etape2 = MainWindow_Etape2()
@@ -1080,6 +1194,25 @@ class Controller_Test:
         control_sec_creaDP = UITest.Accueil_Secretaire.signal_sec_creationDP
         control_sec_selecDP = UITest.Accueil_Secretaire.signal_sec_selectionDP
 
+        controlleur_cote_bilateral = UITest.Pathologie_Traumatologique.glb_traumato_cote_bilateral
+        controlleur_cote_gauche = UITest.Pathologie_Traumatologique.glb_traumato_cote_gauche
+        controlleur_cote_droit = UITest.Pathologie_Traumatologique.glb_traumato_cote_droit
+        controlleur_arthrodese_non = UITest.Pathologie_Traumatologique.traumato_arthrodese_non
+        controlleur_arthrodese_oui = UITest.Pathologie_Traumatologique.traumato_arthrodese_oui
+
+        controlleur_percutanee = UITest.Pathologie_Traumatologique.glb_traumato_modalite_percutanee
+        controlleur_foyer = UITest.Pathologie_Traumatologique.glb_traumato_modalite_foyer
+        controlleur_corpo_vertebro = UITest.Pathologie_Traumatologique.glb_traumato_corpo_vertebro
+        controlleur_corpo_cypho = UITest.Pathologie_Traumatologique.glb_traumato_corpo_cypho
+        controlleur_corpo_non = UITest.Pathologie_Traumatologique.glb_traumato_corpo_non
+        controlleur_osteo_mono = UITest.Pathologie_Traumatologique.glb_traumato_osteo_mono
+        controlleur_osteo_poly = UITest.Pathologie_Traumatologique.glb_traumato_osteo_poly
+        controlleur_osteo_non = UITest.Pathologie_Traumatologique.glb_traumato_osteo_non
+
+        validerArthrodese = UITest.Formulaire_Arthrodese.validerArthrodese
+        validerRecalibrage = UITest.Formulaire_Recalibrage.validerRecalibrage
+        validerNiveaux = UITest.Traumatologique_Niveaux.validerNiveaux
+
         self.nbVertebre = UITest.Traumatologique_Niveaux.compteur_recuperation
         self.windowTraumato.lineEdit_nombreVertebre.setText(self.nbVertebre)
 
@@ -1089,8 +1222,8 @@ class Controller_Test:
         self.windowTraumato.switch_window3.connect(self.show_Niveau)
         self.windowTraumato.switch_window4.connect(self.show_Recalibrage)
         self.windowTraumato.switch_window5.connect(self.show_Arthrodese)
-        self.windowTraumato.switch_window6.connect(self.show_Niveau)
         self.windowTraumato.switch_window7.connect(self.show_Etape2)
+
 
         if control_med_creaDP == True:
             self.windowTraumato.switch_window2.connect(self.show_CreationDP)
@@ -1105,6 +1238,107 @@ class Controller_Test:
             self.windowTraumato.switch_window2.connect(self.show_SelectionnerDP_suite)
             self.windowTraumato.switch_window8.connect(self.show_SelectionnerDP_suite)
 
+
+        if (controlleur_zoneCervicale == True):
+            nom_cervicale = "zone Cervicale"
+            self.windowTraumato.label_patho.setText(nom_cervicale)
+        if (controlleur_zoneDorsale == True):
+            nom_dorsale = "zone Dorsale"
+            self.windowTraumato.label_patho.setText(nom_dorsale)
+        if (controlleur_zoneLombaire == True):
+            nom_lombaire = "zone Lombaire"
+            self.windowTraumato.label_patho.setText(nom_lombaire)
+        if (controlleur_zoneSacro == True):
+            nom_sacro = "zone Sacro-coccygienne"
+            self.windowTraumato.label_patho.setText(nom_sacro)
+
+        if (controlleur_zoneCervicale == True and controlleur_zoneDorsale == True):
+            nom_mixte1 = "zones Cervicale et Dorsale"
+            self.windowTraumato.label_patho.setText(nom_mixte1)
+        if (controlleur_zoneDorsale == True and controlleur_zoneLombaire == True):
+            nom_mixte2 = "zones Dorsale et Lombaire"
+            self.windowTraumato.label_patho.setText(nom_mixte2)
+        if (controlleur_zoneLombaire == True and controlleur_zoneSacro == True):
+            nom_mixte3 = "zones Lombaire et Sacro-coccygienne"
+            self.windowTraumato.label_patho.setText(nom_mixte3)
+
+        ctl_glb_label_patho = self.windowTraumato.label_patho.text()
+
+        concatenation_arthrodese = " "
+        concatenation_recalibrage = " "
+        concatenation_traumato_niveau = " "
+
+        if validerRecalibrage == True:
+            ctr_reca_postAnt = UITest.Formulaire_Recalibrage.glb_reca_postAnt
+            ctr_reca_hernie = UITest.Formulaire_Recalibrage.glb_reca_hernie_associer
+            ctr_reca_infos = UITest.Formulaire_Recalibrage.glb_reca_infos
+            concatenation_recalibrage = ctr_reca_postAnt + " " + ctr_reca_infos + " " + ctr_reca_hernie
+
+            BD.ajouter_formuaire_recalibrage(controlleur_numMagic, ctr_reca_postAnt,ctr_reca_infos,ctr_reca_hernie)
+            validerRecalibrage = False
+            ctr_reca_postAnt = ""
+            ctr_reca_hernie = ""
+            ctr_reca_infos = ""
+
+        if validerArthrodese == True:
+            ctr_arthro_postAnt = UITest.Formulaire_Arthrodese.glb_arthro_postAnt
+            ctr_arthro_fixation = UITest.Formulaire_Arthrodese.glb_arthro_fixation
+            ctr_arthro_greffe = UITest.Formulaire_Arthrodese.glb_arthro_greffe
+
+            concatenation_arthrodese = ctr_arthro_postAnt + " " + ctr_arthro_fixation + " " + ctr_arthro_greffe
+
+            BD.ajouter_formuaire_arthrodese(controlleur_numMagic, ctr_arthro_postAnt, ctr_arthro_fixation, ctr_arthro_greffe)
+            validerArthrodese = False
+            ctr_arthro_postAnt = ""
+            ctr_arthro_fixation = ""
+            ctr_arthro_greffe = ""
+        ctr_niveaux_zoneC = UITest.Traumatologique_Niveaux.glb_zoneC
+        ctr_niveaux_CDLS = UITest.Traumatologique_Niveaux.glb_zoneCDLS
+        ctr_niveaux_zoneL = UITest.Traumatologique_Niveaux.glb_zoneL
+        ctr_niveaux_zoneS = UITest.Traumatologique_Niveaux.glb_zoneS
+        ctr_niveaux_zoneD = UITest.Traumatologique_Niveaux.glb_zoneD
+        if validerNiveaux == True:
+
+
+            concatenation_traumato_niveau = ctr_niveaux_CDLS + " " + ctr_niveaux_zoneC + " " + ctr_niveaux_zoneD + " " + ctr_niveaux_zoneL + " " + ctr_niveaux_zoneS
+
+            BD.ajouter_traumato_niveaux(controlleur_numMagic, ctr_niveaux_CDLS, ctr_niveaux_zoneC, ctr_niveaux_zoneD, ctr_niveaux_zoneL, ctr_niveaux_zoneS)
+
+
+            validerNiveaux = False
+            ctr_niveaux_zoneC = ""
+            ctr_niveaux_CDLS = ""
+            ctr_niveaux_zoneL = ""
+            ctr_niveaux_zoneS = ""
+            ctr_niveaux_zoneD = ""
+
+
+
+        self.windowTraumato.spinBox_nombre1.setValue(controlleur_vertebre1)
+        self.windowTraumato.spinBox_nombre2.setValue(controlleur_vertebre2)
+        self.windowTraumato.radioButton_medullaire.setChecked(controlleur_FN_medullaire)
+        self.windowTraumato.radioButton_radicoMedullaire.setChecked(controlleur_FN_radicoMedullaire)
+        self.windowTraumato.radioButton_non.setChecked(controlleur_FN_non)
+        self.windowTraumato.radioButton_radiculaire.setChecked(controlleur_FN_radiculaire)
+        self.windowTraumato.radioButton_recalibrageNon.setChecked(controlleur_recalibrage_non)
+        self.windowTraumato.radioButton_recalibrageOui.setChecked(controlleur_recalibrage_oui)
+        self.windowTraumato.radioButton_herniePure.setChecked(controlleur_recalibrage_hernie)
+        self.windowTraumato.radioButton_Droit.setChecked(controlleur_cote_droit)
+        self.windowTraumato.radioButton_gauche.setChecked(controlleur_cote_gauche)
+        self.windowTraumato.radioButton_bilateral.setChecked(controlleur_cote_bilateral)
+        self.windowTraumato.radioButton_arthrodeseOui.setChecked(controlleur_arthrodese_oui)
+        self.windowTraumato.radioButton_arthrodeseNon.setChecked(controlleur_arthrodese_non)
+
+        self.windowTraumato.radioButton_percutanee.setChecked(controlleur_percutanee)
+        self.windowTraumato.radioButton_foyerOuvert.setChecked(controlleur_foyer)
+        self.windowTraumato.checkBox_vertebroplastie.setChecked(controlleur_corpo_vertebro)
+        self.windowTraumato.checkBox_cyphoplastie.setChecked(controlleur_corpo_cypho)
+        self.windowTraumato.checkBox_corporealNon.setChecked(controlleur_corpo_non)
+        self.windowTraumato.checkBox_visMonoaxiales.setChecked(controlleur_osteo_mono)
+        self.windowTraumato.checkBox_visPolyaxiales.setChecked(controlleur_osteo_poly)
+        self.windowTraumato.checkBox_osteosyntheseNon.setChecked(controlleur_osteo_non)
+
+
         self.etape2.hide()
         self.windowRecalibrage.hide()
         self.windowArthrodese.hide()
@@ -1113,9 +1347,11 @@ class Controller_Test:
         self.windowTraumato.show()
 
     def show_Niveau(self):
+        global validerNiveaux
         self.windowTraumato = MainWindow_Traumatologie()
         self.windowNiveau = MainWindow_Niveau()
 
+        validerNiveaux = True
         # actions de chaque bouton en fct du window
         self.windowNiveau.switch_window1.connect(self.show_Traumatologique)
         self.windowNiveau.switch_window2.connect(self.show_Traumatologique)
@@ -1125,7 +1361,7 @@ class Controller_Test:
     def show_Recalibrage(self):
         global controlleur_vertebre1, controlleur_vertebre2
         global ctr_signal_dege, ctr_signal_trauma, ctr_signal_onco
-        global creerRecalibrage
+        global validerRecalibrage
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
@@ -1158,26 +1394,26 @@ class Controller_Test:
         if self.signal_degene == True:
             self.windowRecalibrage.switch_window1.connect(self.show_Degeneratif)
             if (self.windowRecalibrage.switch_window3.connect(self.show_Degeneratif)):
-                creerRecalibrage = True
+                validerRecalibrage = True
             ctr_signal_dege = "Dégénérative"
 
         elif self.signal_trauma == True:
             self.windowRecalibrage.switch_window1.connect(self.show_Traumatologique)
-            if (self.windowRecalibrage.switch_window3.connect(self.show_Traumatologique)):
-                creerRecalibrage = True
+            if(self.windowRecalibrage.switch_window3.connect(self.show_Traumatologique)):
+                validerRecalibrage = True
             ctr_signal_trauma = "Traumatologique"
 
         elif self.signal_onco == True:
             self.windowRecalibrage.switch_window1.connect(self.show_Oncologique)
             if (self.windowRecalibrage.switch_window3.connect(self.show_Oncologique)):
-                creerRecalibrage = True
+                validerRecalibrage = True
             ctr_signal_onco = "Oncologie"
 
         self.windowRecalibrage.show()
 
     def show_Arthrodese(self):
         global controlleur_vertebre1, controlleur_vertebre2
-        global creerArthrodese
+        global validerArthrodese
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP
 
         self.signal_degene = UITest.Pathologie_Etape2.signal_degeneratif
@@ -1210,17 +1446,18 @@ class Controller_Test:
         if self.signal_degene == True:
             self.windowArthrodese.switch_window1.connect(self.show_Degeneratif)
             if (self.windowArthrodese.switch_window3.connect(self.show_Degeneratif)):
-                creerArthrodese = True
+                validerArthrodese = True
 
         elif self.signal_trauma == True:
             self.windowArthrodese.switch_window1.connect(self.show_Traumatologique)
             if (self.windowArthrodese.switch_window3.connect(self.show_Traumatologique)):
-                creerArthrodese = True
+                validerArthrodese = True
 
         elif self.signal_onco == True:
             self.windowArthrodese.switch_window1.connect(self.show_Oncologique)
             if (self.windowArthrodese.switch_window3.connect(self.show_Oncologique)):
-                creerArthrodese = True
+                validerArthrodese = True
+
 
         self.windowArthrodese.show()
 
