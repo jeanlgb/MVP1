@@ -32,14 +32,16 @@ class Connexion_DB:
 
     def selectionner_patient(self, nom, prenom):
         patient = {"nom": nom, "prenom": prenom}
-        cursor.execute("""SELECT Numéro_patient FROM consultation WHERE Prénom = prenom AND Nom = nom""", patient)
+        cursor.execute("""SELECT Numéro_patient FROM consultation WHERE Prénom = %(prenom)s AND Nom = %(nom)""", patient)
         rows = cursor.fetchall()
         conn.commit()
         return rows
 
     def selectionner_patient_num(self, numero):
         num = {"numero": numero}
-        cursor.execute("""SELECT Nom, Prénom FROM consultation WHERE Numéro_patient = numero""", num)
+        cursor.execute(
+            """SELECT Numéro_patient FROM donnees_administratives WHERE Prénom = %(prenom)s AND Nom = %(nom)s""",
+            num)
         rows = cursor.fetchall()
         conn.commit()
         return rows

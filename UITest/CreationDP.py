@@ -21,7 +21,6 @@ valeur_cb_autre = False
 signal_eval = False
 nomPathologieCR = "CR"
 
-
 glb_textEdit_intervention = ""
 
 
@@ -286,16 +285,25 @@ class Ui_Frame_CreationDP(object):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
         self.label_nom.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Nom :</p></body></html>"))
-        self.label_nomIntervention.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Nom de l\'intervention :</p></body></html>"))
-        self.label_commentaire.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Commentaire :</p></body></html>"))
+        self.label_nomIntervention.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Nom de l\'intervention :</p></body></html>"))
+        self.label_commentaire.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Commentaire :</p></body></html>"))
         self.pushButton_evaluation.setText(_translate("Frame", "Evaluation"))
-        self.label_prenom.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Prénom :</p></body></html>"))
-        self.label_titre.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Création d\'un dossier patient</p></body></html>"))
-        self.label.setText(_translate("Frame", "<html><head/><body><p align=\"center\">* Doit être obligatirement renseigné</p></body></html>"))
-        self.label_dateDeNaissance.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Date de naissance :</p></body></html>"))
-        self.label_pathologie.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Pathologie* :</p></body></html>"))
-        self.label_dateIntervention.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Date de l\'intervention* :</p></body></html>"))
-        self.label_numeroMagic.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Numéro MagicMed :</p></body></html>"))
+        self.label_prenom.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Prénom :</p></body></html>"))
+        self.label_titre.setText(_translate("Frame",
+                                            "<html><head/><body><p align=\"center\">Création d\'un dossier patient</p></body></html>"))
+        self.label.setText(_translate("Frame",
+                                      "<html><head/><body><p align=\"center\">* Doit être obligatirement renseigné</p></body></html>"))
+        self.label_dateDeNaissance.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Date de naissance :</p></body></html>"))
+        self.label_pathologie.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Pathologie* :</p></body></html>"))
+        self.label_dateIntervention.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Date de l\'intervention* :</p></body></html>"))
+        self.label_numeroMagic.setText(
+            _translate("Frame", "<html><head/><body><p align=\"center\">Numéro MagicMed :</p></body></html>"))
         self.label_2.setText(_translate("Frame", "/"))
         self.label_3.setText(_translate("Frame", "/"))
         self.comboBox_jour.setItemText(0, _translate("Frame", "1"))
@@ -343,11 +351,12 @@ class Ui_Frame_CreationDP(object):
         self.comboBox_mois.setItemText(11, _translate("Frame", "Décembre"))
         self.spinBox_annee.setToolTip(_translate("Frame", "<html><head/><body><p>fhj</p></body></html>"))
         self.pushButton_ok.setText(_translate("Frame", "ok"))
-        self.textEdit_interventionNonModifiable.setHtml(_translate("Frame", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.textEdit_interventionNonModifiable.setHtml(_translate("Frame",
+                                                                   "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                                   "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                                   "p, li { white-space: pre-wrap; }\n"
+                                                                   "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                                                   "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.pushButton_annuler.setText(_translate("Frame", "Retour"))
         self.checkBox_autre.setText(_translate("Frame", "Autre"))
         self.checkBox_medullaire.setText(_translate("Frame", "Médullaire"))
@@ -359,7 +368,6 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
-
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
@@ -381,7 +389,6 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.checkBox_medullaire.stateChanged.connect(self.checkBoxChangeAction_medullaire)
         self.checkBox_thoracoLombaire.stateChanged.connect(self.checkBoxChangeAction_lombaire)
         self.checkBox_autre.stateChanged.connect(self.checkBoxChangeAction_autre)
-
 
         # Qcalendar date intervention
         self.date_Intervention = self.calendarWidget.selectedDate()
@@ -412,7 +419,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.dateRecuperation = self.lineEdit_dateIntervention.text()
         patient_dateIntervention = self.dateRecuperation
 
-    def showDateNaissance (self):
+    def showDateNaissance(self):
         global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur
 
         self.jour = self.comboBox_jour.currentText()
@@ -436,7 +443,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global nomPathologieCR
         global glb_textEdit_intervention
 
-        if ( state == QtCore.Qt.Checked):
+        if (state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
             valeur_cb_cervicale_radiculaire = True
             valeur_cb_medullaire = False
@@ -454,8 +461,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_autre
         global glb_textEdit_intervention
 
-
-        if ( state == QtCore.Qt.Checked):
+        if (state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
             valeur_cb_medullaire = True
             valeur_cb_cervicale_radiculaire = False
@@ -473,8 +479,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_autre
         global glb_textEdit_intervention
 
-
-        if ( state == QtCore.Qt.Checked):
+        if (state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
             valeur_cb_thoraco_lombaire = True
             valeur_cb_medullaire = False
@@ -492,7 +497,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         global valeur_cb_autre
         global glb_textEdit_intervention
 
-        if ( state == QtCore.Qt.Checked):
+        if (state == QtCore.Qt.Checked):
             self.pushButton_ok.setEnabled(True)
             valeur_cb_autre = True
             valeur_cb_thoraco_lombaire = False
@@ -503,7 +508,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
-    def etape2 (self):
+    def etape2(self):
         global patient_nom, patient_prenom, patient_dateIntervention, patient_numMagic
         global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee
 
