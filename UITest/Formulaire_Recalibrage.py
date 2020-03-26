@@ -29,6 +29,8 @@ glb_reca_infos = ""
 glb_reca_hernie_associer = ""
 
 validerRecalibrage = False
+annulerRecalibrage= False
+
 class Ui_Frame_Recalibrage(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
@@ -253,13 +255,15 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
     def retourEtapePrecedente(self):
-        global validerRecalibrage
+        global validerRecalibrage, annulerRecalibrage
         validerRecalibrage= False
+        annulerRecalibrage = False
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
-        global validerRecalibrage
+        global validerRecalibrage, annulerRecalibrage
         validerRecalibrage = False
+        annulerRecalibrage = True
         self.switch_window2.emit()
 
     def radiobtnFrame_Haut_anterieur(self):
@@ -448,6 +452,27 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
 
 
     def suivant(self):
-        global validerRecalibrage
+        global validerRecalibrage, annulerRecalibrage
+        global glb_recalibrage_anterieur, glb_recalibrage_posterieur
+        global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
+        global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
+        global glb_recalibrage_hernie_non, glb_recalibrage_hernie_oui
+
+        glb_recalibrage_posterieur = False
+        glb_recalibrage_anterieur = False
+        glb_recalibrage_interlamaire = False
+        glb_recalibrage_interEpineux = False
+        glb_recalibrage_arthrectomie = False
+        glb_recalibrage_laminectomie = False
+        glb_recalibrage_foraminotomie = False
+        glb_recalibrage_uncusectomie = False
+        glb_recalibrage_osteophytique = False
+        glb_recalibrage_corporectomie = False
+        glb_recalibrage_aucun = False
+        glb_recalibrage_aucun2 = False
+        glb_recalibrage_hernie_oui = False
+        glb_recalibrage_hernie_non = False
+
         validerRecalibrage = True
+        annulerRecalibrage = False
         self.switch_window3.emit() #faute de mieux

@@ -619,9 +619,11 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.switch_window2.emit()
 
     def radiobtnModalite(self):
-        global glb_label_modalite
+        global glb_label_modalite, glb_traumato_modalite_foyer, glb_traumato_modalite_percutanee
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_traumato_modalite_percutanee = True
+            glb_traumato_modalite_foyer = False
             self.spinBox_nombre1.setEnabled(False)
             self.spinBox_nombre2.setEnabled(False)
             self.groupBox_recalibrage.setEnabled(False)
@@ -633,9 +635,11 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_label_modalite = "Modalité percutanée"
 
     def radiobtnModalite_ouvert(self):
-        global glb_label_modalite
+        global glb_label_modalite, glb_traumato_modalite_foyer, glb_traumato_modalite_percutanee
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
+            glb_traumato_modalite_percutanee = False
+            glb_traumato_modalite_foyer = True
             self.spinBox_nombre1.setEnabled(True)
             self.spinBox_nombre2.setEnabled(True)
             self.groupBox_recalibrage.setEnabled(True)

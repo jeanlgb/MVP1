@@ -22,6 +22,7 @@ signal_eval = False
 nomPathologieCR = "CR"
 
 glb_textEdit_intervention = ""
+glb_textEditNomIntervention = ""
 
 
 class Ui_Frame_CreationDP(object):
@@ -121,9 +122,9 @@ class Ui_Frame_CreationDP(object):
         self.pushButton_ok.setObjectName("pushButton_ok")
         self.textEdit_interventionNonModifiable.setGeometry(QtCore.QRect(270, 420, 271, 21))
         self.textEdit_interventionNonModifiable.setObjectName("textEdit_interventionNonModifiable")
-        self.textEdit_interventionModifiable = QtWidgets.QTextEdit(Frame)
-        self.textEdit_interventionModifiable.setGeometry(QtCore.QRect(270, 460, 271, 21))
-        self.textEdit_interventionModifiable.setObjectName("textEdit_interventionModifiable")
+        self.lineEdit_interventionModifiable = QtWidgets.QLineEdit(Frame)
+        self.lineEdit_interventionModifiable.setGeometry(QtCore.QRect(270, 460, 271, 21))
+        self.lineEdit_interventionModifiable.setObjectName("lineEdit_interventionModifiable")
         self.calendarWidget = QtWidgets.QCalendarWidget(Frame)
         self.calendarWidget.setFixedSize(400, 250)
         self.calendarWidget.setGeometry(QtCore.QRect(270, 510, 400, 200))
@@ -276,7 +277,7 @@ class Ui_Frame_CreationDP(object):
         self.checkBox_medullaire.raise_()
         self.checkBox_cervicalRadiculaire.raise_()
         self.checkBox_thoracoLombaire.raise_()
-        self.textEdit_interventionModifiable.raise_()
+        self.lineEdit_interventionModifiable.raise_()
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -373,6 +374,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
+
         # controlleur pour les boutons
         self.pushButton_evaluation.clicked.connect(self.evaluation)
         self.calendarWidget.clicked[QDate].connect(self.showDate)
@@ -394,20 +396,25 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.date_Intervention = self.calendarWidget.selectedDate()
         self.lineEdit_dateIntervention.setText(self.date_Intervention.toString("dd/MM/yyyy"))
 
+        self.glb_textEditNomIntervention = self.lineEdit_interventionModifiable.text()
+
     def evaluation(self):
         global patient_nom
         global patient_prenom
         global patient_numMagic
         global signal_eval
+        global glb_textEditNomIntervention
 
         self.nom = self.lineEdit_nom.text()  # récupérer le texte dans le champ de texte
         self.prenom = self.lineEdit_prenom.text()  # récupérer le texte dans le champ de texte
         self.numMagic = self.lineEdit_numeroMagic.text()
+        self.glb_textEditNomIntervention = self.lineEdit_interventionModifiable.text()
 
         # print('1' + patient_nom)
         patient_nom = self.nom
         patient_prenom = self.prenom
         patient_numMagic = self.numMagic
+        glb_textEditNomIntervention = self.glb_textEditNomIntervention
         # print('2' + patient_nom)
         signal_eval = True
         self.switch_window1.emit()
@@ -509,12 +516,13 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
             self.textEdit_interventionNonModifiable.setText("")
 
     def etape2(self):
-        global patient_nom, patient_prenom, patient_dateIntervention, patient_numMagic
+        global patient_nom, patient_prenom, patient_dateIntervention, patient_numMagic, glb_textEditNomIntervention
         global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee
 
         patient_nom = self.lineEdit_nom.text()
         patient_prenom = self.lineEdit_prenom.text()
         patient_numMagic = self.lineEdit_numeroMagic.text()
+        glb_textEditNomIntervention = self.lineEdit_interventionModifiable.text()
         patient_dateIntervention = self.lineEdit_dateIntervention.text()
         patient_jour = self.comboBox_jour.currentText()
         patient_mois = self.comboBox_mois.currentText()

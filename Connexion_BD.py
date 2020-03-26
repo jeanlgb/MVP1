@@ -99,25 +99,25 @@ class Connexion_DB:
         res = res + 1
         return res
 
-    def ajouter_pathologie_degeneratif(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, niveaux, recalibrage, cote_Lateralite, arthrodese):
+    def ajouter_pathologie_degeneratif(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, niveaux, recalibrage, cote_Lateralite, arthrodese, commentaire):
         numero_Pathologie = self.generer_numero("pathologie_degeneratif")
-        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "niveaux": niveaux, "recalibrage": recalibrage, "cote_lateralite": cote_Lateralite, "arthrodese": arthrodese}
-        cursor.execute("""INSERT INTO pathologie_degeneratif (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Niveaux, Recalibrage, Coté_latéralité, Arthrodèse) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
-        %(contexte)s, %(finalite)s, %(niveaux)s, %(recalibrage)s, %(cote_lateralite)s, %(arthrodese)s)""", pathologie)
+        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "niveaux": niveaux, "recalibrage": recalibrage, "cote_lateralite": cote_Lateralite, "arthrodese": arthrodese, "commentaire": commentaire}
+        cursor.execute("""INSERT INTO pathologie_degeneratif (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Niveaux, Recalibrage, Coté_latéralité, Arthrodèse, Commentaire) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
+        %(contexte)s, %(finalite)s, %(niveaux)s, %(recalibrage)s, %(cote_lateralite)s, %(arthrodese)s, %(commentaire)s)""", pathologie)
         conn.commit()
 
-    def ajouter_pathologie_oncologie(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, topographie, origine, niveaux, recalibrage, cote, arthrodese):
+    def ajouter_pathologie_oncologie(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, topographie, origine, niveaux, recalibrage, cote, arthrodese, commentaire):
         numero_Pathologie = self.generer_numero("pathologie_oncologie")
-        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "topographie": topographie, "origine": origine, "niveaux": niveaux, "recalibrage": recalibrage, "cote": cote, "arthrodese": arthrodese}
-        cursor.execute("""INSERT INTO pathologie_oncologie (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Topographie, Origine, Niveaux, Recalibrage, Coté, Arthrodèse) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
-        %(contexte)s, %(finalite)s, %(topographie)s, %(origine)s, %(niveaux)s, %(recalibrage)s, %(cote)s, %(arthrodese)s)""", pathologie)
+        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "topographie": topographie, "origine": origine, "niveaux": niveaux, "recalibrage": recalibrage, "cote": cote, "arthrodese": arthrodese, "commentaire": commentaire}
+        cursor.execute("""INSERT INTO pathologie_oncologie (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Topographie, Origine, Niveaux, Recalibrage, Coté, Arthrodèse, Commentaire) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
+        %(contexte)s, %(finalite)s, %(topographie)s, %(origine)s, %(niveaux)s, %(recalibrage)s, %(cote)s, %(arthrodese)s, %(commentaire)s)""", pathologie)
         conn.commit()
 
-    def ajouter_pathologie_traumatologique(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, modalite, percutanee, corporeal, osteosytnhese, foyer_niveau, recalibrage, cote, arthrodese):
+    def ajouter_pathologie_traumatologique(self, numero_Pathologie, numero_Patient, numero_Zone, contexte, finalite, modalite, percutanee, corporeal, osteosytnhese, foyer_niveau, recalibrage, cote, arthrodese, commentaire):
         numero_Pathologie = self.generer_numero("pathologie_traumatologique")
-        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "modalite": modalite, "percutanee": percutanee, "corporeal": corporeal, "osteosytnhese": osteosytnhese, "foyer_niveau": foyer_niveau,"recalibrage": recalibrage, "cote": cote, "arthrodese": arthrodese}
-        cursor.execute("""INSERT INTO pathologie_traumatologique (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Modalité, Percutanée_niveaux, Corporéal, Ostéosynthèse, Foyer_niveaux, Recalibrage, Coté, Arthrodèse) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
-        %(contexte)s, %(finalite)s, %(modalite)s, %(percutanee)s, %(corporeal)s, %(osteosytnhese)s, %(foyer_niveau)s, %(recalibrage)s, %(cote)s, %(arthrodese)s)""", pathologie)
+        pathologie = {"numero_pathologie": numero_Pathologie, "numero_patient": numero_Patient, "numero_zone": numero_Zone, "contexte": contexte, "finalite": finalite, "modalite": modalite, "percutanee": percutanee, "corporeal": corporeal, "osteosytnhese": osteosytnhese, "foyer_niveau": foyer_niveau,"recalibrage": recalibrage, "cote": cote, "arthrodese": arthrodese, "commentaire": commentaire}
+        cursor.execute("""INSERT INTO pathologie_traumatologique (Numéro_pathologie, Numéro_patient, Numéro_zone, Contexte, Finalité_neurologique, Modalité, Percutanée_niveaux, Corporéal, Ostéosynthèse, Foyer_niveaux, Recalibrage, Coté, Arthrodèse, Commentaire) VALUES(%(numero_pathologie)s, %(numero_patient)s, %(numero_zone)s,
+        %(contexte)s, %(finalite)s, %(modalite)s, %(percutanee)s, %(corporeal)s, %(osteosytnhese)s, %(foyer_niveau)s, %(recalibrage)s, %(cote)s, %(arthrodese)s, %(commentaire)s)""", pathologie)
         conn.commit()
 
     # permet d'ajouter une resuête dans la bd
@@ -140,12 +140,12 @@ class Connexion_DB:
             return False
 
         # Créer la consultatio
-    def creation_consultation(self, numero_patient,
+    def creation_consultation(self, numero_patient, commentaire,
                                   type):  # rajouter les dates et numéro de dossier Magic. Vérifier que le patient n'existe déja pas
             numero_consultation = self.generer_numero("consultation")
-            consultation = {"Numéro_consultation": numero_consultation, "Numéro_patient": numero_patient, "type": type}
+            consultation = {"Numéro_consultation": numero_consultation, "Numéro_patient": numero_patient, "commentaire": commentaire, "type": type}
             cursor.execute(
-                """INSERT INTO consultation (Numéro_consultation, Numéro_patient, Type_consultation) VALUES(%(Numéro_consultation)s, %(Numéro_patient)s, %(type)s)""",
+                """INSERT INTO consultation (Numéro_consultation, Numéro_patient, Commentaire, Type_consultation) VALUES(%(Numéro_consultation)s, %(Numéro_patient)s, %(commentaire)s, %(type)s)""",
                 consultation)
             conn.commit()
 
