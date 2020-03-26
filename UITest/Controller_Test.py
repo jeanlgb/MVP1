@@ -245,9 +245,9 @@ class Controller_Test:
                 else:
                     oswestry = ""
 
-                    BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
-                    f = open('C:/Users/Public/InPec/DonneestransfereesAndroid.txt', 'w')
-                    f.write(self.vider)
+                BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+                f = open('C:/Users/Public/InPec/DonneestransfereesAndroid.txt', 'w')
+                f.write(self.vider)
 
 
             creerPat = False
@@ -329,48 +329,49 @@ class Controller_Test:
                     liste.append(ligne)
                 print(liste)
 
-            if liste[0] != "X":
-                numeroM = liste[0]
-
-            else:
-                numeroM = ""
-
-            if liste[1] != "X":
-                glassman = liste[1]
-
-            else:
-                glassman = ""
-
-            if liste[2] != "X":
-                evacer = liste[2]
-
-            else:
-                evacer = ""
-
-            if liste[3] != "X":
-                evalom = liste[3]
-            else:
-                evalom = ""
-            if liste[4] != "X":
-                ndi = liste[4]
-            else:
-                ndi = ""
-            if liste[5] != "X":
-                mjoa = liste[5]
-            else:
-                mjoa = ""
-            if liste[6] != "X":
-                oswestry = liste[6]
-            else:
-                oswestry = ""
             if not liste:
                 print("liste vide")
+
             else:
 
-                #decommenter ca et remplacer la ligne en dessous !!! -> BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+                if liste[0] != "X":
+                    numeroM = liste[0]
 
+                else:
+                    numeroM = ""
+
+                if liste[1] != "X":
+                    glassman = liste[1]
+
+                else:
+                    glassman = ""
+
+                if liste[2] != "X":
+                    evacer = liste[2]
+
+                else:
+                    evacer = ""
+
+                if liste[3] != "X":
+                    evalom = liste[3]
+                else:
+                    evalom = ""
+                if liste[4] != "X":
+                    ndi = liste[4]
+                else:
+                    ndi = ""
+                if liste[5] != "X":
+                    mjoa = liste[5]
+                else:
+                    mjoa = ""
+                if liste[6] != "X":
+                    oswestry = liste[6]
+                else:
+                    oswestry = ""
 
                 BD.ajouter_scores(numeroM, glassman, evacer, evalom, ndi, mjoa, oswestry)
+                f = open('C:/Users/Public/InPec/DonneestransfereesAndroid.txt', 'w')
+                f.write(self.vider)
             creerPat = False
             controlleur_nom = ""
             controlleur_prenom = ""
@@ -643,8 +644,6 @@ class Controller_Test:
         global concatenation_arthrodese, concatenation_recalibrage
         global BD
 
-        BD = Connexion_DB()
-        BD.connexion_DB()
 
         controlleur_cbox_cervicaleRadiculaire = UITest.SelectionDP_suite.valeur_cb_cervicale_radiculaire
         controlleur_cbox_medullaire = UITest.SelectionDP_suite.valeur_cb_medullaire
@@ -672,11 +671,11 @@ class Controller_Test:
 
         BD = Connexion_DB()
         BD.connexion_DB()
-        BD.selectionner_patient_num(self.numM)
+        self.identite = BD.selectionner_patient_num(self.numM)
 
 
 
-        self.windowsSelectionnerDP_suite.lineEdit_identite.setText(self.patient_nom + " " + self.patient_prenom)
+        self.windowsSelectionnerDP_suite.lineEdit_identite.setText(self.identite)
         self.windowsSelectionnerDP_suite.lineEdit_numeroMagic.setText(self.numM)
 
         self.windowsSelectionnerDP_suite.checkBox_cervicalRadiculaire.setChecked(controlleur_cbox_cervicaleRadiculaire)
