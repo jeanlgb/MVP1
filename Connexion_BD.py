@@ -40,11 +40,13 @@ class Connexion_DB:
     def selectionner_patient_num(self, numero):
         num = {"numero": numero}
         cursor.execute(
-            """SELECT Numéro_patient FROM donnees_administratives WHERE Prénom = %(prenom)s AND Nom = %(nom)s""",
+            """SELECT Prénom, Nom FROM donnees_administratives WHERE Numéro_patient = %(numero)s""",
             num)
+
         rows = cursor.fetchall()
+        res = str(' '.join(map(str, rows[0])))
         conn.commit()
-        return rows
+        return res
 
     # On récupére le numéro de la consultation
     def recuperer_numero_consultation(self, nom, prenom):  # select numéro patient puis numéro consultation
