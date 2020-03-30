@@ -18,9 +18,9 @@ dege_arthrodese_non = True
 
 glb_label_FN = "Décompression radiculaire"
 glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
-glb_label_recalibrage = "Recalibrage par Hernie Discale Pure"
+glb_label_recalibrage = "Hernie Discale Pure"
 glb_label_cote = ""
-glb_label_arthrodese = ""
+glb_label_arthrodese = "Non"
 glb_label_patho = ""
 
 valider = False
@@ -349,7 +349,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             glb_dege_FN_radicoMedullaire = False
             glb_dege_FN_medullaire = False
             glb_dege_FN_non = True
-            glb_label_FN = ""
+            glb_label_FN = "Sans finalité neurologique"
             self.label_FN.setText(glb_label_FN)
 
     def countVertebres(self):
@@ -422,7 +422,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
-            glb_label_recalibrage = "Recalibrage car Hernie Discale Pure"
+            glb_label_recalibrage = "Oui"
             self.label_recalibrage_massacre.setText(glb_label_recalibrage)
 
     def radiobtnRecalibrage_hernie(self):
@@ -435,7 +435,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
-            glb_label_recalibrage = "Recalibrage"
+            glb_label_recalibrage = "Hernie Discale Pure"
             self.label_recalibrage_massacre.setText(glb_label_recalibrage)
 
     def radiobtnRecalibrage_non(self):
@@ -448,7 +448,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_recalibrage_non = True
             self.pushButton_recalibrageSuivant.setEnabled(False)
             self.groupBox_cote.setEnabled(False)
-            glb_label_recalibrage = ""
+            glb_label_recalibrage = "Non"
             self.label_recalibrage_massacre.setText(glb_label_recalibrage)
 
     def suivantRecalibrage(self):
@@ -495,7 +495,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_arthrodese_non = True
             dege_arthrodese_oui = False
             self.pushButton_arthrodeseSuivant.setEnabled(False)
-            glb_label_arthrodese = ""
+            glb_label_arthrodese = "Non"
             self.label_athro_massacre.setText(glb_label_arthrodese)
 
 
@@ -508,7 +508,7 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
             dege_arthrodese_non = False
             print("8")
             self.pushButton_arthrodeseSuivant.setEnabled(True)
-            glb_label_arthrodese = "Arthrodèse"
+            glb_label_arthrodese = "Oui"
             self.label_athro_massacre.setText(glb_label_arthrodese)
 
     def suivantArthrodese(self):

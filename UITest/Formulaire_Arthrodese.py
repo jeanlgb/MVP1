@@ -74,6 +74,7 @@ class Ui_Frame_Arthrodese(object):
         self.frame_bas.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_bas.setObjectName("frame_bas")
         self.pushButton_suivant = QtWidgets.QPushButton(self.frame_bas)
+        self.pushButton_suivant.setEnabled(False)
         self.pushButton_suivant.setGeometry(QtCore.QRect(500, 0, 61, 30))
         self.pushButton_suivant.setObjectName("pushButton_suivant")
         self.frame_gauche1 = QtWidgets.QFrame(Frame)
@@ -355,7 +356,15 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.frame_gauche1.setEnabled(False)
             self.frame_gauche2.setEnabled(False)
             self.frame_droite1.setEnabled(True)
-            self.frame_droite2.setEnabled(True)
+            self.frame_droite2.setEnabled(False)
+            self.radioButton_polyaxiales.setChecked(False)
+            self.radioButton_monoaxiales.setChecked(False)
+            self.radioButton_aucune.setChecked(False)
+            self.radioButton_1plif.setChecked(False)
+            self.radioButton_2plif.setChecked(False)
+            self.radioButton_tlif.setChecked(False)
+            self.radioButton_os.setChecked(False)
+            self.radioButton_aucuneGreffe.setChecked(False)
             glb_arthro_postAnt = "Arthrodèse par voie antérieure"
 
     def radiobtnFrame_Haut_posterieur(self):
@@ -366,9 +375,15 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_posterieur = True
             glb_arthrodese_anterieur = False
             self.frame_gauche1.setEnabled(True)
-            self.frame_gauche2.setEnabled(True)
+            self.frame_gauche2.setEnabled(False)
             self.frame_droite1.setEnabled(False)
             self.frame_droite2.setEnabled(False)
+            self.radioButton_plaque_2.setChecked(False)
+            self.radioButton_aucune2.setChecked(False)
+            self.radioButton_intersomatique.setChecked(False)
+            self.radioButton_corporectomie_2.setChecked(False)
+            self.radioButton_os2.setChecked(False)
+            self.radioButton_aucuneGreffe2.setChecked(False)
             glb_arthro_postAnt = "Arthrodèse par voie postérieure"
 
     def radiobtn_polyaxiales(self):
@@ -379,6 +394,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_polyaxiales = True
             glb_arthrodese_monoaxiales = False
             glb_arthrodese_fixationAucune = False
+            self.frame_gauche2.setEnabled(True)
             glb_arthro_fixation = "par vis pédiculaires polyaxiales "
 
     def radiobtn_monoaxiales(self):
@@ -389,6 +405,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_polyaxiales = False
             glb_arthrodese_monoaxiales = True
             glb_arthrodese_fixationAucune = False
+            self.frame_gauche2.setEnabled(True)
             glb_arthro_fixation = "par vis pédiculaires monoaxiales "
 
 
@@ -400,6 +417,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_polyaxiales = False
             glb_arthrodese_monoaxiales = False
             glb_arthrodese_fixationAucune = True
+            self.frame_gauche2.setEnabled(True)
             glb_arthro_fixation = ""
 
 
@@ -408,9 +426,10 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.radiobutton = self.sender()
         global glb_arthro_fixation
         if self.radiobutton.isChecked():
-           glb_arthrodese_plaque = True
-        glb_arthrodese_fixationAucune2 = False
-        glb_arthro_fixation = "avec plaque "
+            glb_arthrodese_plaque = True
+            glb_arthrodese_fixationAucune2 = False
+            self.frame_droite2.setEnabled(True)
+            glb_arthro_fixation = "avec plaque "
 
     def radiobtn_fixationAucunes2(self):
         global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
@@ -419,6 +438,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         if self.radiobutton.isChecked():
             glb_arthrodese_plaque = False
             glb_arthrodese_fixationAucune2 = True
+            self.frame_droite2.setEnabled(True)
             glb_arthro_fixation = ""
 
     def radiobtn_2PLIF(self):
@@ -431,6 +451,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_TLIF = False
             glb_arthrodese_OsSeulement = False
             glb_arthrodese_greffeAucune = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "2 cages intersomatiques PLIF"
 
     def radiobtn_1PLIF(self):
@@ -443,6 +464,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_TLIF = False
             glb_arthrodese_OsSeulement = False
             glb_arthrodese_greffeAucune = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "1 cage intersomatique PLIF"
 
     def radiobtn_TLIF(self):
@@ -455,6 +477,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_TLIF = True
             glb_arthrodese_OsSeulement = False
             glb_arthrodese_greffeAucune = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "1 cage intersomatique TLIF"
 
     def radiobtn_OsSeulement(self):
@@ -467,6 +490,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_TLIF = False
             glb_arthrodese_OsSeulement = True
             glb_arthrodese_greffeAucune = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "Os seulement"
 
     def radiobtn_greffeAucune(self):
@@ -479,6 +503,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_TLIF = False
             glb_arthrodese_OsSeulement = False
             glb_arthrodese_greffeAucune = True
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = ""
 
     def radiobtn_intersomatique(self):
@@ -490,6 +515,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_corporectomie = False
             glb_arthrodese_OsSeulement2 = False
             glb_arthrodese_greffeAucune2 = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "cage intersomatique"
 
     def radiobtn_corporectomie(self):
@@ -501,6 +527,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_corporectomie = True
             glb_arthrodese_OsSeulement2 = False
             glb_arthrodese_greffeAucune2 = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "cage de corporectomie"
 
     def radiobtn_OsSeulement2(self):
@@ -512,6 +539,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_corporectomie = False
             glb_arthrodese_OsSeulement2 = True
             glb_arthrodese_greffeAucune2 = False
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "Os seulement"
 
     def radiobtn_greffeAucune2(self):
@@ -523,6 +551,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             glb_arthrodese_corporectomie = False
             glb_arthrodese_OsSeulement2 = False
             glb_arthrodese_greffeAucune2 = True
+            self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = ""
 
 

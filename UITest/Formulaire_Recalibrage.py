@@ -126,6 +126,7 @@ class Ui_Frame_Recalibrage(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.pushButton_suivant = QtWidgets.QPushButton(self.frame_bas)
+        self.pushButton_suivant.setEnabled(False)
         self.pushButton_suivant.setGeometry(QtCore.QRect(490, 50, 61, 30))
         self.pushButton_suivant.setObjectName("pushButton_suivant")
         self.radioButton_oui = QtWidgets.QRadioButton(self.frame_bas)
@@ -275,6 +276,11 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_posterieur = False
             self.frame_gauche.setEnabled(False)
             self.frame_droite.setEnabled(True)
+            self.checkBox_interlamaire.setChecked(False)
+            self.checkBox_interEpineux.setChecked(False)
+            self.checkBox_laminectomie.setChecked(False)
+            self.checkBox_arthrectomie.setChecked(False)
+            self.radioButton_aucun.setChecked(False)
             glb_reca_postAnt = " Recalibrage voie antérieure"
 
     def radiobtnFrame_Haut_posterieur(self):
@@ -286,6 +292,11 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             glb_recalibrage_posterieur = True
             self.frame_gauche.setEnabled(True)
             self.frame_droite.setEnabled(False)
+            self.checkBox_foraminotomie.setChecked(False)
+            self.checkBox_uncusectomie.setChecked(False)
+            self.checkBox_osteophytiques.setChecked(False)
+            self.checkBox_corporectomie.setChecked(False)
+            self.radioButton_aucun2.setChecked(False)
             glb_reca_postAnt = " Recalibrage voie postérieure"
 
     def radiobtnFrame_Gauche(self):
@@ -327,6 +338,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         if self.radiobutton.isChecked():
             glb_recalibrage_hernie_non = False
             glb_recalibrage_hernie_oui = True
+            self.pushButton_suivant.setEnabled(True)
             glb_reca_hernie_associer = "Avec hernie discale associée"
 
     def radiobtnFrame_BasNon(self):
@@ -336,6 +348,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         if self.radiobutton.isChecked():
             glb_recalibrage_hernie_non = True
             glb_recalibrage_hernie_oui = False
+            self.pushButton_suivant.setEnabled(True)
             glb_reca_hernie_associer = ""
 
     def checkBoxChangeAction_interlamaire(self, state):

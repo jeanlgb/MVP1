@@ -33,9 +33,9 @@ glb_label_FN = "Décompression radiculaire"
 glb_label_topo = "Topographie épidurale"
 glb_label_origine = "Origine radiculaire"
 glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
-glb_label_recalibrage = "Recalibrage par Hernie Discale Pure"
+glb_label_recalibrage = "Hernie Discale Pure"
 glb_label_cote = ""
-glb_label_arthrodese = ""
+glb_label_arthrodese = "Non"
 glb_label_patho = ""
 
 validerOnco = False
@@ -474,7 +474,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             glb_onco_FN_radicoMedullaire = False
             glb_onco_FN_medullaire = False
             glb_onco_FN_non = True
-            glb_label_FN = ""
+            glb_label_FN = "Sans finalité neurologique"
 
     def checkBoxChangeAction_epidurale (self, state):
         global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
@@ -721,7 +721,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             onco_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
-            glb_label_recalibrage = "Recalibrage car Hernie Discale Pure"
+            glb_label_recalibrage = "Oui"
 
     def radiobtnRecalibrage_hernie(self):
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non
@@ -733,7 +733,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             onco_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
-            glb_label_recalibrage = "Recalibrage"
+            glb_label_recalibrage = "Hernie Discale Pure"
 
     def radiobtnRecalibrage_non(self):
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non
@@ -745,7 +745,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             onco_recalibrage_non = True
             self.pushButton_recalibrageSuivant.setEnabled(False)
             self.groupBox_cote.setEnabled(False)
-            glb_label_recalibrage = ""
+            glb_label_recalibrage = "Non"
 
     def suivantRecalibrage(self):
         self.switch_window3.emit()
@@ -788,7 +788,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             onco_arthrodese_non = True
             onco_arthrodese_oui = False
             self.pushButton_arthrodeseSuivant.setEnabled(False)
-            glb_label_arthrodese = ""
+            glb_label_arthrodese = "Non"
 
     def radiobtnArthrodese_oui(self):
         global glb_label_arthrodese
@@ -799,7 +799,7 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             onco_arthrodese_non = False
             print("8")
             self.pushButton_arthrodeseSuivant.setEnabled(True)
-            glb_label_arthrodese = "Arthrodèse"
+            glb_label_arthrodese = "Oui"
 
     def suivantArthrodese(self):
         self.switch_window4.emit()

@@ -8,6 +8,8 @@ glb_traumato_FN_medullaire = False
 glb_traumato_FN_non = False
 glb_traumato_modalite_percutanee = True
 glb_traumato_modalite_foyer = False
+glb_traumato_modalite_percutanee2 = True
+glb_traumato_modalite_foyer2 = False
 traumato_vertebre1 = int(1)
 traumato_vertebre2 =int(2)
 glb_traumato_corpo_vertebro = True
@@ -29,12 +31,12 @@ traumato_arthrodese_non = True
 glb_label_FN = "Décompression radiculaire"
 glb_label_modalite = "Modalité percutanée"
 glb_label_percutanee_niveau = ""
-glb_label_corpo = " Vertébroplastie"
-glb_label_osteo = ""
+glb_label_corpo = " Geste Corporéal : Vertébroplastie"
+glb_label_osteo = "Ostéosynthèse : Non"
 glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
-glb_label_recalibrage = "Recalibrage par Hernie Discale Pure"
+glb_label_recalibrage = "Hernie Discale Pure"
 glb_label_cote = ""
-glb_label_arthrodese = ""
+glb_label_arthrodese = "Non"
 glb_label_patho = ""
 
 validerTraumato = False
@@ -491,7 +493,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_FN_radicoMedullaire = False
             glb_traumato_FN_medullaire = False
             glb_traumato_FN_non = True
-            glb_label_FN = ""
+            glb_label_FN = "Sans finalité neurologique"
 
     def checkBoxChangeAction_vertebroplastie (self, state):
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non
@@ -500,7 +502,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_corpo_vertebro = True
             glb_traumato_corpo_cypho = False
             glb_traumato_corpo_non = False
-            glb_label_corpo = "Vertébroplastie"
+            glb_label_corpo = "Geste corporéal : Vertébroplastie"
 
     def checkBoxChangeAction_cyphoplastie (self, state):
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non
@@ -509,7 +511,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_corpo_vertebro = False
             glb_traumato_corpo_cypho = True
             glb_traumato_corpo_non = False
-            glb_label_corpo = "Cyphoplastie"
+            glb_label_corpo = "Geste corporéal : Cyphoplastie"
 
     def checkBoxChangeAction_corporealNon (self, state):
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non
@@ -518,7 +520,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_corpo_vertebro = False
             glb_traumato_corpo_cypho = False
             glb_traumato_corpo_non = True
-            glb_label_corpo = ""
+            glb_label_corpo = "Geste corporéal : Non"
 
     def checkBoxChangeAction_monoaxiales (self, state):
         global glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
@@ -527,7 +529,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_osteo_mono = True
             glb_traumato_osteo_poly = False
             glb_traumato_osteo_non = False
-            glb_label_osteo = "Vis monoaxiales"
+            glb_label_osteo = "Ostéosynthèse : Vis monoaxiales"
 
     def checkBoxChangeAction_polyaxiales (self, state):
         global glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
@@ -536,7 +538,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_osteo_mono = False
             glb_traumato_osteo_poly = True
             glb_traumato_osteo_non = False
-            glb_label_osteo = "Vis polyaxiales"
+            glb_label_osteo = "Ostéosynthèse : Vis polyaxiales"
 
     def checkBoxChangeAction_osteosyntheseNon (self, state):
         global glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
@@ -545,7 +547,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_osteo_mono = False
             glb_traumato_osteo_poly = False
             glb_traumato_osteo_non = True
-            glb_label_osteo = ""
+            glb_label_osteo = "Ostéosynthèse : Non"
 
 
     def retourEtape2(self):
@@ -619,11 +621,13 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.switch_window2.emit()
 
     def radiobtnModalite(self):
-        global glb_label_modalite, glb_traumato_modalite_foyer, glb_traumato_modalite_percutanee
+        global glb_label_modalite, glb_traumato_modalite_foyer, glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer2, glb_traumato_modalite_percutanee2
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_traumato_modalite_percutanee = True
             glb_traumato_modalite_foyer = False
+            glb_traumato_modalite_percutanee2 = True
+            glb_traumato_modalite_foyer2 = False
             self.spinBox_nombre1.setEnabled(False)
             self.spinBox_nombre2.setEnabled(False)
             self.groupBox_recalibrage.setEnabled(False)
@@ -635,11 +639,13 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_label_modalite = "Modalité percutanée"
 
     def radiobtnModalite_ouvert(self):
-        global glb_label_modalite, glb_traumato_modalite_foyer, glb_traumato_modalite_percutanee
+        global glb_label_modalite, glb_traumato_modalite_foyer, glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer2, glb_traumato_modalite_percutanee2
         self.radiobutton = self.sender()
         if self.radiobutton.isChecked():
             glb_traumato_modalite_percutanee = False
             glb_traumato_modalite_foyer = True
+            glb_traumato_modalite_percutanee2 = False
+            glb_traumato_modalite_foyer2 = True
             self.spinBox_nombre1.setEnabled(True)
             self.spinBox_nombre2.setEnabled(True)
             self.groupBox_recalibrage.setEnabled(True)
@@ -674,7 +680,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             traumato_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
-            glb_label_recalibrage = "Recalibrage car Hernie Discale Pure"
+            glb_label_recalibrage = "Oui"
 
     def radiobtnRecalibrage_hernie(self):
         global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non
@@ -686,7 +692,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             traumato_recalibrage_non = False
             self.pushButton_recalibrageSuivant.setEnabled(True)
             self.groupBox_cote.setEnabled(True)
-            glb_label_recalibrage = "Recalibrage"
+            glb_label_recalibrage = "Hernie Discale Pure"
 
     def radiobtnRecalibrage_non(self):
         global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non
@@ -698,7 +704,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             traumato_recalibrage_non = True
             self.pushButton_recalibrageSuivant.setEnabled(False)
             self.groupBox_cote.setEnabled(False)
-            glb_label_recalibrage = ""
+            glb_label_recalibrage = "Non"
 
     def suivantRecalibrage(self):
         self.switch_window4.emit()
@@ -741,7 +747,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             traumato_arthrodese_non = True
             traumato_arthrodese_oui = False
             self.pushButton_arthrodeseSuivant.setEnabled(False)
-            glb_label_arthrodese = ""
+            glb_label_arthrodese = "Non"
 
     def radiobtnArthrodese_oui(self):
         global glb_label_arthrodese
@@ -752,7 +758,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             traumato_arthrodese_non = False
             print("8")
             self.pushButton_arthrodeseSuivant.setEnabled(True)
-            glb_label_arthrodese = "Arthrodèse"
+            glb_label_arthrodese = "Oui"
 
     def suivantArthrodese(self):
         self.switch_window5.emit()
@@ -794,7 +800,7 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
 
     def valider(self):
         global glb_traumato_FN_radiculaire, glb_traumato_FN_radicoMedullaire, glb_traumato_FN_medullaire, glb_traumato_FN_non
-        global glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer, traumato_vertebre1, traumato_vertebre2
+        global glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer, traumato_vertebre1, traumato_vertebre2, glb_traumato_modalite_percutanee2, glb_traumato_modalite_foyer2
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non, glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
         global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral, traumato_arthrodese_oui, traumato_arthrodese_non
         global validerTraumato
