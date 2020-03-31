@@ -30,7 +30,6 @@ traumato_arthrodese_non = True
 
 glb_label_FN = "Décompression radiculaire"
 glb_label_modalite = "Modalité percutanée"
-glb_label_percutanee_niveau = ""
 glb_label_corpo = " Geste Corporéal : Vertébroplastie"
 glb_label_osteo = "Ostéosynthèse : Non"
 glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
@@ -561,7 +560,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         global glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer, traumato_vertebre1, traumato_vertebre2
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non, glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
         global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral, traumato_arthrodese_oui, traumato_arthrodese_non
-        global validerTraumato
 
         glb_traumato_FN_radiculaire = True
         glb_traumato_FN_radicoMedullaire = False
@@ -586,8 +584,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         glb_traumato_cote_bilateral = False
         traumato_arthrodese_oui = False
         traumato_arthrodese_non = True
-
-        validerTraumato = False
 
         self.switch_window1.emit()
 
@@ -596,7 +592,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         global glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer, traumato_vertebre1, traumato_vertebre2
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non, glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
         global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral, traumato_arthrodese_oui, traumato_arthrodese_non
-        global validerTraumato
 
         glb_traumato_FN_radiculaire = True
         glb_traumato_FN_radicoMedullaire = False
@@ -621,8 +616,6 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         glb_traumato_cote_bilateral = False
         traumato_arthrodese_oui = False
         traumato_arthrodese_non = True
-
-        validerTraumato = False
 
         self.switch_window2.emit()
 
@@ -770,71 +763,45 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.switch_window5.emit()
 
     def ajouterIntervention(self):
-        global glb_traumato_FN_radiculaire, glb_traumato_FN_radicoMedullaire, glb_traumato_FN_medullaire, glb_traumato_FN_non
-        global glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer, traumato_vertebre1, traumato_vertebre2
-        global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non, glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
-        global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral, traumato_arthrodese_oui, traumato_arthrodese_non
-        global validerTraumato
+        global traumato_vertebre1, traumato_vertebre2, glb_label_Niveau, glb_label_cote, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral
+        global validerTraumato, compteur_recuperation
 
-        glb_traumato_FN_radiculaire = True
-        glb_traumato_FN_radicoMedullaire = False
-        glb_traumato_FN_medullaire = False
-        glb_traumato_FN_non = False
-        glb_traumato_modalite_percutanee = True
-        glb_traumato_modalite_foyer = False
-        traumato_vertebre1 = int(1)
-        traumato_vertebre2 = int(2)
-        glb_traumato_corpo_vertebro = True
-        glb_traumato_corpo_cypho = False
-        glb_traumato_corpo_non = False
-        glb_traumato_osteo_mono = False
-        glb_traumato_osteo_poly = False
-        glb_traumato_osteo_non = True
-
-        traumato_recalibrage_oui = False
-        traumato_recalibrage_hernie = True
-        traumato_recalibrage_non = False
         glb_traumato_cote_gauche = False
         glb_traumato_cote_droit = False
         glb_traumato_cote_bilateral = False
-        traumato_arthrodese_oui = False
-        traumato_arthrodese_non = True
-
+        traumato_vertebre1 = int(1)
+        traumato_vertebre2 = int(2)
         validerTraumato = True
 
         self.switch_window7.emit()
 
+        self.radioButton_radiculaire.setChecked(True)
+        self.radioButton_percutanee.setChecked(True)
+        self.radiobutton_vertebroplastie.setChecked(True)
+        self.radiobutton_osteosyntheseNon.setChecked(True)
+        glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+        self.radioButton_herniePure.setChecked(True)
+        glb_label_cote = ""
+        self.radioButton_arthrodeseNon.setChecked(True)
+
     def valider(self):
-        global glb_traumato_FN_radiculaire, glb_traumato_FN_radicoMedullaire, glb_traumato_FN_medullaire, glb_traumato_FN_non
-        global glb_traumato_modalite_percutanee, glb_traumato_modalite_foyer, traumato_vertebre1, traumato_vertebre2, glb_traumato_modalite_percutanee2, glb_traumato_modalite_foyer2
-        global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non, glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
-        global traumato_recalibrage_oui, traumato_recalibrage_hernie, traumato_recalibrage_non, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral, traumato_arthrodese_oui, traumato_arthrodese_non
-        global validerTraumato
+        global traumato_vertebre1, traumato_vertebre2, glb_label_Niveau, glb_label_cote, glb_traumato_cote_gauche, glb_traumato_cote_droit, glb_traumato_cote_bilateral
+        global validerTraumato, compteur_recuperation
 
-        glb_traumato_FN_radiculaire = True
-        glb_traumato_FN_radicoMedullaire = False
-        glb_traumato_FN_medullaire = False
-        glb_traumato_FN_non = False
-        glb_traumato_modalite_percutanee = True
-        glb_traumato_modalite_foyer = False
-        traumato_vertebre1 = int(1)
-        traumato_vertebre2 = int(2)
-        glb_traumato_corpo_vertebro = True
-        glb_traumato_corpo_cypho = False
-        glb_traumato_corpo_non = False
-        glb_traumato_osteo_mono = False
-        glb_traumato_osteo_poly = False
-        glb_traumato_osteo_non = True
-
-        traumato_recalibrage_oui = False
-        traumato_recalibrage_hernie = True
-        traumato_recalibrage_non = False
         glb_traumato_cote_gauche = False
         glb_traumato_cote_droit = False
         glb_traumato_cote_bilateral = False
-        traumato_arthrodese_oui = False
-        traumato_arthrodese_non = True
-
+        traumato_vertebre1 = int(1)
+        traumato_vertebre2 = int(2)
         validerTraumato = True
 
-        self.switch_window8.emit() #faute de mieux
+        self.switch_window8.emit()
+
+        self.radioButton_radiculaire.setChecked(True)
+        self.radioButton_percutanee.setChecked(True)
+        self.radiobutton_vertebroplastie.setChecked(True)
+        self.radiobutton_osteosyntheseNon.setChecked(True)
+        glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+        self.radioButton_herniePure.setChecked(True)
+        glb_label_cote = ""
+        self.radioButton_arthrodeseNon.setChecked(True)

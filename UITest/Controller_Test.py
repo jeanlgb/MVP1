@@ -267,7 +267,6 @@ class Controller_Test:
             UITest.CreationDP.valeur_cb_cervicale_radiculaire = False
             UITest.CreationDP.valeur_cb_autre = False
             UITest.CreationDP.valeur_cb_thoraco_lombaire = False
-            UITest.CreationDP.glb_textEdit_intervention = ""
 
 
 
@@ -391,7 +390,6 @@ class Controller_Test:
             UITest.CreationDP.valeur_cb_cervicale_radiculaire = False
             UITest.CreationDP.valeur_cb_autre = False
             UITest.CreationDP.valeur_cb_thoraco_lombaire = False
-            UITest.CreationDP.glb_textEdit_intervention = ""
 
         self.sec.switch_window1.connect(self.show_CreationDP)
         self.sec.switch_window2.connect(self.show_SelectionnerDP)
@@ -485,6 +483,7 @@ class Controller_Test:
                                                                      ctl_glb_label_niveau + " " + "Recalibrage: " + ctl_glb_label_reca + " " + concatenation_recalibrage + " " + ctl_glb_label_cote + " " +
                                                                      "Arthrodèse: " + ctl_glb_label_arthro + " " + concatenation_arthrodese)
 
+            print(nom_intervention)
             ctr_nomIntervention_nonModifiable = nom_intervention
             self.windowCreationDP.textEdit_interventionNonModifiable.setText(nom_intervention)
 
@@ -616,6 +615,7 @@ class Controller_Test:
                 ctr_niveaux_zoneL = ""
                 ctr_niveaux_zoneS = ""
                 ctr_niveaux_zoneD = ""
+                UITest.Traumatologique_Niveaux.compteur_recuperation = ""
                 validerTraumato = False
                 UITest.Pathologie_Traumatologique.validerTraumato = False
 
@@ -980,10 +980,7 @@ class Controller_Test:
 
             concatenation_recalibrage = ctr_reca_postAnt + " " + ctr_reca_infos + " " + ctr_reca_hernie
 
-
             BD.ajouter_formuaire_recalibrage("", controlleur_numMagic, ctr_reca_postAnt,ctr_reca_infos,ctr_reca_hernie)
-
-
 
             ctr_reca_postAnt = ""
             ctr_reca_hernie = ""

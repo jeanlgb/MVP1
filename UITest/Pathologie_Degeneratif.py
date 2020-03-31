@@ -367,7 +367,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
     def retourEtape2(self):
         global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
         global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
-        global valider
 
         glb_dege_FN_radiculaire = True
         glb_dege_FN_radicoMedullaire = False
@@ -383,15 +382,12 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         glb_dege_cote_bilateral = False
         dege_arthrodese_oui = False
         dege_arthrodese_non = True
-
-        valider = False
 
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
         global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
         global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
-        global valider
 
         glb_dege_FN_radiculaire = True
         glb_dege_FN_radicoMedullaire = False
@@ -407,8 +403,6 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
         glb_dege_cote_bilateral = False
         dege_arthrodese_oui = False
         dege_arthrodese_non = True
-
-        valider = False
 
         self.switch_window2.emit()
 
@@ -516,51 +510,39 @@ class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
 
 
     def ajouterIntervention(self):
-        global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
-        global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
         global valider
-
-        glb_dege_FN_radiculaire = True
-        glb_dege_FN_radicoMedullaire = False
-        glb_dege_FN_medullaire = False
-        glb_dege_FN_non = False
-        dege_vertebre1 = int(1)
-        dege_vertebre2 = int(2)
-        dege_recalibrage_oui = False
-        dege_recalibrage_hernie = True
-        dege_recalibrage_non = False
+        global glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, glb_label_cote, dege_vertebre1, dege_vertebre2, glb_label_Niveau
+        valider = True
         glb_dege_cote_gauche = False
         glb_dege_cote_droit = False
         glb_dege_cote_bilateral = False
-        dege_arthrodese_oui = False
-        dege_arthrodese_non = True
-
-        valider = True
+        dege_vertebre1 = int(1)
+        dege_vertebre2 = int(2)
 
         self.switch_window5.emit()
 
+        self.radioButton_radiculaire.setChecked(True)
+        glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+        self.radioButton_herniePure.setChecked(True)
+        glb_label_cote = ""
+        self.radioButton_arthrodeseNon.setChecked(True)
+
     def valider(self):
-        global glb_dege_FN_radiculaire, glb_dege_FN_radicoMedullaire, glb_dege_FN_medullaire, glb_dege_FN_non, dege_vertebre1, dege_vertebre2, dege_recalibrage_oui
-        global dege_recalibrage_hernie, dege_recalibrage_non, glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, dege_arthrodese_oui, dege_arthrodese_non
         global valider
-
-
-
+        global glb_dege_cote_gauche, glb_dege_cote_droit, glb_dege_cote_bilateral, glb_label_cote, dege_vertebre1, dege_vertebre2, glb_label_Niveau
         valider = True
-
-        self.switch_window6.emit() #faute de mieux
-
-        glb_dege_FN_radiculaire = True
-        glb_dege_FN_radicoMedullaire = False
-        glb_dege_FN_medullaire = False
-        glb_dege_FN_non = False
-        dege_vertebre1 = int(1)
-        dege_vertebre2 = int(2)
-        dege_recalibrage_oui = False
-        dege_recalibrage_hernie = True
-        dege_recalibrage_non = False
         glb_dege_cote_gauche = False
         glb_dege_cote_droit = False
         glb_dege_cote_bilateral = False
-        dege_arthrodese_oui = False
-        dege_arthrodese_non = True
+        dege_vertebre1 = int(1)
+        dege_vertebre2 = int(2)
+
+        self.switch_window6.emit() #faute de mieux
+
+        self.radioButton_radiculaire.setChecked(True)
+        glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+        self.radioButton_herniePure.setChecked(True)
+        glb_label_cote = ""
+        self.radioButton_arthrodeseNon.setChecked(True)
+
+

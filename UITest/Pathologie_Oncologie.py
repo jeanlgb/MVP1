@@ -38,14 +38,14 @@ glb_label_cote = ""
 glb_label_arthrodese = "Non"
 glb_label_patho = ""
 
-glb_lbl_topo_epi = "Topographie épidurale"
+glb_lbl_topo_epi = "Topographie épidurale, "
 glb_lbl_topo_ID = ""
 glb_lbl_topo_IM = ""
 glb_lbl_topo_sablier = ""
 glb_lbl_topo_oss = ""
 glb_lbl_topo_autre = ""
 
-glb_lbl_origine_radi = "Origine radiculaire"
+glb_lbl_origine_radi = "Origine radiculaire, "
 glb_lbl_origine_menin = ""
 glb_lbl_origine_oss = ""
 glb_lbl_origine_sec = ""
@@ -606,7 +606,6 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
-        global validerOnco
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -636,7 +635,6 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         onco_arthrodese_oui = False
         onco_arthrodese_non = True
 
-        validerOnco = False
         self.switch_window1.emit()
 
     def annulerCreationDP(self):
@@ -645,7 +643,6 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
-        global validerOnco
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -674,8 +671,6 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         glb_onco_cote_bilateral = False
         onco_arthrodese_oui = False
         onco_arthrodese_non = True
-
-        validerOnco = False
 
         self.switch_window2.emit()
 
@@ -785,56 +780,46 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
 
 
     def ajouterIntervention(self):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
-        global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
+        global onco_vertebre1, onco_vertebre2
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
-        global validerOnco
+        global validerOnco, glb_label_Niveau, glb_label_cote
         global glb_lbl_topo_epi, glb_lbl_topo_ID, glb_lbl_topo_IM, glb_lbl_topo_sablier, glb_lbl_topo_oss, glb_lbl_topo_autre, glb_label_topo
         global glb_lbl_origine_radi, glb_lbl_origine_menin, glb_lbl_origine_oss, glb_lbl_origine_sec, glb_lbl_origine_medu, glb_lbl_origine_autre, glb_label_origine
 
         glb_label_topo = glb_lbl_topo_epi + glb_lbl_topo_ID + glb_lbl_topo_IM + glb_lbl_topo_sablier + glb_lbl_topo_oss + glb_lbl_topo_autre
         glb_label_origine = glb_lbl_origine_radi + glb_lbl_origine_menin + glb_lbl_origine_oss + glb_lbl_origine_sec + glb_lbl_origine_medu + glb_lbl_origine_autre
 
-        glb_onco_FN_radiculaire = True
-        glb_onco_FN_radicoMedullaire = False
-        glb_onco_FN_medullaire = False
-        glb_onco_FN_non = False
-        glb_onco_topo_epidurale = True
-        glb_onco_topo_osseuse = False
-        glb_onco_topo_intraDurale = False
-        glb_onco_topo_intraMedullaire = False
-        glb_onco_topo_enSablier = False
-        glb_onco_topo_autre = False
-        glb_onco_origine_radiculaire = True
-        glb_onco_origine_meningee = False
-        glb_onco_origine_osseuse = False
-        glb_onco_origine_secondaire = False
-        glb_onco_origine_medullaire = False
-        glb_onco_origine_autre = False
         onco_vertebre1 = int(1)
         onco_vertebre2 = int(2)
-
-        onco_recalibrage_oui = False
-        onco_recalibrage_hernie = True
-        onco_recalibrage_non = False
         glb_onco_cote_gauche = False
         glb_onco_cote_droit = False
         glb_onco_cote_bilateral = False
-        onco_arthrodese_oui = False
-        onco_arthrodese_non = True
-
         validerOnco = True
+
         self.switch_window5.emit()
 
+        self.radioButton_radiculaire.setChecked(True)
+        self.checkBox_epidurale.setChecked(True)
+        self.checkBox_osseuseTopographie.setChecked(False)
+        self.checkBox_intraDurale.setChecked(False)
+        self.checkBox_intraMedullaire.setChecked(False)
+        self.checkBox_enSablier.setChecked(False)
+        self.checkBox_autreTopographie.setChecked(False)
+        self.checkBox_origineRadiculaire.setChecked(True)
+        self.checkBox_meningee.setChecked(False)
+        self.checkBox_origineOsseuse.setChecked(False)
+        self.checkBox_secondaire.setChecked(False)
+        self.checkBox_origineMedullaire.setChecked(False)
+        self.checkBox_origineAutre.setChecked(False)
+        glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+        self.radioButton_herniePure.setChecked(True)
+        glb_label_cote = ""
+        self.radioButton_arthrodeseNon.setChecked(True)
+
     def valider(self):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_onco_FN_medullaire, glb_onco_FN_non, glb_onco_FN_radicoMedullaire, glb_onco_FN_radiculaire, onco_vertebre1, onco_vertebre2
-        global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
+        global onco_vertebre1, onco_vertebre2
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
-        global validerOnco
+        global validerOnco, glb_label_Niveau, glb_label_cote
         global glb_lbl_topo_epi, glb_lbl_topo_ID, glb_lbl_topo_IM, glb_lbl_topo_sablier, glb_lbl_topo_oss, glb_lbl_topo_autre, glb_label_topo
         global glb_lbl_origine_radi, glb_lbl_origine_menin, glb_lbl_origine_oss, glb_lbl_origine_sec, glb_lbl_origine_medu, glb_lbl_origine_autre, glb_label_origine
 
@@ -842,33 +827,30 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         glb_label_origine = glb_lbl_origine_radi + glb_lbl_origine_menin + glb_lbl_origine_oss + glb_lbl_origine_sec + glb_lbl_origine_medu + glb_lbl_origine_autre
 
 
-        glb_onco_FN_radiculaire = True
-        glb_onco_FN_radicoMedullaire = False
-        glb_onco_FN_medullaire = False
-        glb_onco_FN_non = False
-        glb_onco_topo_epidurale = True
-        glb_onco_topo_osseuse = False
-        glb_onco_topo_intraDurale = False
-        glb_onco_topo_intraMedullaire = False
-        glb_onco_topo_enSablier = False
-        glb_onco_topo_autre = False
-        glb_onco_origine_radiculaire = True
-        glb_onco_origine_meningee = False
-        glb_onco_origine_osseuse = False
-        glb_onco_origine_secondaire = False
-        glb_onco_origine_medullaire = False
-        glb_onco_origine_autre = False
+
         onco_vertebre1 = int(1)
         onco_vertebre2 = int(2)
-
-        onco_recalibrage_oui = False
-        onco_recalibrage_hernie = True
-        onco_recalibrage_non = False
         glb_onco_cote_gauche = False
         glb_onco_cote_droit = False
         glb_onco_cote_bilateral = False
-        onco_arthrodese_oui = False
-        onco_arthrodese_non = True
-
         validerOnco = True
+        
         self.switch_window6.emit() #faute de mieux
+
+        self.radioButton_radiculaire.setChecked(True)
+        self.checkBox_epidurale.setChecked(True)
+        self.checkBox_osseuseTopographie.setChecked(False)
+        self.checkBox_intraDurale.setChecked(False)
+        self.checkBox_intraMedullaire.setChecked(False)
+        self.checkBox_enSablier.setChecked(False)
+        self.checkBox_autreTopographie.setChecked(False)
+        self.checkBox_origineRadiculaire.setChecked(True)
+        self.checkBox_meningee.setChecked(False)
+        self.checkBox_origineOsseuse.setChecked(False)
+        self.checkBox_secondaire.setChecked(False)
+        self.checkBox_origineMedullaire.setChecked(False)
+        self.checkBox_origineAutre.setChecked(False)
+        glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
+        self.radioButton_herniePure.setChecked(True)
+        glb_label_cote = ""
+        self.radioButton_arthrodeseNon.setChecked(True)

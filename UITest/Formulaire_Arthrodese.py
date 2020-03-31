@@ -328,8 +328,6 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
     def retourEtapePrecedente(self):
-        global validerArthrodese
-        validerArthrodese = False
         self.switch_window1.emit()
 
 
@@ -352,7 +350,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.radioButton_tlif.setChecked(False)
             self.radioButton_os.setChecked(False)
             self.radioButton_aucuneGreffe.setChecked(False)
-            glb_arthro_postAnt = "Arthrodèse par voie antérieure"
+            glb_arthro_postAnt = " Voie antérieure"
 
     def radiobtnFrame_Haut_posterieur(self):
         global glb_arthrodese_posterieur, glb_arthrodese_anterieur
@@ -371,7 +369,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.radioButton_corporectomie_2.setChecked(False)
             self.radioButton_os2.setChecked(False)
             self.radioButton_aucuneGreffe2.setChecked(False)
-            glb_arthro_postAnt = "Arthrodèse par voie postérieure"
+            glb_arthro_postAnt = " Voie postérieure"
 
     def radiobtn_polyaxiales(self):
         global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
@@ -543,29 +541,11 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
 
 
     def suivant(self):
-        global validerArthrodese
-        global glb_arthrodese_posterieur, glb_arthrodese_anterieur
-        global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
-        global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
-        global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
-        global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
-
-        glb_arthrodese_posterieur = False
-        glb_arthrodese_anterieur = False
-        glb_arthrodese_polyaxiales = False
-        glb_arthrodese_monoaxiales = False
-        glb_arthrodese_plaque = False
-        glb_arthrodese_fixationAucune = False
-        glb_arthrodese_fixationAucune2 = False
-        glb_arthrodese_2PLIF = False
-        glb_arthrodese_PLIF = False
-        glb_arthrodese_TLIF = False
-        glb_arthrodese_OsSeulement = False
-        glb_arthrodese_greffeAucune = False
-        glb_arthrodese_intersomatique = False
-        glb_arthrodese_corporectomie = False
-        glb_arthrodese_OsSeulement2 = False
-        glb_arthrodese_greffeAucune2 = False
-
+        global validerArthrodese, glb_arthro_postAnt, glb_arthro_fixation, glb_arthro_greffe
         validerArthrodese = True
-        self.switch_window3.emit() #faute de mieux
+        self.switch_window3.emit()
+
+        glb_arthro_postAnt = ""
+        glb_arthro_fixation = ""
+        glb_arthro_greffe = ""
+
