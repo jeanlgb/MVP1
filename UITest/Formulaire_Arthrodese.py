@@ -31,7 +31,6 @@ glb_arthro_fixation = ""
 glb_arthro_greffe = ""
 
 validerArthrodese = False
-annulerArthrodese = False
 
 class Ui_Frame_Arthrodese(object):
     def setupUi(self, Frame):
@@ -45,9 +44,6 @@ class Ui_Frame_Arthrodese(object):
         self.pushButton_retour = QtWidgets.QPushButton(self.frame_haut)
         self.pushButton_retour.setGeometry(QtCore.QRect(0, 0, 61, 30))
         self.pushButton_retour.setObjectName("pushButton_retour")
-        self.pushButton_annuler = QtWidgets.QPushButton(self.frame_haut)
-        self.pushButton_annuler.setGeometry(QtCore.QRect(500, 0, 61, 30))
-        self.pushButton_annuler.setObjectName("pushButton_annuler")
         self.radioButton_anterieure = QtWidgets.QRadioButton(self.frame_haut)
         self.radioButton_anterieure.setGeometry(QtCore.QRect(370, 40, 221, 30))
         font = QtGui.QFont()
@@ -271,7 +267,6 @@ class Ui_Frame_Arthrodese(object):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
         self.pushButton_retour.setText(_translate("Frame", "Retour"))
-        self.pushButton_annuler.setText(_translate("Frame", "Annuler"))
         self.radioButton_anterieure.setText(_translate("Frame", "Voie antérieure"))
         self.radioButton_posterieure.setText(_translate("Frame", "Voie postérieure"))
         self.pushButton_suivant.setText(_translate("Frame", "Suivant"))
@@ -298,7 +293,6 @@ class Ui_Frame_Arthrodese(object):
 
 class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
     switch_window1 = QtCore.pyqtSignal()
-    switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
 
     def __init__(self):
@@ -331,20 +325,13 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
-        self.pushButton_annuler.clicked.connect(self.annulerCreationDP)
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
     def retourEtapePrecedente(self):
-        global validerArthrodese, annulerArthrodese
+        global validerArthrodese
         validerArthrodese = False
-        annulerArthrodese = False
         self.switch_window1.emit()
 
-    def annulerCreationDP(self):
-        global validerArthrodese, annulerArthrodese
-        validerArthrodese = False
-        annulerArthrodese = True
-        self.switch_window2.emit()
 
     def radiobtnFrame_Haut_anterieur(self):
         global glb_arthrodese_posterieur, glb_arthrodese_anterieur
@@ -556,7 +543,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
 
 
     def suivant(self):
-        global validerArthrodese, annulerArthrodese
+        global validerArthrodese
         global glb_arthrodese_posterieur, glb_arthrodese_anterieur
         global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
@@ -581,5 +568,4 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         glb_arthrodese_greffeAucune2 = False
 
         validerArthrodese = True
-        annulerArthrodese = False
         self.switch_window3.emit() #faute de mieux

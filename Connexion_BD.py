@@ -106,12 +106,12 @@ class Connexion_DB:
             return False
 
         # Créer la consultatio
-    def creation_consultation(self, numero_patient, commentaire,
+    def creation_consultation(self, numero_patient, nomIntervention, commentaire, date,
                                   type):  # rajouter les dates et numéro de dossier Magic. Vérifier que le patient n'existe déja pas
             numero_consultation = self.generer_numero("consultation")
-            consultation = {"Numéro_consultation": numero_consultation, "Numéro_patient": numero_patient, "commentaire": commentaire, "type": type}
+            consultation = {"Numéro_consultation": numero_consultation, "Numéro_patient": numero_patient, "Nom_Intervention": nomIntervention, "commentaire": commentaire, "date": date, "type": type}
             cursor.execute(
-                """INSERT INTO consultation (Numéro_consultation, Numéro_patient, Commentaire, Type_consultation) VALUES(%(Numéro_consultation)s, %(Numéro_patient)s, %(commentaire)s, %(type)s)""",
+                """INSERT INTO consultation (Numéro_consultation, Numéro_patient, Nom_Intervention, Commentaire, Date_consultation, Type_consultation) VALUES(%(Numéro_consultation)s, %(Numéro_patient)s, %(Nom_Intervention)s, %(commentaire)s, %(date)s, %(type)s)""",
                 consultation)
             conn.commit()
 

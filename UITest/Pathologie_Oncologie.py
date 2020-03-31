@@ -30,13 +30,27 @@ onco_arthrodese_oui = False
 onco_arthrodese_non = True
 
 glb_label_FN = "Décompression radiculaire"
-glb_label_topo = "Topographie épidurale"
-glb_label_origine = "Origine radiculaire"
+glb_label_topo = ""
+glb_label_origine = ""
 glb_label_Niveau = "Intervention entre les vertèbres: 1 et 2"
 glb_label_recalibrage = "Hernie Discale Pure"
 glb_label_cote = ""
 glb_label_arthrodese = "Non"
 glb_label_patho = ""
+
+glb_lbl_topo_epi = "Topographie épidurale"
+glb_lbl_topo_ID = ""
+glb_lbl_topo_IM = ""
+glb_lbl_topo_sablier = ""
+glb_lbl_topo_oss = ""
+glb_lbl_topo_autre = ""
+
+glb_lbl_origine_radi = "Origine radiculaire"
+glb_lbl_origine_menin = ""
+glb_lbl_origine_oss = ""
+glb_lbl_origine_sec = ""
+glb_lbl_origine_medu = ""
+glb_lbl_origine_autre = ""
 
 validerOnco = False
 
@@ -477,149 +491,114 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
             glb_label_FN = "Sans finalité neurologique"
 
     def checkBoxChangeAction_epidurale (self, state):
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_label_topo
+        global glb_onco_topo_epidurale, glb_lbl_topo_epi
         if ( state == QtCore.Qt.Checked):
             glb_onco_topo_epidurale = True
-            glb_onco_topo_osseuse = False
-            glb_onco_topo_intraDurale = False
-            glb_onco_topo_intraMedullaire = False
-            glb_onco_topo_enSablier = False
-            glb_onco_topo_autre = False
-            glb_label_topo = "Topographie épidurale"
+            glb_lbl_topo_epi = "Topographie épidurale, "
+        else:
+            glb_lbl_topo_epi = ""
+            glb_onco_topo_epidurale = False
 
 
     def checkBoxChangeAction_topographieOsseuse (self, state):
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_label_topo
+        global glb_onco_topo_osseuse, glb_lbl_topo_oss
         if ( state == QtCore.Qt.Checked):
-            glb_onco_topo_epidurale = False
             glb_onco_topo_osseuse = True
-            glb_onco_topo_intraDurale = False
-            glb_onco_topo_intraMedullaire = False
-            glb_onco_topo_enSablier = False
-            glb_onco_topo_autre = False
-            glb_label_topo = "Topographie osseuse"
+            glb_lbl_topo_oss = "Topographie osseuse, "
+        else:
+            glb_lbl_topo_oss = ""
+            glb_onco_topo_osseuse = False
 
     def checkBoxChangeAction_intraDurale (self, state):
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_label_topo
-        if ( state == QtCore.Qt.Checked):
-            glb_onco_topo_epidurale = False
-            glb_onco_topo_osseuse = False
+        global glb_onco_topo_intraDurale, glb_lbl_topo_ID
+        if (state == QtCore.Qt.Checked):
             glb_onco_topo_intraDurale = True
-            glb_onco_topo_intraMedullaire = False
-            glb_onco_topo_enSablier = False
-            glb_onco_topo_autre = False
-            glb_label_topo = "Topographie intra-durale"
+            glb_lbl_topo_ID = "Topographie intra-durale, "
+        else:
+            glb_lbl_topo_ID = ""
+            glb_onco_topo_intraDurale = False
 
     def checkBoxChangeAction_intraMedullaire (self, state):
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_label_topo
-        if ( state == QtCore.Qt.Checked):
-            glb_onco_topo_epidurale = False
-            glb_onco_topo_osseuse = False
-            glb_onco_topo_intraDurale = False
+        global glb_onco_topo_intraMedullaire, glb_lbl_topo_IM
+        if (state == QtCore.Qt.Checked):
             glb_onco_topo_intraMedullaire = True
-            glb_onco_topo_enSablier = False
-            glb_onco_topo_autre = False
-            glb_label_topo = "Topographie intra-médullaire"
+            glb_lbl_topo_IM = "Topographie intra-médullaire, "
+        else:
+            glb_lbl_topo_IM = ""
+            glb_onco_topo_intraMedullaire = False
 
     def checkBoxChangeAction_sablier (self, state):
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_label_topo
-        if ( state == QtCore.Qt.Checked):
-            glb_onco_topo_epidurale = False
-            glb_onco_topo_osseuse = False
-            glb_onco_topo_intraDurale = False
-            glb_onco_topo_intraMedullaire = False
+        global glb_onco_topo_enSablier, glb_lbl_topo_sablier
+        if (state == QtCore.Qt.Checked):
             glb_onco_topo_enSablier = True
-            glb_onco_topo_autre = False
-            glb_label_topo = "Topographie en sablier"
+            glb_lbl_topo_sablier = "Topographie en sablier, "
+        else:
+            glb_lbl_topo_sablier = ""
+            glb_onco_topo_enSablier = False
 
     def checkBoxChangeAction_topographieAutre (self, state):
-        global glb_onco_topo_epidurale, glb_onco_topo_osseuse, glb_onco_topo_intraDurale, glb_onco_topo_intraMedullaire, glb_onco_topo_enSablier, glb_onco_topo_autre
-        global glb_label_topo
-        if ( state == QtCore.Qt.Checked):
-            glb_onco_topo_epidurale = False
-            glb_onco_topo_osseuse = False
-            glb_onco_topo_intraDurale = False
-            glb_onco_topo_intraMedullaire = False
-            glb_onco_topo_enSablier = False
+        global glb_onco_topo_autre, glb_lbl_topo_autre
+        if (state == QtCore.Qt.Checked):
             glb_onco_topo_autre = True
-            glb_label_topo = "Topographie autre"
+            glb_lbl_topo_autre = "Topographie autre, "
+        else:
+            glb_lbl_topo_autre = ""
+            glb_onco_topo_autre = False
+
 
     def checkBoxChangeAction_origineRadiculaire(self, state):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_label_origine
+        global glb_onco_origine_radiculaire, glb_lbl_origine_radi
         if (state == QtCore.Qt.Checked):
             glb_onco_origine_radiculaire = True
-            glb_onco_origine_meningee = False
-            glb_onco_origine_osseuse = False
-            glb_onco_origine_secondaire = False
-            glb_onco_origine_medullaire = False
-            glb_onco_origine_autre = False
-            glb_label_origine = "Origine radiculaire"
+            glb_lbl_origine_radi = "Origine radiculaire, "
+        else:
+            glb_lbl_origine_radi = ""
+            glb_onco_origine_radiculaire = False
 
     def checkBoxChangeAction_meningee(self, state):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_label_origine
+        global glb_onco_origine_meningee, glb_lbl_origine_menin
         if (state == QtCore.Qt.Checked):
-            glb_onco_origine_radiculaire = False
             glb_onco_origine_meningee = True
-            glb_onco_origine_osseuse = False
-            glb_onco_origine_secondaire = False
-            glb_onco_origine_medullaire = False
-            glb_onco_origine_autre = False
-            glb_label_origine = "Origine méningée"
+            glb_lbl_origine_menin = "Origine méningée, "
+        else:
+            glb_lbl_origine_menin = ""
+            glb_onco_origine_meningee = False
 
     def checkBoxChangeAction_origineOsseuse(self, state):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_label_origine
+        global glb_onco_origine_osseuse, glb_lbl_origine_oss
         if (state == QtCore.Qt.Checked):
-            glb_onco_origine_radiculaire = False
-            glb_onco_origine_meningee = False
             glb_onco_origine_osseuse = True
-            glb_onco_origine_secondaire = False
-            glb_onco_origine_medullaire = False
-            glb_onco_origine_autre = False
-            glb_label_origine = "Origine osseuse"
+            glb_lbl_origine_oss = "Origine osseuse, "
+        else:
+            glb_lbl_origine_oss = ""
+            glb_onco_origine_osseuse = False
 
     def checkBoxChangeAction_secondaire(self, state):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_label_origine
+        global glb_onco_origine_secondaire, glb_lbl_origine_sec
         if (state == QtCore.Qt.Checked):
-            glb_onco_origine_radiculaire = False
-            glb_onco_origine_meningee = False
-            glb_onco_origine_osseuse = False
             glb_onco_origine_secondaire = True
-            glb_onco_origine_medullaire = False
-            glb_onco_origine_autre = False
-            glb_label_origine = "Origine secondaire"
+            glb_lbl_origine_sec = "Origine secondaire, "
+        else:
+            glb_lbl_origine_sec = ""
+            glb_onco_origine_secondaire = False
 
     def checkBoxChangeAction_origineMedullaire(self, state):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_label_origine
+        global glb_onco_origine_medullaire, glb_lbl_origine_medu
         if (state == QtCore.Qt.Checked):
-            glb_onco_origine_radiculaire = False
-            glb_onco_origine_meningee = False
-            glb_onco_origine_osseuse = False
-            glb_onco_origine_secondaire = False
             glb_onco_origine_medullaire = True
-            glb_onco_origine_autre = False
-            glb_label_origine = "Origine médullaire"
+            glb_lbl_origine_medu = "Origine médullaire, "
+        else:
+            glb_lbl_origine_medu = ""
+            glb_onco_origine_medullaire = False
 
     def checkBoxChangeAction_origineAutre(self, state):
-        global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
-        global glb_label_origine
+        global glb_onco_origine_autre, glb_lbl_origine_autre
         if (state == QtCore.Qt.Checked):
-            glb_onco_origine_radiculaire = False
-            glb_onco_origine_meningee = False
-            glb_onco_origine_osseuse = False
-            glb_onco_origine_secondaire = False
-            glb_onco_origine_medullaire = False
             glb_onco_origine_autre = True
-            glb_label_origine = "Origine autre"
+            glb_lbl_origine_autre = "Origine autre, "
+        else:
+            glb_lbl_origine_autre = ""
+            glb_onco_origine_autre = False
 
     def retourEtape2(self):
         global glb_onco_origine_radiculaire, glb_onco_origine_meningee, glb_onco_origine_osseuse, glb_onco_origine_secondaire, glb_onco_origine_medullaire, glb_onco_origine_autre
@@ -812,6 +791,11 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
         global validerOnco
+        global glb_lbl_topo_epi, glb_lbl_topo_ID, glb_lbl_topo_IM, glb_lbl_topo_sablier, glb_lbl_topo_oss, glb_lbl_topo_autre, glb_label_topo
+        global glb_lbl_origine_radi, glb_lbl_origine_menin, glb_lbl_origine_oss, glb_lbl_origine_sec, glb_lbl_origine_medu, glb_lbl_origine_autre, glb_label_origine
+
+        glb_label_topo = glb_lbl_topo_epi + glb_lbl_topo_ID + glb_lbl_topo_IM + glb_lbl_topo_sablier + glb_lbl_topo_oss + glb_lbl_topo_autre
+        glb_label_origine = glb_lbl_origine_radi + glb_lbl_origine_menin + glb_lbl_origine_oss + glb_lbl_origine_sec + glb_lbl_origine_medu + glb_lbl_origine_autre
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False
@@ -851,6 +835,12 @@ class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
         global onco_recalibrage_oui, onco_recalibrage_hernie, onco_recalibrage_non, onco_arthrodese_non, onco_arthrodese_oui
         global glb_onco_cote_bilateral, glb_onco_cote_droit, glb_onco_cote_gauche
         global validerOnco
+        global glb_lbl_topo_epi, glb_lbl_topo_ID, glb_lbl_topo_IM, glb_lbl_topo_sablier, glb_lbl_topo_oss, glb_lbl_topo_autre, glb_label_topo
+        global glb_lbl_origine_radi, glb_lbl_origine_menin, glb_lbl_origine_oss, glb_lbl_origine_sec, glb_lbl_origine_medu, glb_lbl_origine_autre, glb_label_origine
+
+        glb_label_topo = glb_lbl_topo_epi + glb_lbl_topo_ID + glb_lbl_topo_IM + glb_lbl_topo_sablier + glb_lbl_topo_oss + glb_lbl_topo_autre
+        glb_label_origine = glb_lbl_origine_radi + glb_lbl_origine_menin + glb_lbl_origine_oss + glb_lbl_origine_sec + glb_lbl_origine_medu + glb_lbl_origine_autre
+
 
         glb_onco_FN_radiculaire = True
         glb_onco_FN_radicoMedullaire = False

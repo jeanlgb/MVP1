@@ -398,6 +398,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
 
         self.glb_textEditNomIntervention = self.lineEdit_interventionModifiable.text()
 
+
     def evaluation(self):
         global patient_nom
         global patient_prenom
@@ -541,4 +542,5 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         valeur_cb_medullaire = False
         valeur_cb_thoraco_lombaire = False
         valeur_cb_autre = False
+
         self.switch_window3.emit()

@@ -29,7 +29,6 @@ glb_reca_infos = ""
 glb_reca_hernie_associer = ""
 
 validerRecalibrage = False
-annulerRecalibrage= False
 
 class Ui_Frame_Recalibrage(object):
     def setupUi(self, Frame):
@@ -59,9 +58,6 @@ class Ui_Frame_Recalibrage(object):
         self.pushButton_retour = QtWidgets.QPushButton(self.frame_haut)
         self.pushButton_retour.setGeometry(QtCore.QRect(10, 20, 61, 30))
         self.pushButton_retour.setObjectName("pushButton_retour")
-        self.pushButton_annuler = QtWidgets.QPushButton(self.frame_haut)
-        self.pushButton_annuler.setGeometry(QtCore.QRect(520, 20, 61, 30))
-        self.pushButton_annuler.setObjectName("pushButton_annuler")
         self.label_haut_massacre = QtWidgets.QLabel(self.frame_haut)
         self.label_haut_massacre.setEnabled(False)
         self.label_haut_massacre.setGeometry(QtCore.QRect(280, 10, 2, 2))
@@ -201,7 +197,6 @@ class Ui_Frame_Recalibrage(object):
         self.radioButton_posterieure.setText(_translate("Frame", "Voie postérieure"))
         self.radioButton_anterieure.setText(_translate("Frame", "Voie antérieure"))
         self.pushButton_retour.setText(_translate("Frame", "Retour"))
-        self.pushButton_annuler.setText(_translate("Frame", "Annuler"))
         self.checkBox_interlamaire.setText(_translate("Frame", "Recalibrage par abord interlamaire"))
         self.checkBox_interEpineux.setText(_translate("Frame", "Recalibrage par abord inter-épineux"))
         self.checkBox_laminectomie.setText(_translate("Frame", "Recalibrage par laminectomie"))
@@ -252,20 +247,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
 
         # controlleur pour les boutons
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
-        self.pushButton_annuler.clicked.connect(self.annulerCreationDP)
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
     def retourEtapePrecedente(self):
-        global validerRecalibrage, annulerRecalibrage
+        global validerRecalibrage
         validerRecalibrage= False
-        annulerRecalibrage = False
         self.switch_window1.emit()
 
-    def annulerCreationDP(self):
-        global validerRecalibrage, annulerRecalibrage
-        validerRecalibrage = False
-        annulerRecalibrage = True
-        self.switch_window2.emit()
 
     def radiobtnFrame_Haut_anterieur(self):
         global glb_recalibrage_anterieur, glb_recalibrage_posterieur
@@ -465,7 +453,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
 
 
     def suivant(self):
-        global validerRecalibrage, annulerRecalibrage
+        global validerRecalibrage
         global glb_recalibrage_anterieur, glb_recalibrage_posterieur
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
@@ -487,5 +475,4 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         glb_recalibrage_hernie_non = False
 
         validerRecalibrage = True
-        annulerRecalibrage = False
         self.switch_window3.emit() #faute de mieux

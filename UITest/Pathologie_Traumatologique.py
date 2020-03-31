@@ -219,16 +219,16 @@ class Ui_Frame_Traumatologique(object):
         self.groupBox_gesteCorpo = QtWidgets.QGroupBox(Frame)
         self.groupBox_gesteCorpo.setGeometry(QtCore.QRect(30, 380, 401, 91))
         self.groupBox_gesteCorpo.setObjectName("groupBox_gesteCorpo")
-        self.checkBox_vertebroplastie = QtWidgets.QCheckBox(self.groupBox_gesteCorpo)
-        self.checkBox_vertebroplastie.setGeometry(QtCore.QRect(20, 20, 151, 30))
-        self.checkBox_vertebroplastie.setChecked(True)
-        self.checkBox_vertebroplastie.setObjectName("checkBox_vertebroplastie")
-        self.checkBox_cyphoplastie = QtWidgets.QCheckBox(self.groupBox_gesteCorpo)
-        self.checkBox_cyphoplastie.setGeometry(QtCore.QRect(20, 50, 151, 30))
-        self.checkBox_cyphoplastie.setObjectName("checkBox_cyphoplastie")
-        self.checkBox_corporealNon = QtWidgets.QCheckBox(self.groupBox_gesteCorpo)
-        self.checkBox_corporealNon.setGeometry(QtCore.QRect(190, 20, 121, 30))
-        self.checkBox_corporealNon.setObjectName("checkBox_corporealNon")
+        self.radiobutton_vertebroplastie = QtWidgets.QRadioButton(self.groupBox_gesteCorpo)
+        self.radiobutton_vertebroplastie.setGeometry(QtCore.QRect(20, 20, 151, 30))
+        self.radiobutton_vertebroplastie.setChecked(True)
+        self.radiobutton_vertebroplastie.setObjectName("radiobutton_vertebroplastie")
+        self.radiobutton_cyphoplastie = QtWidgets.QRadioButton(self.groupBox_gesteCorpo)
+        self.radiobutton_cyphoplastie.setGeometry(QtCore.QRect(20, 50, 151, 30))
+        self.radiobutton_cyphoplastie.setObjectName("radiobutton_cyphoplastie")
+        self.radiobutton_corporealNon = QtWidgets.QRadioButton(self.groupBox_gesteCorpo)
+        self.radiobutton_corporealNon.setGeometry(QtCore.QRect(190, 20, 121, 30))
+        self.radiobutton_corporealNon.setObjectName("radiobutton_corporealNon")
         self.label_corpo = QtWidgets.QLabel(self.groupBox_gesteCorpo)
         self.label_corpo.setEnabled(False)
         self.label_corpo.setGeometry(QtCore.QRect(350, 70, 2, 2))
@@ -237,16 +237,16 @@ class Ui_Frame_Traumatologique(object):
         self.groupBox_osteosynthese = QtWidgets.QGroupBox(Frame)
         self.groupBox_osteosynthese.setGeometry(QtCore.QRect(30, 490, 401, 91))
         self.groupBox_osteosynthese.setObjectName("groupBox_osteosynthese")
-        self.checkBox_visMonoaxiales = QtWidgets.QCheckBox(self.groupBox_osteosynthese)
-        self.checkBox_visMonoaxiales.setGeometry(QtCore.QRect(20, 20, 161, 30))
-        self.checkBox_visMonoaxiales.setObjectName("checkBox_visMonoaxiales")
-        self.checkBox_visPolyaxiales = QtWidgets.QCheckBox(self.groupBox_osteosynthese)
-        self.checkBox_visPolyaxiales.setGeometry(QtCore.QRect(20, 50, 151, 30))
-        self.checkBox_visPolyaxiales.setObjectName("checkBox_visPolyaxiales")
-        self.checkBox_osteosyntheseNon = QtWidgets.QCheckBox(self.groupBox_osteosynthese)
-        self.checkBox_osteosyntheseNon.setGeometry(QtCore.QRect(190, 20, 131, 30))
-        self.checkBox_osteosyntheseNon.setChecked(True)
-        self.checkBox_osteosyntheseNon.setObjectName("checkBox_osteosyntheseNon")
+        self.radiobutton_visMonoaxiales = QtWidgets.QRadioButton(self.groupBox_osteosynthese)
+        self.radiobutton_visMonoaxiales.setGeometry(QtCore.QRect(20, 20, 161, 30))
+        self.radiobutton_visMonoaxiales.setObjectName("radiobutton_visMonoaxiales")
+        self.radiobutton_visPolyaxiales = QtWidgets.QRadioButton(self.groupBox_osteosynthese)
+        self.radiobutton_visPolyaxiales.setGeometry(QtCore.QRect(20, 50, 151, 30))
+        self.radiobutton_visPolyaxiales.setObjectName("radiobutton_visPolyaxiales")
+        self.radiobutton_osteosyntheseNon = QtWidgets.QRadioButton(self.groupBox_osteosynthese)
+        self.radiobutton_osteosyntheseNon.setGeometry(QtCore.QRect(190, 20, 131, 30))
+        self.radiobutton_osteosyntheseNon.setChecked(True)
+        self.radiobutton_osteosyntheseNon.setObjectName("radiobutton_osteosyntheseNon")
         self.label_osteo = QtWidgets.QLabel(self.groupBox_osteosynthese)
         self.label_osteo.setEnabled(False)
         self.label_osteo.setGeometry(QtCore.QRect(340, 60, 2, 2))
@@ -373,13 +373,13 @@ class Ui_Frame_Traumatologique(object):
         self.radioButton_arthrodeseNon.setText(_translate("Frame", "Non"))
         self.label_titre.setText(_translate("Frame", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Pathologie Traumatologique</span></p></body></html>"))
         self.groupBox_gesteCorpo.setTitle(_translate("Frame", "4 - Geste Corporéal"))
-        self.checkBox_vertebroplastie.setText(_translate("Frame", "Vertébroplastie"))
-        self.checkBox_cyphoplastie.setText(_translate("Frame", "Cyphoplastie"))
-        self.checkBox_corporealNon.setText(_translate("Frame", "Non"))
+        self.radiobutton_vertebroplastie.setText(_translate("Frame", "Vertébroplastie"))
+        self.radiobutton_cyphoplastie.setText(_translate("Frame", "Cyphoplastie"))
+        self.radiobutton_corporealNon.setText(_translate("Frame", "Non"))
         self.groupBox_osteosynthese.setTitle(_translate("Frame", "5 - Ostéosynthèse"))
-        self.checkBox_visMonoaxiales.setText(_translate("Frame", "Vis monoaxiales"))
-        self.checkBox_visPolyaxiales.setText(_translate("Frame", "Vis polyaxiales"))
-        self.checkBox_osteosyntheseNon.setText(_translate("Frame", "Non"))
+        self.radiobutton_visMonoaxiales.setText(_translate("Frame", "Vis monoaxiales"))
+        self.radiobutton_visPolyaxiales.setText(_translate("Frame", "Vis polyaxiales"))
+        self.radiobutton_osteosyntheseNon.setText(_translate("Frame", "Non"))
         self.groupBox_Niveau.setTitle(_translate("Frame", "3 - Niveau(x)"))
         self.label_nombreVertebre.setText(_translate("Frame", "Nombre de vertèbres :"))
         self.pushButton_niveauSuivant.setText(_translate("Frame", "Suivant"))
@@ -415,12 +415,12 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
         self.radioButton_non.toggled.connect(self.radiobtn_FN_non)
     
 
-        self.checkBox_vertebroplastie.stateChanged.connect(self.checkBoxChangeAction_vertebroplastie)
-        self.checkBox_cyphoplastie.stateChanged.connect(self.checkBoxChangeAction_cyphoplastie)
-        self.checkBox_corporealNon.stateChanged.connect(self.checkBoxChangeAction_corporealNon)
-        self.checkBox_visMonoaxiales.stateChanged.connect(self.checkBoxChangeAction_monoaxiales)
-        self.checkBox_visPolyaxiales.stateChanged.connect(self.checkBoxChangeAction_polyaxiales)
-        self.checkBox_osteosyntheseNon.stateChanged.connect(self.checkBoxChangeAction_osteosyntheseNon)
+        self.radiobutton_vertebroplastie.toggled.connect(self.radiobuttonChangeAction_vertebroplastie)
+        self.radiobutton_cyphoplastie.toggled.connect(self.radiobuttonChangeAction_cyphoplastie)
+        self.radiobutton_corporealNon.toggled.connect(self.radiobuttonChangeAction_corporealNon)
+        self.radiobutton_visMonoaxiales.toggled.connect(self.radiobuttonChangeAction_monoaxiales)
+        self.radiobutton_visPolyaxiales.toggled.connect(self.radiobuttonChangeAction_polyaxiales)
+        self.radiobutton_osteosyntheseNon.toggled.connect(self.radiobuttonChangeAction_osteosyntheseNon)
 
         # récupération nombre de vertèbres
         self.nombre1 = self.spinBox_nombre1.valueChanged.connect(self.countVertebres)
@@ -495,55 +495,61 @@ class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
             glb_traumato_FN_non = True
             glb_label_FN = "Sans finalité neurologique"
 
-    def checkBoxChangeAction_vertebroplastie (self, state):
+    def radiobuttonChangeAction_vertebroplastie (self):
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non
         global glb_label_corpo
-        if ( state == QtCore.Qt.Checked):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
             glb_traumato_corpo_vertebro = True
             glb_traumato_corpo_cypho = False
             glb_traumato_corpo_non = False
             glb_label_corpo = "Geste corporéal : Vertébroplastie"
 
-    def checkBoxChangeAction_cyphoplastie (self, state):
+    def radiobuttonChangeAction_cyphoplastie (self):
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non
         global glb_label_corpo
-        if ( state == QtCore.Qt.Checked):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
             glb_traumato_corpo_vertebro = False
             glb_traumato_corpo_cypho = True
             glb_traumato_corpo_non = False
             glb_label_corpo = "Geste corporéal : Cyphoplastie"
 
-    def checkBoxChangeAction_corporealNon (self, state):
+    def radiobuttonChangeAction_corporealNon (self):
         global glb_traumato_corpo_vertebro, glb_traumato_corpo_cypho, glb_traumato_corpo_non
         global glb_label_corpo
-        if ( state == QtCore.Qt.Checked):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
             glb_traumato_corpo_vertebro = False
             glb_traumato_corpo_cypho = False
             glb_traumato_corpo_non = True
             glb_label_corpo = "Geste corporéal : Non"
 
-    def checkBoxChangeAction_monoaxiales (self, state):
+    def radiobuttonChangeAction_monoaxiales (self):
         global glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
         global glb_label_osteo
-        if ( state == QtCore.Qt.Checked):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
             glb_traumato_osteo_mono = True
             glb_traumato_osteo_poly = False
             glb_traumato_osteo_non = False
             glb_label_osteo = "Ostéosynthèse : Vis monoaxiales"
 
-    def checkBoxChangeAction_polyaxiales (self, state):
+    def radiobuttonChangeAction_polyaxiales (self):
         global glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
         global glb_label_osteo
-        if ( state == QtCore.Qt.Checked):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
             glb_traumato_osteo_mono = False
             glb_traumato_osteo_poly = True
             glb_traumato_osteo_non = False
             glb_label_osteo = "Ostéosynthèse : Vis polyaxiales"
 
-    def checkBoxChangeAction_osteosyntheseNon (self, state):
+    def radiobuttonChangeAction_osteosyntheseNon (self):
         global glb_traumato_osteo_mono, glb_traumato_osteo_poly, glb_traumato_osteo_non
         global glb_label_osteo
-        if ( state == QtCore.Qt.Checked):
+        self.radiobutton = self.sender()
+        if self.radiobutton.isChecked():
             glb_traumato_osteo_mono = False
             glb_traumato_osteo_poly = False
             glb_traumato_osteo_non = True
