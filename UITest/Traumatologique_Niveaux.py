@@ -8,39 +8,6 @@ glb_niveaux_dorsales = False
 glb_niveaux_lombaires = False
 glb_niveaux_sacro = False
 
-TF_C1 = False
-TF_C2 = False
-TF_C3 = False
-TF_C4 = False
-TF_C5 = False
-TF_C6 = False
-TF_C7 = False
-TF_D1 = False
-TF_D2 = False
-TF_D3 = False
-TF_D4 = False
-TF_D5 = False
-TF_D6 = False
-TF_D7 = False
-TF_D8 = False
-TF_D9 = False
-TF_D10 = False
-TF_D11 = False
-TF_D12 = False
-TF_L1 = False
-TF_L2 = False
-TF_L3 = False
-TF_L4 = False
-TF_L5 = False
-TF_S1 = False
-TF_S2 = False
-TF_S3 = False
-TF_S4 = False
-TF_S5 = False
-TF_S6 = False
-TF_S7 = False
-TF_S8 = False
-TF_S9 = False
 
 glb_C1 = ""
 glb_C2 = ""
@@ -446,404 +413,339 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
 
     def checkBoxChangeAction_1(self, state):
         global compteur
-        global glb_C1, TF_C1
+        global glb_C1
         if ( state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C1  = "C1 "
-            TF_C1 = True
         else:
             compteur = compteur - 1
             glb_C1 = ""
-            TF_C1 = False
 
     def checkBoxChangeAction_2(self, state):
         global compteur
-        global glb_C2, TF_C2
+        global glb_C2
         if ( state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C2  = "C2 "
-            TF_C2 = True
         else:
             compteur = compteur - 1
             glb_C2 = ""
-            TF_C2 = False
 
 
     def checkBoxChangeAction_3(self, state):
         global compteur
-        global glb_C3, TF_C3
+        global glb_C3
         if ( state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C3 = "C3 "
-            TF_C3 = True
         else:
             compteur = compteur - 1
             glb_C3 = ""
-            TF_C3 = False
 
 
     def checkBoxChangeAction_4(self, state):
         global compteur
-        global glb_C4, TF_C4
+        global glb_C4
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C4 = "C4 "
-            TF_C4 = True
         else:
             compteur = compteur - 1
             glb_C4 = ""
-            TF_C4 = False
 
     def checkBoxChangeAction_5(self, state):
         global compteur
-        global glb_C5, TF_C5
+        global glb_C5
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C5 = "C5 "
-            TF_C5 = True
         else:
             compteur = compteur - 1
             glb_C5 = ""
-            TF_C5 = False
 
 
     def checkBoxChangeAction_6(self, state):
         global compteur
-        global glb_D1, TF_D1
+        global glb_D1
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D1 = "D1 "
-            TF_D1 = True
         else:
             compteur = compteur - 1
             glb_D1 = ""
-            TF_D1 = False
 
     def checkBoxChangeAction_7(self, state):
         global compteur
-        global glb_D2, TF_D2
+        global glb_D2
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D2 = "D2 "
-            TF_D2 = True
         else:
             compteur = compteur - 1
             glb_D2 = ""
-            TF_D2 = False
 
     def checkBoxChangeAction_8(self, state):
         global compteur
-        global glb_D3, TF_D3
+        global glb_D3
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D3 = "D3 "
-            TF_D3 = True
         else:
             compteur = compteur - 1
             glb_D3 = ""
-            TF_D3 = False
 
     def checkBoxChangeAction_9(self, state):
         global compteur
-        global glb_D4, TF_D4
+        global glb_D4
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D4 = "D4 "
-            TF_D4 = True
         else:
             compteur = compteur - 1
             glb_D4 = ""
-            TF_D4 = False
 
     def checkBoxChangeAction_10(self, state):
         global compteur
-        global glb_D5, TF_D5
+        global glb_D5
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D5 = "D5 "
-            TF_D5 = True
         else:
             compteur = compteur - 1
             glb_D5 = ""
-            TF_D5 = False
 
     def checkBoxChangeAction_11(self, state):
         global compteur
-        global glb_D6, TF_D6
+        global glb_D6
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D6 = "D6 "
-            TF_D6 = True
         else:
             compteur = compteur - 1
             glb_D6 = ""
-            TF_D6 = False
 
     def checkBoxChangeAction_12(self, state):
         global compteur
-        global glb_D7, TF_D7
+        global glb_D7
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D7 = "D7 "
-            TF_D7 = True
         else:
             compteur = compteur - 1
             glb_D7 = ""
-            TF_D7 = False
 
     def checkBoxChangeAction_13(self, state):
         global compteur
-        global glb_D8, TF_D8
+        global glb_D8
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D8 = "D8 "
-            TF_D8 = True
         else:
             compteur = compteur - 1
             glb_D8 = ""
-            TF_D8 = False
 
     def checkBoxChangeAction_14(self, state):
         global compteur
-        global glb_D9, TF_D9
+        global glb_D9
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D9 = "D9 "
-            TF_D9 = True
         else:
             compteur = compteur - 1
             glb_D9 = ""
-            TF_D9 = False
 
     def checkBoxChangeAction_15(self, state):
         global compteur
-        global glb_D10, TF_D10
+        global glb_D10
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D10 = "D10 "
-            TF_D10 = True
         else:
             compteur = compteur - 1
             glb_D10 = ""
-            TF_D10 = False
 
     def checkBoxChangeAction_16(self, state):
         global compteur
-        global glb_D11, TF_D11
+        global glb_D11
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D11 = "D11 "
-            TF_D11 = True
         else:
             compteur = compteur - 1
             glb_D11 = ""
-            TF_D11 = False
 
     def checkBoxChangeAction_17(self, state):
         global compteur
-        global glb_D12, TF_D12
+        global glb_D12
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_D12 = "D12 "
-            TF_D12 = True
         else:
             compteur = compteur - 1
             glb_D12 = ""
-            TF_D12 = False
 
     def checkBoxChangeAction_18(self, state):
         global compteur
-        global glb_L1, TF_L1
+        global glb_L1
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_L1 = "L1 "
-            TF_L1 = True
         else:
             compteur = compteur - 1
             glb_L1 = ""
-            TF_L1 = False
 
     def checkBoxChangeAction_19(self, state):
         global compteur
-        global glb_L2, TF_L2
+        global glb_L2
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_L2 = "L2 "
-            TF_L2 = True
         else:
             compteur = compteur - 1
             glb_L2 = ""
-            TF_L2 = False
 
     def checkBoxChangeAction_20(self, state):
         global compteur
-        global glb_L3, TF_L3
+        global glb_L3
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_L3 = "L3 "
-            TF_L3 = True
         else:
             compteur = compteur - 1
             glb_L3 = ""
-            TF_L3 = False
 
     def checkBoxChangeAction_21(self, state):
         global compteur
-        global glb_L4, TF_L4
+        global glb_L4
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_L4 = "L4 "
-            TF_L4 = True
         else:
             compteur = compteur - 1
             glb_L4 = ""
-            TF_L4 = False
 
     def checkBoxChangeAction_22(self, state):
         global compteur
-        global glb_L5, TF_L5
+        global glb_L5
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_L5 = "L5 "
-            TF_L5 = True
         else:
             compteur = compteur - 1
             glb_L5 = ""
-            TF_L5 = False
 
     def checkBoxChangeAction_23(self, state):
         global compteur
-        global glb_S1, TF_S1
+        global glb_S1
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S1 = "S1 "
-            TF_S1 = True
         else:
             compteur = compteur - 1
             glb_S1 = ""
-            TF_S1 = False
 
     def checkBoxChangeAction_24(self, state):
         global compteur
-        global glb_S2, TF_S2
+        global glb_S2
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S2 = "S2 "
-            TF_S2 = True
         else:
             compteur = compteur - 1
             glb_S2 = ""
-            TF_S2 = False
 
     def checkBoxChangeAction_25(self, state):
         global compteur
-        global glb_S3, TF_S3
+        global glb_S3
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S3 = "S3 "
-            TF_S3 = True
         else:
             compteur = compteur - 1
             glb_S3 = ""
-            TF_S3 = False
 
     def checkBoxChangeAction_26(self, state):
         global compteur
-        global glb_S4, TF_S4
+        global glb_S4
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S4 = "S4 "
-            TF_S4 = True
         else:
             compteur = compteur - 1
             glb_S4 = ""
-            TF_S4 = False
 
     def checkBoxChangeAction_27(self, state):
         global compteur
-        global glb_S5, TF_S5
+        global glb_S5
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S5 = "S5 "
-            TF_S5 = True
         else:
             compteur = compteur - 1
             glb_S5 = ""
-            TF_S5 = False
 
     def checkBoxChangeAction_28(self, state):
         global compteur
-        global glb_S6, TF_S6
+        global glb_S6
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S6 = "S6 "
-            TF_S6 = True
         else:
             compteur = compteur - 1
             glb_S6 = ""
-            TF_S6 = False
 
     def checkBoxChangeAction_29(self, state):
         global compteur
-        global glb_S7, TF_S7
+        global glb_S7
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S7 = "S7 "
-            TF_S7 = True
         else:
             compteur = compteur - 1
             glb_S7 = ""
-            TF_S7 = False
 
 
     def checkBoxChangeAction_30(self, state):
         global compteur
-        global glb_S8, TF_S8
+        global glb_S8
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S8 = "S8 "
-            TF_S8 = True
         else:
             compteur = compteur - 1
             glb_S8 = ""
-            TF_S8 = False
 
 
     def checkBoxChangeAction_31(self, state):
         global compteur
-        global glb_S9, TF_S9
+        global glb_S9
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_S9 = "S9 "
-            TF_S9 = True
         else:
             compteur = compteur - 1
             glb_S9 = ""
-            TF_S9 = False
 
     def checkBoxChangeAction_C6(self, state):
         global compteur
-        global glb_C6, TF_C6
+        global glb_C6
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C6 = "C6 "
-            TF_C6 = True
         else:
             compteur = compteur - 1
             glb_C6= ""
-            TF_C6 = False
 
     def checkBoxChangeAction_C7(self, state):
         global compteur
-        global glb_C7, TF_C7
+        global glb_C7
         if (state == QtCore.Qt.Checked):
             compteur = compteur + 1
             glb_C7 = "C7 "
-            TF_C7 = True
         else:
             compteur = compteur - 1
             glb_C7 = ""
-            TF_C7 = False
+
 
     def compteurVertebres(self):
         global compteur
@@ -894,6 +796,45 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
 
         validerNiveaux = False
 
+        self.checkBox_cervicales.setChecked(False)
+        self.checkBox_dorsales.setChecked(False)
+        self.checkBox_lombaires.setChecked(False)
+        self.checkBox_sacroCoccygiennes.setChecked(False)
+
+        self.checkBox.setChecked(False)
+        self.checkBox_2.setChecked(False)
+        self.checkBox_3.setChecked(False)
+        self.checkBox_4.setChecked(False)
+        self.checkBox_5.setChecked(False)
+        self.checkBox_C6.setChecked(False)
+        self.checkBox_C7.setChecked(False)
+        self.checkBox_6.setChecked(False)
+        self.checkBox_7.setChecked(False)
+        self.checkBox_8.setChecked(False)
+        self.checkBox_9.setChecked(False)
+        self.checkBox_10.setChecked(False)
+        self.checkBox_11.setChecked(False)
+        self.checkBox_12.setChecked(False)
+        self.checkBox_13.setChecked(False)
+        self.checkBox_14.setChecked(False)
+        self.checkBox_15.setChecked(False)
+        self.checkBox_16.setChecked(False)
+        self.checkBox_17.setChecked(False)
+        self.checkBox_18.setChecked(False)
+        self.checkBox_19.setChecked(False)
+        self.checkBox_20.setChecked(False)
+        self.checkBox_21.setChecked(False)
+        self.checkBox_22.setChecked(False)
+        self.checkBox_23.setChecked(False)
+        self.checkBox_24.setChecked(False)
+        self.checkBox_25.setChecked(False)
+        self.checkBox_26.setChecked(False)
+        self.checkBox_27.setChecked(False)
+        self.checkBox_28.setChecked(False)
+        self.checkBox_29.setChecked(False)
+        self.checkBox_30.setChecked(False)
+        self.checkBox_31.setChecked(False)
+
         compteur_recuperation = ""
         glb_zoneCDLS = ""
         glb_zoneC = ""
@@ -905,48 +846,45 @@ class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
 
     def validerTraumato(self):
         global validerNiveaux
-        global glb_niveaux_sacro, glb_niveaux_dorsales, glb_niveaux_lombaires, glb_niveaux_cervicales
-        global TF_C1, TF_C2,TF_C3, TF_C4, TF_C5, TF_C6, TF_C7, TF_L1, TF_L2, TF_L3, TF_L4, TF_L5
-        global TF_D1, TF_D2,TF_D3, TF_D4, TF_D5, TF_D6, TF_D7, TF_D8, TF_D9, TF_D10, TF_D11, TF_D12
-        global TF_S1, TF_S2,TF_S3, TF_S4, TF_S5, TF_S6, TF_S7, TF_S8, TF_S9
-        glb_niveaux_cervicales = False
-        glb_niveaux_dorsales = False
-        glb_niveaux_lombaires = False
-        glb_niveaux_sacro = False
 
-        TF_C1 = False
-        TF_C2 = False
-        TF_C3 = False
-        TF_C4 = False
-        TF_C5 = False
-        TF_C6 = False
-        TF_C7 = False
-        TF_D1 = False
-        TF_D2 = False
-        TF_D3 = False
-        TF_D4 = False
-        TF_D5 = False
-        TF_D6 = False
-        TF_D7 = False
-        TF_D8 = False
-        TF_D9 = False
-        TF_D10 = False
-        TF_D11 = False
-        TF_D12 = False
-        TF_L1 = False
-        TF_L2 = False
-        TF_L3 = False
-        TF_L4 = False
-        TF_L5 = False
-        TF_S1 = False
-        TF_S2 = False
-        TF_S3 = False
-        TF_S4 = False
-        TF_S5 = False
-        TF_S6 = False
-        TF_S7 = False
-        TF_S8 = False
-        TF_S9 = False
+        self.checkBox_cervicales.setChecked(False)
+        self.checkBox_dorsales.setChecked(False)
+        self.checkBox_lombaires.setChecked(False)
+        self.checkBox_sacroCoccygiennes.setChecked(False)
+
+        self.checkBox.setChecked(False)
+        self.checkBox_2.setChecked(False)
+        self.checkBox_3.setChecked(False)
+        self.checkBox_4.setChecked(False)
+        self.checkBox_5.setChecked(False)
+        self.checkBox_C6.setChecked(False)
+        self.checkBox_C7.setChecked(False)
+        self.checkBox_6.setChecked(False)
+        self.checkBox_7.setChecked(False)
+        self.checkBox_8.setChecked(False)
+        self.checkBox_9.setChecked(False)
+        self.checkBox_10.setChecked(False)
+        self.checkBox_11.setChecked(False)
+        self.checkBox_12.setChecked(False)
+        self.checkBox_13.setChecked(False)
+        self.checkBox_14.setChecked(False)
+        self.checkBox_15.setChecked(False)
+        self.checkBox_16.setChecked(False)
+        self.checkBox_17.setChecked(False)
+        self.checkBox_18.setChecked(False)
+        self.checkBox_19.setChecked(False)
+        self.checkBox_20.setChecked(False)
+        self.checkBox_21.setChecked(False)
+        self.checkBox_22.setChecked(False)
+        self.checkBox_23.setChecked(False)
+        self.checkBox_24.setChecked(False)
+        self.checkBox_25.setChecked(False)
+        self.checkBox_26.setChecked(False)
+        self.checkBox_27.setChecked(False)
+        self.checkBox_28.setChecked(False)
+        self.checkBox_29.setChecked(False)
+        self.checkBox_30.setChecked(False)
+        self.checkBox_31.setChecked(False)
 
         validerNiveaux = True
         self.switch_window2.emit()
