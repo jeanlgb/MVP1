@@ -3,13 +3,16 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QDate
 
 patient_dateNaissance = ("21/04/1997")
+patient_dateIntervention = ("")
 valeur_cb_cervicale_radiculaire = False
 valeur_cb_medullaire = False
 valeur_cb_thoraco_lombaire = False
 valeur_cb_autre = False
 signal_eval = False
 
+identite_selectionDP = ""
 glb_textEdit_intervention = ""
+glb_textEditNomIntervention = ""
 
 class Ui_Frame_SelectionnerDP_suite(object):
     def setupUi(self, Frame):
@@ -68,6 +71,7 @@ class Ui_Frame_SelectionnerDP_suite(object):
         self.label_recuperationDateDeNaissance.setText("")
         self.label_recuperationDateDeNaissance.setObjectName("label_recuperationDateDeNaissance")
         self.pushButton_ok = QtWidgets.QPushButton(Frame)
+        self.pushButton_ok.setEnabled(False)
         self.pushButton_ok.setGeometry(QtCore.QRect(590, 190, 51, 23))
         self.pushButton_ok.setObjectName("pushButton_ok")
         self.label_recuperationPathologie = QtWidgets.QLabel(Frame)
@@ -79,7 +83,6 @@ class Ui_Frame_SelectionnerDP_suite(object):
         self.label_recuperationPathologie.setText("")
         self.label_recuperationPathologie.setObjectName("label_recuperationPathologie")
         self.textEdit_interventionNonModifiable = QtWidgets.QTextEdit(Frame)
-        self.textEdit_interventionNonModifiable.setEnabled(False)
         self.textEdit_interventionNonModifiable.setGeometry(QtCore.QRect(260, 290, 271, 21))
         self.textEdit_interventionNonModifiable.setObjectName("textEdit_interventionNonModifiable")
         self.pushButton_annuler = QtWidgets.QPushButton(Frame)
@@ -183,9 +186,14 @@ class MainWindow_SelectionnerDP_suite(QtWidgets.QWidget, Ui_Frame_SelectionnerDP
         self.date_Intervention = self.calendarWidget.selectedDate()
         self.lineEdit_dateIntervention.setText(self.date_Intervention.toString("dd/MM/yyyy"))
 
+        self.glb_textEditNomIntervention = self.textEdit_interventionModifiable.toPlainText()
+
     def evaluation(self):
-        global signal_eval
+        global signal_eval, glb_textEditNomIntervention
         signal_eval = True
+        self.glb_textEditNomIntervention = self.textEdit_interventionModifiable
+        glb_textEditNomIntervention = self.glb_textEditNomIntervention
+
         self.switch_window1.emit()
 
     def showDate(self, date_Intervention):
@@ -271,15 +279,17 @@ class MainWindow_SelectionnerDP_suite(QtWidgets.QWidget, Ui_Frame_SelectionnerDP
             self.textEdit_interventionNonModifiable.setText("")
 
     def etape2 (self):
-        global patient_dateIntervention
+        global patient_dateIntervention, glb_textEditNomIntervention
         patient_dateIntervention = self.lineEdit_dateIntervention.text()
+        glb_textEditNomIntervention = self.textEdit_interventionModifiable.toPlainText()
 
         self.switch_window2.emit()
 
     def annuler(self):
-        global patient_dateNaissance
+        global patient_dateNaissance, patient_dateIntervention
         global valeur_cb_cervicale_radiculaire, valeur_cb_medullaire, valeur_cb_thoraco_lombaire, valeur_cb_autre
         patient_dateNaissance = ("21/04/1997")
+        patient_dateIntervention = ("")
         valeur_cb_cervicale_radiculaire = False
         valeur_cb_medullaire = False
         valeur_cb_thoraco_lombaire = False

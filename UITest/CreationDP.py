@@ -531,13 +531,14 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.switch_window2.emit()
 
     def annuler(self):
-        global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur
+        global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur, patient_dateIntervention
         global valeur_cb_cervicale_radiculaire, valeur_cb_medullaire, valeur_cb_thoraco_lombaire, valeur_cb_autre
         patient_jour = ("1")
         patient_mois = ("Janvier")
         patient_annee = ("2000")
         patient_anneeControlleur = int(2000)
         patient_dateNaissance = ("21/04/1997")
+        patient_dateIntervention = ("")
         valeur_cb_cervicale_radiculaire = False
         valeur_cb_medullaire = False
         valeur_cb_thoraco_lombaire = False
