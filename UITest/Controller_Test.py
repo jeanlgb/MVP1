@@ -194,6 +194,7 @@ class Controller_Test:
         if creerPat == True:
             controlleur_nom = UITest.CreationDP.patient_nom
             controlleur_prenom = UITest.CreationDP.patient_prenom
+            controlleur_numMagic = UITest.CreationDP.patient_numMagic
             controlleur_dateNaissance = UITest.CreationDP.patient_dateNaissance
             controlleur_dateDeIntervention = UITest.CreationDP.patient_dateIntervention
             ctr_nomIntervention_commentaire = UITest.CreationDP.glb_textEditNomIntervention
@@ -207,10 +208,10 @@ class Controller_Test:
 
             if control_med_creaDP == True:
                 BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
-                controlleur_numMagic = UITest.CreationDP.patient_numMagic
 
-            if control_med_selecDP == True:
-                controlleur_numMagic = UITest.SelectionDP.patient_numMagic_existant
+
+            # if control_med_selecDP == True:
+            #     controlleur_numMagic = UITest.SelectionDP.patient_numMagic_existant
 
             if controlleur_postOp:
                 BD.creation_consultation(controlleur_numMagic, ctr_nomIntervention_nonModifiable, ctr_nomIntervention_commentaire , self.date_consultation, "POST")
@@ -762,11 +763,19 @@ class Controller_Test:
 
         BD = Connexion_DB()
         BD.connexion_DB()
-        self.identite = BD.selectionner_patient_num(controlleur_numMagic)
+        if controlleur_numMagic != "":
+            self.identite = BD.selectionner_patient_num(controlleur_numMagic)
+            self.windowsSelectionnerDP_suite.lineEdit_identite.setText(self.identite)
+            self.windowsSelectionnerDP_suite.lineEdit_numeroMagic.setText(controlleur_numMagic)
+
+        elif self.patient_prenom != "" and self.patient_nom != "":
+            self.num = BD.selectionner_patient(self.patient_nom, self.patient_prenom)
+            self.windowsSelectionnerDP_suite.lineEdit_identite.setText(self.patient_prenom + " " + self.patient_nom)
+            self.windowsSelectionnerDP_suite.lineEdit_numeroMagic.setText(self.num)
 
 
-        self.windowsSelectionnerDP_suite.lineEdit_identite.setText(self.identite)
-        self.windowsSelectionnerDP_suite.lineEdit_numeroMagic.setText(controlleur_numMagic)
+
+
 
         self.windowsSelectionnerDP_suite.checkBox_cervicalRadiculaire.setChecked(controlleur_cbox_cervicaleRadiculaire)
         self.windowsSelectionnerDP_suite.checkBox_medullaire.setChecked(controlleur_cbox_medullaire)
@@ -970,12 +979,13 @@ class Controller_Test:
         self.windowsSelectionnerDP_suite.show()
 
     def show_Evaluation(self):
-        global controlleur_nom, controlleur_prenom, controlleur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
+        global controlleur_nom, controlleur_prenom, control1leur_numMagic, controlleur_dateDeIntervention, controlleur_dateNaissance
         global controlleur_cbox_cervicaleRadiculaire, controlleur_cbox_medullaire, controlleur_cbox_thoracoLombaire, controlleur_cbox_autre
         global res
         global creerPat
         global controlleur_postOp, controlleur_preOp
         global control_med_creaDP, control_med_selecDP, control_sec_creaDP, control_sec_selecDP, ctr_nomIntervention_commentaire
+
 
 
         controlleur_cursor = ""
@@ -1018,6 +1028,8 @@ class Controller_Test:
             controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
             controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
             controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
+            self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
+
         elif control_med_selecDP   == True:
             self.windowEvaluation.switch_window2.connect(self.show_SelectionnerDP_suite)
             controlleur_nom = UITest.SelectionDP.patient_nom_existant
@@ -1030,6 +1042,8 @@ class Controller_Test:
             controlleur_cbox_medullaire = UITest.SelectionDP_suite.valeur_cb_medullaire
             controlleur_cbox_thoracoLombaire = UITest.SelectionDP_suite.valeur_cb_thoraco_lombaire
             controlleur_cbox_autre = UITest.SelectionDP_suite.valeur_cb_autre
+            self.windowEvaluation.lineEdit_identite.setText(UITest.SelectionDP_suite.identite_selectionDP)
+
         elif control_sec_creaDP   == True:
             self.windowEvaluation.switch_window2.connect(self.show_CreationDP)
             controlleur_nom = UITest.CreationDP.patient_nom
@@ -1042,6 +1056,8 @@ class Controller_Test:
             controlleur_cbox_medullaire = UITest.CreationDP.valeur_cb_medullaire
             controlleur_cbox_thoracoLombaire = UITest.CreationDP.valeur_cb_thoraco_lombaire
             controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
+            self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
+
         elif control_sec_selecDP   == True:
             self.windowEvaluation.switch_window2.connect(self.show_SelectionnerDP_suite)
             controlleur_nom = UITest.SelectionDP.patient_nom_existant
@@ -1054,8 +1070,9 @@ class Controller_Test:
             controlleur_cbox_medullaire = UITest.SelectionDP_suite.valeur_cb_medullaire
             controlleur_cbox_thoracoLombaire = UITest.SelectionDP_suite.valeur_cb_thoraco_lombaire
             controlleur_cbox_autre = UITest.SelectionDP_suite.valeur_cb_autre
+            self.windowEvaluation.lineEdit_identite.setText(UITest.SelectionDP_suite.identite_selectionDP)
 
-        self.windowEvaluation.lineEdit_identite.setText(controlleur_nom + ' ' + controlleur_prenom)
+
         self.windowEvaluation.lineEdit_numeroMagic_2.setText(controlleur_numMagic)
         self.windowEvaluation.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
         self.windowEvaluation.label_recuperationDateDeNaissance.setText(controlleur_dateNaissance)

@@ -9,9 +9,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-patient_nom_existant = ("NOM")
-patient_prenom_existant = ("PRENOM")
-patient_numMagic_existant = ("NUMERO MAGIC")
+patient_nom_existant = ("")
+patient_prenom_existant = ("")
+
+patient_numMagic_existant = ("")
 
 class Ui_Frame_SelectionnerDP(object):
     def setupUi(self, Frame):

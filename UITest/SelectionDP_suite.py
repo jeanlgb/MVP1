@@ -190,6 +190,11 @@ class MainWindow_SelectionnerDP_suite(QtWidgets.QWidget, Ui_Frame_SelectionnerDP
 
     def evaluation(self):
         global signal_eval, glb_textEditNomIntervention
+        global identite_selectionDP
+
+        self.identite = self.lineEdit_identite.text()
+
+        identite_selectionDP = self.identite
         signal_eval = True
         self.glb_textEditNomIntervention = self.textEdit_interventionModifiable
         glb_textEditNomIntervention = self.glb_textEditNomIntervention
