@@ -207,17 +207,20 @@ class Controller_Test:
             controlleur_cbox_autre = UITest.CreationDP.valeur_cb_autre
 
             if control_med_creaDP == True:
+                controlleur_numMagic = UITest.CreationDP.patient_numMagic
                 BD.creation_patient(controlleur_numMagic, controlleur_nom, controlleur_prenom, 'X')
 
 
-            # if control_med_selecDP == True:
-            #     controlleur_numMagic = UITest.SelectionDP.patient_numMagic_existant
+            if control_med_selecDP == True:
+                controlleur_numMagic = UITest.SelectionDP.patient_numMagic_existant
 
             if controlleur_postOp:
                 BD.creation_consultation(controlleur_numMagic, ctr_nomIntervention_nonModifiable, ctr_nomIntervention_commentaire , self.date_consultation, "POST")
+                ctr_nomIntervention_nonModifiable = ""
 
             if controlleur_preOp:
                 BD.creation_consultation(controlleur_numMagic, ctr_nomIntervention_nonModifiable, ctr_nomIntervention_commentaire, self.date_consultation,  "PRE")
+                ctr_nomIntervention_nonModifiable = ""
 
             liste = []
             with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
@@ -783,6 +786,11 @@ class Controller_Test:
         self.windowsSelectionnerDP_suite.checkBox_autre.setChecked(controlleur_cbox_autre)
         self.windowsSelectionnerDP_suite.lineEdit_dateIntervention.setText(controlleur_dateDeIntervention)
 
+        valider = UITest.Pathologie_Degeneratif.valider
+        validerTraumato = UITest.Pathologie_Traumatologique.validerTraumato
+        validerOnco = UITest.Pathologie_Oncologie.validerOnco
+
+        print(valider)
         if valider == True:
             controlleur_numMagic = UITest.SelectionDP.patient_numMagic_existant
             ctl_glb_textEdit_intervention = UITest.SelectionDP_suite.glb_textEdit_intervention
