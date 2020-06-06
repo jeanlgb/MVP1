@@ -10,10 +10,12 @@ import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
+# variables globales appelées dans controller_test
 signal_sec_selectionDP = False
 signal_sec_creationDP = False
 
 class Ui_Frame_Secretaire(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(575, 471)
@@ -50,10 +52,11 @@ class Ui_Frame_Secretaire(object):
         self.pushButton_selectionnerDP.setText(_translate("Frame", "Sélectionner Dossier Patient déjà existant"))
         self.pushButton_deconnexion.setText(_translate("Frame", "Déconnexion"))
 
-
+# class à créer
 class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
 
-    #creer les var pour chaque bouton
+    # Pour accueil Secrétaire Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
@@ -69,29 +72,22 @@ class MainWindow_Acceuil_Secretaire(QtWidgets.QWidget, Ui_Frame_Secretaire):
         self.pushButton_selectionnerDP.clicked.connect(self.selectionnerDP)
         self.pushButton_deconnexion.clicked.connect(self.deconnexion)
 
-
-    #les actions de chaque bouton
+    # les actions de chaque bouton
+    # Methode qui permet d'aller dans l'interface CréationDP
     def tablette_et_creationDP(self):
-        # os.system(
-        #     "C:/Users/Public/InPec/adb/adb pull sdcard/Documents/DonneestransfereesAndroid.txt C:/Users/Public/InPec/DonneestransfereesAndroid.txt")
-        # liste = []
-        # with open("C:/Users/Public/InPec/DonneestransfereesAndroid.txt", "r") as f:
-        #     for line in f.readlines():
-        #         # Traiter la ligne et ainsi de suite ...
-        #         ligne = line.strip()
-        #         liste.append(ligne)
-        #     print(liste)
         global signal_sec_creationDP, signal_sec_selectionDP
         signal_sec_creationDP = True
         signal_sec_selectionDP = False
         self.switch_window1.emit()
 
+    # Methode qui permet d'aller dans l'interface SélectionnerDP
     def selectionnerDP(self):
         global signal_sec_creationDP, signal_sec_selectionDP
         signal_sec_creationDP = False
         signal_sec_selectionDP = True
         self.switch_window2.emit()
 
+    # Methode qui permet de se déconnecter
     def deconnexion(self):
         msg = QMessageBox()
         msg.setWindowTitle("Attention")

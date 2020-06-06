@@ -7,10 +7,11 @@ from PyQt5.QtWidgets import QMessageBox, QCheckBox
 from PyQt5.QtCore import Qt
 import time
 
+# variables globales appelées dans controller_test
 glb_preOp = False
 glb_postOp = False
 class Ui_Frame_Evaluation(object):
-
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(638, 620)
@@ -172,9 +173,11 @@ class Ui_Frame_Evaluation(object):
         self.pushButton_annuler.setText(_translate("Frame", "Retour"))
         # self.lineEdit_identite.setText(_translate("Frame", self.nom + " " + self.prenom))
 
-
+# class à créer
 class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
 
+    # Pour Evaluation, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
 
@@ -207,6 +210,8 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         self.pushButton_demarrer.clicked.connect(self.transfert)
         self.pushButton_annuler.clicked.connect(self.annuler)
 
+    # les actions de chaque bouton
+    # Methode liée au temps évaluation (post et pré)
     def radiobtn_tpsEval_post(self):
         global glb_preOp, glb_postOp
         self.radiobutton = self.sender()
@@ -216,6 +221,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             self.checkBox_glassman.setChecked(True)
             self.pushButton_demarrer.setEnabled(True)
 
+    # Methode liée au temps évaluation (post et pré)
     def radiobtn_tpsEval_pre(self):
         global glb_preOp, glb_postOp
         self.radiobutton = self.sender()
@@ -225,6 +231,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             self.checkBox_glassman.setChecked(False)
             self.pushButton_demarrer.setEnabled(True)
 
+    # Methode liée à la checkbox glassman
     def checkBoxChangeAction_glassman (self, state):
         if ( state == QtCore.Qt.Checked):
             print("checked")
@@ -233,6 +240,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print ("unchecked")
             self.state_glassman = "false"
 
+    # Methode liée à la checkbox EVAC
     def checkBoxChangeAction_EVAC (self, state):
         if ( state == QtCore.Qt.Checked):
             print("checked")
@@ -241,6 +249,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print ("unchecked")
             self.state_EVAC = "false"
 
+    # Methode liée à la checkbox EVAL
     def checkBoxChangeAction_EVAL (self, state):
         if ( state == QtCore.Qt.Checked):
             print("checked")
@@ -249,6 +258,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print ("unchecked")
             self.state_EVAL = "false"
 
+    # Methode liée à la checkbox NDI
     def checkBoxChangeAction_NDI (self, state):
         if ( state == QtCore.Qt.Checked):
             print("checked")
@@ -257,6 +267,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print ("unchecked")
             self.state_ndi = "false"
 
+    # Methode liée à la checkbox MJOA
     def checkBoxChangeAction_MJOA (self, state):
         if ( state == QtCore.Qt.Checked):
             print("checked")
@@ -265,6 +276,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print ("unchecked")
             self.state_mjoa = "false"
 
+    # Methode liée à la checkbox Oswestry
     def checkBoxChangeAction_Oswestry (self, state):
         if ( state == QtCore.Qt.Checked):
             print("checked")
@@ -273,7 +285,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             print ("unchecked")
             self.state_oswestry = "false"
 
-
+    # Methode qui permet de transferer les informations de l'ordinateur à la tablette. Récupère également les valeurs du score du patient précédent
     def transfert(self):
         self.vider = ""
         self.identite = self.lineEdit_identite.text()
@@ -308,6 +320,7 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
             # print(liste)
         self.switch_window.emit()
 
+# inutile pour le moment, met c'est une pop up pour avertir qu'il reste le fichier dans la tablette
     def popup (self):
         # start = time.time()  # Début du timer
         # while time.time() - start < 5:  # Attendre 5 sec. Pour attendre 20 minutes, remplacer par 1200
@@ -320,5 +333,6 @@ class MainWindow_Evaluation(QtWidgets.QWidget, Ui_Frame_Evaluation):
         msg.setText("Les données n'ont pas encore été récupées")
         x = msg.exec_()
 
+    # Methode qui permet de retourner dans l'interface précedente
     def annuler(self):
         self.switch_window2.emit()

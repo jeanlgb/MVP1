@@ -5,6 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Utilisateur import *
 from PyQt5.QtWidgets import QCalendarWidget, QLineEdit
 
+# variables globales appelées dans controller_test
 patient_nom = ("NOM")
 patient_prenom = ("PRENOM")
 patient_numMagic = ("NUMERO MAGIC")
@@ -26,6 +27,7 @@ glb_textEditNomIntervention = ""
 
 
 class Ui_Frame_CreationDP(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setEnabled(True)
@@ -365,7 +367,11 @@ class Ui_Frame_CreationDP(object):
         self.checkBox_thoracoLombaire.setText(_translate("Frame", "Thoraco-lombaire"))
 
 
+# class à créer
 class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
+
+    # Pour CréationDP, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
@@ -396,9 +402,11 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.date_Intervention = self.calendarWidget.selectedDate()
         self.lineEdit_dateIntervention.setText(self.date_Intervention.toString("dd/MM/yyyy"))
 
+        # récupération du nom de l'intervention
         self.glb_textEditNomIntervention = self.lineEdit_interventionModifiable.text()
 
-
+    # les actions de chaque bouton
+    # Methode qui permet d'aller dans l'interface Evaluation
     def evaluation(self):
         global patient_nom
         global patient_prenom
@@ -411,15 +419,15 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.numMagic = self.lineEdit_numeroMagic.text()
         self.glb_textEditNomIntervention = self.lineEdit_interventionModifiable.text()
 
-        # print('1' + patient_nom)
         patient_nom = self.nom
         patient_prenom = self.prenom
         patient_numMagic = self.numMagic
         glb_textEditNomIntervention = self.glb_textEditNomIntervention
-        # print('2' + patient_nom)
+
         signal_eval = True
         self.switch_window1.emit()
 
+    # Methode qui permet de choisir la date à partir du Qcalendar
     def showDate(self, date_Intervention):
         global patient_dateIntervention
 
@@ -427,6 +435,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.dateRecuperation = self.lineEdit_dateIntervention.text()
         patient_dateIntervention = self.dateRecuperation
 
+    # Methode qui permet de rentrer la date de naissance
     def showDateNaissance(self):
         global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur
 
@@ -443,6 +452,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         self.naissance = self.label_recuperationDateDeNaissance.text()
         patient_dateNaissance = self.naissance
 
+    # Methode liée à la checkbox cervicale
     def checkBoxChangeAction_cervicale(self, state):
         global valeur_cb_cervicale_radiculaire
         global valeur_cb_medullaire
@@ -462,6 +472,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
+    # Methode liée à la checkbox medullaire
     def checkBoxChangeAction_medullaire(self, state):
         global valeur_cb_cervicale_radiculaire
         global valeur_cb_medullaire
@@ -480,6 +491,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
+    # Methode liée à la checkbox lombaire
     def checkBoxChangeAction_lombaire(self, state):
         global valeur_cb_cervicale_radiculaire
         global valeur_cb_medullaire
@@ -498,6 +510,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
+    # Methode liée à la checkbox autre
     def checkBoxChangeAction_autre(self, state):
         global valeur_cb_cervicale_radiculaire
         global valeur_cb_medullaire
@@ -516,6 +529,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         else:
             self.textEdit_interventionNonModifiable.setText("")
 
+    # Methode qui permet d'aller dans l'interface Etape 2
     def etape2(self):
         global patient_nom, patient_prenom, patient_dateIntervention, patient_numMagic, glb_textEditNomIntervention
         global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee
@@ -530,6 +544,7 @@ class MainWindow_CreationDP(QtWidgets.QWidget, Ui_Frame_CreationDP):
         patient_annee = self.comboBox_jour.currentText()
         self.switch_window2.emit()
 
+    # Methode qui permet d'aller dans l'interface précédente (accueil)
     def annuler(self):
         global patient_dateNaissance, patient_jour, patient_mois, patient_annee, patient_annee, patient_anneeControlleur, patient_dateIntervention
         global valeur_cb_cervicale_radiculaire, valeur_cb_medullaire, valeur_cb_thoraco_lombaire, valeur_cb_autre

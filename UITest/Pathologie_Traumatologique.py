@@ -2,6 +2,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 glb_traumato_FN_radiculaire = True
 glb_traumato_FN_radicoMedullaire = False
 glb_traumato_FN_medullaire = False
@@ -42,6 +43,7 @@ validerTraumato = False
 
 
 class Ui_Frame_Traumatologique(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(976, 681)
@@ -390,8 +392,11 @@ class Ui_Frame_Traumatologique(object):
         self.radioButton_Droit.setText(_translate("Frame", "Droit"))
         self.radioButton_gauche.setText(_translate("Frame", "Gauche"))
 
-
+# class à créer
 class MainWindow_Traumatologie(QtWidgets.QWidget, Ui_Frame_Traumatologique):
+
+    # Pour pathologie traumato, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()

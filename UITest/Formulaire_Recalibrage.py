@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 glb_recalibrage_posterieur = False
 glb_recalibrage_anterieur = False
 glb_recalibrage_interlamaire = False
@@ -31,6 +32,7 @@ glb_reca_hernie_associer = ""
 validerRecalibrage = False
 
 class Ui_Frame_Recalibrage(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(651, 540)
@@ -212,8 +214,11 @@ class Ui_Frame_Recalibrage(object):
         self.checkBox_foraminotomie.setText(_translate("Frame", "Foraminotomie"))
         self.checkBox_corporectomie.setText(_translate("Frame", "Corporectomie"))
 
-
+#class à créer
 class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
+
+    # Pour Formulaire recalibrage, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
@@ -222,7 +227,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         QtWidgets.QWidget.__init__(self)
         self.setupUi(self)
 
-        # récupération des valeurs des checkbox
+        # récupération des valeurs des checkbox ==> Attention à bien lire le nom des checkbox pour savoir à qui c'est attribué
         self.checkBox_interlamaire.stateChanged.connect(self.checkBoxChangeAction_interlamaire)
         self.checkBox_interEpineux.stateChanged.connect(self.checkBoxChangeAction_interEpineux)
         self.checkBox_laminectomie.stateChanged.connect(self.checkBoxChangeAction_laminectomie)
@@ -234,7 +239,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
 
 
 
-        # valeur des radiobuttons
+        # valeur des radiobuttons ==> Attention à bien lire le nom des radiobuttons pour savoir à qui c'est attribué
         self.radioButton_anterieure.toggled.connect(self.radiobtnFrame_Haut_anterieur)
         self.radioButton_posterieure.toggled.connect(self.radiobtnFrame_Haut_posterieur)
 
@@ -249,10 +254,11 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
+    # Methode qui permet de retourner à l'interface précédente
     def retourEtapePrecedente(self):
         self.switch_window1.emit()
 
-
+    # Methode qui d'interragir avec la frame supérieure (radio button anterieur)
     def radiobtnFrame_Haut_anterieur(self):
         global glb_recalibrage_anterieur, glb_recalibrage_posterieur
         global glb_reca_postAnt
@@ -269,6 +275,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.radioButton_aucun.setChecked(False)
             glb_reca_postAnt = " Voie antérieure"
 
+    # Methode qui d'interragir avec la frame supérieure (radio button postérieur)
     def radiobtnFrame_Haut_posterieur(self):
         global glb_recalibrage_anterieur, glb_recalibrage_posterieur
         global glb_reca_postAnt
@@ -285,6 +292,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.radioButton_aucun2.setChecked(False)
             glb_reca_postAnt = " Voie postérieure"
 
+    # Methode qui permet d'interragir avec la frame de gauche
     def radiobtnFrame_Gauche(self):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
         global glb_reca_infos
@@ -301,6 +309,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.checkBox_arthrectomie.setChecked(False)
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la frame de gauche
     def radiobtnFrame_Droite(self):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
         global glb_reca_infos
@@ -317,6 +326,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.checkBox_corporectomie.setChecked(False)
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la frame de bas (hernie discale oui)
     def radiobtnFrame_BasOui(self):
         global glb_recalibrage_hernie_non, glb_recalibrage_hernie_oui
         global glb_reca_hernie_associer
@@ -327,6 +337,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.pushButton_suivant.setEnabled(True)
             glb_reca_hernie_associer = "Avec hernie discale associée"
 
+    # Methode qui permet d'interragir avec la frame de bas (hernie discale non)
     def radiobtnFrame_BasNon(self):
         global glb_recalibrage_hernie_non, glb_recalibrage_hernie_oui
         global glb_reca_hernie_associer
@@ -337,6 +348,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
             self.pushButton_suivant.setEnabled(True)
             glb_reca_hernie_associer = ""
 
+    # Methode qui permet d'interragir avec la checkbox interlamaire
     def checkBoxChangeAction_interlamaire(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
         global glb_reca_infos
@@ -351,6 +363,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox interepineux
     def checkBoxChangeAction_interEpineux(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
         global glb_reca_infos
@@ -365,6 +378,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox laminectomie
     def checkBoxChangeAction_laminectomie(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
         global glb_reca_infos
@@ -379,6 +393,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox arthrectomie
     def checkBoxChangeAction_arthrectomie(self, state):
         global glb_recalibrage_aucun, glb_recalibrage_laminectomie, glb_recalibrage_interEpineux, glb_recalibrage_interlamaire, glb_recalibrage_arthrectomie
         global glb_reca_infos
@@ -393,6 +408,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox formainotomie
     def checkBoxChangeAction_foraminotomie(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
         global glb_reca_infos
@@ -407,6 +423,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox uncusectomlie
     def checkBoxChangeAction_uncusectomie(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
         global glb_reca_infos
@@ -421,6 +438,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox osteophytique
     def checkBoxChangeAction_osteophytiques(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
         global glb_reca_infos
@@ -435,6 +453,7 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
+    # Methode qui permet d'interragir avec la checkbox corporectomie
     def checkBoxChangeAction_corporectomie(self, state):
         global glb_recalibrage_aucun2, glb_recalibrage_foraminotomie, glb_recalibrage_uncusectomie, glb_recalibrage_osteophytique, glb_recalibrage_corporectomie
         global glb_reca_infos
@@ -449,12 +468,13 @@ class MainWindow_FormRecalibrage(QtWidgets.QWidget, Ui_Frame_Recalibrage):
         else:
             glb_reca_infos = ""
 
-
+    # Methode qui permet d'aller à l'interface suivante
     def suivant(self):
         global validerRecalibrage, glb_reca_postAnt, glb_reca_infos, glb_reca_hernie_associer
         validerRecalibrage = True
         self.switch_window3.emit()
 
+        # réinitialise les valeurs de ces variables globales
         self.checkBox_interlamaire.setChecked(False)
         self.checkBox_interEpineux.setChecked(False)
         self.checkBox_laminectomie.setChecked(False)

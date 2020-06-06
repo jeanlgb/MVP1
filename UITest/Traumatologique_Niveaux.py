@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 compteur = int(0)
 compteur_recuperation = "0"
 
@@ -56,6 +57,7 @@ validerNiveaux = False
 
 
 class Ui_Frame_Niveau(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(782, 467)
@@ -281,7 +283,11 @@ class Ui_Frame_Niveau(object):
         self.checkBox_dorsales.setText(_translate("Frame", "Dorsales (12)"))
         self.pushButton_calcul.setText(_translate("Frame", "Calcul Nombre Vertèbres :"))
 
+#class à créer
 class MainWindow_Niveau(QtWidgets.QWidget, Ui_Frame_Niveau):
+
+    # Pour Traumatologique Niveaux, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
 

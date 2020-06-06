@@ -2,6 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QDate
 
+# variables globales appelées dans controller_test
 patient_dateNaissance = ("21/04/1997")
 patient_dateIntervention = ("")
 valeur_cb_cervicale_radiculaire = False
@@ -15,6 +16,7 @@ glb_textEdit_intervention = ""
 glb_textEditNomIntervention = ""
 
 class Ui_Frame_SelectionnerDP_suite(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setEnabled(True)
@@ -157,8 +159,11 @@ class Ui_Frame_SelectionnerDP_suite(object):
         self.checkBox_thoracoLombaire.setText(_translate("Frame", "Thoraco-lombaire"))
         self.label_identite.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Identité :</p></body></html>"))
 
-
+#class à créer
 class MainWindow_SelectionnerDP_suite(QtWidgets.QWidget, Ui_Frame_SelectionnerDP_suite):
+
+    # Pour SelectionDP_suite, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()

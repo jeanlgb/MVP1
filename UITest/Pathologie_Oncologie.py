@@ -1,6 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 glb_onco_FN_radiculaire = True
 glb_onco_FN_radicoMedullaire = False
 glb_onco_FN_medullaire = False
@@ -55,6 +56,7 @@ glb_lbl_origine_autre = ""
 validerOnco = False
 
 class Ui_Frame_Oncologie(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(840, 893)
@@ -386,8 +388,11 @@ class Ui_Frame_Oncologie(object):
         self.pushButton_ajouterIntervention.setText(_translate("Frame", "Ajouter intervention"))
         self.pushButton_valider.setText(_translate("Frame", "Valider"))
 
-
+#class à créer
 class MainWindow_Oncologie(QtWidgets.QWidget, Ui_Frame_Oncologie):
+
+    # Pour Pathologie oncologie, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()

@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 glb_arthrodese_posterieur = False
 glb_arthrodese_anterieur = False
 glb_arthrodese_polyaxiales = False
@@ -33,6 +34,7 @@ glb_arthro_greffe = ""
 validerArthrodese = False
 
 class Ui_Frame_Arthrodese(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(620, 601)
@@ -290,8 +292,11 @@ class Ui_Frame_Arthrodese(object):
         self.label_5.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Greffe</p></body></html>"))
         self.label_4.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Fixation</p></body></html>"))
 
-
+# class à créer
 class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
+
+    # Pour Formulaire arthrodese, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()
 
@@ -301,7 +306,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
 
 
 
-        # valeur des radiobuttons
+        # valeur des radiobuttons ==> Attention à bien lire le nom des radiobuttons pour savoir à qui c'est attribué ;)
         self.radioButton_anterieure.toggled.connect(self.radiobtnFrame_Haut_anterieur)
         self.radioButton_posterieure.toggled.connect(self.radiobtnFrame_Haut_posterieur)
 
@@ -327,10 +332,11 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
         self.pushButton_retour.clicked.connect(self.retourEtapePrecedente)
         self.pushButton_suivant.clicked.connect(self.suivant) #Ne change pas d'interface mais récupère uniquement les valeurs pour lineedit de creationDP
 
+    # Methode qui permet de retourner à l'interface précédente
     def retourEtapePrecedente(self):
         self.switch_window1.emit()
 
-
+    # Methode qui d'interragir avec la frame supérieure (radio button anterieur)
     def radiobtnFrame_Haut_anterieur(self):
         global glb_arthrodese_posterieur, glb_arthrodese_anterieur
         global glb_arthro_postAnt
@@ -352,6 +358,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.radioButton_aucuneGreffe.setChecked(False)
             glb_arthro_postAnt = " Voie antérieure"
 
+    # Methode qui d'interragir avec la frame supérieure (radio button postérieur)
     def radiobtnFrame_Haut_posterieur(self):
         global glb_arthrodese_posterieur, glb_arthrodese_anterieur
         global glb_arthro_postAnt
@@ -371,6 +378,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.radioButton_aucuneGreffe2.setChecked(False)
             glb_arthro_postAnt = " Voie postérieure"
 
+    # Methode qui d'interragir le radiobutton polyaxiales
     def radiobtn_polyaxiales(self):
         global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         global glb_arthro_fixation
@@ -382,6 +390,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.frame_gauche2.setEnabled(True)
             glb_arthro_fixation = "par vis pédiculaires polyaxiales "
 
+    # Methode qui d'interragir le radiobutton monoaxiales
     def radiobtn_monoaxiales(self):
         global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         self.radiobutton = self.sender()
@@ -393,7 +402,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.frame_gauche2.setEnabled(True)
             glb_arthro_fixation = "par vis pédiculaires monoaxiales "
 
-
+    # Methode qui d'interragir avec le radiobutton aucune de la frame gauche de "fixation"
     def radiobtn_fixationAucune(self):
         global glb_arthrodese_polyaxiales, glb_arthrodese_monoaxiales, glb_arthrodese_fixationAucune
         self.radiobutton = self.sender()
@@ -405,7 +414,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.frame_gauche2.setEnabled(True)
             glb_arthro_fixation = ""
 
-
+    # Methode qui d'interragir le radiobutton plaque
     def radiobtn_plaque(self):
         global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
         self.radiobutton = self.sender()
@@ -416,6 +425,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.frame_droite2.setEnabled(True)
             glb_arthro_fixation = "avec plaque "
 
+    # Methode qui d'interragir avec le radiobutton aucune de la frame droite de "fixation"
     def radiobtn_fixationAucunes2(self):
         global glb_arthrodese_plaque, glb_arthrodese_fixationAucune2
         self.radiobutton = self.sender()
@@ -426,6 +436,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.frame_droite2.setEnabled(True)
             glb_arthro_fixation = ""
 
+    # Methode qui d'interragir avec le radiobutton 2PLIF
     def radiobtn_2PLIF(self):
         global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
         global glb_arthro_greffe
@@ -439,6 +450,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "2 cages intersomatiques PLIF"
 
+    # Methode qui d'interragir avec le radiobutton 1PLIF
     def radiobtn_1PLIF(self):
         global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
         global glb_arthro_greffe
@@ -452,6 +464,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "1 cage intersomatique PLIF"
 
+    # Methode qui d'interragir avec le radiobutton TLIF
     def radiobtn_TLIF(self):
         global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
         global glb_arthro_greffe
@@ -465,6 +478,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "1 cage intersomatique TLIF"
 
+    # Methode qui d'interragir avec le radiobutton Os seulement
     def radiobtn_OsSeulement(self):
         global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
         global glb_arthro_greffe
@@ -478,6 +492,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "Os seulement"
 
+    # Methode qui d'interragir avec le radiobutton aucune de la frame gauche de "greffe"
     def radiobtn_greffeAucune(self):
         global glb_arthrodese_2PLIF, glb_arthrodese_PLIF, glb_arthrodese_TLIF, glb_arthrodese_OsSeulement, glb_arthrodese_greffeAucune
         global glb_arthro_greffe
@@ -491,6 +506,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = ""
 
+    # Methode qui permet d'interragir avec le radiobutton intersomatique
     def radiobtn_intersomatique(self):
         global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
         global glb_arthro_greffe
@@ -503,6 +519,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "cage intersomatique"
 
+    # Methode qui permet d'interragir avec le radiobutton corporectomie
     def radiobtn_corporectomie(self):
         global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
         global glb_arthro_greffe
@@ -515,6 +532,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "cage de corporectomie"
 
+    # Methode qui permet d'interragir avec le radiobutton osseulement de la frame de droite
     def radiobtn_OsSeulement2(self):
         global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
         global glb_arthro_greffe
@@ -527,6 +545,7 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = "Os seulement"
 
+    # Methode qui d'interragir avec le radiobutton aucune de la frame droite de "greffe"
     def radiobtn_greffeAucune2(self):
         global glb_arthrodese_intersomatique, glb_arthrodese_corporectomie, glb_arthrodese_OsSeulement2, glb_arthrodese_greffeAucune2
         global glb_arthro_greffe
@@ -539,12 +558,13 @@ class MainWindow_FormArthrodese(QtWidgets.QWidget, Ui_Frame_Arthrodese):
             self.pushButton_suivant.setEnabled(True)
             glb_arthro_greffe = ""
 
-
+    # Methode qui permet d'aller à l'interface suivante
     def suivant(self):
         global validerArthrodese, glb_arthro_postAnt, glb_arthro_fixation, glb_arthro_greffe
         validerArthrodese = True
         self.switch_window3.emit()
 
+        # réinitialise les valeurs de ces variables globales
         glb_arthro_postAnt = ""
         glb_arthro_fixation = ""
         glb_arthro_greffe = ""

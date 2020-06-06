@@ -27,6 +27,8 @@ from UITest.SelectionDP_suite import MainWindow_SelectionnerDP_suite
 from UITest.SelectionDP_suite import *
 from Connexion_BD import *
 
+
+# variables globales(courage pour comprendre avec toutes ces variables, à savoir que ces varibales là sont différentes de celles créer dans les classes.)
 controlleur_nom = ""
 controlleur_prenom = ""
 controlleur_numMagic = ""
@@ -146,21 +148,27 @@ reca_hernie2 = ""
 
 nom_intervention = ""
 
+
+# LIRE LES COMMENTAIRES, LES SWITCH SONT EXPLIQUES DANS SHOW CONNEXION
 class Controller_Test:
 
     def __init__(self):
         pass
 
+    # Appelle la classe Connexion
     def show_Connexion(self):
         self.med = MainWindow_Acceuil()
         self.sec = MainWindow_Acceuil_Secretaire()
         self.co = Login()
 
+        # lie  les switch de la classe connexion (où on a attribué un bouton) à l'interface où on veut aller (par exemple interface médecin grâce à show médecin)
         self.co.switch_window1.connect(self.show_Medecin)
         self.co.switch_window2.connect(self.show_Secretaire)
 
         self.med.hide()
         self.sec.hide()
+
+        #affiche l'interface connexion
         self.co.show()
 
     def show_Medecin(self):

@@ -9,12 +9,14 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 patient_nom_existant = ("")
 patient_prenom_existant = ("")
 
 patient_numMagic_existant = ("")
 
 class Ui_Frame_SelectionnerDP(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(722, 501)
@@ -84,8 +86,11 @@ class Ui_Frame_SelectionnerDP(object):
         self.label_prenom.setText(_translate("Frame", "<html><head/><body><p align=\"center\">Prénom :</p></body></html>"))
         self.pushButton_recherche.setText(_translate("Frame", "Suivant"))
 
-
+# class à créer
 class MainWindow_SelectionnerDP(QtWidgets.QWidget, Ui_Frame_SelectionnerDP):
+
+    # Pour SelectionDP, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
 

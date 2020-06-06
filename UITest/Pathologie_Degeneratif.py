@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Connexion_BD import *
+# variables globales appelées dans controller_test
 glb_dege_FN_radiculaire = True
 glb_dege_FN_radicoMedullaire = False
 glb_dege_FN_medullaire = False
@@ -26,6 +27,7 @@ glb_label_patho = ""
 valider = False
 
 class Ui_Frame_Degeneratif(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(840, 681)
@@ -254,7 +256,11 @@ class Ui_Frame_Degeneratif(object):
         self.pushButton_arthrodeseSuivant.setText(_translate("Frame", "Suivant"))
         self.label_titre.setText(_translate("Frame", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Pathologie Dégénérative</span></p></body></html>"))
 
+#class à créer
 class MainWindow_Degeneratif(QtWidgets.QWidget, Ui_Frame_Degeneratif):
+
+    # Pour Pathologie degeneratif, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()

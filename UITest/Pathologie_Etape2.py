@@ -1,6 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# variables globales appelées dans controller_test
 signal_degeneratif = False
 signal_traumatologique = False
 signal_oncologie = False
@@ -13,6 +14,7 @@ signal_sacro = False
 glb_nom_contexte = ""
 
 class Ui_Frame_Etape2(object):
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(532, 266)
@@ -99,7 +101,11 @@ class Ui_Frame_Etape2(object):
         self.checkBox_lombaire.setText(_translate("Frame", "Lombaire"))
         self.checkBox_sacro.setText(_translate("Frame", "Sacro-coccygienne"))
 
+# class à créer
 class MainWindow_Etape2(QtWidgets.QWidget, Ui_Frame_Etape2):
+
+    # Pour Pathologie Etape2, Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
     switch_window3 = QtCore.pyqtSignal()

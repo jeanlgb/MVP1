@@ -4,11 +4,12 @@ from PyQt5.QtCore import Qt
 
 from Utilisateur import *
 import keyboard
+# variables globales appelées dans controller_test
 signal_medecin = True
 signal_secretaire = True
 
 class Ui_Frame_Connexion(object):
-
+    # Interface générée automatiquement via qtdesigner ==> def setupUi et def retranslateUI
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.setFixedSize(626, 545)
@@ -68,9 +69,11 @@ class Ui_Frame_Connexion(object):
         self.pushButton_connexion.setText(_translate("Frame", "Connexion"))
         self.pushButton_mdpOublie.setText(_translate("Frame", "Mot de passe oublié ?"))
 
-
+# class à créer
 class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
 
+    # Pour Login Variables qui permettent de switcher entre les interfaces pour chaque bouton.
+    # Les switch sont utilisés également dans la classe Controller_Test
     switch_window1 = QtCore.pyqtSignal()
     switch_window2 = QtCore.pyqtSignal()
 
@@ -81,9 +84,11 @@ class Login(QtWidgets.QWidget, Ui_Frame_Connexion):
 
         self.pushButton_connexion.clicked.connect(self.seConnecter)
 
+    # Méthode qui permet la connexion également avec le clavier (entrée)
     def keyPressEvent(self, QKeyEvent):
         self.seConnecter()
 
+    # Methode qui permet de se connecter en fonction des identifiants Médecin ou secrétaire
     def seConnecter(self):
         global signal_secretaire
         global signal_medecin
